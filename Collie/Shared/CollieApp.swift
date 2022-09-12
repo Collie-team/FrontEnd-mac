@@ -4,7 +4,7 @@ import SwiftUI
 struct CollieApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BusinessManagerSidebarView()
         }
     }
 }

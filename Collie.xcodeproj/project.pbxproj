@@ -8,18 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
-		5BACC62C28CFB855006975D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* ContentView.swift */; };
+		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
 		5BACC63128CFB856006975D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC63028CFB856006975D3 /* Preview Assets.xcassets */; };
+		5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC64D28CFC23D006975D3 /* BusinessManagerSidebarView.swift */; };
+		5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC64F28CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift */; };
+		5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65228CFC2BE006975D3 /* JourneyListView.swift */; };
+		5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65528CFC37E006975D3 /* CustomColors.swift */; };
+		5BACC65928CFC6D3006975D3 /* SidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65828CFC6D3006975D3 /* SidebarItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
-		5BACC62B28CFB855006975D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		5BACC62D28CFB856006975D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BACC63028CFB856006975D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BACC63228CFB856006975D3 /* Collie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Collie.entitlements; sourceTree = "<group>"; };
+		5BACC64D28CFC23D006975D3 /* BusinessManagerSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerSidebarView.swift; sourceTree = "<group>"; };
+		5BACC64F28CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerSidebarViewModel.swift; sourceTree = "<group>"; };
+		5BACC65228CFC2BE006975D3 /* JourneyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListView.swift; sourceTree = "<group>"; };
+		5BACC65528CFC37E006975D3 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		5BACC65828CFC6D3006975D3 /* SidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +62,9 @@
 		5BACC62828CFB855006975D3 /* Collie */ = {
 			isa = PBXGroup;
 			children = (
-				5BACC62928CFB855006975D3 /* CollieApp.swift */,
-				5BACC62B28CFB855006975D3 /* ContentView.swift */,
+				5BACC63D28CFC0FA006975D3 /* Shared */,
+				5BACC63B28CFC0DE006975D3 /* Employee */,
+				5BACC63A28CFC09E006975D3 /* Business Manager */,
 				5BACC62D28CFB856006975D3 /* Assets.xcassets */,
 				5BACC63228CFB856006975D3 /* Collie.entitlements */,
 				5BACC62F28CFB856006975D3 /* Preview Content */,
@@ -67,6 +78,180 @@
 				5BACC63028CFB856006975D3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BACC63928CFC083006975D3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64A28CFC21B006975D3 /* Sidebar */,
+				5BACC64228CFC12B006975D3 /* Journey List */,
+				5BACC63F28CFC118006975D3 /* Dashboard */,
+			);
+			name = Scenes;
+			path = ../Employee/Scenes;
+			sourceTree = "<group>";
+		};
+		5BACC63A28CFC09E006975D3 /* Business Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC63928CFC083006975D3 /* Scenes */,
+			);
+			path = "Business Manager";
+			sourceTree = "<group>";
+		};
+		5BACC63B28CFC0DE006975D3 /* Employee */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC63C28CFC0F1006975D3 /* Scenes */,
+			);
+			path = Employee;
+			sourceTree = "<group>";
+		};
+		5BACC63C28CFC0F1006975D3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Scenes;
+			path = "../Business Manager/Scenes";
+			sourceTree = "<group>";
+		};
+		5BACC63D28CFC0FA006975D3 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC62928CFB855006975D3 /* CollieApp.swift */,
+				5BACC65428CFC36B006975D3 /* Utils */,
+				5BACC65128CFC27B006975D3 /* Models */,
+				5BACC63E28CFC108006975D3 /* Scenes */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5BACC63E28CFC108006975D3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64528CFC13F006975D3 /* Welcome */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5BACC63F28CFC118006975D3 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64128CFC122006975D3 /* View Models */,
+				5BACC64028CFC11E006975D3 /* Views */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		5BACC64028CFC11E006975D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC62B28CFB855006975D3 /* DashboardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BACC64128CFC122006975D3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BACC64228CFC12B006975D3 /* Journey List */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64428CFC137006975D3 /* View Models */,
+				5BACC64328CFC132006975D3 /* Views */,
+			);
+			path = "Journey List";
+			sourceTree = "<group>";
+		};
+		5BACC64328CFC132006975D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC65228CFC2BE006975D3 /* JourneyListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BACC64428CFC137006975D3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BACC64528CFC13F006975D3 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64728CFC15A006975D3 /* View Models */,
+				5BACC64628CFC155006975D3 /* Views */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		5BACC64628CFC155006975D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BACC64728CFC15A006975D3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BACC64A28CFC21B006975D3 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64C28CFC225006975D3 /* View Models */,
+				5BACC64B28CFC220006975D3 /* Views */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		5BACC64B28CFC220006975D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC65728CFC6C5006975D3 /* Components */,
+				5BACC64D28CFC23D006975D3 /* BusinessManagerSidebarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BACC64C28CFC225006975D3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC64F28CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BACC65128CFC27B006975D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5BACC65428CFC36B006975D3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC65528CFC37E006975D3 /* CustomColors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5BACC65728CFC6C5006975D3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BACC65828CFC6D3006975D3 /* SidebarItem.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +324,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BACC62C28CFB855006975D3 /* ContentView.swift in Sources */,
+				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
+				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
+				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
+				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
+				5BACC65928CFC6D3006975D3 /* SidebarItem.swift in Sources */,
+				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
