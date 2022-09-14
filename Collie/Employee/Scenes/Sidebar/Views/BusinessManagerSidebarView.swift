@@ -1,28 +1,44 @@
 import SwiftUI
 
 struct BusinessManagerSidebarView: View {
+    @ObservedObject var viewModel = BusinnesManagerSidebarViewModel()
+    
     var body: some View {
         NavigationView {
-            VStack(spacing: 32) {
-                Image("logoCollie")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
-                    .padding(.top)
-                    .padding(.horizontal)
-                
-                List {
+            VStack {
+                VStack(spacing: 32) {
+                    Image("logoCollie")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150)
+                        .padding(.top)
+                        .padding(.horizontal)
                     
-                    NavigationLink(destination: DashboardView()) {
-                        SidebarItem(title: "Dashboard", systemImageName: "star", isSelected: true)
-                    }
-                    NavigationLink(destination: JourneyListView()) {
-                        SidebarItem(title: "Jornadas", systemImageName: "star", isSelected: false)
+                    VStack {
+                        ForEach(viewModel.sidebarItens) { sidebarItem in
+                            SidebarItemView(sidebarItem: sidebarItem, isSelected: viewModel.isSideBarItemSelected(sidebarItem)) {
+                                viewModel.selectSideBarItem(sidebarItem)
+                            }
+                        }
                     }
                 }
-                .listStyle(.sidebar)
+                Spacer()
             }
             .background(Color.collieAzulEscuro)
+            
+            switch viewModel.selectedItem.option {
+            case .dashboard:
+                DashboardView()
+            case .journeys:
+                JourneyListView()
+            case .teamList:
+                TeamListView()
+            case .payments:
+                PaymentsView()
+            }
+        }
+        .onAppear {
+            viewModel.handleAppear()
         }
     }
 }

@@ -4,12 +4,13 @@ struct DashboardView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("Hello, world!")
+            Text("Dashboard")
                 .padding()
             Spacer()
         }
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
+        .navigationTitle("Dashboard")
     }
 }
 
