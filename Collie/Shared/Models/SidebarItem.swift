@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 enum SidebarItemOption {
     case dashboard

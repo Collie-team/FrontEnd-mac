@@ -26,20 +26,36 @@ struct BusinessManagerSidebarView: View {
             }
             .background(Color.collieAzulEscuro)
             
-            switch viewModel.selectedItem.option {
-            case .dashboard:
-                DashboardView()
-            case .journeys:
-                JourneyListView()
-            case .teamList:
-                TeamListView()
-            case .payments:
-                PaymentsView()
+            VStack {
+                switch viewModel.selectedItem.option {
+                case .dashboard:
+                    DashboardView()
+                case .journeys:
+                    JourneyListView()
+                case .teamList:
+                    TeamListView()
+                case .payments:
+                    PaymentsView()
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: toggleSidebar, label: { // 1
+                    Image(systemName: "sidebar.leading")
+                })
             }
         }
         .onAppear {
             viewModel.handleAppear()
         }
+    }
+    
+    private func toggleSidebar() {
+        #if os(iOS)
+        #else
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
+        #endif
     }
 }
 
