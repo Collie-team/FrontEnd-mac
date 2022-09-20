@@ -1,6 +1,6 @@
 import Foundation
 
-struct Journey: Identifiable {
+struct Journey: Identifiable, Codable {
     var id: String = UUID().uuidString
     var title: String
     var subtitle: String
