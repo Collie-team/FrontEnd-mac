@@ -1,9 +1,9 @@
 import Foundation
 
-struct UserJourney: Identifiable, Codable {
+struct Event: Identifiable, Codable {
     var id: String = UUID().uuidString
-    var journeyId: String
+    var name: String
+    var description: String
     var startDate: Date
     var endDate: Date
-    var userTasks: [UserTask]
 }

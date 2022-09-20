@@ -10,7 +10,7 @@ struct JourneyCard: View {
                 
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
-                    Text(journey.title)
+                    Text(journey.name)
                         .font(.system(size: 24, weight: .bold, design: .default))
                     Spacer()
                 }
@@ -32,9 +32,24 @@ struct JourneyCard: View {
 struct JourneyCard_Previews: PreviewProvider {
     static var previews: some View {
         JourneyCard(journey: Journey(
-            title: "Jornada iOS",
-            subtitle: "Jornada para os novos colaboradores do time iOS da Collie",
-            imageName: ""
+            name: "Jornada iOS",
+            durationInDays: 7,
+            description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
+            imageURL: "",
+            usersIds: [],
+            tasks: [
+                Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "B", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "C", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "D", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "E", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "F", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "G", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
+                Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
+            ]
         ))
     }
 }

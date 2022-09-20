@@ -7,6 +7,5 @@ struct User: Identifiable, Codable {
     var jobDescription: String
     var personalDescription: String
     var imageURL: String
-    var userJourneys: [UserJourney]
     var businessId: String
 }

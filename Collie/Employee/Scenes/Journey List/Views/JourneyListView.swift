@@ -17,6 +17,7 @@ struct JourneyListView: View {
                         HStack {
                             Text("Jornadas")
                                 .font(.system(size: 40, weight: .bold, design: .default))
+                                .foregroundColor(Color.black)
                             Spacer()
                             
                             HStack {
@@ -69,6 +70,7 @@ struct JourneyListView: View {
             }
         }
         .navigationTitle("Jornadas")
+        .background(Color.collieBranco.ignoresSafeArea())
     }
     
 }

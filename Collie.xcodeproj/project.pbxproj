@@ -25,10 +25,9 @@
 		5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */; };
 		5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BC928DA3CDC00B74060 /* Business.swift */; };
 		5BF73BCC28DA3CE700B74060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* User.swift */; };
-		5BF73BCE28DA3D7500B74060 /* UserJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCD28DA3D7500B74060 /* UserJourney.swift */; };
-		5BF73BD028DA3D8100B74060 /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCF28DA3D8100B74060 /* UserTask.swift */; };
 		5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD128DA3D8C00B74060 /* Task.swift */; };
 		5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD328DA3D9700B74060 /* TaskCategory.swift */; };
+		5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD528DA3FDD00B74060 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,10 +51,9 @@
 		5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BF73BC928DA3CDC00B74060 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		5BF73BCB28DA3CE700B74060 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		5BF73BCD28DA3D7500B74060 /* UserJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJourney.swift; sourceTree = "<group>"; };
-		5BF73BCF28DA3D8100B74060 /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		5BF73BD128DA3D8C00B74060 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5BF73BD328DA3D9700B74060 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
+		5BF73BD528DA3FDD00B74060 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,10 +267,9 @@
 				5BACC66B28D26127006975D3 /* Journey.swift */,
 				5BF73BC928DA3CDC00B74060 /* Business.swift */,
 				5BF73BCB28DA3CE700B74060 /* User.swift */,
-				5BF73BCD28DA3D7500B74060 /* UserJourney.swift */,
-				5BF73BCF28DA3D8100B74060 /* UserTask.swift */,
 				5BF73BD128DA3D8C00B74060 /* Task.swift */,
 				5BF73BD328DA3D9700B74060 /* TaskCategory.swift */,
+				5BF73BD528DA3FDD00B74060 /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,7 +443,6 @@
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
-				5BF73BD028DA3D8100B74060 /* UserTask.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
 				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
@@ -460,8 +456,8 @@
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
-				5BF73BCE28DA3D7500B74060 /* UserJourney.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
+				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
