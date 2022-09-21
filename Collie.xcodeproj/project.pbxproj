@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F665B28D26CFC0057BA32 /* Test_JourneyView.swift */; };
+		5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */; };
+		5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666028DA37750057BA32 /* JourneyModel.swift */; };
+		5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B0F665B28D26CFC0057BA32 /* Test_JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_JourneyView.swift; sourceTree = "<group>"; };
+		5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_JourneyViewModel.swift; sourceTree = "<group>"; };
+		5B0F666028DA37750057BA32 /* JourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyModel.swift; sourceTree = "<group>"; };
+		5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDTO.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -49,6 +57,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B0F665A28D26CDE0057BA32 /* Backend-test */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F665F28D4FB630057BA32 /* Models */,
+				5B0F665B28D26CFC0057BA32 /* Test_JourneyView.swift */,
+				5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */,
+			);
+			path = "Backend-test";
+			sourceTree = "<group>";
+		};
+		5B0F665F28D4FB630057BA32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F666028DA37750057BA32 /* JourneyModel.swift */,
+				5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5BACC61D28CFB855006975D3 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +95,7 @@
 		5BACC62828CFB855006975D3 /* Collie */ = {
 			isa = PBXGroup;
 			children = (
+				5B0F665A28D26CDE0057BA32 /* Backend-test */,
 				5BACC63D28CFC0FA006975D3 /* Shared */,
 				5BACC63B28CFC0DE006975D3 /* Employee */,
 				5BACC63A28CFC09E006975D3 /* Business Manager */,
@@ -384,9 +412,13 @@
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
+				5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */,
+				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
+				5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
@@ -520,6 +552,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -545,6 +578,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
