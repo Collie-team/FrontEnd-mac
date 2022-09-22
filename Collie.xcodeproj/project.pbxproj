@@ -25,10 +25,13 @@
 		5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */; };
 		5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BC928DA3CDC00B74060 /* Business.swift */; };
 		5BF73BCC28DA3CE700B74060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* User.swift */; };
-		5BF73BCE28DA3D7500B74060 /* UserJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCD28DA3D7500B74060 /* UserJourney.swift */; };
-		5BF73BD028DA3D8100B74060 /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCF28DA3D8100B74060 /* UserTask.swift */; };
 		5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD128DA3D8C00B74060 /* Task.swift */; };
 		5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD328DA3D9700B74060 /* TaskCategory.swift */; };
+		5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD528DA3FDD00B74060 /* Event.swift */; };
+		5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD728DB80F500B74060 /* TeamListViewModel.swift */; };
+		5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */; };
+		5BF73BDC28DB960900B74060 /* CreateNewJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */; };
+		5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,10 +55,13 @@
 		5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BF73BC928DA3CDC00B74060 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		5BF73BCB28DA3CE700B74060 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		5BF73BCD28DA3D7500B74060 /* UserJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJourney.swift; sourceTree = "<group>"; };
-		5BF73BCF28DA3D8100B74060 /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		5BF73BD128DA3D8C00B74060 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5BF73BD328DA3D9700B74060 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
+		5BF73BD528DA3FDD00B74060 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		5BF73BD728DB80F500B74060 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
+		5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJourneyView.swift; sourceTree = "<group>"; };
+		5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJourneyViewModel.swift; sourceTree = "<group>"; };
+		5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,17 +156,8 @@
 				5BACC62928CFB855006975D3 /* CollieApp.swift */,
 				5BACC65428CFC36B006975D3 /* Utils */,
 				5BACC65128CFC27B006975D3 /* Models */,
-				5BACC63E28CFC108006975D3 /* Scenes */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		5BACC63E28CFC108006975D3 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				5BACC64528CFC13F006975D3 /* Welcome */,
-			);
-			path = Scenes;
 			sourceTree = "<group>";
 		};
 		5BACC63F28CFC118006975D3 /* Dashboard */ = {
@@ -201,6 +198,7 @@
 			children = (
 				5BACC66D28D26184006975D3 /* Components */,
 				5BACC65228CFC2BE006975D3 /* JourneyListView.swift */,
+				5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,29 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
-		5BACC64528CFC13F006975D3 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				5BACC64728CFC15A006975D3 /* View Models */,
-				5BACC64628CFC155006975D3 /* Views */,
-			);
-			path = Welcome;
-			sourceTree = "<group>";
-		};
-		5BACC64628CFC155006975D3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5BACC64728CFC15A006975D3 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
+				5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -269,10 +245,9 @@
 				5BACC66B28D26127006975D3 /* Journey.swift */,
 				5BF73BC928DA3CDC00B74060 /* Business.swift */,
 				5BF73BCB28DA3CE700B74060 /* User.swift */,
-				5BF73BCD28DA3D7500B74060 /* UserJourney.swift */,
-				5BF73BCF28DA3D8100B74060 /* UserTask.swift */,
 				5BF73BD128DA3D8C00B74060 /* Task.swift */,
 				5BF73BD328DA3D9700B74060 /* TaskCategory.swift */,
+				5BF73BD528DA3FDD00B74060 /* Event.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				5BACC65528CFC37E006975D3 /* CustomColors.swift */,
+				5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -337,6 +313,7 @@
 		5BACC66328D24407006975D3 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				5BF73BD728DB80F500B74060 /* TeamListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -444,25 +421,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
+				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
-				5BF73BD028DA3D8100B74060 /* UserTask.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
 				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
+				5BF73BDC28DB960900B74060 /* CreateNewJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* SingleJourneyView.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
-				5BF73BCE28DA3D7500B74060 /* UserJourney.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
+				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
+				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

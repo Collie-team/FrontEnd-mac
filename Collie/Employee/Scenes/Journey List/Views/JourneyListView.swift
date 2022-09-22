@@ -3,6 +3,8 @@ import SwiftUI
 struct JourneyListView: View {
     @ObservedObject var viewModel = JourneyListViewModel()
     
+    @State var showCreationPopUp = false
+    
     var gridItems: [GridItem] = [
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16),
@@ -17,6 +19,7 @@ struct JourneyListView: View {
                         HStack {
                             Text("Jornadas")
                                 .font(.system(size: 40, weight: .bold, design: .default))
+                                .foregroundColor(Color.black)
                             Spacer()
                             
                             HStack {
@@ -28,8 +31,9 @@ struct JourneyListView: View {
                             .background(Color.collieRoxo)
                             .cornerRadius(50)
                             .font(.system(size: 16, weight: .bold, design: .default))
+                            .foregroundColor(.white)
                             .onTapGesture {
-                                viewModel.addNewJourney()
+                                showCreationPopUp = true
                             }
                         }
                         
@@ -40,15 +44,15 @@ struct JourneyListView: View {
                                     .font(.system(size: 50, weight: .bold, design: .default))
                                     .foregroundColor(.white)
                             }
-                            .frame(height: 250)
+                            .frame(height: NSScreen.main!.frame.height / 4)
                             .foregroundColor(.collieRoxo)
                             .onTapGesture {
-                                viewModel.addNewJourney()
+                                showCreationPopUp = true
                             }
                             
                             ForEach(viewModel.sampleJourneys.reversed()) { journey in
                                 JourneyCard(journey: journey)
-                                .frame(height: 250)
+                                    .frame(height: NSScreen.main!.frame.height / 4)
                                 .onTapGesture {
                                     viewModel.selectedJourney = journey
                                 }
@@ -67,8 +71,25 @@ struct JourneyListView: View {
                     viewModel.selectedJourney = nil
                 })
             }
+            
+            if showCreationPopUp {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    CreateNewJourneyView(handleClose: {
+                        withAnimation {
+                            showCreationPopUp = false
+                        }
+                    }, handleJourneyCreation: { journey in
+                        viewModel.addNewJourney(journey)
+                    })
+                    .frame(maxWidth: 800)
+                }
+            }
+            
         }
         .navigationTitle("Jornadas")
+        .background(Color.collieBranco.ignoresSafeArea())
     }
     
 }
