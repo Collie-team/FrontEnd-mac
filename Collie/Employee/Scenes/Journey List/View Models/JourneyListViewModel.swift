@@ -26,16 +26,8 @@ final class JourneyListViewModel: ObservableObject {
     
     @Published var selectedJourney: Journey?
     
-    func addNewJourney() {
-        let newJourney = Journey(
-            name: "Nova jornada",
-            durationInDays: 7,
-            description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: "",
-            usersIds: [],
-            tasks: []
-        )
-        sampleJourneys.append(newJourney)
-        selectedJourney = newJourney
+    func addNewJourney(_ journey: Journey) {
+        sampleJourneys.append(journey)
+        selectedJourney = journey
     }
 }

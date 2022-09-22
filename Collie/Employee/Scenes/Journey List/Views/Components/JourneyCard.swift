@@ -12,6 +12,7 @@ struct JourneyCard: View {
                 HStack {
                     Text(journey.name)
                         .font(.system(size: 24, weight: .bold, design: .default))
+                        .lineLimit(1)
                     Spacer()
                 }
                 HStack(spacing: 0) {

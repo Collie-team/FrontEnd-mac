@@ -3,8 +3,25 @@ import SwiftUI
 struct PaymentsView: View {
     var body: some View {
         VStack {
-            Text("Payments")
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack {
+                    HStack {
+                        Text("Pagamentos")
+                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .foregroundColor(Color.black)
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                }
+            }
         }
+        .padding(.horizontal)
+        .padding(.vertical, 32)
+        .frame(maxWidth: .infinity)
+        .frame(maxHeight: .infinity)
+        .background(Color.collieBranco.ignoresSafeArea())
         .navigationTitle("Pagamentos")
     }
 }

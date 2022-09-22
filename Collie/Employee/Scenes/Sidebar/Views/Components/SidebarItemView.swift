@@ -17,6 +17,7 @@ struct SidebarItemView: View {
             Text(sidebarItem.title!)
             Spacer()
         }
+        .foregroundColor(.white)
         .padding(.trailing)
         .frame(height: 50)
         .font(.system(size: 18, weight: isSelected ? .bold : .regular, design: .rounded))
