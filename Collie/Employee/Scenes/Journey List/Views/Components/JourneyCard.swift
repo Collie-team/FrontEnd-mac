@@ -18,7 +18,11 @@ struct JourneyCard: View {
                 HStack(spacing: 0) {
                     Text("Gestor: ")
                         .bold()
-                    Text("Nome do gestor")
+                    if journey.managers.isEmpty {
+                        Text("-")
+                    } else {
+                        Text(journey.managers.first!.name)
+                    }
                 }
             }
             .padding()
@@ -50,7 +54,8 @@ struct JourneyCard_Previews: PreviewProvider {
                 Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                 Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                 Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
-            ]
+            ],
+            managers: []
         ))
     }
 }

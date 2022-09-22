@@ -111,7 +111,8 @@ struct SingleJourneyView_Previews: PreviewProvider {
                     Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                     Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                     Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
-                ]
+                ],
+                managers: []
             ),
             backAction: {}
         )
