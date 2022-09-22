@@ -74,19 +74,40 @@ struct CreateNewJourneyView: View {
                     .foregroundColor(.black)
                     
                     Menu {
-                        ForEach((1...5), id: \.self) { _ in
-                            Text("Nome do gestor")
+                        ForEach(viewModel.sampleManagers) { user in
+                            Button {
+                                viewModel.selectManager(user)
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Circle()
+                                        .foregroundColor(.collieRosaEscuro)
+                                        .frame(width: 20, height: 20)
+                                    Text("\(user.name)")
+                                }
+                            }
                         }
                     } label: {
-                        Text("Adicionar gestor")
+                        if viewModel.chosenManager == nil {
+                            Text("Adicionar gestor")
+                        } else {
+                            HStack(spacing: 8) {
+                                Circle()
+                                    .foregroundColor(.collieRosaEscuro)
+                                    .frame(width: 20, height: 20)
+                                Text("\(viewModel.chosenManager!.name)")
+                            }
+                        }
                     }
-                    .menuStyle(.borderlessButton)
                     .padding(.horizontal)
+                    .tint(.collieRosaEscuro)
+                    .menuStyle(.borderlessButton)
                     .frame(height: 40)
                     .background(Color.white)
+                    .foregroundColor(.black)
                     .cornerRadius(8)
-                    
                 }
+                
+                
                 
                 VStack {
                     HStack {
@@ -97,12 +118,44 @@ struct CreateNewJourneyView: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.black)
                     
+                    Menu {
+                        ForEach(viewModel.sampleManagers) { user in
+                            Button {
+                                viewModel.selectManager(user)
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Circle()
+                                        .foregroundColor(.collieRosaEscuro)
+                                        .frame(width: 20, height: 20)
+                                    Text("\(user.name)")
+                                }
+                            }
+                        }
+                    } label: {
+                        if viewModel.chosenManager == nil {
+                            Text("Adicionar novo colaborador")
+                        } else {
+                            HStack(spacing: 8) {
+                                Circle()
+                                    .foregroundColor(.collieRosaEscuro)
+                                    .frame(width: 20, height: 20)
+                                Text("\(viewModel.chosenManager!.name)")
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .tint(.collieRosaEscuro)
+                    .menuStyle(.borderlessButton)
+                    .frame(height: 40)
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .cornerRadius(8)
                     
                 }
                 
                 Button {
                     handleJourneyCreation(
-                        Journey(name: viewModel.journeyName, durationInDays: 7, description: viewModel.journeyDescription, imageURL: "", usersIds: [], tasks: [])
+                        Journey(name: viewModel.journeyName, durationInDays: 7, description: viewModel.journeyDescription, imageURL: "", usersIds: [], tasks: [], managers: [viewModel.chosenManager!])
                     )
                     handleClose()
                 } label: {

@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Identifiable, Codable {
+struct User: Identifiable, Codable, Hashable {
     var id: String = UUID().uuidString
     var name: String
     var email: String
