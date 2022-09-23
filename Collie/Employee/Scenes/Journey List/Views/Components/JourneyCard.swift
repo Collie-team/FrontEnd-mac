@@ -16,12 +16,15 @@ struct JourneyCard: View {
                     Spacer()
                 }
                 HStack(spacing: 0) {
-                    Text("Gestor: ")
+                    Text((journey.managers.count > 1) ? "Gestores: " : "Gestor: ")
                         .bold()
-                    if journey.managers.isEmpty {
-                        Text("-")
-                    } else {
-                        Text(journey.managers.first!.name)
+                    
+                    ForEach(journey.managers) { manager in
+                        if journey.managers.firstIndex(of: manager) == journey.managers.count - 1 {
+                            Text("\(manager.name)")
+                        } else {
+                            Text("\(manager.name), ")
+                        }
                     }
                 }
             }
