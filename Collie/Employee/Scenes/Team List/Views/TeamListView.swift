@@ -73,38 +73,89 @@ struct TeamListView: View {
                         }
                     }
                     .padding(.bottom)
+                    
+                    // LISTA
 
-                    ForEach(viewModel.sampleUsers) { user in
-                        HStack(spacing: 0) {
+                    VStack(alignment: .leading) {
+                        HStack {
                             ZStack {
                                 Circle()
                                     .frame(width: 48, height: 48)
-                                    .foregroundColor(.collieRosaClaro)
-                                Text("AA")
-                                    .font(.system(size: 16, weight: .bold, design: .default))
                             }
                             .padding(.trailing)
-                            
-                            Text("\(user.name)")
-                                .foregroundColor(.black)
-                            Spacer()
-                            
-                            Text("3/14")
-                                .font(.system(size: 17))
-                                .foregroundColor(.black)
-                                .padding(.horizontal)
-                            
-                            Button(action: {}) {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 13))
-                                    .foregroundColor(.gray)
+                            .opacity(0)
+                            ZStack(alignment: .center) {
+                                HStack {
+                                    Text("Nome")
+                                    Spacer()
+                                    Text("Tarefas")
+                                    Button(action: {}) {
+                                        Image(systemName: "xmark")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .disabled(true)
+                                    .padding()
+                                    .opacity(0)
+                                }
+
+                                Text("Fase")
+//                                    .offset(x: 240, y: 0)
+                                Text("Jornada")
+                                    .offset(x: -150, y: 0)
+                                Text("Progresso")
+                                    .offset(x: 100, y: 0)
                             }
-                            .buttonStyle(.plain)
                         }
-                        .padding()
-                        .frame(height: 60)
-                        .background(Color.white)
-                        .cornerRadius(8)
+                        .foregroundColor(.black)
+                        .font(.system(size: 20, weight: .semibold))
+                        ForEach(viewModel.sampleUsers) { user in
+                            HStack(spacing: 0) {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 48, height: 48)
+                                        .foregroundColor(.collieRosaClaro)
+                                    Text("AA")
+                                        .font(.system(size: 16, weight: .bold, design: .default))
+                                }
+                                .padding(.trailing)
+                                
+                                ZStack(alignment: .center) {
+                                    HStack {
+                                        Text("\(user.name)")
+                                            .foregroundColor(.black)
+                                        Spacer()
+                                        Text("3/14")
+                                            .font(.system(size: 17))
+                                            .foregroundColor(.black)
+                                            .padding(.horizontal)
+                                        
+                                        Button(action: {}) {
+                                            Image(systemName: "xmark")
+                                                .font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                    Text("iOS Dev")
+                                        .font(.system(size: 17))
+                                        .foregroundColor(.black)
+                                        .offset(x: -150, y: 0)
+                                    
+                                    Text("Pré-Onboarding")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.black)
+//                                    ProgressBarView()
+//                                        .offset(x: 100, y: 0)
+                                    
+                                }
+                            }
+                            .padding()
+                            .frame(height: 60)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                        }
                     }
                     
                     Spacer()
@@ -130,31 +181,49 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
+            
     }
 }
 
-struct NewUserFormsView: View {
-    @EnvironmentObject var viewModel: TeamListViewModel
-    @State var newUser = User(name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
-    var body: some View {
-        VStack {
-            Text("Adicionar novo usuário:")
-                .font(.headline)
-            TextField("Nome", text: $newUser.name)
-            TextField("E-mail", text: $newUser.email)
-            TextField("Descrição da função", text: $newUser.jobDescription)
-            Button(action: {
-                viewModel.registerUser(userToAdd: newUser)
-            }) {
-                Text("Cadastrar novo usuário")
-            }
-            Button(action: {
-                viewModel.newUserPopupEnabled = false
-            }) {
-                Text("Cancelar")
-            }
+
+
+
+
+
+extension HorizontalAlignment {
+    enum NameAlign: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.leading]
         }
-        .padding(50)
-        .cornerRadius(25)
     }
+    
+    enum JourneyAlign: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[HorizontalAlignment.center]
+        }
+    }
+    
+    enum PhaseAlign: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[HorizontalAlignment.center]
+        }
+    }
+    
+    enum ProgressAlign: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.leading]
+        }
+    }
+    
+    enum TaskAlign: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.trailing]
+        }
+    }
+
+    static let nameAlign = HorizontalAlignment(NameAlign.self)
+    static let journeyAlign = HorizontalAlignment(JourneyAlign.self)
+    static let phaseAlign = HorizontalAlignment(PhaseAlign.self)
+    static let progressAlign = HorizontalAlignment(ProgressAlign.self)
+    static let tasksAlign = HorizontalAlignment(TaskAlign.self)
 }

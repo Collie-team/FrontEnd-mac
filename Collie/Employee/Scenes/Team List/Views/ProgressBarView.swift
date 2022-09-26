@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ProgressBarView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .frame(width: 295, height: 12)
+                    .foregroundColor(.gray)
+                    .cornerRadius(6)
+                Rectangle()
+                    .frame(width: 100, height: 12)
+                    .foregroundColor(.red)
+                    .cornerRadius(6)
+            }
+                
+            Text("30%")
+        }
     }
 }
 
