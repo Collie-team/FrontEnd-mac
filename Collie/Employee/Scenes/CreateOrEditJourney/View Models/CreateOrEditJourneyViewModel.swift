@@ -11,7 +11,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     @Published var chosenManagers: [User] = []
     
-    @Published var chosenUsers: [User] = []
+    @Published var chosenEmployees: [User] = []
     
     @Published var startDate: Date = Date()
     
@@ -53,8 +53,8 @@ final class CreateNewJourneyViewModel: ObservableObject {
     }
     
     func selectUser(_ user: User) {
-        if !chosenUsers.contains(user) {
-            chosenUsers.append(user)
+        if !chosenEmployees.contains(user) {
+            chosenEmployees.append(user)
             
             if let index = sampleUsers.firstIndex(of: user) {
                 sampleUsers.remove(at: index)
@@ -63,8 +63,8 @@ final class CreateNewJourneyViewModel: ObservableObject {
     }
     
     func removeUser(_ user: User) {
-        if let index = chosenUsers.firstIndex(of: user) {
-            chosenUsers.remove(at: index)
+        if let index = chosenEmployees.firstIndex(of: user) {
+            chosenEmployees.remove(at: index)
             sampleUsers.append(user)
         }
     }

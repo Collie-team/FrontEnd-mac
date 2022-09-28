@@ -1,11 +1,25 @@
 import SwiftUI
 
-struct CreateNewJourneyView: View {
+struct CreateOrEditJourneyView: View {
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
     @State var imageURL: URL = URL(fileURLWithPath: "")
     
+    var journey: Journey?
+    
     var handleClose: () -> ()
     var handleJourneyCreation: (Journey) -> ()
+    
+    init(journey: Journey?, handleClose: @escaping () -> (), handleJourneyCreation: @escaping (Journey) -> ()) {
+        self.handleClose = handleClose
+        self.handleJourneyCreation = handleJourneyCreation
+        if let journey = journey {
+            viewModel.chosenEmployees = journey.employees
+            viewModel.chosenManagers = journey.managers
+            viewModel.journeyName = journey.name
+            viewModel.journeyDescription = journey.description
+            viewModel.startDate = journey.startDate
+        }
+    }
         
     var body: some View {
         VStack {
@@ -195,10 +209,10 @@ struct CreateNewJourneyView: View {
                     .foregroundColor(.black)
                     .cornerRadius(8)
                     
-                    if !viewModel.chosenUsers.isEmpty {
+                    if !viewModel.chosenEmployees.isEmpty {
                         ScrollView(.vertical, showsIndicators: true) {
                             VStack(spacing: 0) {
-                                ForEach(viewModel.chosenUsers.reversed()) { user in
+                                ForEach(viewModel.chosenEmployees.reversed()) { user in
                                     ChosenUserCellView(user: user) {
                                         viewModel.removeUser(user)
                                     }
@@ -213,11 +227,11 @@ struct CreateNewJourneyView: View {
                 
                 Button {
                     handleJourneyCreation(
-                        Journey(name: viewModel.journeyName, durationInDays: 7, description: viewModel.journeyDescription, imageURL: imageURL, usersIds: viewModel.chosenUsers.map{ $0.id }, tasks: [], managers: viewModel.chosenManagers)
+                        Journey(name: viewModel.journeyName, startDate: Date(), description: viewModel.journeyDescription, imageURL: imageURL, employees: viewModel.chosenEmployees, tasks: [], managers: viewModel.chosenManagers)
                     )
                     handleClose()
                 } label: {
-                    Text("Criar jornada")
+                    Text("Salvar jornada")
                         .font(.system(size: 18, weight: .bold))
                         .padding(.vertical, 8)
                         .padding(.horizontal, 32)
@@ -283,16 +297,16 @@ struct CreateNewJourneyView: View {
     }
     
     func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.chosenUsers.count >= 3 {
+        if viewModel.chosenEmployees.count >= 3 {
             return 138
         } else {
-            return CGFloat(viewModel.chosenUsers.count * 46)
+            return CGFloat(viewModel.chosenEmployees.count * 46)
         }
     }
 }
 
-struct CreateNewJourneyView_Previews: PreviewProvider {
+struct CreateOrEditJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewJourneyView(handleClose: {}, handleJourneyCreation: {_ in })
+        CreateOrEditJourneyView(journey: nil, handleClose: {}, handleJourneyCreation: {_ in })
     }
 }

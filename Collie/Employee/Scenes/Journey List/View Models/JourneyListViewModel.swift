@@ -4,10 +4,10 @@ final class JourneyListViewModel: ObservableObject {
     @Published var sampleJourneys: [Journey] = [
         Journey(
             name: "Jornada iOS",
-            durationInDays: 7,
+            startDate: Date(),
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
             imageURL: URL(fileURLWithPath: ""),
-            usersIds: [],
+            employees: [],
             tasks: [
                 Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                 Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),

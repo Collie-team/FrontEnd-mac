@@ -37,7 +37,7 @@ struct JourneyCard: View {
                     }
                 }
                 HStack {
-                    Text("\(journey.usersIds.count) pessoas nessa jornada")
+                    Text("\(journey.employees.count) pessoas nessa jornada")
                 }
             }
             .padding()
@@ -53,10 +53,10 @@ struct JourneyCard_Previews: PreviewProvider {
     static var previews: some View {
         JourneyCard(journey: Journey(
             name: "Jornada iOS",
-            durationInDays: 7,
+            startDate: Date(),
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
             imageURL: URL(fileURLWithPath: ""),
-            usersIds: [],
+            employees: [],
             tasks: [
                 Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
                 Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),

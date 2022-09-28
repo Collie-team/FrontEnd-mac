@@ -76,7 +76,7 @@ struct JourneyListView: View {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateNewJourneyView(handleClose: {
+                    CreateOrEditJourneyView(journey: nil, handleClose: {
                         withAnimation {
                             showCreationPopUp = false
                         }

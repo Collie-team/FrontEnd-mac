@@ -37,8 +37,8 @@
 		5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD328DA3D9700B74060 /* TaskCategory.swift */; };
 		5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD528DA3FDD00B74060 /* Event.swift */; };
 		5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD728DB80F500B74060 /* TeamListViewModel.swift */; };
-		5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */; };
-		5BF73BDC28DB960900B74060 /* CreateNewJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */; };
+		5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD928DB954E00B74060 /* CreateOrEditJourneyView.swift */; };
+		5BF73BDC28DB960900B74060 /* CreateOrEditJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BDB28DB960900B74060 /* CreateOrEditJourneyViewModel.swift */; };
 		5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +75,8 @@
 		5BF73BD328DA3D9700B74060 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		5BF73BD528DA3FDD00B74060 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		5BF73BD728DB80F500B74060 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
-		5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJourneyView.swift; sourceTree = "<group>"; };
-		5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJourneyViewModel.swift; sourceTree = "<group>"; };
+		5BF73BD928DB954E00B74060 /* CreateOrEditJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditJourneyView.swift; sourceTree = "<group>"; };
+		5BF73BDB28DB960900B74060 /* CreateOrEditJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +151,7 @@
 		5BACC63928CFC083006975D3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5BDAB8CA28E4D5F2009BC353 /* CreateOrEditJourney */,
 				5BACC64A28CFC21B006975D3 /* Sidebar */,
 				5BACC66128D243D5006975D3 /* Team List */,
 				5BACC65C28D2438E006975D3 /* Payments */,
@@ -234,7 +235,6 @@
 			children = (
 				5BACC66D28D26184006975D3 /* Components */,
 				5BACC65228CFC2BE006975D3 /* JourneyListView.swift */,
-				5BF73BD928DB954E00B74060 /* CreateNewJourneyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */,
-				5BF73BDB28DB960900B74060 /* CreateNewJourneyViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -390,6 +389,31 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		5BDAB8CA28E4D5F2009BC353 /* CreateOrEditJourney */ = {
+			isa = PBXGroup;
+			children = (
+				5BDAB8CC28E4D601009BC353 /* View Models */,
+				5BDAB8CB28E4D5FD009BC353 /* Views */,
+			);
+			path = CreateOrEditJourney;
+			sourceTree = "<group>";
+		};
+		5BDAB8CB28E4D5FD009BC353 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BF73BD928DB954E00B74060 /* CreateOrEditJourneyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BDAB8CC28E4D601009BC353 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BF73BDB28DB960900B74060 /* CreateOrEditJourneyViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -471,7 +495,7 @@
 				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
-				5BF73BDC28DB960900B74060 /* CreateNewJourneyViewModel.swift in Sources */,
+				5BF73BDC28DB960900B74060 /* CreateOrEditJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
 				5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */,
 				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
@@ -483,7 +507,7 @@
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
-				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
+				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
