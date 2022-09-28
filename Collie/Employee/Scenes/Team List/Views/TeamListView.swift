@@ -77,27 +77,18 @@ struct TeamListView: View {
                     // LISTA
 
                     VStack(alignment: .leading) {
-                        HStack {
+                        HStack(spacing: 0) {
                             ZStack {
                                 Circle()
                                     .frame(width: 48, height: 48)
                             }
-                            .padding(.trailing)
-                            .opacity(0)
+                            .padding(.horizontal)
+                            .opacity(0.1)
                             ZStack(alignment: .center) {
                                 HStack {
                                     Text("Nome")
                                     Spacer()
                                     Text("Tarefas")
-                                    Button(action: {}) {
-                                        Image(systemName: "xmark")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                    }
-                                    .buttonStyle(.plain)
-                                    .disabled(true)
-                                    .padding()
-                                    .opacity(0)
                                 }
 
                                 Text("Fase")
@@ -107,6 +98,15 @@ struct TeamListView: View {
                                 Text("Progresso")
                                     .offset(x: 100, y: 0)
                             }
+                            Button(action: {}) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 13))
+                                    .foregroundColor(.gray)
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(true)
+                            .padding()
+                            .opacity(0.1)
                         }
                         .foregroundColor(.black)
                         .font(.system(size: 20, weight: .semibold))
@@ -142,7 +142,7 @@ struct TeamListView: View {
                                         .font(.system(size: 17))
                                         .foregroundColor(.black)
                                         .offset(x: -150, y: 0)
-                                    
+//
                                     Text("Pré-Onboarding")
                                         .font(.system(size: 15))
                                         .foregroundColor(.black)
