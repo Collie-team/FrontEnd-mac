@@ -44,7 +44,7 @@ struct JourneyListView: View {
                                     .font(.system(size: 50, weight: .bold, design: .default))
                                     .foregroundColor(.white)
                             }
-                            .frame(height: NSScreen.main!.frame.height / 4)
+                            .frame(height: 320)
                             .foregroundColor(.collieRoxo)
                             .onTapGesture {
                                 showCreationPopUp = true
@@ -52,10 +52,10 @@ struct JourneyListView: View {
                             
                             ForEach(viewModel.sampleJourneys.reversed()) { journey in
                                 JourneyCard(journey: journey)
-                                    .frame(height: NSScreen.main!.frame.height / 4)
-                                .onTapGesture {
-                                    viewModel.selectedJourney = journey
-                                }
+                                    .frame(height: 320)
+                                    .onTapGesture {
+                                        viewModel.selectedJourney = journey
+                                    }
                             }
                         }
                         

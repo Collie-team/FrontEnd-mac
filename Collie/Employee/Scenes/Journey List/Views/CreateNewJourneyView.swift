@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CreateNewJourneyView: View {
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
+    @State var imageURL: URL = URL(fileURLWithPath: "")
     
     var handleClose: () -> ()
     var handleJourneyCreation: (Journey) -> ()
@@ -40,14 +41,9 @@ struct CreateNewJourneyView: View {
                         .foregroundColor(.black)
                         .cornerRadius(8)
                     
-                    Button {
-                        print("Add image")
-                    } label: {
-                        Image(systemName: "photo")
-                            .font(.system(size: 24))
+                    FilePicker { imagePath in
+                        self.imageURL = URL(fileURLWithPath: imagePath)
                     }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.white)
                 }
                                 
                 TextField("", text: $viewModel.journeyDescription)
@@ -90,26 +86,44 @@ struct CreateNewJourneyView: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.black)
                     
-                    Menu {
-                        ForEach(viewModel.sampleManagers) { user in
-                            Button {
-                                viewModel.selectManager(user)
-                            } label: {
-                                HStack(spacing: 8) {
-                                    Circle()
-                                        .foregroundColor(.collieRosaEscuro)
-                                        .frame(width: 20, height: 20)
-                                    Text("\(user.name)")
+                    VStack {
+                        ScrollView(.vertical) {
+                            VStack(spacing: 0) {
+                                Button {
+                                    withAnimation {
+                                        viewModel.showManagerList.toggle()
+                                    }
+                                } label: {
+                                    VStack(spacing: 0) {
+                                        HStack {
+                                            Text("Adicionar gestor")
+                                                .padding(.vertical)
+                                            Spacer()
+                                            Image(systemName: "chevron.down")
+                                        }
+                                        Divider()
+                                    }
+                                    .frame(height: 46)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal)
+                                    .contentShape(Rectangle())
+                                }
+                                .buttonStyle(.plain)
+                                
+                                
+                                if viewModel.showManagerList {
+                                    ForEach(viewModel.sampleManagers) { user in
+                                        UserCellView(user: user) {
+                                            viewModel.selectManager(user)
+                                        }
+                                    }
                                 }
                             }
                         }
-                    } label: {
-                        Text("Adicionar gestor")
+                        .frame(maxHeight: getAllManagersScrollHeight())
                     }
-                    .padding(.horizontal)
                     .tint(.collieRosaEscuro)
                     .menuStyle(.borderlessButton)
-                    .frame(height: 40)
                     .background(Color.white)
                     .foregroundColor(.black)
                     .cornerRadius(8)
@@ -118,38 +132,13 @@ struct CreateNewJourneyView: View {
                         ScrollView(.vertical, showsIndicators: true) {
                             VStack(spacing: 0) {
                                 ForEach(viewModel.chosenManagers.reversed()) { manager in
-                                    VStack(spacing: 0) {
-                                        HStack {
-                                            Circle()
-                                                .foregroundColor(.collieRoxo)
-                                                .frame(width: 30, height: 30)
-                                            
-                                            Text(manager.name)
-                                            
-                                            Spacer()
-                                            
-                                            Text(manager.jobDescription)
-                                            
-                                            Button {
-                                                viewModel.removeManager(manager)
-                                            } label: {
-                                                Image(systemName: "xmark")
-                                                    .font(.system(size: 16, weight: .bold))
-                                                    .foregroundColor(.collieRoxo)
-                                            }
-                                            .buttonStyle(.plain)
-
-                                        }
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 8)
-                                        
-                                        Divider()
-                                            .frame(height: 1)
+                                    ChosenUserCellView(user: manager) {
+                                        viewModel.removeManager(manager)
                                     }
                                 }
                             }
                         }
-                        .frame(height: getScrollHeight(unitsChosen: viewModel.chosenManagers.count))
+                        .frame(maxHeight: getChosenManagersScrollHeight())
                         .background(Color.white.opacity(0.5))
                         .cornerRadius(8)
                     }
@@ -164,26 +153,44 @@ struct CreateNewJourneyView: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.black)
                     
-                    Menu {
-                        ForEach(viewModel.sampleUsers) { user in
-                            Button {
-                                viewModel.selectUser(user)
-                            } label: {
-                                HStack(spacing: 8) {
-                                    Circle()
-                                        .foregroundColor(.collieRosaEscuro)
-                                        .frame(width: 20, height: 20)
-                                    Text("\(user.name)")
+                    VStack {
+                        ScrollView(.vertical) {
+                            VStack(spacing: 0) {
+                                Button {
+                                    withAnimation {
+                                        viewModel.showUsersList.toggle()
+                                    }
+                                } label: {
+                                    VStack(spacing: 0) {
+                                        HStack {
+                                            Text("Adicionar novo colaborador")
+                                                .padding(.vertical)
+                                            Spacer()
+                                            Image(systemName: "chevron.down")
+                                        }
+                                        Divider()
+                                    }
+                                    .frame(height: 46)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal)
+                                    .contentShape(Rectangle())
+                                }
+                                .buttonStyle(.plain)
+                                
+                                
+                                if viewModel.showUsersList {
+                                    ForEach(viewModel.sampleUsers) { user in
+                                        UserCellView(user: user) {
+                                            viewModel.selectUser(user)
+                                        }
+                                    }
                                 }
                             }
                         }
-                    } label: {
-                        Text("Adicionar novo colaborador")
+                        .frame(maxHeight: getAllUsersScrollHeight())
                     }
-                    .padding(.horizontal)
                     .tint(.collieRosaEscuro)
                     .menuStyle(.borderlessButton)
-                    .frame(height: 40)
                     .background(Color.white)
                     .foregroundColor(.black)
                     .cornerRadius(8)
@@ -192,37 +199,13 @@ struct CreateNewJourneyView: View {
                         ScrollView(.vertical, showsIndicators: true) {
                             VStack(spacing: 0) {
                                 ForEach(viewModel.chosenUsers.reversed()) { user in
-                                    VStack(spacing: 0) {
-                                        HStack {
-                                            Circle()
-                                                .foregroundColor(.collieRoxo)
-                                                .frame(width: 30, height: 30)
-                                            
-                                            Text(user.name)
-                                            
-                                            Spacer()
-                                            
-                                            Text(user.jobDescription)
-                                            
-                                            Button {
-                                                viewModel.removeUser(user)
-                                            } label: {
-                                                Image(systemName: "xmark")
-                                                    .font(.system(size: 16, weight: .bold))
-                                                    .foregroundColor(.collieRoxo)
-                                            }
-                                            .buttonStyle(.plain)
-
-                                        }
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 8)
-                                        
-                                        Divider()
+                                    ChosenUserCellView(user: user) {
+                                        viewModel.removeUser(user)
                                     }
                                 }
                             }
                         }
-                        .frame(height: getScrollHeight(unitsChosen: viewModel.chosenUsers.count))
+                        .frame(maxHeight: getChosenUsersScrollHeight())
                         .background(Color.white.opacity(0.5))
                         .cornerRadius(8)
                     }
@@ -230,7 +213,7 @@ struct CreateNewJourneyView: View {
                 
                 Button {
                     handleJourneyCreation(
-                        Journey(name: viewModel.journeyName, durationInDays: 7, description: viewModel.journeyDescription, imageURL: "", usersIds: [], tasks: [], managers: viewModel.chosenManagers)
+                        Journey(name: viewModel.journeyName, durationInDays: 7, description: viewModel.journeyDescription, imageURL: imageURL, usersIds: viewModel.chosenUsers.map{ $0.id }, tasks: [], managers: viewModel.chosenManagers)
                     )
                     handleClose()
                 } label: {
@@ -251,22 +234,60 @@ struct CreateNewJourneyView: View {
         }
         .background(
             VStack(spacing: 0) {
-                Color.collieVermelho
-                    .frame(height: 130)
+                if let nsImage = NSImage(contentsOf: imageURL) {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 130)
+                } else {
+                    Color.collieVermelho
+                        .frame(height: 130)
+                }
                 Color.collieCinzaClaro
             }
         )
         .cornerRadius(8)
     }
     
-    func getScrollHeight(unitsChosen: Int) -> CGFloat {
-        var height: CGFloat = 0
-        if unitsChosen < 3 {
-            height = CGFloat(unitsChosen * 46)
+    func getAllManagersScrollHeight() -> CGFloat {
+        if viewModel.showManagerList {
+            if viewModel.sampleManagers.count >= 3 {
+                return 184
+            } else {
+                return CGFloat((viewModel.sampleManagers.count + 1) * 46)
+            }
         } else {
-            height = 138
+            return 46
         }
-        return height
+    }
+    
+    func getChosenManagersScrollHeight() -> CGFloat {
+        if viewModel.chosenManagers.count >= 3 {
+            return 138
+        } else {
+            return CGFloat(viewModel.chosenManagers.count * 46)
+        }
+    }
+    
+    func getAllUsersScrollHeight() -> CGFloat {
+        if viewModel.showUsersList {
+            if viewModel.sampleUsers.count >= 3 {
+                return 184
+            } else {
+                return CGFloat((viewModel.sampleUsers.count + 1) * 46)
+            }
+        } else {
+            return 46
+        }
+    }
+    
+    func getChosenUsersScrollHeight() -> CGFloat {
+        if viewModel.chosenUsers.count >= 3 {
+            return 138
+        } else {
+            return CGFloat(viewModel.chosenUsers.count * 46)
+        }
     }
 }
 

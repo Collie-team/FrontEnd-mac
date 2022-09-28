@@ -5,7 +5,7 @@ struct Journey: Identifiable, Codable {
     var name: String
     var durationInDays: Int
     var description: String
-    var imageURL: String
+    var imageURL: URL
     var usersIds: [String]
     var tasks: [Task]
     var managers: [User]

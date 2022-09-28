@@ -96,8 +96,8 @@ struct SingleJourneyView_Previews: PreviewProvider {
             journey: Journey(
                 name: "Jornada iOS",
                 durationInDays: 7,
-                description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                imageURL: "",
+                description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
+                imageURL: URL(fileURLWithPath: ""),
                 usersIds: [],
                 tasks: [
                     Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),

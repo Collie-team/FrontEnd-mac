@@ -2,9 +2,17 @@ import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
     @Published var journeyName: String = ""
+    
     @Published var journeyDescription: String = ""
+    
+    @Published var showManagerList = false
+    
+    @Published var showUsersList = false
+    
     @Published var chosenManagers: [User] = []
+    
     @Published var chosenUsers: [User] = []
+    
     @Published var startDate: Date = Date()
     
     @Published var sampleManagers: [User] = [

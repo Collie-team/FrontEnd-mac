@@ -6,7 +6,7 @@ final class JourneyListViewModel: ObservableObject {
             name: "Jornada iOS",
             durationInDays: 7,
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: "",
+            imageURL: URL(fileURLWithPath: ""),
             usersIds: [],
             tasks: [
                 Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
