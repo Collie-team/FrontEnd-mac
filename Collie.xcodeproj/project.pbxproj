@@ -11,6 +11,9 @@
 		5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */; };
 		5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666028DA37750057BA32 /* JourneyModel.swift */; };
 		5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */; };
+		5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */; };
+		5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */; };
+		5B495FF728E62DB60024D064 /* SingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF628E62DB60024D064 /* SingleJourneyViewModel.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -47,6 +50,9 @@
 		5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_JourneyViewModel.swift; sourceTree = "<group>"; };
 		5B0F666028DA37750057BA32 /* JourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyModel.swift; sourceTree = "<group>"; };
 		5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDTO.swift; sourceTree = "<group>"; };
+		5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskView.swift; sourceTree = "<group>"; };
+		5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskViewModel.swift; sourceTree = "<group>"; };
+		5B495FF628E62DB60024D064 /* SingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -110,6 +116,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5B495FEF28E622C40024D064 /* CreateOrEditTask */ = {
+			isa = PBXGroup;
+			children = (
+				5B495FF128E622D30024D064 /* View Models */,
+				5B495FF028E622CD0024D064 /* Views */,
+			);
+			path = CreateOrEditTask;
+			sourceTree = "<group>";
+		};
+		5B495FF028E622CD0024D064 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B495FF128E622D30024D064 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		5BACC61D28CFB855006975D3 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +182,7 @@
 		5BACC63928CFC083006975D3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B495FEF28E622C40024D064 /* CreateOrEditTask */,
 				5BDAB8CA28E4D5F2009BC353 /* CreateOrEditJourney */,
 				5BACC64A28CFC21B006975D3 /* Sidebar */,
 				5BACC66128D243D5006975D3 /* Team List */,
@@ -373,6 +405,7 @@
 		5BACC66828D26101006975D3 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				5B495FF628E62DB60024D064 /* SingleJourneyViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -485,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BF6693928E23A4D001B0A1D /* UserIconView.swift in Sources */,
+				5B495FF728E62DB60024D064 /* SingleJourneyViewModel.swift in Sources */,
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
@@ -511,9 +545,11 @@
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
+				5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
+				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,10 +1,17 @@
 import SwiftUI
 
 struct SingleJourneyView: View {
-    var journey: Journey
-    var backAction: () -> ()
+    @ObservedObject var viewModel: SingleJourneyViewModel
     
     @State var editJourney = false
+    @State var showAddNewTask = false
+    
+    var backAction: () -> ()
+    
+    init(journey: Journey, backAction: @escaping () -> ()) {
+        self.viewModel = SingleJourneyViewModel(journey: journey)
+        self.backAction = backAction
+    }
     
     var body: some View {
         ZStack {
@@ -16,7 +23,7 @@ struct SingleJourneyView: View {
                             backAction()
                         }
                     
-                    Text(journey.name)
+                    Text(viewModel.journey.name)
                         .font(.system(size: 40, weight: .bold, design: .default))
                     
                     Spacer()
@@ -40,7 +47,7 @@ struct SingleJourneyView: View {
                 .foregroundColor(.black)
                 .padding(.bottom)
                 
-                Text(journey.description)
+                Text(viewModel.journey.description)
                     .font(.system(size: 16, weight: .regular, design: .default))
                     .foregroundColor(.black)
                 
@@ -55,7 +62,7 @@ struct SingleJourneyView: View {
                             Spacer()
                             
                             Button {
-                                // TO DO
+                                showAddNewTask = true
                             } label: {
                                 HStack {
                                     Image(systemName: "plus")
@@ -69,6 +76,13 @@ struct SingleJourneyView: View {
                             }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
+                        }
+                        
+                        ForEach(viewModel.journey.tasks) { task in
+                            HStack {
+                                Text(task.name)
+                                Spacer()
+                            }
                         }
                         Spacer()
                     }
@@ -122,7 +136,7 @@ struct SingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
-                        journey: journey,
+                        journey: viewModel.journey,
                         handleClose: {
                             withAnimation {
                                 editJourney = false
@@ -132,6 +146,21 @@ struct SingleJourneyView: View {
                             
                         }
                     )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if showAddNewTask {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    CreateOrEditTaskView(handleClose: {
+                        withAnimation {
+                            showAddNewTask = false
+                        }
+                    }, handleTaskCreation: { task in
+                        viewModel.addTask(task)
+                    })
                     .frame(maxWidth: 800)
                 }
             }
