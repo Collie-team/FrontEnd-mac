@@ -5,7 +5,6 @@ struct CreateOrEditJourneyView: View {
     @State var imageURL: URL = URL(fileURLWithPath: "")
     
     var journey: Journey?
-    
     var handleClose: () -> ()
     var handleJourneyCreation: (Journey) -> ()
     
@@ -25,63 +24,29 @@ struct CreateOrEditJourneyView: View {
         VStack {
             HStack {
                 Spacer()
-                Button {
-                    handleClose()
-                } label: {
-                    Image(systemName: "xmark.circle")
-                        .font(.system(size: 21, weight: .bold, design: .default))
-                        .foregroundColor(.white)
-                }
-                .buttonStyle(.plain)
+                CloseButton(handleClose: handleClose)
             }
             .padding(.top, 8)
             .padding(.trailing, 8)
             
             VStack(spacing: 16) {
                 HStack {
-                    TextField("", text: $viewModel.journeyName)
-                        .placeholder(when: viewModel.journeyName.isEmpty) {
-                            Text("Nome da jornada")
-                                .font(.system(size: 21))
-                                .bold()
-                                .foregroundColor(.gray)
-                        }
-                        .font(.system(size: 21, weight: .bold))
-                        .padding(.horizontal)
-                        .tint(.collieRosaEscuro)
-                        .textFieldStyle(.plain)
-                        .frame(height: 40)
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
+                    TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
                     
                     FilePicker { imagePath in
                         self.imageURL = URL(fileURLWithPath: imagePath)
                     }
                 }
-                                
-                TextField("", text: $viewModel.journeyDescription)
-                    .placeholder(when: viewModel.journeyDescription.isEmpty) {
-                        Text("Descrição da jornada")
-                            .foregroundColor(.gray)
-                    }
-                    .padding(.horizontal)
-                    .tint(.collieRosaEscuro)
-                    .textFieldStyle(.plain)
-                    .frame(height: 40)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .cornerRadius(8)
-                    .lineLimit(3)
+                .padding(.bottom, 40)
+                          
+                VStack {
+                    TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da jornada")
+                    MultiLineTextField(text: $viewModel.journeyDescription, showPlaceholderWhen: viewModel.journeyDescription.isEmpty, placeholderText: "Adicione uma descrição")
+                }
+                
                 
                 VStack {
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("Data de início")
-                        Spacer()
-                    }
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.black)
+                    TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                     
                     DatePicker("", selection: $viewModel.startDate, in: Date()..., displayedComponents: [.date])
                         .datePickerStyle(.compact)
@@ -92,156 +57,49 @@ struct CreateOrEditJourneyView: View {
                 }
                 
                 VStack {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text("Gestor responsável")
-                        Spacer()
-                    }
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.black)
+                    TitleWithIconView(systemImageName: "person.fill", label: "Gestor responsável")
                     
-                    VStack {
-                        ScrollView(.vertical) {
-                            VStack(spacing: 0) {
-                                Button {
-                                    withAnimation {
-                                        viewModel.showManagerList.toggle()
-                                    }
-                                } label: {
-                                    VStack(spacing: 0) {
-                                        HStack {
-                                            Text("Adicionar gestor")
-                                                .padding(.vertical)
-                                            Spacer()
-                                            Image(systemName: "chevron.down")
-                                        }
-                                        Divider()
-                                    }
-                                    .frame(height: 46)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
-                                    .contentShape(Rectangle())
-                                }
-                                .buttonStyle(.plain)
-                                
-                                
-                                if viewModel.showManagerList {
-                                    ForEach(viewModel.sampleManagers) { user in
-                                        UserCellView(user: user) {
-                                            viewModel.selectManager(user)
-                                        }
-                                    }
-                                }
-                            }
+                    UserSelectionDropdown(
+                        showList: $viewModel.showManagerList,
+                        label: "Adicionar gestor",
+                        allUsers: viewModel.sampleManagers,
+                        selectedUsers: viewModel.chosenManagers,
+                        allUsersScrollHeight: getAllManagersScrollHeight(),
+                        selectedUsersScrollHeight: getChosenManagersScrollHeight(),
+                        handleUserSelection: { user in
+                            viewModel.selectManager(user)
+                        },
+                        handleUserRemove: { user in
+                            viewModel.removeManager(user)
                         }
-                        .frame(maxHeight: getAllManagersScrollHeight())
-                    }
-                    .tint(.collieRosaEscuro)
-                    .menuStyle(.borderlessButton)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .cornerRadius(8)
-                    
-                    if !viewModel.chosenManagers.isEmpty {
-                        ScrollView(.vertical, showsIndicators: true) {
-                            VStack(spacing: 0) {
-                                ForEach(viewModel.chosenManagers.reversed()) { manager in
-                                    ChosenUserCellView(user: manager) {
-                                        viewModel.removeManager(manager)
-                                    }
-                                }
-                            }
-                        }
-                        .frame(maxHeight: getChosenManagersScrollHeight())
-                        .background(Color.white.opacity(0.5))
-                        .cornerRadius(8)
-                    }
+                    )
                 }
                 
                 VStack {
-                    HStack {
-                        Image(systemName: "person.2.fill")
-                        Text("Colaboradores na Jornada (opcional)")
-                        Spacer()
-                    }
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.black)
+                    TitleWithIconView(systemImageName: "person.2.fill", label: "Colaboradores na Jornada (opcional)")
                     
-                    VStack {
-                        ScrollView(.vertical) {
-                            VStack(spacing: 0) {
-                                Button {
-                                    withAnimation {
-                                        viewModel.showUsersList.toggle()
-                                    }
-                                } label: {
-                                    VStack(spacing: 0) {
-                                        HStack {
-                                            Text("Adicionar novo colaborador")
-                                                .padding(.vertical)
-                                            Spacer()
-                                            Image(systemName: "chevron.down")
-                                        }
-                                        Divider()
-                                    }
-                                    .frame(height: 46)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
-                                    .contentShape(Rectangle())
-                                }
-                                .buttonStyle(.plain)
-                                
-                                
-                                if viewModel.showUsersList {
-                                    ForEach(viewModel.sampleUsers) { user in
-                                        UserCellView(user: user) {
-                                            viewModel.selectUser(user)
-                                        }
-                                    }
-                                }
-                            }
+                    UserSelectionDropdown(
+                        showList: $viewModel.showUsersList,
+                        label: "Adicionar novo colaborador",
+                        allUsers: viewModel.sampleUsers,
+                        selectedUsers: viewModel.chosenEmployees,
+                        allUsersScrollHeight: getAllUsersScrollHeight(),
+                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
+                        handleUserSelection: { user in
+                            viewModel.selectUser(user)
+                        },
+                        handleUserRemove: { user in
+                            viewModel.removeUser(user)
                         }
-                        .frame(maxHeight: getAllUsersScrollHeight())
-                    }
-                    .tint(.collieRosaEscuro)
-                    .menuStyle(.borderlessButton)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .cornerRadius(8)
-                    
-                    if !viewModel.chosenEmployees.isEmpty {
-                        ScrollView(.vertical, showsIndicators: true) {
-                            VStack(spacing: 0) {
-                                ForEach(viewModel.chosenEmployees.reversed()) { user in
-                                    ChosenUserCellView(user: user) {
-                                        viewModel.removeUser(user)
-                                    }
-                                }
-                            }
-                        }
-                        .frame(maxHeight: getChosenUsersScrollHeight())
-                        .background(Color.white.opacity(0.5))
-                        .cornerRadius(8)
-                    }
+                    )
                 }
                 
-                Button {
+                SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
                     handleJourneyCreation(
                         Journey(name: viewModel.journeyName, startDate: Date(), description: viewModel.journeyDescription, imageURL: imageURL, employees: viewModel.chosenEmployees, tasks: [], managers: viewModel.chosenManagers)
                     )
                     handleClose()
-                } label: {
-                    Text("Salvar jornada")
-                        .font(.system(size: 18, weight: .bold))
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 32)
-                        .background(viewModel.isButtonDisabled() ? Color.gray : Color.collieRoxo)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
                 }
-                .buttonStyle(.plain)
-                .disabled(viewModel.isButtonDisabled())
-                .padding(.top)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
@@ -258,7 +116,7 @@ struct CreateOrEditJourneyView: View {
                     Color.collieVermelho
                         .frame(height: 130)
                 }
-                Color.collieCinzaClaro
+                Color.collieBranco
             }
         )
         .cornerRadius(8)
@@ -267,40 +125,40 @@ struct CreateOrEditJourneyView: View {
     func getAllManagersScrollHeight() -> CGFloat {
         if viewModel.showManagerList {
             if viewModel.sampleManagers.count >= 3 {
-                return 184
+                return 160
             } else {
-                return CGFloat((viewModel.sampleManagers.count + 1) * 46)
+                return CGFloat((viewModel.sampleManagers.count + 1) * 40)
             }
         } else {
-            return 46
+            return 40
         }
     }
     
     func getChosenManagersScrollHeight() -> CGFloat {
         if viewModel.chosenManagers.count >= 3 {
-            return 138
+            return 120
         } else {
-            return CGFloat(viewModel.chosenManagers.count * 46)
+            return CGFloat(viewModel.chosenManagers.count * 40)
         }
     }
     
     func getAllUsersScrollHeight() -> CGFloat {
         if viewModel.showUsersList {
             if viewModel.sampleUsers.count >= 3 {
-                return 184
+                return 160
             } else {
-                return CGFloat((viewModel.sampleUsers.count + 1) * 46)
+                return CGFloat((viewModel.sampleUsers.count + 1) * 40)
             }
         } else {
-            return 46
+            return 40
         }
     }
     
     func getChosenUsersScrollHeight() -> CGFloat {
         if viewModel.chosenEmployees.count >= 3 {
-            return 138
+            return 120
         } else {
-            return CGFloat(viewModel.chosenEmployees.count * 46)
+            return CGFloat(viewModel.chosenEmployees.count * 40)
         }
     }
 }

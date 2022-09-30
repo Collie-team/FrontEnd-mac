@@ -6,7 +6,7 @@ struct ChosenUserCellView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(alignment: .center) {
                 UserIconView(user: user)
                 
                 Text(user.name)
@@ -33,6 +33,7 @@ struct ChosenUserCellView: View {
             Divider()
                 .frame(height: 1)
         }
+        .font(.system(size: 15))
     }
 }
 

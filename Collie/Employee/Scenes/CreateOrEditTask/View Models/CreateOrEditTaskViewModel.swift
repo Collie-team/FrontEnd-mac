@@ -7,8 +7,6 @@ final class CreateOrEditTaskViewModel: ObservableObject {
     
     @Published var endDate = Date()
     
-    @Published var assignee: User?
-    
     @Published var taskDescription = ""
     
     @Published var sampleUsers: [User] = [
@@ -19,9 +17,25 @@ final class CreateOrEditTaskViewModel: ObservableObject {
         User(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
     ]
     
+    @Published var selectedUsers: [User] = []
+    
     @Published var showUserList = false
     
     func isButtonDisabled() -> Bool {
         taskName.isEmpty
+    }
+    
+    func chooseUser(_ user: User) {
+        selectedUsers.append(user)
+        if let index = sampleUsers.firstIndex(of: user) {
+            sampleUsers.remove(at: index)
+        }
+    }
+    
+    func removeUser(_ user: User) {
+        if let index = selectedUsers.firstIndex(of: user) {
+            selectedUsers.remove(at: index)
+            sampleUsers.append(user)
+        }
     }
 }
