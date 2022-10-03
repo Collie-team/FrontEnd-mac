@@ -38,6 +38,9 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
         let url = domainUrl + route.rawValue + "create/" + query
         let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let URL = URL(string: myURL!)
+        let request = URLRequest(url: URL!)
+        request.httpMethod = 
+        
         let task = URLSession.shared.dataTask(with: URL!, completionHandler: { (data, response, error) in
             if let error = error {
                 print("Error with creating journey: \(error)")
@@ -81,11 +84,6 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
         task.resume()
     }
 }
-
-
-//extension DatabaseSubscriptionService where ModelDTO == Journey {
-//    static let journeySubscription = DatabaseSubscriptionService(route: .journey)
-//}
 
 extension Publisher where Failure == Never {
     func aggregated() -> Publishers.Aggregate<Self> {

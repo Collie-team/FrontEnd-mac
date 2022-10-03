@@ -1,5 +1,16 @@
 import SwiftUI
 
+enum ListComponents: CGFloat {
+    case tasks = 0.1
+    case progress = 0.3
+    case phase = 0.17
+    case journey = 0.12
+    
+    static func alignWith(component: ListComponents) -> CGFloat {
+        return component.rawValue
+    }
+}
+
 struct TeamListView: View {
     @ObservedObject var viewModel = TeamListViewModel()
     
@@ -57,6 +68,8 @@ struct TeamListView: View {
                                 .buttonStyle(.plain)
                                 .background(Color.collieRoxo)
                                 .cornerRadius(8)
+                                .contentShape(Rectangle())
+                                
                                 Button(action: {}) {
                                     HStack {
                                         Text("Filtros")
@@ -82,22 +95,39 @@ struct TeamListView: View {
                                 Circle()
                                     .frame(width: 48, height: 48)
                             }
-                            .padding(.horizontal)
-                            .opacity(0.1)
-                            ZStack(alignment: .center) {
-                                HStack {
+                            .padding(.trailing)
+                            .opacity(0)
+                            
+                            GeometryReader { geometry in
+                                HStack(alignment: .center, spacing: 0) {
                                     Text("Nome")
                                     Spacer()
-                                    Text("Tarefas")
+                                    
+                                    
+                                    VStack {
+                                        Text("Jornada")
+                                    }
+                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
+                                    
+                                    VStack {
+                                        Text("Fase")
+                                    }
+                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .phase))
+                                    
+                                    VStack {
+                                        Text("Progresso")
+                                    }
+                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
+                                    
+                                    VStack {
+                                        Text("Tarefas")
+                                    }
+                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
+//                                    .border(Color.blue)
                                 }
-
-                                Text("Fase")
-//                                    .offset(x: 240, y: 0)
-                                Text("Jornada")
-                                    .offset(x: -150, y: 0)
-                                Text("Progresso")
-                                    .offset(x: 100, y: 0)
+                                .frame(height: geometry.size.height)
                             }
+//                            .border(Color.black)
                             Button(action: {}) {
                                 Image(systemName: "xmark")
                                     .font(.system(size: 13))
@@ -105,11 +135,12 @@ struct TeamListView: View {
                             }
                             .buttonStyle(.plain)
                             .disabled(true)
-                            .padding()
-                            .opacity(0.1)
+                            .opacity(0)
                         }
                         .foregroundColor(.black)
                         .font(.system(size: 20, weight: .semibold))
+                        .padding()
+                        
                         ForEach(viewModel.sampleUsers) { user in
                             HStack(spacing: 0) {
                                 ZStack {
@@ -121,35 +152,46 @@ struct TeamListView: View {
                                 }
                                 .padding(.trailing)
                                 
-                                ZStack(alignment: .center) {
-                                    HStack {
+                                GeometryReader { geometry in
+                                    HStack(alignment: .center, spacing: 0) {
                                         Text("\(user.name)")
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                        Text("3/14")
-                                            .font(.system(size: 17))
-                                            .foregroundColor(.black)
-                                            .padding(.horizontal)
                                         
-                                        Button(action: {}) {
-                                            Image(systemName: "xmark")
-                                                .font(.system(size: 13))
-                                                .foregroundColor(.gray)
+                                        Spacer()
+                                        
+                                        VStack {
+                                            Text("iOS Dev")
+                                                .font(.system(size: 17))
                                         }
-                                        .buttonStyle(.plain)
+                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
+                                        
+                                        VStack {
+                                            Text("Pré-Onboarding")
+                                                .font(.system(size: 15))
+                                        }
+                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .phase))
+                                        
+                                        VStack {
+                                            ProgressBarView()
+                                        }
+                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
+                                        
+                                        VStack {
+                                            Text("3/14")
+                                                .font(.system(size: 17))
+                                        }
+                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
+                                        
                                     }
-                                    Text("iOS Dev")
-                                        .font(.system(size: 17))
-                                        .foregroundColor(.black)
-                                        .offset(x: -150, y: 0)
-//
-                                    Text("Pré-Onboarding")
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.black)
-//                                    ProgressBarView()
-//                                        .offset(x: 100, y: 0)
-                                    
                                 }
+                                .foregroundColor(.black)
+                                
+                                    
+                                Button(action: {}) {
+                                    Image(systemName: "xmark")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(.gray)
+                                }
+                                .buttonStyle(.plain)
                             }
                             .padding()
                             .frame(height: 60)
@@ -162,7 +204,7 @@ struct TeamListView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 60)
         .padding(.vertical, 32)
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
@@ -181,49 +223,5 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
-            
     }
-}
-
-
-
-
-
-
-extension HorizontalAlignment {
-    enum NameAlign: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.leading]
-        }
-    }
-    
-    enum JourneyAlign: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[HorizontalAlignment.center]
-        }
-    }
-    
-    enum PhaseAlign: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[HorizontalAlignment.center]
-        }
-    }
-    
-    enum ProgressAlign: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.leading]
-        }
-    }
-    
-    enum TaskAlign: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.trailing]
-        }
-    }
-
-    static let nameAlign = HorizontalAlignment(NameAlign.self)
-    static let journeyAlign = HorizontalAlignment(JourneyAlign.self)
-    static let phaseAlign = HorizontalAlignment(PhaseAlign.self)
-    static let progressAlign = HorizontalAlignment(ProgressAlign.self)
-    static let tasksAlign = HorizontalAlignment(TaskAlign.self)
-}
+} 

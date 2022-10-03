@@ -1,6 +1,7 @@
 import Foundation
 
 final class TeamListViewModel: ObservableObject {
+    private let databaseService = DatabaseSubscriptionService<User>(route: .user)
     @Published var newUserPopupEnabled = false
     @Published var sampleUsers: [User] = [
         User(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
@@ -11,14 +12,12 @@ final class TeamListViewModel: ObservableObject {
     ]
     
     func fetchUsers() {
-        let databaseService = DatabaseSubscriptionService<User>(route: .user)
         databaseService.fetchData() { userModels in
             self.sampleUsers = userModels
         }
     }
     
     func registerUser(userToAdd: User) {
-        let databaseService = DatabaseSubscriptionService<User>(route: .user)
         databaseService.writeData(dataToWrite: userToAdd) { response in
             if !response.isEmpty {
                 self.sampleUsers.append(userToAdd)

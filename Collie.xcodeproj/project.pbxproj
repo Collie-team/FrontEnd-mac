@@ -14,6 +14,7 @@
 		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
 		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
 		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
+		5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
 		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
 		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriptionService.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
+				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
