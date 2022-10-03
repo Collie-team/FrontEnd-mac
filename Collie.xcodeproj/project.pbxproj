@@ -11,6 +11,10 @@
 		5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */; };
 		5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666028DA37750057BA32 /* JourneyModel.swift */; };
 		5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */; };
+		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
+		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
+		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
+		5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -43,6 +47,10 @@
 		5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_JourneyViewModel.swift; sourceTree = "<group>"; };
 		5B0F666028DA37750057BA32 /* JourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyModel.swift; sourceTree = "<group>"; };
 		5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDTO.swift; sourceTree = "<group>"; };
+		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
+		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
+		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriptionService.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -100,6 +108,23 @@
 				5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5B0F666428DCE1BC0057BA32 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F666528DCE41A0057BA32 /* UseCases */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5B0F666528DCE41A0057BA32 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
+				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -181,6 +206,7 @@
 		5BACC63D28CFC0FA006975D3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5B0F666428DCE1BC0057BA32 /* Services */,
 				5BACC62928CFB855006975D3 /* CollieApp.swift */,
 				5BACC65428CFC36B006975D3 /* Utils */,
 				5BACC65128CFC27B006975D3 /* Models */,
@@ -334,6 +360,8 @@
 			isa = PBXGroup;
 			children = (
 				5BACC66428D24413006975D3 /* TeamListView.swift */,
+				5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */,
+				5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
+				5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
@@ -461,11 +490,14 @@
 				5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */,
 				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
+				5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* SingleJourneyView.swift in Sources */,
 				5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
+				5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
@@ -600,11 +632,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = VWZ6P536SX;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -630,7 +663,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = VWZ6P536SX;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
