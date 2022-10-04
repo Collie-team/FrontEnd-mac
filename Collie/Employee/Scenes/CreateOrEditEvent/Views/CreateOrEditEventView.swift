@@ -1,28 +1,31 @@
 import SwiftUI
 
-struct CreateOrEditTaskView: View {
-    @ObservedObject var viewModel = CreateOrEditTaskViewModel()
+struct CreateOrEditEventView: View {
+    @ObservedObject var viewModel = CreateOrEditEventViewModel()
     
-    var task: Task?
+    var event: Event?
     var handleClose: () -> ()
-    var handleTaskSave: (Task) -> ()
+    var handleEventSave: (Event) -> ()
     
-    init(task: Task?, handleClose: @escaping () -> (), handleTaskSave: @escaping (Task) -> ()) {
-        self.task = task
+    init(event: Event?, handleClose: @escaping () -> (), handleEventSave: @escaping (Event) -> ()) {
+        self.event = event
         self.handleClose = handleClose
-        self.handleTaskSave = handleTaskSave
-        if let task = task {
-            viewModel.taskName = task.name
-            viewModel.taskDescription = task.description
-            viewModel.startDate = task.startDate
-            viewModel.endDate = task.endDate
-            if let responsibleEmployees = task.responsibleEmployees {
+        self.handleEventSave = handleEventSave
+        if let event = event {
+            viewModel.eventName = event.name
+            viewModel.startDate = event.startDate
+            viewModel.endDate = event.endDate
+            viewModel.eventDescription = event.description
+            viewModel.eventLink = event.link
+            
+            if let responsibleEmployees = event.responsibleEmployees {
                 viewModel.selectedUsers = responsibleEmployees
                 viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
                     !viewModel.selectedUsers.contains(user)
                 })
             }
-            if let selectedCategory = task.taskCategory {
+            
+            if let selectedCategory = event.category {
                 viewModel.selectedCategory = selectedCategory
                 viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
                     category.id != selectedCategory.id
@@ -42,7 +45,7 @@ struct CreateOrEditTaskView: View {
             
             VStack(spacing: 16) {
                 HStack {
-                    TitleTextField(text: $viewModel.taskName, showPlaceholderWhen: viewModel.taskName.isEmpty, placeholderText: "Nome da tarefa")
+                    TitleTextField(text: $viewModel.eventName, showPlaceholderWhen: viewModel.eventName.isEmpty, placeholderText: "Nome do evento")
                     
                     IconButton(imageSystemName: "rectangle.on.rectangle") {
                         // TO DO
@@ -59,7 +62,7 @@ struct CreateOrEditTaskView: View {
                     
                     Spacer()
                     
-                    DatePicker("", selection: $viewModel.startDate, in: Date()..., displayedComponents: [.date])
+                    DatePicker("", selection: $viewModel.startDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(.compact)
                         .padding(.horizontal)
                         .frame(width: 500, height: 40)
@@ -68,14 +71,23 @@ struct CreateOrEditTaskView: View {
                 }
                 
                 HStack {
-                    TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
+                    TitleWithIconView(systemImageName: "calendar", label: "Data de término")
+                    
                     Spacer()
-                    DatePicker("", selection: $viewModel.endDate, in: Date()..., displayedComponents: [.date])
+                    
+                    DatePicker("", selection: $viewModel.endDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(.compact)
                         .padding(.horizontal)
                         .frame(width: 500, height: 40)
                         .background(Color.white)
                         .cornerRadius(8)
+                }
+                .padding(.bottom)
+                
+                VStack {
+                    TitleWithIconView(systemImageName: "link", label: "Link do evento")
+                    
+                    SimpleTextField(text: $viewModel.eventLink, showPlaceholderWhen: viewModel.eventLink.isEmpty, placeholderText: "Adicione o link da plataforma que o evento vai acontecer")
                 }
                 
                 VStack {
@@ -89,7 +101,7 @@ struct CreateOrEditTaskView: View {
                         allUsersScrollHeight: getAllUsersScrollHeight(),
                         selectedUsersScrollHeight: getChosenUsersScrollHeight(),
                         handleUserSelection: { user in
-                            viewModel.chooseUser(user)
+                            viewModel.selectUser(user)
                         },
                         handleUserRemove: { user in
                             viewModel.removeUser(user)
@@ -98,9 +110,9 @@ struct CreateOrEditTaskView: View {
                 }
                 
                 VStack {
-                    TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
+                    TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição do evento")
                     
-                    MultiLineTextField(text: $viewModel.taskDescription, showPlaceholderWhen: viewModel.taskDescription.isEmpty, placeholderText: "Informações sobre a atividade proposta")
+                    MultiLineTextField(text: $viewModel.eventDescription, showPlaceholderWhen: viewModel.eventDescription.isEmpty, placeholderText: "Informações sobre o evento")
                 }
                 
                 VStack {
@@ -110,19 +122,20 @@ struct CreateOrEditTaskView: View {
                         chosenCategory: $viewModel.selectedCategory,
                         taskCategoriesList: viewModel.sampleCategories,
                         maxScrollHeight: getAllCategoriesScrollHeight(),
-                        handleCategorySelection: viewModel.chooseCategory
+                        handleCategorySelection: viewModel.selectCategory
                     )
                 }
 
                 SendButton(label: "Salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
-                        handleTaskSave(
-                            Task(
-                                name: viewModel.taskName,
-                                responsibleEmployees: viewModel.selectedUsers,
-                                description: viewModel.taskDescription,
+                    handleEventSave(
+                            Event(
+                                name: viewModel.eventName,
+                                description: viewModel.eventDescription,
+                                link: viewModel.eventLink,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
-                                taskCategory: viewModel.selectedCategory
+                                responsibleEmployees: viewModel.selectedUsers,
+                                category: viewModel.selectedCategory
                             )
                         )
                         handleClose()
@@ -180,8 +193,8 @@ struct CreateOrEditTaskView: View {
     }
 }
 
-struct CreateOrEditTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateOrEditTaskView(task: nil, handleClose: {}, handleTaskSave: {_ in})
-    }
-}
+//struct CreateOrEditEventView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateOrEditEventView()
+//    }
+//}

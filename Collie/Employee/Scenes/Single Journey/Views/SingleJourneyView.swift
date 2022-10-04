@@ -4,7 +4,8 @@ struct SingleJourneyView: View {
     @ObservedObject var viewModel: SingleJourneyViewModel
     
     @State var editJourney = false
-    @State var showAddNewTask = false
+    @State var showTaskForm = false
+    @State var showEventForm = false
     
     var backAction: () -> ()
     
@@ -57,7 +58,7 @@ struct SingleJourneyView: View {
                             Spacer()
                             
                             Button {
-                                showAddNewTask = true
+                                showTaskForm = true
                             } label: {
                                 HStack {
                                     Image(systemName: "plus")
@@ -101,7 +102,7 @@ struct SingleJourneyView: View {
                             Spacer()
                             
                             Button {
-                                // TO DO
+                                showEventForm = true
                             } label: {
                                 HStack {
                                     Image(systemName: "plus")
@@ -115,16 +116,28 @@ struct SingleJourneyView: View {
                             }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
+                            
+                        }
+                        
+                        ScrollView(.vertical) {
+                            ForEach(viewModel.journey.events) { event in
+                                EventView(
+                                    event: event,
+                                    handleEventOpen: {
+                                        viewModel.selectEvent(event)
+                                    }
+                                )
+                            }
                         }
                         
                         Spacer()
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top)
                     .frame(width: 500)
                     .background(Color.collieCinzaClaro)
                     .cornerRadius(8)
                 }
-                .padding(.top)
                 
                 Spacer()
             }
@@ -151,7 +164,7 @@ struct SingleJourneyView: View {
                 }
             }
             
-            if showAddNewTask {
+            if showTaskForm {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -159,10 +172,10 @@ struct SingleJourneyView: View {
                         task: nil,
                         handleClose: {
                             withAnimation {
-                                showAddNewTask = false
+                                showTaskForm = false
                             }
                         },
-                        handleTaskCreation: { task in
+                        handleTaskSave: { task in
                             viewModel.saveTask(task)
                         }
                     )
@@ -181,8 +194,48 @@ struct SingleJourneyView: View {
                                 viewModel.unselectTask()
                             }
                         },
-                        handleTaskCreation: { task in
+                        handleTaskSave: { task in
                             viewModel.saveTask(task)
+                        }
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if showEventForm {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    CreateOrEditEventView(
+                        event: nil,
+                        handleClose: {
+                            withAnimation {
+                                showEventForm = false
+                            }
+                        },
+                        handleEventSave: { event in
+                            viewModel.saveEvent(event)
+                        }
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if viewModel.chosenEvent != nil {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    CreateOrEditEventView(
+                        event: viewModel.chosenEvent,
+                        handleClose: {
+                            withAnimation {
+                                viewModel.unselectEvent()
+                            }
+                        },
+                        handleEventSave: { event in
+                            viewModel.saveEvent(event)
                         }
                     )
                     .frame(maxWidth: 800)
@@ -217,6 +270,7 @@ struct SingleJourneyView_Previews: PreviewProvider {
                         Task(name: "I", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                         Task(name: "J", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
                     ],
+                    events: [],
                     managers: []
                 )
             ),

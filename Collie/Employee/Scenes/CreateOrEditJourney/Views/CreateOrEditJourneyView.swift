@@ -96,7 +96,7 @@ struct CreateOrEditJourneyView: View {
                 
                 SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
                     handleJourneyCreation(
-                        Journey(name: viewModel.journeyName, startDate: Date(), description: viewModel.journeyDescription, imageURL: imageURL, employees: viewModel.chosenEmployees, tasks: [], managers: viewModel.chosenManagers)
+                        Journey(name: viewModel.journeyName, startDate: Date(), description: viewModel.journeyDescription, imageURL: imageURL, employees: viewModel.chosenEmployees, tasks: [], events: [], managers: viewModel.chosenManagers)
                     )
                     handleClose()
                 }

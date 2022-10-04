@@ -70,6 +70,7 @@ struct JourneyCard_Previews: PreviewProvider {
                 Task(name: "I", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(name: "J", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
             ],
+            events: [],
             managers: []
         ))
     }
