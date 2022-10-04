@@ -67,9 +67,12 @@ struct JourneyListView: View {
             .padding(.vertical, 32)
             
             if viewModel.selectedJourney != nil {
-                SingleJourneyView(journey: viewModel.selectedJourney!, backAction: {
-                    viewModel.selectedJourney = nil
-                })
+                SingleJourneyView(
+                    viewModel: SingleJourneyViewModel(journey: viewModel.selectedJourney!),
+                    backAction: {
+                        viewModel.selectedJourney = nil
+                    }
+                )
             }
             
             if showCreationPopUp {

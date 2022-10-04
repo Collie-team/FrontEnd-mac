@@ -21,6 +21,8 @@
 		5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600128E761230024D064 /* MultiLineTextField.swift */; };
 		5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600328E76D010024D064 /* TitleWithIconView.swift */; };
 		5B49600628E778360024D064 /* UserSelectionDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600528E778360024D064 /* UserSelectionDropdown.swift */; };
+		5B49603128EB63AB0024D064 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49603028EB63AB0024D064 /* TaskView.swift */; };
+		5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49603228EB74B10024D064 /* CategorySelectionDropdown.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		5B49600128E761230024D064 /* MultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextField.swift; sourceTree = "<group>"; };
 		5B49600328E76D010024D064 /* TitleWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithIconView.swift; sourceTree = "<group>"; };
 		5B49600528E778360024D064 /* UserSelectionDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionDropdown.swift; sourceTree = "<group>"; };
+		5B49603028EB63AB0024D064 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		5B49603228EB74B10024D064 /* CategorySelectionDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionDropdown.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,11 @@
 				5B49600128E761230024D064 /* MultiLineTextField.swift */,
 				5B49600328E76D010024D064 /* TitleWithIconView.swift */,
 				5B49600528E778360024D064 /* UserSelectionDropdown.swift */,
+				5B49603228EB74B10024D064 /* CategorySelectionDropdown.swift */,
+				5BF6693828E23A4D001B0A1D /* UserIconView.swift */,
+				5BF6693628E23779001B0A1D /* ChosenUserCellView.swift */,
+				5BF6693428E23678001B0A1D /* UserCellView.swift */,
+				5B49603028EB63AB0024D064 /* TaskView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -250,8 +259,8 @@
 		5BACC63D28CFC0FA006975D3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5B495FF828E75CBD0024D064 /* Components */,
 				5BACC62928CFB855006975D3 /* CollieApp.swift */,
+				5B495FF828E75CBD0024D064 /* Components */,
 				5BACC65428CFC36B006975D3 /* Utils */,
 				5BACC65128CFC27B006975D3 /* Models */,
 			);
@@ -443,9 +452,6 @@
 			isa = PBXGroup;
 			children = (
 				5BACC66E28D26192006975D3 /* JourneyCard.swift */,
-				5BF6693428E23678001B0A1D /* UserCellView.swift */,
-				5BF6693628E23779001B0A1D /* ChosenUserCellView.swift */,
-				5BF6693828E23A4D001B0A1D /* UserIconView.swift */,
 				5BDAB8C828E4BD13009BC353 /* FilePicker.swift */,
 			);
 			path = Components;
@@ -561,6 +567,7 @@
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
 				5BF73BDC28DB960900B74060 /* CreateOrEditJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
+				5B49603128EB63AB0024D064 /* TaskView.swift in Sources */,
 				5B495FFA28E75CE60024D064 /* TitleTextField.swift in Sources */,
 				5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */,
 				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
@@ -585,6 +592,7 @@
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
 				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
+				5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */,
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
 			);

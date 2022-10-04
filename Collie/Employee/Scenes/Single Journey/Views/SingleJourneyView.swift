@@ -8,11 +8,6 @@ struct SingleJourneyView: View {
     
     var backAction: () -> ()
     
-    init(journey: Journey, backAction: @escaping () -> ()) {
-        self.viewModel = SingleJourneyViewModel(journey: journey)
-        self.backAction = backAction
-    }
-    
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
@@ -78,15 +73,21 @@ struct SingleJourneyView: View {
                             .buttonStyle(.plain)
                         }
                         
-                        ForEach(viewModel.journey.tasks) { task in
-                            HStack {
-                                Text(task.name)
-                                Spacer()
+                        ScrollView(.vertical) {
+                            ForEach(viewModel.journey.tasks) { task in
+                                TaskView(
+                                    task: task,
+                                    handleTaskOpen: {
+                                        viewModel.selectTask(task)
+                                    }
+                                )
                             }
+                            
+                            Spacer()
                         }
-                        Spacer()
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top)
                     .frame(maxWidth: .infinity)
                     .background(Color.collieCinzaClaro)
                     .cornerRadius(8)
@@ -154,13 +155,36 @@ struct SingleJourneyView: View {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditTaskView(handleClose: {
-                        withAnimation {
-                            showAddNewTask = false
+                    CreateOrEditTaskView(
+                        task: nil,
+                        handleClose: {
+                            withAnimation {
+                                showAddNewTask = false
+                            }
+                        },
+                        handleTaskCreation: { task in
+                            viewModel.saveTask(task)
                         }
-                    }, handleTaskCreation: { task in
-                        viewModel.addTask(task)
-                    })
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if viewModel.chosenTask != nil {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    CreateOrEditTaskView(
+                        task: viewModel.chosenTask,
+                        handleClose: {
+                            withAnimation {
+                                viewModel.unselectTask()
+                            }
+                        },
+                        handleTaskCreation: { task in
+                            viewModel.saveTask(task)
+                        }
+                    )
                     .frame(maxWidth: 800)
                 }
             }
@@ -173,28 +197,32 @@ struct SingleJourneyView: View {
 struct SingleJourneyView_Previews: PreviewProvider {
     static var previews: some View {
         SingleJourneyView(
-            journey: Journey(
-                name: "Jornada iOS",
-                startDate: Date(),
-                description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                imageURL: URL(fileURLWithPath: ""),
-                employees: [],
-                tasks: [
-                    Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "B", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "C", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "D", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "E", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "F", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "G", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                    Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
-                ],
-                managers: []
+            viewModel: SingleJourneyViewModel(
+                journey: Journey(
+                    name: "Jornada iOS",
+                    startDate: Date(),
+                    description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
+                    imageURL: URL(fileURLWithPath: ""),
+                    employees: [],
+                    tasks: [
+                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "A", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "B", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "C", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "D", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "E", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "F", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "G", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "H", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "I", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                        Task(name: "J", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
+                    ],
+                    managers: []
+                )
             ),
-            backAction: {}
+            backAction: {
+                
+            }
         )
     }
 }

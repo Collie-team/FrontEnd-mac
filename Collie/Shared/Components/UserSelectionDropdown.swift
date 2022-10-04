@@ -51,8 +51,6 @@ struct UserSelectionDropdown: View {
                 }
                 .frame(maxHeight: allUsersScrollHeight)
             }
-            .tint(.collieRosaEscuro)
-            .menuStyle(.borderlessButton)
             .background(Color.white)
             .foregroundColor(.black)
             .cornerRadius(8)

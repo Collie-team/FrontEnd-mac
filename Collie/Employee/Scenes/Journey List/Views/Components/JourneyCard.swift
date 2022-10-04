@@ -58,17 +58,17 @@ struct JourneyCard_Previews: PreviewProvider {
             imageURL: URL(fileURLWithPath: ""),
             employees: [],
             tasks: [
-                Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "B", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "C", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "D", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "E", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "F", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "G", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
+                Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "A", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "B", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "C", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "D", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "E", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "F", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "G", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "H", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "I", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "J", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
             ],
             managers: []
         ))
