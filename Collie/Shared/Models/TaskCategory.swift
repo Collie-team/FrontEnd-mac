@@ -22,7 +22,7 @@ struct TaskCategory: Identifiable, Codable {
         case "roxo":
             return Color.collieRoxo
         default:
-            return Color.gray
+            return Color.collieRoxoClaro
         }
     }
 }

@@ -341,8 +341,8 @@
 		5BACC64328CFC132006975D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BACC66D28D26184006975D3 /* Components */,
 				5BACC65228CFC2BE006975D3 /* JourneyListView.swift */,
+				5BACC66D28D26184006975D3 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,8 +367,8 @@
 		5BACC64B28CFC220006975D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BACC65728CFC6C5006975D3 /* Components */,
 				5BACC64D28CFC23D006975D3 /* BusinessManagerSidebarView.swift */,
+				5BACC65728CFC6C5006975D3 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct JourneyListView: View {
-    @ObservedObject var viewModel = JourneyListViewModel()
+    @StateObject var viewModel = JourneyListViewModel()
     
     @State var showCreationPopUp = false
     
@@ -69,6 +69,7 @@ struct JourneyListView: View {
             if viewModel.selectedJourney != nil {
                 SingleJourneyView(
                     viewModel: SingleJourneyViewModel(journey: viewModel.selectedJourney!),
+                    journeyListViewModel: viewModel,
                     backAction: {
                         viewModel.selectedJourney = nil
                     }
@@ -79,13 +80,17 @@ struct JourneyListView: View {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditJourneyView(journey: nil, handleClose: {
-                        withAnimation {
-                            showCreationPopUp = false
+                    CreateOrEditJourneyView(
+                        journey: nil,
+                        handleClose: {
+                            withAnimation {
+                                showCreationPopUp = false
+                            }
+                        },
+                        handleJourneySave: { journey in
+                            viewModel.addNewJourney(journey)
                         }
-                    }, handleJourneyCreation: { journey in
-                        viewModel.addNewJourney(journey)
-                    })
+                    )
                     .frame(maxWidth: 800)
                 }
             }

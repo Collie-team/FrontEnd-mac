@@ -1,6 +1,8 @@
 import Foundation
 
 final class CreateOrEditTaskViewModel: ObservableObject {
+    var taskId: String?
+    
     @Published var taskName = ""
     
     @Published var startDate = Date()

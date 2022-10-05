@@ -8,7 +8,7 @@ struct EventView: View {
         HStack(spacing: 16) {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
-                .foregroundColor(event.category != nil ? event.category!.color : Color.gray)
+                .foregroundColor(event.category != nil ? event.category!.color : Color.collieRoxoClaro)
             VStack(spacing: 8) {
                 HStack(spacing: 16) {
                     if event.category != nil {

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SingleJourneyView: View {
     @ObservedObject var viewModel: SingleJourneyViewModel
+    @ObservedObject var journeyListViewModel: JourneyListViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
@@ -156,8 +157,8 @@ struct SingleJourneyView: View {
                                 editJourney = false
                             }
                         },
-                        handleJourneyCreation: { journey in
-                            
+                        handleJourneySave: { journey in
+                            viewModel.journey = journey
                         }
                     )
                     .frame(maxWidth: 800)
@@ -177,6 +178,18 @@ struct SingleJourneyView: View {
                         },
                         handleTaskSave: { task in
                             viewModel.saveTask(task)
+                        },
+                        handleTaskDeletion: { task in
+                            viewModel.removeTask(task)
+                            withAnimation {
+                                showTaskForm = false
+                            }
+                        },
+                        handleTaskDuplicate: { task in
+                            viewModel.duplicateTask(task)
+                            withAnimation {
+                                showTaskForm = false
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -196,6 +209,16 @@ struct SingleJourneyView: View {
                         },
                         handleTaskSave: { task in
                             viewModel.saveTask(task)
+                        },
+                        handleTaskDeletion: { task in
+                            viewModel.removeTask(task)
+                            withAnimation {
+                                viewModel.unselectTask()
+                            }
+                        },
+                        handleTaskDuplicate: { task in
+                            viewModel.duplicateTask(task)
+                            viewModel.unselectTask()
                         }
                     )
                     .frame(maxWidth: 800)
@@ -216,7 +239,9 @@ struct SingleJourneyView: View {
                         },
                         handleEventSave: { event in
                             viewModel.saveEvent(event)
-                        }
+                        },
+                        handleEventDelete: { _ in },
+                        handleEventDuplicate: { _ in }
                     )
                     .frame(maxWidth: 800)
                 }
@@ -236,6 +261,18 @@ struct SingleJourneyView: View {
                         },
                         handleEventSave: { event in
                             viewModel.saveEvent(event)
+                        },
+                        handleEventDelete: { event in
+                            viewModel.removeEvent(event)
+                            withAnimation {
+                                viewModel.unselectEvent()
+                            }
+                        },
+                        handleEventDuplicate: { event in
+                            viewModel.duplicateEvent(event)
+                            withAnimation {
+                                viewModel.unselectEvent()
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -274,6 +311,7 @@ struct SingleJourneyView_Previews: PreviewProvider {
                     managers: []
                 )
             ),
+            journeyListViewModel: JourneyListViewModel(),
             backAction: {
                 
             }

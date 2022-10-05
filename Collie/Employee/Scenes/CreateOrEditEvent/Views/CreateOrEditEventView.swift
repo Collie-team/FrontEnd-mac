@@ -6,12 +6,23 @@ struct CreateOrEditEventView: View {
     var event: Event?
     var handleClose: () -> ()
     var handleEventSave: (Event) -> ()
+    var handleEventDelete: (Event) -> ()
+    var handleEventDuplicate: (Event) -> ()
     
-    init(event: Event?, handleClose: @escaping () -> (), handleEventSave: @escaping (Event) -> ()) {
+    init(
+        event: Event?,
+        handleClose: @escaping () -> (),
+        handleEventSave: @escaping (Event) -> (),
+        handleEventDelete: @escaping (Event) -> (),
+        handleEventDuplicate: @escaping(Event) -> ()
+    ) {
         self.event = event
         self.handleClose = handleClose
         self.handleEventSave = handleEventSave
+        self.handleEventDelete = handleEventDelete
+        self.handleEventDuplicate = handleEventDuplicate
         if let event = event {
+            viewModel.eventId = event.id
             viewModel.eventName = event.name
             viewModel.startDate = event.startDate
             viewModel.endDate = event.endDate
@@ -47,12 +58,18 @@ struct CreateOrEditEventView: View {
                 HStack {
                     TitleTextField(text: $viewModel.eventName, showPlaceholderWhen: viewModel.eventName.isEmpty, placeholderText: "Nome do evento")
                     
-                    IconButton(imageSystemName: "rectangle.on.rectangle") {
-                        // TO DO
-                    }
-                    
-                    IconButton(imageSystemName: "trash") {
-                        // TO DO
+                    if event != nil {
+                        IconButton(imageSystemName: "rectangle.on.rectangle") {
+                            if let event = event {
+                                handleEventDuplicate(event)
+                            }
+                        }
+                        
+                        IconButton(imageSystemName: "trash") {
+                            if let event = event {
+                                handleEventDelete(event)
+                            }
+                        }
                     }
                 }
                 .padding(.bottom, 40)
@@ -129,6 +146,7 @@ struct CreateOrEditEventView: View {
                 SendButton(label: "Salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
                     handleEventSave(
                             Event(
+                                id: viewModel.eventId ?? UUID().uuidString,
                                 name: viewModel.eventName,
                                 description: viewModel.eventDescription,
                                 link: viewModel.eventLink,
@@ -150,7 +168,7 @@ struct CreateOrEditEventView: View {
                     if viewModel.selectedCategory != nil {
                         viewModel.selectedCategory!.color
                     } else {
-                        Color.collieRosaClaro
+                        Color.collieRoxoClaro
                     }
                 }
                 .frame(height: 130)

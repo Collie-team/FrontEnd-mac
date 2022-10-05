@@ -6,12 +6,15 @@ struct CreateOrEditJourneyView: View {
     
     var journey: Journey?
     var handleClose: () -> ()
-    var handleJourneyCreation: (Journey) -> ()
+    var handleJourneySave: (Journey) -> ()
     
-    init(journey: Journey?, handleClose: @escaping () -> (), handleJourneyCreation: @escaping (Journey) -> ()) {
+    init(journey: Journey?, handleClose: @escaping () -> (), handleJourneySave: @escaping (Journey) -> ()) {
         self.handleClose = handleClose
-        self.handleJourneyCreation = handleJourneyCreation
+        self.handleJourneySave = handleJourneySave
         if let journey = journey {
+            viewModel.tasks = journey.tasks
+            viewModel.events = journey.events
+            viewModel.journeyId = journey.id
             viewModel.chosenEmployees = journey.employees
             viewModel.chosenManagers = journey.managers
             viewModel.journeyName = journey.name
@@ -95,8 +98,18 @@ struct CreateOrEditJourneyView: View {
                 }
                 
                 SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
-                    handleJourneyCreation(
-                        Journey(name: viewModel.journeyName, startDate: Date(), description: viewModel.journeyDescription, imageURL: imageURL, employees: viewModel.chosenEmployees, tasks: [], events: [], managers: viewModel.chosenManagers)
+                    handleJourneySave(
+                        Journey(
+                            id: viewModel.journeyId ?? UUID().uuidString,
+                            name: viewModel.journeyName,
+                            startDate: viewModel.startDate,
+                            description: viewModel.journeyDescription,
+                            imageURL: imageURL,
+                            employees: viewModel.chosenEmployees,
+                            tasks: viewModel.tasks,
+                            events: viewModel.events,
+                            managers: viewModel.chosenManagers
+                        )
                     )
                     handleClose()
                 }
@@ -113,7 +126,7 @@ struct CreateOrEditJourneyView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 130)
                 } else {
-                    Color.collieVermelho
+                    Color.collieRoxoClaro
                         .frame(height: 130)
                 }
                 Color.collieBranco
@@ -165,6 +178,6 @@ struct CreateOrEditJourneyView: View {
 
 struct CreateOrEditJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditJourneyView(journey: nil, handleClose: {}, handleJourneyCreation: {_ in })
+        CreateOrEditJourneyView(journey: nil, handleClose: {}, handleJourneySave: {_ in })
     }
 }

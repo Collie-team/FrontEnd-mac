@@ -3,12 +3,13 @@ import SwiftUI
 struct TaskView: View {
     var task: Task
     var handleTaskOpen: () -> ()
+    @State var showDetailIcon = false
     
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
-                .foregroundColor(task.taskCategory != nil ? task.taskCategory?.color : Color.gray)
+                .foregroundColor(task.taskCategory != nil ? task.taskCategory?.color : Color.collieRoxoClaro)
             
             Text(task.name)
                 .foregroundColor(.black)
@@ -16,6 +17,10 @@ struct TaskView: View {
                 .padding(.leading, 8)
             
             Spacer()
+            
+            if showDetailIcon {
+                IconButton(imageSystemName: "square.and.pencil") {}
+            }
         }
         .padding(8)
         .frame(height: 46)
@@ -24,6 +29,9 @@ struct TaskView: View {
         .cornerRadius(8)
         .onTapGesture {
             handleTaskOpen()
+        }
+        .onHover { over in
+            showDetailIcon = over
         }
     }
 }

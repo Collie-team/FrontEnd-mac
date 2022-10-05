@@ -19,14 +19,38 @@ final class SingleJourneyViewModel: ObservableObject {
         self.journey = journey
     }
     
+    // MARK: - Task functions
     func saveTask(_ task: Task) {
         if let index = self.journey.tasks.firstIndex(where: { $0.id == task.id }) {
             self.journey.tasks[index] = task
         } else {
             self.journey.tasks.append(task)
         }
+        objectWillChange.send()
     }
     
+    func removeTask(_ task: Task) {
+        if let index = journey.tasks.firstIndex(where: {$0.id == task.id}) {
+            self.journey.tasks.remove(at: index)
+        }
+        objectWillChange.send()
+    }
+    
+    func duplicateTask(_ task: Task) {
+        var duplicatedTask = task
+        duplicatedTask.id = UUID().uuidString
+        self.journey.tasks.append(duplicatedTask)
+    }
+    
+    func selectTask(_ task: Task) {
+        self.chosenTask = task
+    }
+    
+    func unselectTask() {
+        chosenTask = nil
+    }
+    
+    // MARK: - Event functions
     func saveEvent(_ event: Event) {
         if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
             self.journey.events[index] = event
@@ -34,33 +58,33 @@ final class SingleJourneyViewModel: ObservableObject {
             self.journey.events.append(event)
             sortJourneyEvents()
         }
+        objectWillChange.send()
     }
     
-    func sortJourneyEvents() {
-        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
-            eventA.startDate < eventB.startDate
-        })
-    }
-    
-    func removeTask(_ task: Task) {
-        if let index = journey.tasks.firstIndex(where: {$0.id == task.id}) {
-            self.journey.tasks.remove(at: index)
+    func removeEvent(_ event: Event) {
+        if let index = journey.events.firstIndex(where: {$0.id == event.id}) {
+            self.journey.events.remove(at: index)
         }
+        objectWillChange.send()
     }
     
-    func selectTask(_ task: Task) {
-        self.chosenTask = task
+    func duplicateEvent(_ event: Event) {
+        var duplicatedEvent = event
+        duplicatedEvent.id = UUID().uuidString
+        self.journey.events.append(duplicatedEvent)
     }
     
     func selectEvent(_ event: Event) {
         self.chosenEvent = event
     }
     
-    func unselectTask() {
-        chosenTask = nil
-    }
-    
     func unselectEvent() {
         chosenEvent = nil
+    }
+    
+    func sortJourneyEvents() {
+        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
+            eventA.startDate < eventB.startDate
+        })
     }
 }

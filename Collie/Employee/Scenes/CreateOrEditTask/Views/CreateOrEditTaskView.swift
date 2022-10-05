@@ -6,12 +6,23 @@ struct CreateOrEditTaskView: View {
     var task: Task?
     var handleClose: () -> ()
     var handleTaskSave: (Task) -> ()
+    var handleTaskDeletion: (Task) -> ()
+    var handleTaskDuplicate: (Task) -> ()
     
-    init(task: Task?, handleClose: @escaping () -> (), handleTaskSave: @escaping (Task) -> ()) {
+    init(
+        task: Task?,
+        handleClose: @escaping () -> (),
+        handleTaskSave: @escaping (Task) -> (),
+        handleTaskDeletion: @escaping (Task) -> (),
+        handleTaskDuplicate: @escaping (Task) -> ()
+    ) {
         self.task = task
         self.handleClose = handleClose
         self.handleTaskSave = handleTaskSave
+        self.handleTaskDeletion = handleTaskDeletion
+        self.handleTaskDuplicate = handleTaskDuplicate
         if let task = task {
+            viewModel.taskId = task.id
             viewModel.taskName = task.name
             viewModel.taskDescription = task.description
             viewModel.startDate = task.startDate
@@ -44,12 +55,18 @@ struct CreateOrEditTaskView: View {
                 HStack {
                     TitleTextField(text: $viewModel.taskName, showPlaceholderWhen: viewModel.taskName.isEmpty, placeholderText: "Nome da tarefa")
                     
-                    IconButton(imageSystemName: "rectangle.on.rectangle") {
-                        // TO DO
-                    }
-                    
-                    IconButton(imageSystemName: "trash") {
-                        // TO DO
+                    if task != nil {
+                        IconButton(imageSystemName: "rectangle.on.rectangle") {
+                            if let task = task {
+                                handleTaskDuplicate(task)
+                            }
+                        }
+                        
+                        IconButton(imageSystemName: "trash") {
+                            if let task = task {
+                                handleTaskDeletion(task)
+                            }
+                        }
                     }
                 }
                 .padding(.bottom, 40)
@@ -117,6 +134,7 @@ struct CreateOrEditTaskView: View {
                 SendButton(label: "Salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
                         handleTaskSave(
                             Task(
+                                id: viewModel.taskId ?? UUID().uuidString,
                                 name: viewModel.taskName,
                                 responsibleEmployees: viewModel.selectedUsers,
                                 description: viewModel.taskDescription,
@@ -137,7 +155,7 @@ struct CreateOrEditTaskView: View {
                     if viewModel.selectedCategory != nil {
                         viewModel.selectedCategory!.color
                     } else {
-                        Color.collieRosaClaro
+                        Color.collieRoxoClaro
                     }
                 }
                 .frame(height: 130)
@@ -182,6 +200,6 @@ struct CreateOrEditTaskView: View {
 
 struct CreateOrEditTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditTaskView(task: nil, handleClose: {}, handleTaskSave: {_ in})
+        CreateOrEditTaskView(task: nil, handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }

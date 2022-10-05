@@ -1,6 +1,8 @@
 import Foundation
 
 final class CreateOrEditEventViewModel: ObservableObject {
+    var eventId: String?
+    
     @Published var eventName = ""
     
     @Published var startDate = Date()

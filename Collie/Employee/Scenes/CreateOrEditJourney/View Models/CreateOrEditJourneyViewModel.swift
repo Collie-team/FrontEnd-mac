@@ -1,6 +1,8 @@
 import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
+    var journeyId: String?
+    
     @Published var journeyName: String = ""
     
     @Published var journeyDescription: String = ""
@@ -14,6 +16,10 @@ final class CreateNewJourneyViewModel: ObservableObject {
     @Published var chosenEmployees: [User] = []
     
     @Published var startDate: Date = Date()
+    
+    @Published var tasks: [Task] = []
+    
+    @Published var events: [Event] = []
     
     @Published var sampleManagers: [User] = [
         User(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),

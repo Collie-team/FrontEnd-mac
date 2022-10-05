@@ -59,8 +59,3 @@ struct BusinessManagerSidebarView: View {
     }
 }
 
-struct BusinessManagerSidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusinessManagerSidebarView()
-    }
-}
