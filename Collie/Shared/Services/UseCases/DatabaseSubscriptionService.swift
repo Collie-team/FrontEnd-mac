@@ -38,8 +38,8 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
         let url = domainUrl + route.rawValue + "create/" + query
         let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let URL = URL(string: myURL!)
-        let request = URLRequest(url: URL!)
-        request.httpMethod = 
+//        let request = URLRequest(url: URL!)
+//        request.httpMethod = 
         
         let task = URLSession.shared.dataTask(with: URL!, completionHandler: { (data, response, error) in
             if let error = error {
@@ -49,6 +49,7 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
+//                httpResponse.value(forHTTPHeaderField: "authenticationBearer")
                 print("Error with the response, unexpected status code: \(String(describing: response))")
                 return
             }

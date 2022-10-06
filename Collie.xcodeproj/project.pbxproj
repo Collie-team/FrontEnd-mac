@@ -15,6 +15,14 @@
 		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
 		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
 		5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */; };
+		5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */; };
+		5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */; };
+		5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */; };
+		5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B328EE05F000FC3BE9 /* SignupView.swift */; };
+		5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B528EE159200FC3BE9 /* LoginView.swift */; };
+		5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */; };
+		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
+		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -51,6 +59,14 @@
 		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
 		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriptionService.swift; sourceTree = "<group>"; };
+		5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
+		5B2B46B328EE05F000FC3BE9 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		5B2B46B528EE159200FC3BE9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -123,8 +139,44 @@
 			children = (
 				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
 				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
+				5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5B2B46AC28ECB3F100FC3BE9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46AE28ECB40600FC3BE9 /* View Models */,
+				5B2B46AD28ECB3FE00FC3BE9 /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		5B2B46AD28ECB3FE00FC3BE9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */,
+				5B2B46B328EE05F000FC3BE9 /* SignupView.swift */,
+				5B2B46B528EE159200FC3BE9 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B2B46AE28ECB40600FC3BE9 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -206,6 +258,7 @@
 		5BACC63D28CFC0FA006975D3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5B2B46AB28ECB35100FC3BE9 /* Scenes */,
 				5B0F666428DCE1BC0057BA32 /* Services */,
 				5BACC62928CFB855006975D3 /* CollieApp.swift */,
 				5BACC65428CFC36B006975D3 /* Utils */,
@@ -311,6 +364,9 @@
 			children = (
 				5BACC65528CFC37E006975D3 /* CustomColors.swift */,
 				5BF73BDD28DB9BB900B74060 /* TextFieldPlaceholder.swift */,
+				5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */,
+				5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */,
+				5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -476,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */,
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
 				5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
@@ -483,12 +540,15 @@
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
 				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
+				5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
+				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
 				5BF73BDC28DB960900B74060 /* CreateNewJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
 				5B0F665C28D26CFC0057BA32 /* Test_JourneyView.swift in Sources */,
 				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
+				5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
 				5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
@@ -504,8 +564,12 @@
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
+				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
+				5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */,
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
+				5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
+				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
