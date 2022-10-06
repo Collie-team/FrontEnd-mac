@@ -49,6 +49,7 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
+//                httpResponse.value(forHTTPHeaderField: "authenticationBearer")
                 print("Error with the response, unexpected status code: \(String(describing: response))")
                 return
             }

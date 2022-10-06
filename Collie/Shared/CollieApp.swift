@@ -4,12 +4,16 @@ import SwiftUI
 struct CollieApp: App {
     var body: some Scene {
         WindowGroup {
-            BusinessManagerSidebarView()
-                .preferredColorScheme(.light)
+            AuthenticationView()
+//            TeamListView()
         }
-        .windowToolbarStyle(.unified)
-        .commands {
-            SidebarCommands()
-        }
+//        WindowGroup {
+//            BusinessManagerSidebarView()
+//                .preferredColorScheme(.light)
+//        }
+//        .windowToolbarStyle(.unified)
+//        .commands {
+//            SidebarCommands()
+//        }
     }
 }
