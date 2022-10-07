@@ -39,6 +39,7 @@ struct SignupView: View {
                     VStack(alignment: .leading) {
                         Text("Primeiro nome")
                         CustomTextField("Primeiro Nome", text: $viewModel.currentUser.firstName)
+                
                     }
                     Spacer()
                     VStack(alignment: .leading) {
@@ -72,7 +73,9 @@ struct SignupView: View {
                 }
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                viewModel.createUser()
+            }) {
                 Text("Cadastrar")
                     .foregroundColor(.white)
                     .frame(height: 48)
@@ -82,6 +85,7 @@ struct SignupView: View {
             }
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
+            .disabled(!viewModel.signupEnabled)
         }
         .foregroundColor(.black)
         .padding(.horizontal,60)

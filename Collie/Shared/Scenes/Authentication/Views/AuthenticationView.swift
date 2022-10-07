@@ -35,6 +35,10 @@ struct AuthenticationView: View {
                             .environmentObject(viewModel)
                     }
                 }
+                .onChange(of: viewModel.currentUser) { _ in
+                    viewModel.validateSingUpFields()
+                    viewModel.validateLoginFields()
+                }
                 Spacer()
                 Spacer()
             }

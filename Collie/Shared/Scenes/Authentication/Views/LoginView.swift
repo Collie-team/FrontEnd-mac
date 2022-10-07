@@ -45,7 +45,9 @@ struct LoginView: View {
                 }
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                
+            }) {
                 Text("Entrar")
                     .foregroundColor(.white)
                     .frame(height: 48)
@@ -55,6 +57,7 @@ struct LoginView: View {
             }
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
+            .disabled(!viewModel.loginEnabled)
         }
         .foregroundColor(.black)
         .padding(.horizontal,60)

@@ -6,24 +6,20 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class AuthenticationService {
-//    private let route: AuthenticationSubscriptionRoutes
-//    
-//    enum AuthenticationSubscriptionRoutes: String {
-//        case login = "login/"
-//        case signin = "signin/"
-//    }
-//   
-//    init(route: AuthenticationSubscriptionRoutes) {
-//        self.route = route
-//    }
-    private let domainUrl = "https://backend-python-dev.vercel.app/"
     
-    func login() {
-        let url = domainUrl + "login/"
-        let URL = URL(string: url)
-        var request = URLRequest(url: URL!)
-        request.httpMethod = "POST"
+    func createUser(email: String, password: String) {
+        print("create")
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                print("Error:", error.localizedDescription)
+            }
+            
+            if let authResult = authResult {
+                print("User id:", authResult.user.uid)
+            }
+        }
     }
 }
