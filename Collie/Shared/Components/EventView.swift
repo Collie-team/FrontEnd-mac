@@ -28,11 +28,11 @@ struct EventView: View {
                 HStack {
                     HStack {
                         Image(systemName: "calendar")
-                        Text(event.startDate.collieCustomFormat())
+                        Text(event.startDate.monthAndYearCustomFormat())
                         
                         Image(systemName: "arrow.right")
                         
-                        Text(event.endDate.collieCustomFormat())
+                        Text(event.endDate.monthAndYearCustomFormat())
                     }
                     .foregroundColor(.gray)
                     

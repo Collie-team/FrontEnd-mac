@@ -56,12 +56,6 @@ struct CreateOrEditTaskView: View {
                     TitleTextField(text: $viewModel.taskName, showPlaceholderWhen: viewModel.taskName.isEmpty, placeholderText: "Nome da tarefa")
                     
                     if task != nil {
-                        IconButton(imageSystemName: "rectangle.on.rectangle") {
-                            if let task = task {
-                                handleTaskDuplicate(task)
-                            }
-                        }
-                        
                         IconButton(imageSystemName: "trash") {
                             if let task = task {
                                 handleTaskDeletion(task)

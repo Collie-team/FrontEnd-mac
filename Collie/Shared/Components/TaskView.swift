@@ -3,6 +3,7 @@ import SwiftUI
 struct TaskView: View {
     var task: Task
     var handleTaskOpen: () -> ()
+    var handleTaskDuplicate: () -> ()
     @State var showDetailIcon = false
     
     var body: some View {
@@ -19,7 +20,9 @@ struct TaskView: View {
             Spacer()
             
             if showDetailIcon {
-                IconButton(imageSystemName: "square.and.pencil") {}
+                IconButton(imageSystemName: "rectangle.on.rectangle") {
+                    handleTaskDuplicate()
+                }
             }
         }
         .padding(8)
@@ -38,6 +41,6 @@ struct TaskView: View {
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskView(task: .init(name: "Enviar a cópia dos documentos", description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")), handleTaskOpen: {})
+        TaskView(task: .init(name: "Enviar a cópia dos documentos", description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")), handleTaskOpen: {}, handleTaskDuplicate: {})
     }
 }

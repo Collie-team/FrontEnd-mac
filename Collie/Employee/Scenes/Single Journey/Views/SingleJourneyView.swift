@@ -81,6 +81,9 @@ struct SingleJourneyView: View {
                                     task: task,
                                     handleTaskOpen: {
                                         viewModel.selectTask(task)
+                                    },
+                                    handleTaskDuplicate: {
+                                        viewModel.duplicateTask(task)
                                     }
                                 )
                             }
@@ -119,6 +122,9 @@ struct SingleJourneyView: View {
                             .buttonStyle(.plain)
                             
                         }
+                        
+                        EventsCalendarView(events: viewModel.journey.events)
+                            .padding(.top)
                         
                         ScrollView(.vertical) {
                             ForEach(viewModel.journey.events) { event in
