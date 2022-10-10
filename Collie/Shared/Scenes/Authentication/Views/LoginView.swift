@@ -23,6 +23,7 @@ struct LoginView: View {
                     .font(.system(size: 28, weight: .bold))
                 Spacer()
                 Button(action: {
+                    viewModel.resetUser()
                     withAnimation(.spring()) {
                         viewModel.authenticationMode = .signup
                     }
@@ -36,12 +37,31 @@ struct LoginView: View {
             
             VStack(alignment: .leading, spacing: 26) {
                 VStack(alignment: .leading) {
-                    Text("Usuário ou e-mail")
-                    CustomTextField("E-mail", text: $viewModel.currentUser.email)
+                    Text("E-mail")
+                    CustomTextField("E-mail", text: $viewModel.currentUser.email)  {
+                        return viewModel.currentUser.isValidEmail() || viewModel.currentUser.email == ""
+                    }
                 }
                 VStack(alignment: .leading) {
                     Text("Senha")
                     CustomSecureView("Senha", text: $viewModel.currentUser.password)
+                    
+                    HStack {
+                        Text("\(Image(systemName: "exclamationmark.circle.fill")) Credenciais inválidas, tente novamente")
+                            .font(.system(size: 13))
+                            .foregroundColor(Color.collieVermelho)
+                            .opacity(viewModel.authenticationStatus == .invalidPassword ? 1 : 0)
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                viewModel.authenticationMode = .passwordReset
+                            }
+                        }) {
+                            Text("Esqueci a senha")
+                                .foregroundColor(Color.collieCinzaEscuro)
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
             }
             Spacer()

@@ -23,6 +23,7 @@
 		5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */; };
 		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
 		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
+		5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
@@ -42,7 +43,7 @@
 		5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC66E28D26192006975D3 /* JourneyCard.swift */; };
 		5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */; };
 		5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BC928DA3CDC00B74060 /* Business.swift */; };
-		5BF73BCC28DA3CE700B74060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* User.swift */; };
+		5BF73BCC28DA3CE700B74060 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* UserModel.swift */; };
 		5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD128DA3D8C00B74060 /* Task.swift */; };
 		5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD328DA3D9700B74060 /* TaskCategory.swift */; };
 		5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD528DA3FDD00B74060 /* Event.swift */; };
@@ -69,6 +70,7 @@
 		5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureView.swift; sourceTree = "<group>"; };
+		5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
@@ -89,7 +91,7 @@
 		5BACC66E28D26192006975D3 /* JourneyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCard.swift; sourceTree = "<group>"; };
 		5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BF73BC928DA3CDC00B74060 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
-		5BF73BCB28DA3CE700B74060 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5BF73BCB28DA3CE700B74060 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5BF73BD128DA3D8C00B74060 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5BF73BD328DA3D9700B74060 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		5BF73BD528DA3FDD00B74060 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */,
 				5B2B46B328EE05F000FC3BE9 /* SignupView.swift */,
 				5B2B46B528EE159200FC3BE9 /* LoginView.swift */,
+				5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -356,7 +359,7 @@
 				5BACC65A28D16FE5006975D3 /* SidebarItem.swift */,
 				5BACC66B28D26127006975D3 /* Journey.swift */,
 				5BF73BC928DA3CDC00B74060 /* Business.swift */,
-				5BF73BCB28DA3CE700B74060 /* User.swift */,
+				5BF73BCB28DA3CE700B74060 /* UserModel.swift */,
 				5BF73BD128DA3D8C00B74060 /* Task.swift */,
 				5BF73BD328DA3D9700B74060 /* TaskCategory.swift */,
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
@@ -551,7 +554,7 @@
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
-				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
+				5BF73BCC28DA3CE700B74060 /* UserModel.swift in Sources */,
 				5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
@@ -571,6 +574,7 @@
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
+				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,

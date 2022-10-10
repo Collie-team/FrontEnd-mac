@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Identifiable, Codable, QueryParameterable, Hashable {
+struct UserModel: Identifiable, Codable, QueryParameterable, Hashable {
     var id: String = UUID().uuidString
     var name: String
     var email: String

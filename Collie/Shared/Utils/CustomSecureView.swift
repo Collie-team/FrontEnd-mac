@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct CustomSecureView: View {
+    @FocusState private var isFocused: Bool
     @Binding private var text: String
+    private var validationFunction: (() -> Bool)?
     @State private var isSecured: Bool = true
     private var title: String
     
-    init(_ title: String, text: Binding<String>) {
+    init(_ title: String, text: Binding<String>, _ validatingFunction: (() -> Bool)? = nil) {
         self.title = title
         self._text = text
+        self.validationFunction = validatingFunction
     }
     
     var body: some View {
@@ -26,12 +29,14 @@ struct CustomSecureView: View {
                         .foregroundColor(Color.collieCinzaEscuro)
                         .padding(.horizontal,15)
                         .padding(.vertical, 8)
+                        .focused($isFocused)
                 } else {
                     TextField(title, text: $text)
                         .textFieldStyle(.plain)
                         .foregroundColor(Color.collieCinzaEscuro)
                         .padding(.horizontal,15)
                         .padding(.vertical, 8)
+                        .focused($isFocused)
                 }
             }
             .padding(.trailing, 32)
@@ -49,7 +54,7 @@ struct CustomSecureView: View {
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(Color.collieTextFieldBorder, lineWidth: 1)
+                .strokeBorder((validationFunction ?? {return true})() ? (isFocused ? Color.collieRoxo : Color.collieTextFieldBorder) : Color.collieVermelho, lineWidth: 1) // Review later, field validation function for email and password confirmation
         )
         .preferredColorScheme(.light)
     }

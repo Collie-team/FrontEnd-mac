@@ -1,14 +1,14 @@
 import Foundation
 
 final class TeamListViewModel: ObservableObject {
-    private let databaseService = DatabaseSubscriptionService<User>(route: .user)
+    private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
     @Published var newUserPopupEnabled = false
-    @Published var sampleUsers: [User] = [
-        User(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
+    @Published var sampleUsers: [UserModel] = [
+        UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
     ]
     
     func fetchUsers() {
@@ -17,7 +17,7 @@ final class TeamListViewModel: ObservableObject {
         }
     }
     
-    func registerUser(userToAdd: User) {
+    func registerUser(userToAdd: UserModel) {
         databaseService.writeData(dataToWrite: userToAdd) { response in
             if !response.isEmpty {
                 self.sampleUsers.append(userToAdd)
