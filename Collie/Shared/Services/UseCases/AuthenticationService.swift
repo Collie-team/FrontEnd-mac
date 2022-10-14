@@ -71,7 +71,7 @@ final class AuthenticationService {
     
     func sendPasswordReset(withEmail email: String) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
-            if let error = error {} else {
+            if error == nil {
                 // Email sent
                 print("Email sent")
             }

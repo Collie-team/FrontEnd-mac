@@ -14,23 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct CollieApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    init() {
-//        FirebaseApp.configure()
-//        print("init")
-//    }
+    
     var body: some Scene {
         WindowGroup {
             AuthenticationView()
-            //            TeamListView()
+//            WorkspaceView()
+//                .frame(minWidth: 800, minHeight: 600)
         }
-        //        WindowGroup {
-        //            BusinessManagerSidebarView()
-        //                .preferredColorScheme(.light)
-        //        }
-        //        .windowToolbarStyle(.unified)
-        //        .commands {
-        //            SidebarCommands()
-        //        }
     }
     
 }

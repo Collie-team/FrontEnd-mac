@@ -54,6 +54,7 @@ class AuthenticationViewModel: ObservableObject {
     @Published var authenticationStatus: AuthenticationStatus = .valid
     
     private let authenticationService = AuthenticationService()
+    private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
     
     func resetUser() {
         currentUser = AuthenticationUser()
@@ -78,7 +79,14 @@ class AuthenticationViewModel: ObservableObject {
     func loginUser() {
         authenticationService.loginUser(email: currentUser.email, password: currentUser.password) { user, status in
             self.authenticationStatus = status
-            // TODO: Save user to variable
+            if let user = user {
+                // TODO: Save user to variable
+                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
+                self.databaseService.writeData(dataToWrite: userData) { writtenData in
+                    
+//                    self.currentUser = writtenData
+                }
+            }
         }
     }
     

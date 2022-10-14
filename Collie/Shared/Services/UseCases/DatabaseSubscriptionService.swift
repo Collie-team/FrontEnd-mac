@@ -34,12 +34,11 @@ final class DatabaseSubscriptionService<ModelDTO: Decodable & QueryParameterable
     }
     
     func writeData(dataToWrite: ModelDTO, _ completion: @escaping ([ModelDTO]) -> ()) {
-        let query = dataToWrite.createQueryParameters()
-        let url = domainUrl + route.rawValue + "create/" + query
-        let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let URL = URL(string: myURL!)
-//        let request = URLRequest(url: URL!)
-//        request.httpMethod = 
+        let url = domainUrl + route.rawValue + "create/"
+        let URL = URL(string: url)
+        var request = URLRequest(url: URL!)
+        request.httpMethod = "POST"
+        request.setValue("application/png", forHTTPHeaderField: "Content-Type")
         
         let task = URLSession.shared.dataTask(with: URL!, completionHandler: { (data, response, error) in
             if let error = error {

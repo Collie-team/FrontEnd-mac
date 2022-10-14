@@ -55,7 +55,6 @@ struct AuthenticationView: View {
                     viewModel.validateLoginFields()
                 }
                 Spacer()
-                Spacer()
             }
             .padding()
             .padding(.leading, 48)
