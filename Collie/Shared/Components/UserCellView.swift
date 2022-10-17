@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UserCellView: View {
-    var user: User
+    var user: UserModel
     var onTap: () -> ()
     
     var body: some View {
@@ -33,6 +33,6 @@ struct UserCellView: View {
 
 struct UserCellView_Previews: PreviewProvider {
     static var previews: some View {
-        UserCellView(user: User(name: "André", email: "andreluisarns@gmail.cm", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""), onTap: {})
+        UserCellView(user: UserModel(name: "André", email: "andreluisarns@gmail.cm", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""), onTap: {})
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChosenUserCellView: View {
-    var user: User
+    var user: UserModel
     var onRemove: () -> ()
     
     var body: some View {
@@ -39,6 +39,6 @@ struct ChosenUserCellView: View {
 
 struct ChosenUserCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ChosenUserCellView(user: User(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""), onRemove: {})
+        ChosenUserCellView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""), onRemove: {})
     }
 }

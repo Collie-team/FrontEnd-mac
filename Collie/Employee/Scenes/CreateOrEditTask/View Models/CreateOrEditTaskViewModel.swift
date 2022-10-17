@@ -11,12 +11,12 @@ final class CreateOrEditTaskViewModel: ObservableObject {
     
     @Published var taskDescription = ""
     
-    @Published var sampleUsers: [User] = [
-        User(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
+    @Published var sampleUsers: [UserModel] = [
+        UserModel(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
     ]
     
     @Published var sampleCategories: [TaskCategory] = [
@@ -27,7 +27,7 @@ final class CreateOrEditTaskViewModel: ObservableObject {
     
     @Published var selectedCategory: TaskCategory?
     
-    @Published var selectedUsers: [User] = []
+    @Published var selectedUsers: [UserModel] = []
     
     @Published var showUserList = false
     
@@ -37,14 +37,14 @@ final class CreateOrEditTaskViewModel: ObservableObject {
         taskName.isEmpty
     }
     
-    func chooseUser(_ user: User) {
+    func chooseUser(_ user: UserModel) {
         selectedUsers.append(user)
         if let index = sampleUsers.firstIndex(of: user) {
             sampleUsers.remove(at: index)
         }
     }
     
-    func removeUser(_ user: User) {
+    func removeUser(_ user: UserModel) {
         if let index = selectedUsers.firstIndex(of: user) {
             selectedUsers.remove(at: index)
             sampleUsers.append(user)

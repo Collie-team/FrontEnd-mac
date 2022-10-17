@@ -89,10 +89,10 @@ struct CreateOrEditJourneyView: View {
                         allUsersScrollHeight: getAllUsersScrollHeight(),
                         selectedUsersScrollHeight: getChosenUsersScrollHeight(),
                         handleUserSelection: { user in
-                            viewModel.selectUser(user)
+                            viewModel.selectUserModel(user)
                         },
                         handleUserRemove: { user in
-                            viewModel.removeUser(user)
+                            viewModel.selectUserModel(user)
                         }
                     )
                 }
