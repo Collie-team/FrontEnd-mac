@@ -54,6 +54,7 @@ struct EventView: View {
         .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(8)
+        .modifier(CustomBorder())
         .onTapGesture {
             handleEventOpen()
         }

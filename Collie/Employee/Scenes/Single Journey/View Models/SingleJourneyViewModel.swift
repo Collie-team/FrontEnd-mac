@@ -2,7 +2,11 @@ import Foundation
 
 final class SingleJourneyViewModel: ObservableObject {
     
-    @Published var journey: Journey
+    @Published var journey: Journey {
+        didSet {
+            filterSelectedEvents()
+        }
+    }
     
     @Published var chosenTask: Task?
     
@@ -15,8 +19,17 @@ final class SingleJourneyViewModel: ObservableObject {
         TaskCategory(name: "Integração", colorName: "verde", systemImageName: "lock")
     ]
     
+    @Published var selectedEvents: [Event] = []
+    
+    @Published var selectedDate: Date = Date() {
+        didSet {
+            filterSelectedEvents()
+        }
+    }
+    
     init(journey: Journey) {
         self.journey = journey
+        filterSelectedEvents()
     }
     
     // MARK: - Task functions
@@ -85,6 +98,12 @@ final class SingleJourneyViewModel: ObservableObject {
     func sortJourneyEvents() {
         self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
             eventA.startDate < eventB.startDate
+        })
+    }
+    
+    func filterSelectedEvents() {
+        self.selectedEvents = journey.events.filter({ event in
+            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
         })
     }
 }

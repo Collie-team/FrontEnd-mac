@@ -97,7 +97,7 @@ struct JourneyListView: View {
             
         }
         .navigationTitle("Jornadas")
-        .background(Color.collieBranco.ignoresSafeArea())
+        .background(Color.collieBrancoFundo.ignoresSafeArea())
     }
     
 }

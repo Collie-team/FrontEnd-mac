@@ -49,7 +49,7 @@ struct SingleJourneyView: View {
                     .foregroundColor(.black)
                 
                 
-                HStack(spacing: 16){
+                HStack(spacing: 16) {
                     VStack {
                         HStack {
                             Text("Tarefas")
@@ -70,6 +70,7 @@ struct SingleJourneyView: View {
                                 .foregroundColor(.black)
                                 .background(Color.white)
                                 .cornerRadius(8)
+                                .modifier(CustomBorder())
                             }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
@@ -87,14 +88,15 @@ struct SingleJourneyView: View {
                                     }
                                 )
                             }
+                            .padding(2)
                             
                             Spacer()
                         }
                     }
-                    .padding(.horizontal)
-                    .padding(.top)
+                    .padding(.horizontal, 32)
+                    .padding(.top, 32)
                     .frame(maxWidth: .infinity)
-                    .background(Color.collieCinzaClaro)
+                    .background(Color.collieBrancoFundoSecoes)
                     .cornerRadius(8)
                     
                     VStack {
@@ -109,7 +111,7 @@ struct SingleJourneyView: View {
                                 showEventForm = true
                             } label: {
                                 HStack {
-                                    Image(systemName: "plus")
+                                    Image(systemName: "calendar.badge.plus")
                                     Text("Novo evento")
                                 }
                                 .font(.system(size: 16, weight: .bold))
@@ -117,32 +119,23 @@ struct SingleJourneyView: View {
                                 .foregroundColor(.black)
                                 .background(Color.white)
                                 .cornerRadius(8)
+                                .modifier(CustomBorder())
                             }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
                             
                         }
                         
-                        EventsCalendarView(events: viewModel.journey.events)
-                            .padding(.top)
-                        
-                        ScrollView(.vertical) {
-                            ForEach(viewModel.journey.events) { event in
-                                EventView(
-                                    event: event,
-                                    handleEventOpen: {
-                                        viewModel.selectEvent(event)
-                                    }
-                                )
-                            }
+                        EventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
+                            viewModel.selectEvent(event)
                         }
                         
                         Spacer()
                     }
-                    .padding(.horizontal)
-                    .padding(.top)
+                    .padding(.horizontal, 32)
+                    .padding(.top, 32)
                     .frame(width: 500)
-                    .background(Color.collieCinzaClaro)
+                    .background(Color.collieBrancoFundoSecoes)
                     .cornerRadius(8)
                 }
                 
@@ -286,7 +279,7 @@ struct SingleJourneyView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.collieBranco)
+        .background(Color.collieBrancoFundo)
     }
 }
 

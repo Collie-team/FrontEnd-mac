@@ -11,7 +11,7 @@ struct DateScrollerView: View {
                 previousMonth()
             }
             
-            Text(CalendarHelper().monthYearString(eventsCalendarViewModel.date))
+            Text(CalendarHelper().monthYearString(eventsCalendarViewModel.date.wrappedValue))
                 .font(.system(size: 18, weight: .bold))
                 .frame(maxWidth: .infinity)
             
@@ -24,16 +24,11 @@ struct DateScrollerView: View {
     }
     
     func previousMonth() {
-        eventsCalendarViewModel.date = CalendarHelper().minusMonth(eventsCalendarViewModel.date)
+        eventsCalendarViewModel.date.wrappedValue = CalendarHelper().minusMonth(eventsCalendarViewModel.date.wrappedValue)
     }
     
     func nextMonth() {
-        eventsCalendarViewModel.date = CalendarHelper().plusMonth(eventsCalendarViewModel.date)
+        eventsCalendarViewModel.date.wrappedValue = CalendarHelper().plusMonth(eventsCalendarViewModel.date.wrappedValue)
     }
 }
 
-struct DateScrollerView_Previews: PreviewProvider {
-    static var previews: some View {
-        DateScrollerView(eventsCalendarViewModel: EventsCalendarViewModel(events: []))
-    }
-}

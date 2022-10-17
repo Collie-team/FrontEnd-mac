@@ -2,9 +2,14 @@ import SwiftUI
 
 struct EventsCalendarView: View {
     @ObservedObject var viewModel: EventsCalendarViewModel
+    @ObservedObject var singleJourneyViewModel: SingleJourneyViewModel
     
-    init(events: [Event]) {
-        self.viewModel = EventsCalendarViewModel(events: events)
+    var handleSelectEvent: (Event) -> ()
+    
+    init(selectedDate: Binding<Date>, singleJourneyViewModel: SingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+        self.singleJourneyViewModel = singleJourneyViewModel
+        self.viewModel = EventsCalendarViewModel(date: selectedDate)
+        self.handleSelectEvent = handleSelectEvent
     }
     
     var body: some View {
@@ -14,18 +19,30 @@ struct EventsCalendarView: View {
                 dayOfWeekStack
                 calendarGrid
             }
-            .padding(.vertical)
-            .background(Color.white)
-            .cornerRadius(8)
             .padding(.bottom)
             
-            Divider()
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(.collieCinzaBorda)
+                .frame(height: 2)
+                .frame(maxWidth: .infinity)
                 .padding(.bottom)
             
             HStack {
-                Text(viewModel.date.dayAndMonthCustomFormat())
+                Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
                     .font(.system(size: 18, weight: .bold))
                 Spacer()
+            }
+            
+            ScrollView(.vertical) {
+                ForEach(singleJourneyViewModel.selectedEvents) { event in
+                    EventView(
+                        event: event,
+                        handleEventOpen: {
+                            handleSelectEvent(event)
+                        }
+                    )
+                }
+                .padding(2)
             }
         }
     }
@@ -45,21 +62,30 @@ struct EventsCalendarView: View {
     
     var calendarGrid: some View {
         VStack(spacing: 1) {
-            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date)
-            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date)
+            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date.wrappedValue)
+            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date.wrappedValue)
             let startingSpaces = CalendarHelper().weekDay(firstDayOfMonth)
-            let prevMonth = CalendarHelper().minusMonth(viewModel.date)
+            let prevMonth = CalendarHelper().minusMonth(viewModel.date.wrappedValue)
             let daysInPrevMonth = CalendarHelper().daysInMonth(prevMonth)
-            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date)
-            let month = CalendarHelper().month(viewModel.date)
-            let year = CalendarHelper().year(viewModel.date)
+            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date.wrappedValue)
+            let month = CalendarHelper().month(viewModel.date.wrappedValue)
+            let year = CalendarHelper().year(viewModel.date.wrappedValue)
             
             ForEach(0..<6) { row in
                 HStack(spacing: 1) {
                     ForEach(1..<8) { column in
                         let count = column + (row * 7)
                         let day = count - prevMonthLastDayWeekday
-                        CalendarCell(eventsCalendarViewModel: viewModel, count: count, startingSpaces: startingSpaces, daysInMonth: daysInMonth, daysInPrevMont: daysInPrevMonth, day: day, month: month, year: year
+                        CalendarCell(
+                            singleJourneyListViewModel: singleJourneyViewModel,
+                            eventsCalendarViewModel: viewModel,
+                            count: count,
+                            startingSpaces: startingSpaces,
+                            daysInMonth: daysInMonth,
+                            daysInPrevMont: daysInPrevMonth,
+                            day: day,
+                            month: month,
+                            year: year
                         )
                     }
                 }
@@ -77,8 +103,8 @@ extension Text {
     }
 }
 
-struct EventsCalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsCalendarView(events: [])
-    }
-}
+//struct EventsCalendarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventsCalendarView(events: [])
+//    }
+//}

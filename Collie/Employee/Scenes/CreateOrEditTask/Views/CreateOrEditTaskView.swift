@@ -153,7 +153,7 @@ struct CreateOrEditTaskView: View {
                     }
                 }
                 .frame(height: 130)
-                Color.collieBranco
+                Color.collieBrancoFundo
             }
         )
         .cornerRadius(8)

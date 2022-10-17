@@ -1,16 +1,12 @@
 import Foundation
+import Combine
+import SwiftUI
 
 final class EventsCalendarViewModel: ObservableObject {
-    @Published var date = Date()
+    var date: Binding<Date>
     
-    @Published var events: [Event]
-    
-    init(events: [Event]) {
-        self.events = events
-    }
-    
-    func hasEventsInDay(_ date: Date) -> Bool {
-        return true
+    init(date: Binding<Date>) {
+        self.date = date
     }
     
     func monthStruct(startingSpaces: Int, count: Int, daysInMonth: Int, daysInPrevMonth: Int) -> MonthStruct {
@@ -28,11 +24,11 @@ final class EventsCalendarViewModel: ObservableObject {
     }
     
     func isDateSelected(_ date: Date) -> Bool {
-        CalendarHelper().areDatesInSameDay(date, self.date)
+        CalendarHelper().areDatesInSameDay(date, self.date.wrappedValue)
     }
     
     func selectDate(date: Date) {
-        self.date = date
+        self.date.wrappedValue = date
         print("Date selected: \(self.date)")
     }
 }

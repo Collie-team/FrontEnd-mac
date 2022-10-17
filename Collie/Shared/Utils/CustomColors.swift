@@ -2,7 +2,9 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let collieBranco = Color(red: 236/255, green: 240/255, blue: 253/255)
+    static let collieCinzaBorda = Color(red: 214/255, green: 219/255, blue: 246/255)
+    static let collieBrancoFundo = Color(red: 236/255, green: 240/255, blue: 253/255)
+    static let collieBrancoFundoSecoes = Color(red: 249/255, green: 250/255, blue: 255/255)
     static let collieCinzaClaro = Color(red: 227/255, green: 229/255, blue: 253/255)
     static let collieVermelho = Color(red: 255/255, green: 96/255, blue: 86/255)
     static let collieVerde = Color(red: 179/255, green: 227/255, blue: 75/255)

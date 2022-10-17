@@ -30,6 +30,7 @@ struct TaskView: View {
         .frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(8)
+        .modifier(CustomBorder())
         .onTapGesture {
             handleTaskOpen()
         }

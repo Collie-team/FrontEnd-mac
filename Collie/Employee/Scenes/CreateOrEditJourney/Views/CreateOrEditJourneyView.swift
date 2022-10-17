@@ -129,7 +129,7 @@ struct CreateOrEditJourneyView: View {
                     Color.collieRoxoClaro
                         .frame(height: 130)
                 }
-                Color.collieBranco
+                Color.collieBrancoFundo
             }
         )
         .cornerRadius(8)
