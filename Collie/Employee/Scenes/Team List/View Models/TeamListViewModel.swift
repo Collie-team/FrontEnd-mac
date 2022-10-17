@@ -18,10 +18,10 @@ final class TeamListViewModel: ObservableObject {
     }
     
     func registerUser(userToAdd: UserModel) {
-        databaseService.writeData(dataToWrite: userToAdd) { response in
-            if !response.isEmpty {
-                self.sampleUsers.append(userToAdd)
-            }
-        }
+//        databaseService.writeData(dataToWrite: userToAdd) { response in
+//            if !response.isEmpty {
+//                self.sampleUsers.append(userToAdd)
+//            }
+//        }
     }
 }

@@ -66,7 +66,7 @@ struct LoginView: View {
             }
             Spacer()
             Button(action: {
-                
+                viewModel.loginUser()
             }) {
                 Text("Entrar")
                     .foregroundColor(.white)

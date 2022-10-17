@@ -24,6 +24,7 @@
 		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
 		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
 		5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */; };
+		5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B2D009E28F9E71200131FFF /* Alamofire */; };
 		5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */,
+				5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +517,7 @@
 			name = Collie;
 			packageProductDependencies = (
 				5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */,
+				5B2D009E28F9E71200131FFF /* Alamofire */,
 			);
 			productName = Collie;
 			productReference = 5BACC62628CFB855006975D3 /* Collie.app */;
@@ -546,6 +549,7 @@
 			mainGroup = 5BACC61D28CFB855006975D3;
 			packageReferences = (
 				5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 5BACC62728CFB855006975D3 /* Products */;
 			projectDirPath = "";
@@ -813,6 +817,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -824,6 +836,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5B2D009E28F9E71200131FFF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

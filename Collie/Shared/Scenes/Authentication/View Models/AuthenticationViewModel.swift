@@ -48,7 +48,8 @@ enum AuthenticationMode {
 
 class AuthenticationViewModel: ObservableObject {
     @Published var authenticationMode: AuthenticationMode = .signup
-    @Published var currentUser = AuthenticationUser()
+//    @Published var currentUser = AuthenticationUser()
+    @Published var currentUser = AuthenticationUser(firstName: "Teste", lastName: "Backend", email: "backend@teste.com", password: "Backend123", passwordConfirmation: "Backend123", agreementToggle: true, mailingToggle: false)
     @Published var signupEnabled = false
     @Published var loginEnabled = false
     @Published var authenticationStatus: AuthenticationStatus = .valid
@@ -70,9 +71,16 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func createUser() {
-        authenticationService.createUser(email: currentUser.email, password: currentUser.password) { user, status in
+        authenticationService.createUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
-            // TODO: Save user to variable
+            if let user = user, let token = token {
+                // TODO: Save user to variable
+                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
+                self.databaseService.writeData(dataToWrite: userData, authenticationToken: token) { writtenData in
+                    print(writtenData)
+//                    self.currentUser = writtenData
+                }
+            }
         }
     }
     
@@ -82,10 +90,10 @@ class AuthenticationViewModel: ObservableObject {
             if let user = user {
                 // TODO: Save user to variable
                 let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
-                self.databaseService.writeData(dataToWrite: userData) { writtenData in
-                    
-//                    self.currentUser = writtenData
-                }
+//                self.databaseService.writeData(dataToWrite: userData) { writtenData in
+//
+////                    self.currentUser = writtenData
+//                }
             }
         }
     }

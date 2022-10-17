@@ -17,29 +17,39 @@ enum AuthenticationStatus {
 
 final class AuthenticationService {
     
-    func createUser(email: String, password: String, _ completion: @escaping (User?, AuthenticationStatus) -> ()) {
+    func createUser(email: String, password: String, _ completion: @escaping (AuthenticationStatus, User?, String?) -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error as? NSError {
                 print(error)
                 switch AuthErrorCode(_nsError: error).code {
                 case .operationNotAllowed:
                     // Error: The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.
-                    completion(nil, .errorNotRegistered)
+                    completion(.errorNotRegistered, nil, nil)
                 case .emailAlreadyInUse:
                     // Error: The email address is already in use by another account.
-                    completion(nil, .emailInUse)
-//                    response = AuthenticationResponse(status: .emailInUse, user: nil)
+                    completion(.emailInUse, nil, nil)
+                    //                    response = AuthenticationResponse(status: .emailInUse, user: nil)
                 case .invalidEmail:
                     // Error: The email address is badly formatted.
-                    completion(nil, .errorNotRegistered)
+                    completion(.errorNotRegistered, nil, nil)
                 case .weakPassword:
                     // Error: The password must be 6 characters long or more.
-                    completion(nil, .errorNotRegistered)
+                    completion(.errorNotRegistered, nil, nil)
                 default:
                     print("Error: \(error.localizedDescription)")
                 }
             } else {
-                completion(authResult?.user, .valid)
+                authResult?.user.getIDTokenForcingRefresh(true) { idToken, error in
+                    if let error = error {
+                        // Handle error
+                        print(error)
+                        return
+                    }
+                    
+                    // Send token to your backend via HTTPS
+                    // ...
+                    completion(.valid, authResult?.user, idToken)
+                }
             }
         }
     }
