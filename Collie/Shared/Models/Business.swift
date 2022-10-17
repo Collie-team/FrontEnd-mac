@@ -7,3 +7,11 @@ struct Business: Identifiable, Codable {
     var journeys: [Journey]
     var usersIds: [String]
 }
+
+//enum UseCase {
+//    case fetch
+//}
+//
+//class ModelGenrics<Model> {
+//    if UseCase.value == .
+//}
