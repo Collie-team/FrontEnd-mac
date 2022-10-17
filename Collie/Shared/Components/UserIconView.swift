@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UserIconView: View {
-    var user: User
+    var user: UserModel
     
     var body: some View {
         VStack {
@@ -39,6 +39,6 @@ struct UserIconView: View {
 
 struct UserIconView_Previews: PreviewProvider {
     static var previews: some View {
-        UserIconView(user: User(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""))
+        UserIconView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""))
     }
 }

@@ -7,6 +7,6 @@ struct Event: Identifiable, Codable {
     var link: String
     var startDate: Date
     var endDate: Date
-    var responsibleEmployees: [User]?
+    var responsibleEmployees: [UserModel]?
     var category: TaskCategory?
 }

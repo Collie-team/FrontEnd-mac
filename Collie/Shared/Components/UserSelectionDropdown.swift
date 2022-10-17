@@ -3,12 +3,12 @@ import SwiftUI
 struct UserSelectionDropdown: View {
     @Binding var showList: Bool
     var label: String
-    var allUsers: [User]
-    var selectedUsers: [User]
+    var allUsers: [UserModel]
+    var selectedUsers: [UserModel]
     var allUsersScrollHeight: CGFloat
     var selectedUsersScrollHeight: CGFloat
-    var handleUserSelection: (User) -> ()
-    var handleUserRemove: (User) -> ()
+    var handleUserSelection: (UserModel) -> ()
+    var handleUserRemove: (UserModel) -> ()
     
     var body: some View {
         VStack {

@@ -11,7 +11,7 @@ final class CreateOrEditEventViewModel: ObservableObject {
     
     @Published var eventLink = ""
     
-    @Published var selectedUsers: [User] = []
+    @Published var selectedUsers: [UserModel] = []
     
     @Published var eventDescription = ""
     
@@ -27,29 +27,29 @@ final class CreateOrEditEventViewModel: ObservableObject {
         TaskCategory(id: "125", name: "Segurança", colorName: "azulClaro", systemImageName: "checkerboard.shield")
     ]
     
-    @Published var sampleUsers: [User] = [
-        User(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
-        User(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
+    @Published var sampleUsers: [UserModel] = [
+        UserModel(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
+        UserModel(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: "x")
     ]
     
     func isButtonDisabled() -> Bool {
         eventName.isEmpty
     }
     
-    func selectUser(_ user: User) {
-        selectedUsers.append(user)
-        if let index = sampleUsers.firstIndex(where: { $0.id == user.id }) {
+    func selectUser(_ userModel: UserModel) {
+        selectedUsers.append(userModel)
+        if let index = sampleUsers.firstIndex(where: { $0.id == userModel.id }) {
             sampleUsers.remove(at: index)
         }
     }
     
-    func removeUser(_ user: User) {
-        if let index = selectedUsers.firstIndex(where: { $0.id == user.id }) {
+    func removeUser(_ userModel: UserModel) {
+        if let index = selectedUsers.firstIndex(where: { $0.id == userModel.id }) {
             selectedUsers.remove(at: index)
-            sampleUsers.append(user)
+            sampleUsers.append(userModel)
         }
     }
     

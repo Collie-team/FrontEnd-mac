@@ -6,8 +6,8 @@ struct Journey: Identifiable, Codable {
     var startDate: Date
     var description: String
     var imageURL: URL
-    var employees: [User]
+    var employees: [UserModel]
     var tasks: [Task]
     var events: [Event]
-    var managers: [User]
+    var managers: [UserModel]
 }

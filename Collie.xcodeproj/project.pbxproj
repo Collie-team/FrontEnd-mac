@@ -11,6 +11,21 @@
 		5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */; };
 		5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666028DA37750057BA32 /* JourneyModel.swift */; };
 		5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */; };
+		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
+		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
+		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
+		5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */; };
+		5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */; };
+		5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */; };
+		5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */; };
+		5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B328EE05F000FC3BE9 /* SignupView.swift */; };
+		5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B528EE159200FC3BE9 /* LoginView.swift */; };
+		5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */; };
+		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
+		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
+		5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */; };
+		5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B2D009E28F9E71200131FFF /* Alamofire */; };
+		5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */; };
 		5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */; };
 		5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */; };
 		5B495FF728E62DB60024D064 /* SingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF628E62DB60024D064 /* SingleJourneyViewModel.swift */; };
@@ -35,21 +50,6 @@
 		5B49605A28EF58F90024D064 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* CalendarCell.swift */; };
 		5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605C28EF5A0E0024D064 /* MonthStruct.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
-		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
-		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
-		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
-		5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */; };
-		5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */; };
-		5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */; };
-		5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */; };
-		5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B328EE05F000FC3BE9 /* SignupView.swift */; };
-		5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B528EE159200FC3BE9 /* LoginView.swift */; };
-		5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */; };
-		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
-		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
-		5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */; };
-		5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B2D009E28F9E71200131FFF /* Alamofire */; };
-		5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
@@ -90,6 +90,20 @@
 		5B0F665D28D26E9D0057BA32 /* Test_JourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_JourneyViewModel.swift; sourceTree = "<group>"; };
 		5B0F666028DA37750057BA32 /* JourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyModel.swift; sourceTree = "<group>"; };
 		5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyDTO.swift; sourceTree = "<group>"; };
+		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
+		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
+		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriptionService.swift; sourceTree = "<group>"; };
+		5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
+		5B2B46B328EE05F000FC3BE9 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		5B2B46B528EE159200FC3BE9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureView.swift; sourceTree = "<group>"; };
+		5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
+		5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskView.swift; sourceTree = "<group>"; };
 		5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskViewModel.swift; sourceTree = "<group>"; };
 		5B495FF628E62DB60024D064 /* SingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleJourneyViewModel.swift; sourceTree = "<group>"; };
@@ -114,20 +128,6 @@
 		5B49605928EF58F90024D064 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		5B49605C28EF5A0E0024D064 /* MonthStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStruct.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
-		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
-		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
-		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
-		5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubscriptionService.swift; sourceTree = "<group>"; };
-		5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
-		5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
-		5B2B46B328EE05F000FC3BE9 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
-		5B2B46B528EE159200FC3BE9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
-		5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureView.swift; sourceTree = "<group>"; };
-		5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
-		5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
@@ -194,6 +194,85 @@
 				5B0F666228DA4A7A0057BA32 /* JourneyDTO.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5B0F666428DCE1BC0057BA32 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F666528DCE41A0057BA32 /* UseCases */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5B0F666528DCE41A0057BA32 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
+				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
+				5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D009828F87CC400131FFF /* Workspace */,
+				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5B2B46AC28ECB3F100FC3BE9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46AE28ECB40600FC3BE9 /* View Models */,
+				5B2B46AD28ECB3FE00FC3BE9 /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		5B2B46AD28ECB3FE00FC3BE9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */,
+				5B2B46B328EE05F000FC3BE9 /* SignupView.swift */,
+				5B2B46B528EE159200FC3BE9 /* LoginView.swift */,
+				5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B2B46AE28ECB40600FC3BE9 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5B2D009828F87CC400131FFF /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D009A28F87CD600131FFF /* View Models */,
+				5B2D009928F87CD100131FFF /* View */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		5B2D009928F87CD100131FFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B2D009A28F87CD600131FFF /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5B495FEF28E622C40024D064 /* CreateOrEditTask */ = {
@@ -291,85 +370,6 @@
 				5B49605C28EF5A0E0024D064 /* MonthStruct.swift */,
 			);
 			path = Calendar;
-			sourceTree = "<group>";
-		};
-		5B0F666428DCE1BC0057BA32 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				5B0F666528DCE41A0057BA32 /* UseCases */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		5B0F666528DCE41A0057BA32 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
-				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
-				5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
-		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				5B2D009828F87CC400131FFF /* Workspace */,
-				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
-			);
-			path = Scenes;
-			sourceTree = "<group>";
-		};
-		5B2B46AC28ECB3F100FC3BE9 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				5B2B46AE28ECB40600FC3BE9 /* View Models */,
-				5B2B46AD28ECB3FE00FC3BE9 /* Views */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		5B2B46AD28ECB3FE00FC3BE9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */,
-				5B2B46B328EE05F000FC3BE9 /* SignupView.swift */,
-				5B2B46B528EE159200FC3BE9 /* LoginView.swift */,
-				5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5B2B46AE28ECB40600FC3BE9 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
-		5B2D009828F87CC400131FFF /* Workspace */ = {
-			isa = PBXGroup;
-			children = (
-				5B2D009A28F87CD600131FFF /* View Models */,
-				5B2D009928F87CD100131FFF /* View */,
-			);
-			path = Workspace;
-			sourceTree = "<group>";
-		};
-		5B2D009928F87CD100131FFF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5B2D009A28F87CD600131FFF /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -846,7 +846,7 @@
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5B49605028EF51BC0024D064 /* EventsCalendarView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
-				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
+				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
@@ -999,6 +999,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = VWZ6P536SX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1010,6 +1011,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
