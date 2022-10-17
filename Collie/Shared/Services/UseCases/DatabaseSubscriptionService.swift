@@ -11,7 +11,8 @@ import Alamofire
 
 final class DatabaseSubscriptionService<ModelDTO: Codable> {
     private let route: DatabaseSubscriptionRoutes
-    private let domainUrl = "https://backend-python-dev.vercel.app/"
+//    private let domainUrl = "https://backend-python-dev.vercel.app/"
+    private let domainUrl = "http://127.0.0.1:8000/"
     private let _publisher = PassthroughSubject<ModelDTO, Never>()
     
     enum DatabaseSubscriptionRoutes: String {
@@ -34,7 +35,7 @@ final class DatabaseSubscriptionService<ModelDTO: Codable> {
         
         let headers: HTTPHeaders = [
             "Authorization": authenticationToken,
-//            "Accept": "application/json"
+            "Accept": "application/json"
         ]
         
         AF.request(
@@ -55,57 +56,52 @@ final class DatabaseSubscriptionService<ModelDTO: Codable> {
                 print(error)
             }
             // TODO: Synchronize data from response
+            do {
+                let decodeData = try JSONDecoder().decode(ModelDTO.self, from: response.data!)
+                print(decodeData)
+                completion([decodeData])
+            } catch {
+                //handle error
+                print(error)
+            }
+            
             completion([dataToWrite])
         }
-        
-        
-        
-//        var request = URLRequest(url: URL!)
-//        request.httpMethod = "POST"
-//        request.setValue("application/png", forHTTPHeaderField: "Content-Type")
-//
-//        let task = URLSession.shared.dataTask(with: URL!, completionHandler: { (data, response, error) in
-//            if let error = error {
-//                print("Error with creating journey: \(error)")
-//                return
-//            }
-//
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode) else {
-//                //                httpResponse.value(forHTTPHeaderField: "authenticationBearer")
-//                print("Error with the response, unexpected status code: \(String(describing: response))")
-//                return
-//            }
-//            if let data = data {
-//                let response = try? JSONDecoder().decode([ModelDTO].self, from: data)
-//                completion(response ?? [])
-//            }
-//        })
-//        task.resume()
     }
     
-    func fetchData(_ completion: @escaping ([ModelDTO]) -> ()) {
+    func fetchData(authenticationToken: String, _ completion: @escaping ([ModelDTO]) -> ()) {
         let url = domainUrl + route.rawValue + "fetch/"
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { (data, response, error) in
-            if let error = error {
-                print("Error with fetching journeys: \(error)")
-                return
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 5
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                print("Request Successful")
+                print("Request ")
+            case let .failure(error):
+                print(error)
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
-                return
+            // TODO: Synchronize data from response
+            do {
+                let decodeData = try JSONDecoder().decode(ModelDTO.self, from: response.data!)
+                print(decodeData)
+                completion([decodeData])
+            } catch {
+                //handle error
+                print(error)
             }
-            
-            if let data = data {
-                let response = try! JSONDecoder().decode([ModelDTO].self, from: data)
-                DispatchQueue.main.async {
-                    completion(response)
-                }
-            }
-        })
-        task.resume()
+        }
     }
 }
 
