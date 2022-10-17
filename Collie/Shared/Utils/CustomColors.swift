@@ -11,7 +11,6 @@ extension Color {
     static let collieLaranja = Color(red: 255/255, green: 183/255, blue: 74/255)
     static let collieAzulClaro = Color(red: 100/255, green: 208/255, blue: 242/255)
     static let collieAzulMedio = Color(red: 74/255, green: 157/255, blue: 255/255)
-    static let collieCinzaClaro = Color(red: 227/255, green: 229/255, blue: 253/255)
     static let collieTextFieldBackground = Color(red: 245/255, green: 248/255, blue: 255/255)
     static let collieTextFieldBorder = Color(red: 214/255, green: 219/255, blue: 246/255)
     static let collieCinzaEscuro = Color(red: 41/255, green: 41/255, blue: 41/255)
