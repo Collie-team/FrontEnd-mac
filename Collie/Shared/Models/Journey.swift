@@ -9,5 +9,5 @@ struct Journey: Identifiable, Codable {
     var usersIds: [String]
     var tasks: [Task]
     
-    var managers: [User]
+    var managers: [UserModel]
 }

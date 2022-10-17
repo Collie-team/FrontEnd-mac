@@ -38,10 +38,6 @@ final class APISubscriptionService {
                 print("Error with the response, unexpected status code: \(String(describing: response))")
                 return
             }
-//            if let data = data {
-//                let response = try? JSONDecoder().decode([ModelDTO].self, from: data)
-//                completion(response ?? [])
-//            }
         })
         task.resume()
     }

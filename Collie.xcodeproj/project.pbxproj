@@ -23,6 +23,11 @@
 		5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */; };
 		5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */; };
 		5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */; };
+		5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */; };
+		5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5B2D009E28F9E71200131FFF /* Alamofire */; };
+		5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */; };
+		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
+		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -40,7 +45,7 @@
 		5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC66E28D26192006975D3 /* JourneyCard.swift */; };
 		5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */; };
 		5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BC928DA3CDC00B74060 /* Business.swift */; };
-		5BF73BCC28DA3CE700B74060 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* User.swift */; };
+		5BF73BCC28DA3CE700B74060 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BCB28DA3CE700B74060 /* UserModel.swift */; };
 		5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD128DA3D8C00B74060 /* Task.swift */; };
 		5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD328DA3D9700B74060 /* TaskCategory.swift */; };
 		5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF73BD528DA3FDD00B74060 /* Event.swift */; };
@@ -67,6 +72,9 @@
 		5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureView.swift; sourceTree = "<group>"; };
+		5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
+		5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -86,7 +94,7 @@
 		5BACC66E28D26192006975D3 /* JourneyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyCard.swift; sourceTree = "<group>"; };
 		5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BF73BC928DA3CDC00B74060 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
-		5BF73BCB28DA3CE700B74060 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5BF73BCB28DA3CE700B74060 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5BF73BD128DA3D8C00B74060 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		5BF73BD328DA3D9700B74060 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		5BF73BD528DA3FDD00B74060 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -101,6 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */,
+				5B2D009F28F9E71200131FFF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +157,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B2D009828F87CC400131FFF /* Workspace */,
 				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
 			);
 			path = Scenes;
@@ -167,6 +178,7 @@
 				5B2B46AF28ECB42000FC3BE9 /* AuthenticationView.swift */,
 				5B2B46B328EE05F000FC3BE9 /* SignupView.swift */,
 				5B2B46B528EE159200FC3BE9 /* LoginView.swift */,
+				5B2F9E3828F4C36F00AC1B87 /* ResetPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +187,30 @@
 			isa = PBXGroup;
 			children = (
 				5B2B46B728EE168200FC3BE9 /* AuthenticationViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5B2D009828F87CC400131FFF /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D009A28F87CD600131FFF /* View Models */,
+				5B2D009928F87CD100131FFF /* View */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		5B2D009928F87CD100131FFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B2D009A28F87CD600131FFF /* View Models */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -204,6 +240,7 @@
 				5BACC63A28CFC09E006975D3 /* Business Manager */,
 				5BACC62D28CFB856006975D3 /* Assets.xcassets */,
 				5BACC63228CFB856006975D3 /* Collie.entitlements */,
+				5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */,
 				5BACC62F28CFB856006975D3 /* Preview Content */,
 			);
 			path = Collie;
@@ -351,7 +388,7 @@
 				5BACC65A28D16FE5006975D3 /* SidebarItem.swift */,
 				5BACC66B28D26127006975D3 /* Journey.swift */,
 				5BF73BC928DA3CDC00B74060 /* Business.swift */,
-				5BF73BCB28DA3CE700B74060 /* User.swift */,
+				5BF73BCB28DA3CE700B74060 /* UserModel.swift */,
 				5BF73BD128DA3D8C00B74060 /* Task.swift */,
 				5BF73BD328DA3D9700B74060 /* TaskCategory.swift */,
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
@@ -478,6 +515,10 @@
 			dependencies = (
 			);
 			name = Collie;
+			packageProductDependencies = (
+				5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */,
+				5B2D009E28F9E71200131FFF /* Alamofire */,
+			);
 			productName = Collie;
 			productReference = 5BACC62628CFB855006975D3 /* Collie.app */;
 			productType = "com.apple.product-type.application";
@@ -506,6 +547,10 @@
 				Base,
 			);
 			mainGroup = 5BACC61D28CFB855006975D3;
+			packageReferences = (
+				5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 5BACC62728CFB855006975D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -522,6 +567,7 @@
 			files = (
 				5BACC63128CFB856006975D3 /* Preview Assets.xcassets in Resources */,
 				5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */,
+				5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +585,7 @@
 				5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
-				5BF73BCC28DA3CE700B74060 /* User.swift in Sources */,
+				5BF73BCC28DA3CE700B74060 /* UserModel.swift in Sources */,
 				5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
@@ -559,6 +605,7 @@
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
+				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateNewJourneyView.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
@@ -571,6 +618,7 @@
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
+				5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,8 +744,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
@@ -710,8 +758,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrearns.Collie;
+				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -723,11 +772,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -738,6 +787,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrearns.Collie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -765,6 +815,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B2D009E28F9E71200131FFF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B2D009D28F9E71100131FFF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B5F9CF928F09C0E005739C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BACC61E28CFB855006975D3 /* Project object */;
 }

@@ -1,19 +1,26 @@
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+//    func applicationDidFinishLaunching(_ notification: Notification) {
+//        FirebaseApp.configure()
+//    }
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        FirebaseApp.configure()
+    }
+}
 
 @main
 struct CollieApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             AuthenticationView()
-//            TeamListView()
+//            WorkspaceView()
+//                .frame(minWidth: 800, minHeight: 600)
         }
-//        WindowGroup {
-//            BusinessManagerSidebarView()
-//                .preferredColorScheme(.light)
-//        }
-//        .windowToolbarStyle(.unified)
-//        .commands {
-//            SidebarCommands()
-//        }
     }
+    
 }
