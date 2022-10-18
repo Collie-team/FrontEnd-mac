@@ -12,9 +12,9 @@ final class TeamListViewModel: ObservableObject {
     ]
     
     func fetchUsers() {
-        databaseService.fetchData() { userModels in
-            self.sampleUsers = userModels
-        }
+//        databaseService.fetchData() { userModels in
+//            self.sampleUsers = userModels
+//        }
     }
     
     func registerUser(userToAdd: UserModel) {

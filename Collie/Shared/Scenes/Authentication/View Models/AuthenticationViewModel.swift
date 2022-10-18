@@ -58,7 +58,7 @@ class AuthenticationViewModel: ObservableObject {
     private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
     
     func resetUser() {
-        currentUser = AuthenticationUser()
+//        currentUser = AuthenticationUser()
     }
     
     func validateSingUpFields() {
@@ -85,15 +85,13 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func loginUser() {
-        authenticationService.loginUser(email: currentUser.email, password: currentUser.password) { user, status in
+        authenticationService.loginUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
-            if let user = user {
+            if let user = user, let token = token {
                 // TODO: Save user to variable
-                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
-//                self.databaseService.writeData(dataToWrite: userData) { writtenData in
-//
-////                    self.currentUser = writtenData
-//                }
+                self.databaseService.fetchData(authenticationToken: token) { userData in
+                    print(userData)
+                }
             }
         }
     }

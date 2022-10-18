@@ -54,27 +54,37 @@ final class AuthenticationService {
         }
     }
     
-    func loginUser(email: String, password: String, _ completion: @escaping (User?, AuthenticationStatus) -> ()) {
+    func loginUser(email: String, password: String, _ completion: @escaping (AuthenticationStatus, User?, String?) -> ()) {
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error as? NSError {
                 switch AuthErrorCode(_nsError: error).code {
                 case .operationNotAllowed:
                     // Error: Indicates that email and password accounts are not enabled. Enable them in the Auth section of the Firebase console.
-                    completion(nil, .errorNotRegistered)
+                    completion(.errorNotRegistered, nil, nil)
                 case .userDisabled:
                     // Error: The user account has been disabled by an administrator.
-                    completion(nil, .errorNotRegistered)
+                    completion(.errorNotRegistered, nil, nil)
                 case .wrongPassword:
                     // Error: The password is invalid or the user does not have a password.
-                    completion(nil, .invalidPassword)
+                    completion(.invalidPassword, nil, nil)
                 case .invalidEmail:
                     // Error: Indicates the email address is malformed.
-                    completion(nil, .invalidPassword)
+                    completion(.invalidPassword, nil, nil)
                 default:
                     print("Error: \(error.localizedDescription)")
                 }
             } else {
-                completion(authResult?.user, .valid)
+                authResult?.user.getIDTokenForcingRefresh(true) { idToken, error in
+                    if let error = error {
+                        // Handle error
+                        print(error)
+                        return
+                    }
+                    
+                    // Send token to your backend via HTTPS
+                    // ...
+                    completion(.valid, authResult?.user, idToken)
+                }
             }
         }
     }
