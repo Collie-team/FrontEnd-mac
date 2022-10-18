@@ -70,6 +70,12 @@
 		5BACC67128D2634D006975D3 /* JourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */; };
 		5BB2FC7F28F9F672003EE3F9 /* EmployeeSidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2FC7E28F9F672003EE3F9 /* EmployeeSidebarView.swift */; };
 		5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2FC8128F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift */; };
+		5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */; };
+		5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */; };
+		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
+		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
+		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
+		5BD8982A28FE33930015EEDB /* WorkspaceCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */; };
 		5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAB8C828E4BD13009BC353 /* FilePicker.swift */; };
 		5BF6693528E23678001B0A1D /* UserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6693428E23678001B0A1D /* UserCellView.swift */; };
 		5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF6693628E23779001B0A1D /* ChosenUserCellView.swift */; };
@@ -149,6 +155,12 @@
 		5BACC67028D2634D006975D3 /* JourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BB2FC7E28F9F672003EE3F9 /* EmployeeSidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSidebarView.swift; sourceTree = "<group>"; };
 		5BB2FC8128F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSidebarViewModel.swift; sourceTree = "<group>"; };
+		5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBusinessCard.swift; sourceTree = "<group>"; };
+		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
+		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
+		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
+		5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCardModifier.swift; sourceTree = "<group>"; };
 		5BDAB8C828E4BD13009BC353 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		5BF6693428E23678001B0A1D /* UserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellView.swift; sourceTree = "<group>"; };
 		5BF6693628E23779001B0A1D /* ChosenUserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenUserCellView.swift; sourceTree = "<group>"; };
@@ -254,7 +266,7 @@
 		5B2D009828F87CC400131FFF /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
-				5B2D009A28F87CD600131FFF /* View Models */,
+				5BD8982128FDDDD20015EEDB /* View Models */,
 				5B2D009928F87CD100131FFF /* View */,
 			);
 			path = Workspace;
@@ -263,16 +275,10 @@
 		5B2D009928F87CD100131FFF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5BD8982628FE33620015EEDB /* Components */,
 				5B2D009B28F87CEF00131FFF /* WorkspaceView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		5B2D009A28F87CD600131FFF /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5B495FEF28E622C40024D064 /* CreateOrEditTask */ = {
@@ -317,6 +323,9 @@
 				5B49603028EB63AB0024D064 /* TaskView.swift */,
 				5B49604628ECC50B0024D064 /* SimpleTextField.swift */,
 				5B49604828ECC7160024D064 /* EventView.swift */,
+				5BD8982428FDE9670015EEDB /* BusinessCard.swift */,
+				5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */,
+				5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -456,9 +465,9 @@
 		5BACC63D28CFC0FA006975D3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5BACC62928CFB855006975D3 /* CollieApp.swift */,
 				5B2B46AB28ECB35100FC3BE9 /* Scenes */,
 				5B0F666428DCE1BC0057BA32 /* Services */,
-				5BACC62928CFB855006975D3 /* CollieApp.swift */,
 				5B49605628EF53490024D064 /* Services */,
 				5B495FF828E75CBD0024D064 /* Components */,
 				5BACC65428CFC36B006975D3 /* Utils */,
@@ -692,6 +701,23 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		5BD8982128FDDDD20015EEDB /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BD8982628FE33620015EEDB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BD8982728FE33730015EEDB /* WorkspaceButton.swift */,
+				5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5BDAB8CA28E4D5F2009BC353 /* CreateOrEditJourney */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +844,7 @@
 				5B49605A28EF58F90024D064 /* CalendarCell.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
+				5BD8982A28FE33930015EEDB /* WorkspaceCardModifier.swift in Sources */,
 				5BF73BDC28DB960900B74060 /* CreateOrEditJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
 				5B49603128EB63AB0024D064 /* TaskView.swift in Sources */,
@@ -830,6 +857,8 @@
 				5B0F666328DA4A7A0057BA32 /* JourneyDTO.swift in Sources */,
 				5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* JourneyListView.swift in Sources */,
+				5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */,
+				5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */,
 				5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
 				5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */,
@@ -847,6 +876,7 @@
 				5B49605028EF51BC0024D064 /* EventsCalendarView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
+				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
@@ -856,8 +886,10 @@
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
 				5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */,
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
+				5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */,
 				5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */,
 				5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */,
+				5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
 				5B49604928ECC7160024D064 /* EventView.swift in Sources */,
