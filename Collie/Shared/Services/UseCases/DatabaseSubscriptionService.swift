@@ -11,23 +11,16 @@ import Alamofire
 
 final class DatabaseSubscriptionService<ModelDTO: Codable> {
     private let route: DatabaseSubscriptionRoutes
-//    private let domainUrl = "https://backend-python-dev.vercel.app/"
-    private let domainUrl = "http://127.0.0.1:8000/"
-    private let _publisher = PassthroughSubject<ModelDTO, Never>()
+    private let domainUrl = "https://backend-python-dev.vercel.app/"
+//    private let domainUrl = "http://127.0.0.1:8000/"
     
     enum DatabaseSubscriptionRoutes: String {
         case journey = "journey/"
         case user = "user/"
     }
     
-    
     init(route: DatabaseSubscriptionRoutes) {
         self.route = route
-    }
-    
-    func publisher() -> PassthroughSubject<ModelDTO, Never> {
-        
-        return self._publisher
     }
     
     func writeData(dataToWrite: ModelDTO, authenticationToken: String, _ completion: @escaping ([ModelDTO]) -> ()) {
@@ -101,36 +94,6 @@ final class DatabaseSubscriptionService<ModelDTO: Codable> {
                 //handle error
                 print(error)
             }
-        }
-    }
-}
-
-extension Publisher where Failure == Never {
-    func aggregated() -> Publishers.Aggregate<Self> {
-        .init(upstream: self)
-    }
-}
-
-extension Publishers {
-    final class Aggregate<P>: Publisher where P: Publisher, P.Failure == Never {
-        typealias Output = [P.Output]
-        typealias Failure = Never
-        
-        let upstream: P
-        private var currentItems: Output = []
-        
-        private var cancelBag: [AnyCancellable] = []
-        
-        init(upstream: P) {
-            self.upstream = upstream
-        }
-        
-        func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, [P.Output] == S.Input {
-            upstream.sink { newValue in
-                self.currentItems.append(newValue)
-                subscriber.receive(self.currentItems)
-            }
-            .store(in: &cancelBag)
         }
     }
 }
