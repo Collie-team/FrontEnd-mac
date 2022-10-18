@@ -5,8 +5,17 @@ struct JourneyCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Rectangle()
-                .foregroundColor(.collieRosaClaro)
+            if let nsImage = NSImage(contentsOf: journey.imageURL) {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 200)
+                    
+            } else {
+                Rectangle()
+                    .foregroundColor(.collieRosaClaro)
+                    .frame(height: 200)
+            }
                 
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
@@ -27,6 +36,9 @@ struct JourneyCard: View {
                         }
                     }
                 }
+                HStack {
+                    Text("\(journey.employees.count) pessoas nessa jornada")
+                }
             }
             .padding()
             .foregroundColor(.black)
@@ -41,23 +53,24 @@ struct JourneyCard_Previews: PreviewProvider {
     static var previews: some View {
         JourneyCard(journey: Journey(
             name: "Jornada iOS",
-            durationInDays: 7,
+            startDate: Date(),
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: "",
-            usersIds: [],
+            imageURL: URL(fileURLWithPath: ""),
+            employees: [],
             tasks: [
-                Task(name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "A", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "B", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "C", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "D", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "E", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "F", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "G", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "H", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "I", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: "")),
-                Task(name: "J", description: "", taskCategory: TaskCategory(name: "Integração", description: "", colorName: ""))
+                Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "A", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "B", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "C", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "D", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "E", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "F", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "G", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "H", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "I", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(name: "J", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
             ],
+            events: [],
             managers: []
         ))
     }

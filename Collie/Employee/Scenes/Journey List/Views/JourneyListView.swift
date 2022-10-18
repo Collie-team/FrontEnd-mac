@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct JourneyListView: View {
-    @ObservedObject var viewModel = JourneyListViewModel()
+    @StateObject var viewModel = JourneyListViewModel()
     
     @State var showCreationPopUp = false
     
@@ -44,7 +44,7 @@ struct JourneyListView: View {
                                     .font(.system(size: 50, weight: .bold, design: .default))
                                     .foregroundColor(.white)
                             }
-                            .frame(height: NSScreen.main!.frame.height / 4)
+                            .frame(height: 320)
                             .foregroundColor(.collieRoxo)
                             .onTapGesture {
                                 showCreationPopUp = true
@@ -52,10 +52,10 @@ struct JourneyListView: View {
                             
                             ForEach(viewModel.sampleJourneys.reversed()) { journey in
                                 JourneyCard(journey: journey)
-                                    .frame(height: NSScreen.main!.frame.height / 4)
-                                .onTapGesture {
-                                    viewModel.selectedJourney = journey
-                                }
+                                    .frame(height: 320)
+                                    .onTapGesture {
+                                        viewModel.selectedJourney = journey
+                                    }
                             }
                         }
                         
@@ -67,29 +67,37 @@ struct JourneyListView: View {
             .padding(.vertical, 32)
             
             if viewModel.selectedJourney != nil {
-                SingleJourneyView(journey: viewModel.selectedJourney!, backAction: {
-                    viewModel.selectedJourney = nil
-                })
+                SingleJourneyView(
+                    viewModel: SingleJourneyViewModel(journey: viewModel.selectedJourney!),
+                    journeyListViewModel: viewModel,
+                    backAction: {
+                        viewModel.selectedJourney = nil
+                    }
+                )
             }
             
             if showCreationPopUp {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateNewJourneyView(handleClose: {
-                        withAnimation {
-                            showCreationPopUp = false
+                    CreateOrEditJourneyView(
+                        journey: nil,
+                        handleClose: {
+                            withAnimation {
+                                showCreationPopUp = false
+                            }
+                        },
+                        handleJourneySave: { journey in
+                            viewModel.addNewJourney(journey)
                         }
-                    }, handleJourneyCreation: { journey in
-                        viewModel.addNewJourney(journey)
-                    })
+                    )
                     .frame(maxWidth: 800)
                 }
             }
             
         }
         .navigationTitle("Jornadas")
-        .background(Color.collieBranco.ignoresSafeArea())
+        .background(Color.collieBrancoFundo.ignoresSafeArea())
     }
     
 }

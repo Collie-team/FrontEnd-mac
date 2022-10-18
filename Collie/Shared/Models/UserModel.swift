@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 struct UserModel: Identifiable, Codable, Hashable {
     var id: String = UUID().uuidString

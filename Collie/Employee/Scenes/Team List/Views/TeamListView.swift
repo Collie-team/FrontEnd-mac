@@ -208,7 +208,7 @@ struct TeamListView: View {
         .padding(.vertical, 32)
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
-        .background(Color.collieBranco.ignoresSafeArea())
+        .background(Color.collieBrancoFundo.ignoresSafeArea())
         .navigationTitle("Acompanhamento do time")
         .onAppear() {
             viewModel.fetchUsers()

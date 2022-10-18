@@ -1,11 +1,25 @@
 import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
+    var journeyId: String?
+    
     @Published var journeyName: String = ""
+    
     @Published var journeyDescription: String = ""
+    
+    @Published var showManagerList = false
+    
+    @Published var showUsersList = false
+    
     @Published var chosenManagers: [UserModel] = []
-    @Published var chosenUsers: [UserModel] = []
+    
+    @Published var chosenEmployees: [UserModel] = []
+    
     @Published var startDate: Date = Date()
+    
+    @Published var tasks: [Task] = []
+    
+    @Published var events: [Event] = []
     
     @Published var sampleManagers: [UserModel] = [
         UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: "x"),
@@ -27,37 +41,37 @@ final class CreateNewJourneyViewModel: ObservableObject {
         journeyName == "" || journeyDescription == "" || chosenManagers.isEmpty || startDate == nil
     }
     
-    func selectManager(_ user: UserModel) {
-        if !chosenManagers.contains(user) {
-            self.chosenManagers.append(user)
+    func selectManager(_ userModel: UserModel) {
+        if !chosenManagers.contains(userModel) {
+            self.chosenManagers.append(userModel)
             
-            if let index = sampleManagers.firstIndex(of: user) {
+            if let index = sampleManagers.firstIndex(of: userModel) {
                 sampleManagers.remove(at: index)
             }
         }
     }
     
-    func removeManager(_ user: UserModel) {
-        if let index = chosenManagers.firstIndex(of: user) {
+    func removeManager(_ userModel: UserModel) {
+        if let index = chosenManagers.firstIndex(of: userModel) {
             chosenManagers.remove(at: index)
-            sampleManagers.append(user)
+            sampleManagers.append(userModel)
         }
     }
     
-    func selectUser(_ user: UserModel) {
-        if !chosenUsers.contains(user) {
-            chosenUsers.append(user)
+    func selectUserModel(_ userModel: UserModel) {
+        if !chosenEmployees.contains(userModel) {
+            chosenEmployees.append(userModel)
             
-            if let index = sampleUsers.firstIndex(of: user) {
+            if let index = sampleUsers.firstIndex(of: userModel) {
                 sampleUsers.remove(at: index)
             }
         }
     }
     
-    func removeUser(_ user: UserModel) {
-        if let index = chosenUsers.firstIndex(of: user) {
-            chosenUsers.remove(at: index)
-            sampleUsers.append(user)
+    func removeUserModel(_ userModel: UserModel) {
+        if let index = chosenEmployees.firstIndex(of: userModel) {
+            chosenEmployees.remove(at: index)
+            sampleUsers.append(userModel)
         }
     }
 }

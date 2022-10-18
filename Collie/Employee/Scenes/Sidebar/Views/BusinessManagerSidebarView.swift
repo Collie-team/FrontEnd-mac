@@ -28,14 +28,16 @@ struct BusinessManagerSidebarView: View {
             
             VStack {
                 switch viewModel.selectedItem.option {
-                case .dashboard:
-                    DashboardView()
+//                case .dashboard:
+//                    DashboardView()
                 case .journeys:
                     JourneyListView()
                 case .teamList:
                     TeamListView()
-                case .payments:
-                    PaymentsView()
+//                case .payments:
+//                    PaymentsView()
+                default:
+                    Text("Error")
                 }
             }
         }
@@ -59,8 +61,3 @@ struct BusinessManagerSidebarView: View {
     }
 }
 
-struct BusinessManagerSidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusinessManagerSidebarView()
-    }
-}
