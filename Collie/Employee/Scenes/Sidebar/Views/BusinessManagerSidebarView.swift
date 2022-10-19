@@ -31,7 +31,7 @@ struct BusinessManagerSidebarView: View {
 //                case .dashboard:
 //                    DashboardView()
                 case .journeys:
-                    JourneyListView()
+                    BusinessJourneyListView()
                 case .teamList:
                     TeamListView()
 //                case .payments:

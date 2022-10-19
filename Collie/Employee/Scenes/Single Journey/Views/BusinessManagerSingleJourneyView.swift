@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct SingleJourneyView: View {
-    @ObservedObject var viewModel: SingleJourneyViewModel
-    @ObservedObject var journeyListViewModel: JourneyListViewModel
+struct BusinessManagerSingleJourneyView: View {
+    @ObservedObject var viewModel: BusinessManagerSingleJourneyViewModel
+    @ObservedObject var journeyListViewModel: BusinessJourneyListViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
@@ -285,8 +285,8 @@ struct SingleJourneyView: View {
 
 struct SingleJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        SingleJourneyView(
-            viewModel: SingleJourneyViewModel(
+        BusinessManagerSingleJourneyView(
+            viewModel: BusinessManagerSingleJourneyViewModel(
                 journey: Journey(
                     name: "Jornada iOS",
                     startDate: Date(),
@@ -310,7 +310,7 @@ struct SingleJourneyView_Previews: PreviewProvider {
                     managers: []
                 )
             ),
-            journeyListViewModel: JourneyListViewModel(),
+            journeyListViewModel: BusinessJourneyListViewModel(),
             backAction: {
                 
             }

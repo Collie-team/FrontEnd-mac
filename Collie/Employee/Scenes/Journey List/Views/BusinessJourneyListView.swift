@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct JourneyListView: View {
-    @StateObject var viewModel = JourneyListViewModel()
+struct BusinessJourneyListView: View {
+    @StateObject var viewModel = BusinessJourneyListViewModel()
     
     @State var showCreationPopUp = false
     
@@ -67,8 +67,8 @@ struct JourneyListView: View {
             .padding(.vertical, 32)
             
             if viewModel.selectedJourney != nil {
-                SingleJourneyView(
-                    viewModel: SingleJourneyViewModel(journey: viewModel.selectedJourney!),
+                BusinessManagerSingleJourneyView(
+                    viewModel: BusinessManagerSingleJourneyViewModel(journey: viewModel.selectedJourney!),
                     journeyListViewModel: viewModel,
                     backAction: {
                         viewModel.selectedJourney = nil
@@ -104,6 +104,6 @@ struct JourneyListView: View {
 
 struct JourneyListView_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyListView()
+        BusinessJourneyListView()
     }
 }

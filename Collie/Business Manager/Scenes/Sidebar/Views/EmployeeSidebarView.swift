@@ -29,7 +29,7 @@ struct EmployeeSidebarView: View {
             VStack {
                 switch viewModel.selectedItem.option {
                 case .journeys:
-                    JourneyListView()
+                    EmployeeJourneyListView()
                 default:
                     Text("Error")
                 }

@@ -1,6 +1,6 @@
 import Foundation
 
-final class SingleJourneyViewModel: ObservableObject {
+final class BusinessManagerSingleJourneyViewModel: ObservableObject {
     
     @Published var journey: Journey {
         didSet {

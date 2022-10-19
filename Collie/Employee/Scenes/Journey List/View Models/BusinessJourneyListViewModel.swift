@@ -1,6 +1,6 @@
 import Foundation
 
-final class JourneyListViewModel: ObservableObject {
+final class BusinessJourneyListViewModel: ObservableObject {
     @Published var sampleJourneys: [Journey] = [
         Journey(
             name: "Jornada iOS",

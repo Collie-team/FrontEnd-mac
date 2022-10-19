@@ -14,8 +14,8 @@ final class WorkspaceViewModel: ObservableObject {
     func fetchWorkspaces() {
         // TO DO
         let workspaces: [Business] = [
-            Business(name: "Aurea", description: "", journeys: [], usersIds: ["", "", "", ""]),
-            Business(name: "Roda da Vida", description: "", journeys: [], usersIds: ["", "", "", ""])
+//            Business(name: "Aurea", description: "", journeys: [], usersIds: ["", "", "", ""]),
+//            Business(name: "Roda da Vida", description: "", journeys: [], usersIds: ["", "", "", ""])
         ]
         self.workspacesAvailable = workspaces
     }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CalendarCell: View {
-    @ObservedObject var singleJourneyListViewModel: SingleJourneyViewModel
+    @ObservedObject var singleJourneyListViewModel: BusinessManagerSingleJourneyViewModel
     @ObservedObject var eventsCalendarViewModel: EventsCalendarViewModel
     let count: Int
     let startingSpaces: Int

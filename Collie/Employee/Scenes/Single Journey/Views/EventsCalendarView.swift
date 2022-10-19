@@ -2,11 +2,11 @@ import SwiftUI
 
 struct EventsCalendarView: View {
     @ObservedObject var viewModel: EventsCalendarViewModel
-    @ObservedObject var singleJourneyViewModel: SingleJourneyViewModel
+    @ObservedObject var singleJourneyViewModel: BusinessManagerSingleJourneyViewModel
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, singleJourneyViewModel: SingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+    init(selectedDate: Binding<Date>, singleJourneyViewModel: BusinessManagerSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
         self.singleJourneyViewModel = singleJourneyViewModel
         self.viewModel = EventsCalendarViewModel(date: selectedDate)
         self.handleSelectEvent = handleSelectEvent
