@@ -78,7 +78,7 @@ struct BusinessManagerSingleJourneyView: View {
                         
                         ScrollView(.vertical) {
                             ForEach(viewModel.journey.tasks) { task in
-                                TaskView(
+                                BusinessManagerTaskView(
                                     task: task,
                                     handleTaskOpen: {
                                         viewModel.selectTask(task)

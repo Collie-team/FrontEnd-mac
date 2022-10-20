@@ -7,6 +7,9 @@ struct EmployeeSingleJourneyView: View {
     @State var editJourney = false
     @State var showTaskForm = false
     @State var showEventForm = false
+    @State var showDailyTasks = true
+    @State var showNextTasks = false
+    @State var showDoneTasks = true
     
     var backAction: () -> ()
     
@@ -24,22 +27,6 @@ struct EmployeeSingleJourneyView: View {
                         .font(.system(size: 40, weight: .bold, design: .default))
                     
                     Spacer()
-                    
-                    Button {
-                        editJourney = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.pencil")
-                            Text("Editar jornada")
-                        }
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(8)
-                        .foregroundColor(.black)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                    }
-                    .contentShape(Rectangle())
-                    .buttonStyle(.plain)
                 }
                 .foregroundColor(.black)
                 .padding(.bottom)
@@ -58,35 +45,92 @@ struct EmployeeSingleJourneyView: View {
                             
                             Spacer()
                             
-                            Button {
-                                showTaskForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Nova tarefa")
-                                }
-                                .font(.system(size: 16, weight: .bold))
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(viewModel.journey.tasks) { task in
-                                TaskView(
-                                    task: task,
-                                    handleTaskOpen: {
-                                        viewModel.selectTask(task)
-                                    },
-                                    handleTaskDuplicate: {}
-                                )
+                            HStack {
+                                Text("Tarefas do dia")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 18, weight: .semibold))
+                                Spacer()
+                                Image(systemName: showDailyTasks ? "chevron.up" : "chevron.down")
                             }
-                            .padding(2)
+                            .padding(24)
+                            .background(Color.collieBrancoFundo)
+                            .cornerRadius(8)
+                            .onTapGesture {
+                                withAnimation {
+                                    showDailyTasks.toggle()
+                                }
+                            }
+                            
+                            if showDailyTasks {
+                                ForEach(viewModel.dailyTasks) { task in
+                                    EmployeeTaskView(
+                                        task: task,
+                                        // REVIEW
+                                        userTask: UserTask(taskId: "x", journeyId: "x"),
+                                        handleTaskOpen: {
+                                            viewModel.selectTask(task)
+                                        },
+                                        handleTaskDuplicate: {}
+                                    )
+                                }
+                                .padding(2)
+                            }
+                            
+                            HStack {
+                                Text("Próximas tarefas")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 18, weight: .semibold))
+                                Spacer()
+                                Image(systemName: showNextTasks ? "chevron.up" : "chevron.down")
+                            }
+                            .padding(24)
+                            .background(Color.collieBrancoFundo)
+                            .cornerRadius(8)
+                            .onTapGesture {
+                                withAnimation {
+                                    showNextTasks.toggle()
+                                }
+                            }
+                            
+                            if showNextTasks {
+                                ForEach(viewModel.nextTasks) { task in
+                                    EmployeeTaskView(
+                                        task: task,
+                                        // REVIEW
+                                        userTask: UserTask(taskId: "x", journeyId: "x"),
+                                        handleTaskOpen: {
+                                            viewModel.selectTask(task)
+                                        },
+                                        handleTaskDuplicate: {}
+                                    )
+                                }
+                                .padding(2)
+                            }
+                            
+                            HStack {
+                                Text("Tarefas feitas")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 18, weight: .semibold))
+                                Spacer()
+                                Image(systemName: showDoneTasks ? "chevron.up" : "chevron.down")
+                            }
+                            .padding(24)
+                            .background(Color.collieBrancoFundo)
+                            .cornerRadius(8)
+                            .onTapGesture {
+                                withAnimation {
+                                    showDoneTasks.toggle()
+                                }
+                            }
+                            
+                            if showDoneTasks {
+                                Text("Show done tasks")
+                            }
                             
                             Spacer()
                         }
@@ -104,24 +148,6 @@ struct EmployeeSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             Spacer()
-                            
-                            Button {
-                                showEventForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "calendar.badge.plus")
-                                    Text("Novo evento")
-                                }
-                                .font(.system(size: 16, weight: .bold))
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
-                            
                         }
                         
 //                        EventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in

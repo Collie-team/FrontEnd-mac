@@ -35,7 +35,7 @@ struct EventsCalendarView: View {
             
             ScrollView(.vertical) {
                 ForEach(singleJourneyViewModel.selectedEvents) { event in
-                    EventView(
+                    BusinessManagerEventView(
                         event: event,
                         handleEventOpen: {
                             handleSelectEvent(event)

@@ -7,10 +7,26 @@ final class CalendarHelper {
     func monthYearString(_ date: Date) -> String {
         dateFormatter.dateFormat = "MMMM yyyy"
         dateFormatter.locale = Locale(identifier: "pt-BR")
-        var string = dateFormatter.string(from: date)
+        let string = dateFormatter.string(from: date)
         let firstLetter = String(string.prefix(1).capitalized)
         let other = String(string.dropFirst())
         return firstLetter + other
+    }
+    
+    func dateString(_ date: Date) -> String {
+        if calendar.isDateInToday(date) {
+            dateFormatter.dateFormat = "HH:mm"
+            let hourAndMinuteString = dateFormatter.string(from: date)
+            let string = "Hoje às \(hourAndMinuteString)"
+            return string
+        } else {
+            dateFormatter.dateFormat = "dd/MM"
+            let dayAndMonthString = dateFormatter.string(from: date)
+            dateFormatter.dateFormat = "HH:mm"
+            let hourAndMinuteString = dateFormatter.string(from: date)
+            let string = dayAndMonthString + " às " + hourAndMinuteString
+            return string
+        }
     }
     
     func plusMonth(_ date: Date) -> Date {

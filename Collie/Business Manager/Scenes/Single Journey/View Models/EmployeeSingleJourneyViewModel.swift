@@ -7,6 +7,12 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         }
     }
     
+    @Published var dailyTasks: [Task] = []
+    
+    @Published var nextTasks: [Task] = []
+    
+    @Published var doneTasks: [Task] = []
+    
     @Published var chosenTask: Task?
     
     @Published var chosenEvent: Event?
@@ -29,6 +35,7 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     init(journey: Journey) {
         self.journey = journey
         filterSelectedEvents()
+        separateJourneyTasks()
     }
     
     // MARK: - Task functions
@@ -77,6 +84,16 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     func filterSelectedEvents() {
         self.selectedEvents = journey.events.filter({ event in
             CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
+        })
+    }
+    
+    func separateJourneyTasks() {
+        self.dailyTasks = journey.tasks.filter({ task in
+            CalendarHelper().areDatesInSameDay(task.startDate, Date())
+        })
+        
+        self.nextTasks = journey.tasks.filter({ task in
+            !dailyTasks.contains(where: { $0.id == task.id })
         })
     }
 }
