@@ -1,16 +1,17 @@
 import SwiftUI
 
 struct EmployeeTaskView: View {
+    
     var task: Task
     var userTask: UserTask
-    var handleTaskOpen: () -> ()
-    var handleTaskDuplicate: () -> ()
+    var checked: Bool
     
-    @State var checked = false
+    var handleTaskOpen: () -> ()
+    var handleTaskCheckToggle: () -> ()
     
     var body: some View {
         HStack {
-            CheckBoxView(checked: $checked)
+            CheckBoxView(checked: checked, handleCheckToggle: handleTaskCheckToggle)
             
             Text(task.name)
                 .foregroundColor(.black)
@@ -51,8 +52,8 @@ struct EmployeeTaskView: View {
     }
 }
 
-struct EmployeeTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmployeeTaskView(task: .init(name: "Enviar a cópia dos documentos", description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")), userTask: UserTask(taskId: "dsaa", journeyId: "sadsasd", doneDate: nil), handleTaskOpen: {}, handleTaskDuplicate: {})
-    }
-}
+//struct EmployeeTaskView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmployeeTaskView(task: .init(name: "Enviar a cópia dos documentos", description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")), userTask: UserTask(taskId: "dsaa", journeyId: "sadsasd", doneDate: nil), handleTaskOpen: {}, handleTaskCheckToggle: {})
+//    }
+//}

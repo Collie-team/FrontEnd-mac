@@ -67,15 +67,17 @@ struct EmployeeSingleJourneyView: View {
                             }
                             
                             if showDailyTasks {
-                                ForEach(viewModel.dailyTasks) { task in
+                                ForEach($viewModel.dailyTaskModels) { $taskModel in
                                     EmployeeTaskView(
-                                        task: task,
-                                        // REVIEW
-                                        userTask: UserTask(taskId: "x", journeyId: "x"),
+                                        task: taskModel.task,
+                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
+                                        checked: viewModel.isTaskModelChecked(taskModel),
                                         handleTaskOpen: {
-                                            viewModel.selectTask(task)
+                                            viewModel.selectTaskModel(taskModel)
                                         },
-                                        handleTaskDuplicate: {}
+                                        handleTaskCheckToggle: {
+                                            viewModel.checkTaskModel(taskModel)
+                                        }
                                     )
                                 }
                                 .padding(2)
@@ -98,15 +100,17 @@ struct EmployeeSingleJourneyView: View {
                             }
                             
                             if showNextTasks {
-                                ForEach(viewModel.nextTasks) { task in
+                                ForEach($viewModel.nextTaskModels) { $taskModel in
                                     EmployeeTaskView(
-                                        task: task,
-                                        // REVIEW
-                                        userTask: UserTask(taskId: "x", journeyId: "x"),
+                                        task: taskModel.task,
+                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
+                                        checked: viewModel.isTaskModelChecked(taskModel),
                                         handleTaskOpen: {
-                                            viewModel.selectTask(task)
+                                            viewModel.selectTaskModel(taskModel)
                                         },
-                                        handleTaskDuplicate: {}
+                                        handleTaskCheckToggle: {
+                                            viewModel.checkTaskModel(taskModel)
+                                        }
                                     )
                                 }
                                 .padding(2)
@@ -129,7 +133,20 @@ struct EmployeeSingleJourneyView: View {
                             }
                             
                             if showDoneTasks {
-                                Text("Show done tasks")
+                                ForEach($viewModel.doneTaskModels) { $taskModel in
+                                    EmployeeTaskView(
+                                        task: taskModel.task,
+                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
+                                        checked: viewModel.isTaskModelChecked(taskModel),
+                                        handleTaskOpen: {
+                                            viewModel.selectTaskModel(taskModel)
+                                        },
+                                        handleTaskCheckToggle: {
+                                            viewModel.checkTaskModel(taskModel)
+                                        }
+                                    )
+                                }
+                                .padding(2)
                             }
                             
                             Spacer()
@@ -150,9 +167,9 @@ struct EmployeeSingleJourneyView: View {
                             Spacer()
                         }
                         
-//                        EventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
-//                            viewModel.selectEvent(event)
-//                        }
+                        EmployeeEventsCalendarView(selectedDate: $viewModel.selectedDate, employeeSingleJourneyViewModel: self.viewModel) { event in
+                            viewModel.selectEvent(event)
+                        }
                         
                         Spacer()
                     }
@@ -200,7 +217,7 @@ struct EmployeeSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-                            viewModel.saveTask(task)
+//                            viewModel.saveTask(task)
                         },
                         handleTaskDeletion: { _ in },
                         handleTaskDuplicate: { _ in }
@@ -209,19 +226,19 @@ struct EmployeeSingleJourneyView: View {
                 }
             }
             
-            if viewModel.chosenTask != nil {
+            if viewModel.chosenTaskModel != nil {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        task: viewModel.chosenTask,
+                        task: viewModel.chosenTaskModel?.task,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectTask()
                             }
                         },
                         handleTaskSave: { task in
-                            viewModel.saveTask(task)
+//                            viewModel.saveTask(task)
                         },
                         handleTaskDeletion: { _ in },
                         handleTaskDuplicate: { _ in }
@@ -276,6 +293,9 @@ struct EmployeeSingleJourneyView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo)
+        .onAppear {
+            viewModel.handleAppear()
+        }
     }
 }
 

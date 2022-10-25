@@ -42,7 +42,7 @@ struct WorkspaceView: View {
             }
             
             if showSidebar {
-                BusinessManagerSidebarView()
+                BusinessManagerSidebarView(handleSignOut:{})
             }
         }
     }
@@ -97,7 +97,7 @@ struct WorkspaceView: View {
                 Text("Carregando...")
                     .font(.system(size: 18, weight: .medium))
                 NavigationLink("", isActive: $showSidebar, destination: {
-                    BusinessManagerSidebarView()
+                    BusinessManagerSidebarView(handleSignOut: {})
                 })
                 .opacity(0)
             }

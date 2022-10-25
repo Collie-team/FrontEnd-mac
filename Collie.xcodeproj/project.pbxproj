@@ -43,11 +43,11 @@
 		5B49604728ECC50B0024D064 /* SimpleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49604628ECC50B0024D064 /* SimpleTextField.swift */; };
 		5B49604928ECC7160024D064 /* BusinessManagerEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49604828ECC7160024D064 /* BusinessManagerEventView.swift */; };
 		5B49604B28ECC9B10024D064 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49604A28ECC9B10024D064 /* DateExtension.swift */; };
-		5B49605028EF51BC0024D064 /* EventsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49604F28EF51BC0024D064 /* EventsCalendarView.swift */; };
-		5B49605228EF520D0024D064 /* EventsCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605128EF520D0024D064 /* EventsCalendarViewModel.swift */; };
-		5B49605528EF52810024D064 /* DateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605428EF52810024D064 /* DateScrollerView.swift */; };
+		5B49605028EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49604F28EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift */; };
+		5B49605228EF520D0024D064 /* BusinessManagerEventsCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605128EF520D0024D064 /* BusinessManagerEventsCalendarViewModel.swift */; };
+		5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605428EF52810024D064 /* BusinessManagerDateScrollerView.swift */; };
 		5B49605828EF535F0024D064 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605728EF535F0024D064 /* CalendarHelper.swift */; };
-		5B49605A28EF58F90024D064 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* CalendarCell.swift */; };
+		5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */; };
 		5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605C28EF5A0E0024D064 /* MonthStruct.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
@@ -57,6 +57,11 @@
 		5B954E812901C38D00FA579E /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E802901C38D00FA579E /* UserTask.swift */; };
 		5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E822901C6D700FA579E /* CheckBoxView.swift */; };
 		5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E842901CAB800FA579E /* EmployeeTaskView.swift */; };
+		5B954E872903118500FA579E /* EmployeeEventsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */; };
+		5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */; };
+		5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */; };
+		5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */; };
+		5B954E922906C0A700FA579E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* RootView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -136,11 +141,11 @@
 		5B49604628ECC50B0024D064 /* SimpleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextField.swift; sourceTree = "<group>"; };
 		5B49604828ECC7160024D064 /* BusinessManagerEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerEventView.swift; sourceTree = "<group>"; };
 		5B49604A28ECC9B10024D064 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		5B49604F28EF51BC0024D064 /* EventsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarView.swift; sourceTree = "<group>"; };
-		5B49605128EF520D0024D064 /* EventsCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarViewModel.swift; sourceTree = "<group>"; };
-		5B49605428EF52810024D064 /* DateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerView.swift; sourceTree = "<group>"; };
+		5B49604F28EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerEventsCalendarView.swift; sourceTree = "<group>"; };
+		5B49605128EF520D0024D064 /* BusinessManagerEventsCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerEventsCalendarViewModel.swift; sourceTree = "<group>"; };
+		5B49605428EF52810024D064 /* BusinessManagerDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerDateScrollerView.swift; sourceTree = "<group>"; };
 		5B49605728EF535F0024D064 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
-		5B49605928EF58F90024D064 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerCalendarCell.swift; sourceTree = "<group>"; };
 		5B49605C28EF5A0E0024D064 /* MonthStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStruct.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -149,6 +154,11 @@
 		5B954E802901C38D00FA579E /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		5B954E822901C6D700FA579E /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		5B954E842901CAB800FA579E /* EmployeeTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskView.swift; sourceTree = "<group>"; };
+		5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventsCalendarView.swift; sourceTree = "<group>"; };
+		5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventsCalendarViewModel.swift; sourceTree = "<group>"; };
+		5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCalendarCell.swift; sourceTree = "<group>"; };
+		5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDateScrollerView.swift; sourceTree = "<group>"; };
+		5B954E912906C0A700FA579E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -248,6 +258,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B954E8E2906C08B00FA579E /* Root */,
 				5B2D009828F87CC400131FFF /* Workspace */,
 				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
 			);
@@ -343,6 +354,7 @@
 				5BD8982428FDE9670015EEDB /* BusinessCard.swift */,
 				5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */,
 				5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */,
+				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -377,8 +389,8 @@
 			children = (
 				5B49604828ECC7160024D064 /* BusinessManagerEventView.swift */,
 				5B49603028EB63AB0024D064 /* BusinessManagerTaskView.swift */,
-				5B49605428EF52810024D064 /* DateScrollerView.swift */,
-				5B49605928EF58F90024D064 /* CalendarCell.swift */,
+				5B49605428EF52810024D064 /* BusinessManagerDateScrollerView.swift */,
+				5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -398,8 +410,34 @@
 				5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */,
 				5B954E822901C6D700FA579E /* CheckBoxView.swift */,
 				5B954E842901CAB800FA579E /* EmployeeTaskView.swift */,
+				5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */,
+				5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5B954E8E2906C08B00FA579E /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5B954E902906C09B00FA579E /* View Models */,
+				5B954E8F2906C09600FA579E /* Views */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		5B954E8F2906C09600FA579E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B954E912906C0A700FA579E /* RootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B954E902906C09B00FA579E /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -561,7 +599,6 @@
 			isa = PBXGroup;
 			children = (
 				5BACC64D28CFC23D006975D3 /* BusinessManagerSidebarView.swift */,
-				5BACC65728CFC6C5006975D3 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -602,14 +639,6 @@
 				5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		5BACC65728CFC6C5006975D3 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		5BACC65C28D2438E006975D3 /* Payments */ = {
@@ -677,7 +706,7 @@
 			children = (
 				5B49605328EF526C0024D064 /* Components */,
 				5BACC66928D2610F006975D3 /* BusinessManagerSingleJourneyView.swift */,
-				5B49604F28EF51BC0024D064 /* EventsCalendarView.swift */,
+				5B49604F28EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -686,7 +715,7 @@
 			isa = PBXGroup;
 			children = (
 				5B495FF628E62DB60024D064 /* BusinessManagerSingleJourneyViewModel.swift */,
-				5B49605128EF520D0024D064 /* EventsCalendarViewModel.swift */,
+				5B49605128EF520D0024D064 /* BusinessManagerEventsCalendarViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -764,6 +793,7 @@
 			children = (
 				5B954E7B2901C1F600FA579E /* Components */,
 				5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */,
+				5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -772,6 +802,7 @@
 			isa = PBXGroup;
 			children = (
 				5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */,
+				5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -899,11 +930,14 @@
 			files = (
 				5BF6693928E23A4D001B0A1D /* UserIconView.swift in Sources */,
 				5BB2FC7F28F9F672003EE3F9 /* EmployeeSidebarView.swift in Sources */,
+				5B954E872903118500FA579E /* EmployeeEventsCalendarView.swift in Sources */,
+				5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */,
 				5B495FF728E62DB60024D064 /* BusinessManagerSingleJourneyViewModel.swift in Sources */,
 				5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */,
 				5B2B46B828EE168200FC3BE9 /* AuthenticationViewModel.swift in Sources */,
 				5BACC66C28D26127006975D3 /* Journey.swift in Sources */,
-				5B49605228EF520D0024D064 /* EventsCalendarViewModel.swift in Sources */,
+				5B49605228EF520D0024D064 /* BusinessManagerEventsCalendarViewModel.swift in Sources */,
+				5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */,
 				5B49600628E778360024D064 /* UserSelectionDropdown.swift in Sources */,
 				5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
@@ -917,7 +951,8 @@
 				5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5B49604728ECC50B0024D064 /* SimpleTextField.swift in Sources */,
-				5B49605A28EF58F90024D064 /* CalendarCell.swift in Sources */,
+				5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */,
+				5B954E922906C0A700FA579E /* RootView.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
 				5BB85281290088E5008A8609 /* EmployeeJourneyListViewModel.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
@@ -956,7 +991,7 @@
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5B0F666128DA37750057BA32 /* JourneyModel.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
-				5B49605028EF51BC0024D064 /* EventsCalendarView.swift in Sources */,
+				5B49605028EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,
@@ -964,6 +999,7 @@
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
 				5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */,
+				5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */,
 				5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
@@ -977,7 +1013,7 @@
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessManagerEventView.swift in Sources */,
 				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
-				5B49605528EF52810024D064 /* DateScrollerView.swift in Sources */,
+				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
 				5BB8527F290088D5008A8609 /* EmployeeJourneyListView.swift in Sources */,
 				5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */,
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,

@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct CheckBoxView: View {
-    @Binding var checked: Bool
+    var checked: Bool
+    var handleCheckToggle: () -> ()
     
     let green = Color(red: 77/255, green: 174/255, blue: 0/255)
     
@@ -19,14 +20,15 @@ struct CheckBoxView: View {
         .frame(width: 24, height: 24)
         .onTapGesture {
             withAnimation {
-                checked.toggle()
+                handleCheckToggle()
+                print("Check toggle")
             }
         }
     }
 }
 
-struct CheckBoxView_Previews: PreviewProvider {
-    static var previews: some View {
-        CheckBoxView(checked: .constant(false))
-    }
-}
+//struct CheckBoxView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CheckBoxView(checked: .constant(false))
+//    }
+//}

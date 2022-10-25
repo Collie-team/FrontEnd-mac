@@ -3,6 +3,7 @@ import Foundation
 final class EmployeeJourneyListViewModel: ObservableObject {
     @Published var sampleJourneys: [Journey] = [
         Journey(
+            id: "teste",
             name: "Jornada iOS",
             startDate: Date(),
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
@@ -13,7 +14,7 @@ final class EmployeeJourneyListViewModel: ObservableObject {
                 Task(id: "124", name: "A", description: "", startDate: Date(timeIntervalSince1970: 1668972239), endDate: Date(timeIntervalSince1970: 1668972239), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "125", name: "B", description: "", startDate: Date(timeIntervalSince1970: 1668972239), endDate: Date(timeIntervalSince1970: 1668972239), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "126", name: "C", description: "", startDate: Date(timeIntervalSince1970: 1668972239), endDate: Date(timeIntervalSince1970: 1668972239), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-                Task(id: "127", name: "D", description: "", startDate: Date(timeIntervalSince1970: 1668972239), endDate:Date(timeIntervalSince1970: 1668972239), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
+                Task(id: "127", name: "D", description: "", startDate: Date(timeIntervalSince1970: 1668972239), endDate: Date(timeIntervalSince1970: 1668972239), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "128", name: "E", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "129", name: "F", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "130", name: "G", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
@@ -21,7 +22,10 @@ final class EmployeeJourneyListViewModel: ObservableObject {
                 Task(id: "132", name: "I", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
                 Task(id: "133", name: "J", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
             ],
-            events: [],
+            events: [
+                Event(name: "Workshop de programação", description: "Descrição", link: "", startDate: Date(), endDate: Date()),
+                Event(name: "Workshop de design", description: "Descrição", link: "", startDate: Date(), endDate: Date())
+            ],
             managers: []
         )
     ]

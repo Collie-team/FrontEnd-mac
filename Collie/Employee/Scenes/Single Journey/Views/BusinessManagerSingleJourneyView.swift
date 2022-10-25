@@ -126,7 +126,7 @@ struct BusinessManagerSingleJourneyView: View {
                             
                         }
                         
-                        EventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
+                        BusinessManagerEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
                             viewModel.selectEvent(event)
                         }
                         
