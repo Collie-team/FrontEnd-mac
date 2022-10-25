@@ -1,21 +1,21 @@
 import SwiftUI
 
-struct EventsCalendarView: View {
-    @ObservedObject var viewModel: EventsCalendarViewModel
-    @ObservedObject var singleJourneyViewModel: SingleJourneyViewModel
+struct EmployeeEventsCalendarView: View {
+    @ObservedObject var viewModel: EmployeeEventsCalendarViewModel
+    @ObservedObject var employeeSingleJourneyViewModel: EmployeeSingleJourneyViewModel
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, singleJourneyViewModel: SingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
-        self.singleJourneyViewModel = singleJourneyViewModel
-        self.viewModel = EventsCalendarViewModel(date: selectedDate)
+    init(selectedDate: Binding<Date>, employeeSingleJourneyViewModel: EmployeeSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+        self.employeeSingleJourneyViewModel = employeeSingleJourneyViewModel
+        self.viewModel = EmployeeEventsCalendarViewModel(date: selectedDate)
         self.handleSelectEvent = handleSelectEvent
     }
     
     var body: some View {
         VStack {
             VStack {
-                DateScrollerView(eventsCalendarViewModel: viewModel)
+                EmployeeDateScrollerView(employeeEventsCalendarViewModel: viewModel)
                 dayOfWeekStack
                 calendarGrid
             }
@@ -34,8 +34,8 @@ struct EventsCalendarView: View {
             }
             
             ScrollView(.vertical) {
-                ForEach(singleJourneyViewModel.selectedEvents) { event in
-                    EventView(
+                ForEach(employeeSingleJourneyViewModel.selectedEvents) { event in
+                    EmployeeEventView(
                         event: event,
                         handleEventOpen: {
                             handleSelectEvent(event)
@@ -76,9 +76,9 @@ struct EventsCalendarView: View {
                     ForEach(1..<8) { column in
                         let count = column + (row * 7)
                         let day = count - prevMonthLastDayWeekday
-                        CalendarCell(
-                            singleJourneyListViewModel: singleJourneyViewModel,
-                            eventsCalendarViewModel: viewModel,
+                        EmployeeCalendarCell(
+                            employeeSingleJourneyViewModel: employeeSingleJourneyViewModel,
+                            employeeEventsCalendarViewModel: viewModel,
                             count: count,
                             startingSpaces: startingSpaces,
                             daysInMonth: daysInMonth,
@@ -95,16 +95,3 @@ struct EventsCalendarView: View {
     }
 }
 
-extension Text {
-    func dayOfWeek() -> some View {
-        self.frame(maxWidth: .infinity)
-            .padding(.top, 1)
-            .lineLimit(1)
-    }
-}
-
-//struct EventsCalendarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventsCalendarView(events: [])
-//    }
-//}

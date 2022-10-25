@@ -3,6 +3,8 @@ import SwiftUI
 struct BusinessManagerSidebarView: View {
     @ObservedObject var viewModel = BusinnesManagerSidebarViewModel()
     
+    var handleSignOut: () -> ()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -23,6 +25,20 @@ struct BusinessManagerSidebarView: View {
                     }
                 }
                 Spacer()
+                
+                HStack {
+                    Image(systemName: "scooter")
+                    Text("Sair da conta")
+                    Spacer()
+                }
+                .foregroundColor(.white)
+                .padding(.trailing)
+                .frame(height: 50)
+                .font(.system(size: 18, weight: .regular))
+                .background(Color.collieAzulEscuro)
+                .onTapGesture {
+                    handleSignOut()
+                }
             }
             .background(Color.collieAzulEscuro)
             
@@ -31,7 +47,7 @@ struct BusinessManagerSidebarView: View {
 //                case .dashboard:
 //                    DashboardView()
                 case .journeys:
-                    JourneyListView()
+                    BusinessJourneyListView()
                 case .teamList:
                     TeamListView()
 //                case .payments:

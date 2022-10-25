@@ -3,6 +3,8 @@ import SwiftUI
 struct EmployeeSidebarView: View {
     @ObservedObject var viewModel = EmployeeSidebarViewModel()
     
+    var handleSignOut: () -> ()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -23,13 +25,27 @@ struct EmployeeSidebarView: View {
                     }
                 }
                 Spacer()
+                
+                HStack {
+                    Image(systemName: "scooter")
+                    Text("Sair da conta")
+                    Spacer()
+                }
+                .foregroundColor(.white)
+                .padding(.trailing)
+                .frame(height: 50)
+                .font(.system(size: 18, weight: .regular))
+                .background(Color.collieAzulEscuro)
+                .onTapGesture {
+                    handleSignOut()
+                }
             }
             .background(Color.collieAzulEscuro)
             
             VStack {
                 switch viewModel.selectedItem.option {
                 case .journeys:
-                    JourneyListView()
+                    EmployeeJourneyListView()
                 default:
                     Text("Error")
                 }

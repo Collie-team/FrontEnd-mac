@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct EventView: View {
+struct BusinessManagerEventView: View {
     var event: Event
     var handleEventOpen: () -> ()
     
@@ -61,8 +61,8 @@ struct EventView: View {
     }
 }
 
-struct EventView_Previews: PreviewProvider {
+struct BusinessManagerEventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(event: Event(name: "Workshop de Figma", description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", link: "https://oi.com", startDate: Date(timeIntervalSince1970: 1667591752), endDate: Date(timeIntervalSince1970: 1667678152), category: TaskCategory(name: "Recursos Humanos", colorName: "vermelho", systemImageName: "person.fill")), handleEventOpen: {})
+        BusinessManagerEventView(event: Event(name: "Workshop de Figma", description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", link: "https://oi.com", startDate: Date(timeIntervalSince1970: 1667591752), endDate: Date(timeIntervalSince1970: 1667678152), category: TaskCategory(name: "Recursos Humanos", colorName: "vermelho", systemImageName: "person.fill")), handleEventOpen: {})
     }
 }

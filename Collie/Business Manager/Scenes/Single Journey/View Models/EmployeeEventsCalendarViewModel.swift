@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-final class EventsCalendarViewModel: ObservableObject {
+final class EmployeeEventsCalendarViewModel: ObservableObject {
     var date: Binding<Date>
     
     init(date: Binding<Date>) {

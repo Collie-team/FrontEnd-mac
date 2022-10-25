@@ -16,7 +16,7 @@ struct LoadingIndicator: View {
             .rotationEffect(angle)
             .animation(animation.repeatForever(autoreverses: false), value: angle)
             .onAppear {
-                angle += Angle.degrees(1080)
+                angle -= Angle.degrees(1080)
             }
     }
 }
