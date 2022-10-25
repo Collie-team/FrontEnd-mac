@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    var handleSingIn: (UserModel, String) -> ()
     @StateObject var viewModel = AuthenticationViewModel()
     var body: some View {
         GeometryReader { geometry in
@@ -37,11 +38,11 @@ struct AuthenticationView: View {
                     }
                     .frame(maxWidth: geometry.size.width * 0.55, maxHeight: geometry.size.height * 0.75)
                     if viewModel.authenticationMode == .signup {
-                        SignupView()
+                        SignupView(completion: handleSingIn)
                             .frame(maxWidth: min(geometry.size.width * 0.4, 530), maxHeight: geometry.size.height * 0.75)
                             .environmentObject(viewModel)
                     } else if viewModel.authenticationMode == .login {
-                        LoginView()
+                        LoginView(completion: handleSingIn)
                             .frame(maxWidth: min(geometry.size.width * 0.4, 530), maxHeight: geometry.size.height * 0.75)
                             .environmentObject(viewModel)
                     } else {
@@ -66,6 +67,6 @@ struct AuthenticationView: View {
 
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView()
+        AuthenticationView(handleSingIn: {_,_  in })
     }
 }

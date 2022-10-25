@@ -1,37 +1,37 @@
 import Foundation
 
 final class WorkspaceViewModel: ObservableObject {
-    @Published var workspacesAvailable: [Business] = []
+    enum WorkspaceViewState {
+        case loading
+        case loadingWorkspace
+        case createForm
+        case noWorkspacesFound
+        case workspaceList
+    }
+    @Published var workspaceViewState: WorkspaceViewState = .loading
+    var workspacesAvailable: [Business] = []
     
     @Published var workspaceName: String = ""
     
     @Published var selectedWorkspace: Business?
     
-    func handleAppear() {
-        fetchWorkspaces()
-    }
+    private let businessSubscriptionService = BusinessSubscriptionService()
     
-    func fetchWorkspaces() {
-        // TO DO
-        let workspaces: [Business] = [
-            Business(name: "Aurea", description: "", journeys: [], usersIds: ["", "", "", ""]),
-            Business(name: "Roda da Vida", description: "", journeys: [], usersIds: ["", "", "", ""])
-        ]
-        self.workspacesAvailable = workspaces
-    }
-    
-    func createNewWorkspace(completion: () -> ()) {
-        if !workspaceName.isEmpty {
-            let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], usersIds: [])
-            workspacesAvailable.append(business)
-            selectWorkspace(business) {
-                completion()
-            }
+    var newWorkspaceHandler: (String, @escaping ([Business]) -> ()) -> () = { _,_  in }
+    var handleWorkspaceSelection: (Business) -> () = {_ in }
+
+    func createNewWorkspace() {
+        let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], userIds: [])
+        self.selectedWorkspace = business
+        self.workspaceViewState = .loadingWorkspace
+        newWorkspaceHandler(workspaceName) { availableBusiness in
+            self.workspacesAvailable = availableBusiness
+            self.selectWorkspace(business)
         }
     }
     
-    func selectWorkspace(_ business: Business, completion: () -> ()) {
+    func selectWorkspace(_ business: Business) {
         self.selectedWorkspace = business
-        completion()
+        handleWorkspaceSelection(business)
     }
 }

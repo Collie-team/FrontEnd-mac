@@ -48,17 +48,18 @@ enum AuthenticationMode {
 
 class AuthenticationViewModel: ObservableObject {
     @Published var authenticationMode: AuthenticationMode = .signup
-//    @Published var currentUser = AuthenticationUser()
+    //    @Published var currentUser = AuthenticationUser()
     @Published var currentUser = AuthenticationUser(firstName: "Teste", lastName: "Backend", email: "backend@teste.com", password: "Backend123", passwordConfirmation: "Backend123", agreementToggle: true, mailingToggle: false)
     @Published var signupEnabled = false
     @Published var loginEnabled = false
     @Published var authenticationStatus: AuthenticationStatus = .valid
     
     private let authenticationService = AuthenticationService()
-    private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
+    //    private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
+    private let userSubscriptionService = UserSubscriptionService()
     
     func resetUser() {
-//        currentUser = AuthenticationUser()
+        //        currentUser = AuthenticationUser()
     }
     
     func validateSingUpFields() {
@@ -70,26 +71,24 @@ class AuthenticationViewModel: ObservableObject {
         loginEnabled = currentUser.validateLogin()
     }
     
-    func createUser() {
+    func createUser(_ completion: @escaping (UserModel, String) -> ()) {
         authenticationService.createUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
             if let user = user, let token = token {
-                // TODO: Save user to variable
-                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
-                self.databaseService.writeData(dataToWrite: userData, authenticationToken: token) { writtenData in
-                    print(writtenData)
-//                    self.currentUser = writtenData
+                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "", businessId: [])
+                self.userSubscriptionService.createUser(user: userData, authenticationToken: token) { writtenData in
+                    completion(writtenData, token)
                 }
             }
         }
     }
     
-    func loginUser() {
+    func loginUser(_ completion: @escaping (UserModel, String) -> ()) {
         authenticationService.loginUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
-            if let user = user, let token = token {
-                // TODO: Save user to variable
-                self.databaseService.fetchData(authenticationToken: token) { userData in
+            if let _ = user, let token = token {
+                self.userSubscriptionService.fetchUser(authenticationToken: token) { userData in
+                    completion(userData, token)
                     print(userData)
                 }
             }

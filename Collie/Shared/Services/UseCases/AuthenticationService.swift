@@ -44,11 +44,12 @@ final class AuthenticationService {
                         // Handle error
                         print(error)
                         return
+                    } else {
+                        // Send token to your backend via HTTPS
+                        // ...
+                        completion(.valid, authResult?.user, idToken)
                     }
                     
-                    // Send token to your backend via HTTPS
-                    // ...
-                    completion(.valid, authResult?.user, idToken)
                 }
             }
         }

@@ -33,6 +33,6 @@ struct UserCellView: View {
 
 struct UserCellView_Previews: PreviewProvider {
     static var previews: some View {
-        UserCellView(user: UserModel(name: "André", email: "andreluisarns@gmail.cm", jobDescription: "", personalDescription: "", imageURL: "", businessId: ""), onTap: {})
+        UserCellView(user: UserModel(name: "André", email: "andreluisarns@gmail.cm", jobDescription: "", personalDescription: "", imageURL: "", businessId: []), onTap: {})
     }
 }

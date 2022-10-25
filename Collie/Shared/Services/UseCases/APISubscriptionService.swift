@@ -13,7 +13,6 @@ final class APISubscriptionService {
     
     enum APISubscriptionRoutes: String {
         case email = "email/"
-        case authentication = "auth/"
     }
     
     init(route: APISubscriptionRoutes) {

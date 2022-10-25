@@ -18,7 +18,8 @@ struct CollieApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WorkspaceView()
+//            WorkspaceView()
+            RootView()
                 .colorScheme(.light)
         }
     }

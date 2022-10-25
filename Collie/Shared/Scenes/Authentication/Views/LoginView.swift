@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    var completion: (UserModel, String) -> ()
     @EnvironmentObject var viewModel: AuthenticationViewModel
     @State var on = true
     var body: some View {
@@ -66,7 +67,9 @@ struct LoginView: View {
             }
             Spacer()
             Button(action: {
-                viewModel.loginUser()
+                viewModel.loginUser() { user,token  in
+                    completion(user, token)
+                }
             }) {
                 Text("Entrar")
                     .foregroundColor(.white)
@@ -90,7 +93,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(completion: {_,_  in})
             .environmentObject(AuthenticationViewModel())
     }
 }
