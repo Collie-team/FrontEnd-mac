@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct RootView: View {
+struct DemoView: View {
     @State var showEmployeeView = false
     @State var showManagerView = false
     
@@ -31,8 +31,8 @@ struct RootView: View {
     }
 }
 
-struct RootView_Previews: PreviewProvider {
+struct DemoView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        DemoView()
     }
 }

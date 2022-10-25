@@ -61,7 +61,7 @@
 		5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */; };
 		5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */; };
 		5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */; };
-		5B954E922906C0A700FA579E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* RootView.swift */; };
+		5B954E922906C0A700FA579E /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* DemoView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -158,7 +158,7 @@
 		5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventsCalendarViewModel.swift; sourceTree = "<group>"; };
 		5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCalendarCell.swift; sourceTree = "<group>"; };
 		5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDateScrollerView.swift; sourceTree = "<group>"; };
-		5B954E912906C0A700FA579E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5B954E912906C0A700FA579E /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5B954E8E2906C08B00FA579E /* Root */,
+				5B954E8E2906C08B00FA579E /* Demo */,
 				5B2D009828F87CC400131FFF /* Workspace */,
 				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
 			);
@@ -416,28 +416,20 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		5B954E8E2906C08B00FA579E /* Root */ = {
+		5B954E8E2906C08B00FA579E /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				5B954E902906C09B00FA579E /* View Models */,
 				5B954E8F2906C09600FA579E /* Views */,
 			);
-			path = Root;
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		5B954E8F2906C09600FA579E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B954E912906C0A700FA579E /* RootView.swift */,
+				5B954E912906C0A700FA579E /* DemoView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		5B954E902906C09B00FA579E /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -952,7 +944,7 @@
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5B49604728ECC50B0024D064 /* SimpleTextField.swift in Sources */,
 				5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */,
-				5B954E922906C0A700FA579E /* RootView.swift in Sources */,
+				5B954E922906C0A700FA579E /* DemoView.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
 				5BB85281290088E5008A8609 /* EmployeeJourneyListViewModel.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
