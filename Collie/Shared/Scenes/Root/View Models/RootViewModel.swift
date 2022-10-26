@@ -16,7 +16,7 @@ enum NavigationState {
 
 final class RootViewModel: ObservableObject {
     @Published var navigationState: NavigationState = .authentication
-    @Published var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], userIds: [])
+    var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], userIds: [])
     
     private let businessSubscriptionService = BusinessSubscriptionService()
     
@@ -44,8 +44,9 @@ final class RootViewModel: ObservableObject {
     
     func handleWorkspaceSelection(business: Business) {
         // GAMBIARRA MASTER WARNING
+        print("USERNAME: \(currentUser.name)")
         businessSelected = business
-        if (currentUser.name.caseInsensitiveCompare("GESTOR") == .orderedSame) {
+        if currentUser.name.localizedCaseInsensitiveContains("GESTOR") {
             self.navigationState = .manager
         } else {
             self.navigationState = .employee

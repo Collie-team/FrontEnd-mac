@@ -28,7 +28,7 @@ final class UserSubscriptionService {
             encoder: JSONParameterEncoder.default,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             print(response.debugDescription)
             switch response.result {
@@ -61,7 +61,7 @@ final class UserSubscriptionService {
             method: .get,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             switch response.result {
             case .success:

@@ -21,10 +21,10 @@ struct RootView: View {
             WorkspaceView()
                 .environmentObject(viewModel)
         case.employee:
-            HStack {}
+            EmployeeSidebarView(handleSignOut: {})
         case .manager:
             // TODO: Business injection
-            BusinessManagerSidebarView()
+            BusinessManagerSidebarView(handleSignOut: {})
         }
     }
 }

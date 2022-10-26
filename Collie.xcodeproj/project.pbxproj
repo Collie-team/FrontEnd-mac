@@ -85,11 +85,11 @@
 		5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2FC8128F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift */; };
 		5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */; };
 		5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */; };
-		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BB8527F290088D5008A8609 /* EmployeeJourneyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB8527E290088D5008A8609 /* EmployeeJourneyListView.swift */; };
 		5BB85281290088E5008A8609 /* EmployeeJourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85280290088E5008A8609 /* EmployeeJourneyListViewModel.swift */; };
 		5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */; };
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
+		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
 		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
@@ -188,11 +188,11 @@
 		5BB2FC8128F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSidebarViewModel.swift; sourceTree = "<group>"; };
 		5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBusinessCard.swift; sourceTree = "<group>"; };
-		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5BB8527E290088D5008A8609 /* EmployeeJourneyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJourneyListView.swift; sourceTree = "<group>"; };
 		5BB85280290088E5008A8609 /* EmployeeJourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyView.swift; sourceTree = "<group>"; };
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
+		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
@@ -248,8 +248,6 @@
 		5B1BAD3D28FF37AB00EFF0E4 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				5B49605B28EF59E70024D064 /* Calendar */,
-				5B0F666528DCE41A0057BA32 /* UseCases */,
 				5B1BAD4128FF37D000EFF0E4 /* View Models */,
 				5B1BAD3E28FF37BA00EFF0E4 /* View */,
 			);
@@ -444,7 +442,6 @@
 			sourceTree = "<group>";
 		};
 		5B954E7B2901C1F600FA579E /* Components */ = {
-		5B49605B28EF59E70024D064 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */,
@@ -1012,9 +1009,8 @@
 				5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */,
 				5B954E7D2901C2C700FA579E /* EmployeeEventView.swift in Sources */,
 				5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */,
-				5BACC66A28D2610F006975D3 /* SingleJourneyView.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
-				5B0F665E28D26E9D0057BA32 /* Test_JourneyViewModel.swift in Sources */,
+				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
 				5B49600028E75F810024D064 /* SendButton.swift in Sources */,
 				5B954E7F2901C30400FA579E /* UserEvent.swift in Sources */,
 				5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */,
@@ -1052,7 +1048,7 @@
 				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
 				5BB8527F290088D5008A8609 /* EmployeeJourneyListView.swift in Sources */,
 				5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */,
-				5B49605528EF52810024D064 /* DateScrollerView.swift in Sources */,
+				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
 				5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */,
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
 				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
@@ -1198,7 +1194,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1227,7 +1223,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
