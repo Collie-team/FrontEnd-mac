@@ -14,9 +14,11 @@ struct CollieApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .colorScheme(.light)
-                .frame(minWidth: 1200, minHeight: 800)
+            BusinessManagerSidebarView(handleSignOut: {
+                
+            })
+            .colorScheme(.light)
+            .frame(minWidth: 1200, minHeight: 800)
         }
     }
 }
