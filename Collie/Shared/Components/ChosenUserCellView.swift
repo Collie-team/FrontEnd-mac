@@ -39,6 +39,6 @@ struct ChosenUserCellView: View {
 
 struct ChosenUserCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ChosenUserCellView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: []), onRemove: {})
+        ChosenUserCellView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: ""), onRemove: {})
     }
 }

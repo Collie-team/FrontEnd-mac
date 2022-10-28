@@ -16,11 +16,11 @@ enum NavigationState {
 
 final class RootViewModel: ObservableObject {
     @Published var navigationState: NavigationState = .authentication
-    var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], userIds: [])
+    var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
     
     private let businessSubscriptionService = BusinessSubscriptionService()
     
-    var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: [])
+    var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     var authenticationToken: String?
     var availableBusiness: [Business] = []
     

@@ -42,6 +42,15 @@ struct BusinessManagerTaskView: View {
 
 struct BusinessManagerTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessManagerTaskView(task: .init(name: "Enviar a cópia dos documentos", description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")), handleTaskOpen: {}, handleTaskDuplicate: {})
+        BusinessManagerTaskView(
+            task: .init(
+                journeyId: "",
+                name: "Enviar a cópia dos documentos",
+                description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ",
+                taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"),
+                startDate: Date(),
+                endDate: Date()),
+            handleTaskOpen: {},
+            handleTaskDuplicate: {})
     }
 }

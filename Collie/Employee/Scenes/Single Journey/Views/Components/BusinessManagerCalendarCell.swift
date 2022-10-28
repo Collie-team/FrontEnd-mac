@@ -24,11 +24,12 @@ struct BusinessManagerCalendarCell: View {
         monthStruct.getDayDate(day: day, month: month, year: year)
     }
     
-    var eventsInDate: [Event] {
-        bmSingleJourneyListViewModel.journey.events.filter { event in
-            event.startDate == date
-        }
-    }
+    var eventsInDate: [Event] = []
+//    {
+//        bmSingleJourneyListViewModel.journey.events.filter { event in
+//            event.startDate == date
+//        }
+//    }
     
     var body: some View {
         VStack {

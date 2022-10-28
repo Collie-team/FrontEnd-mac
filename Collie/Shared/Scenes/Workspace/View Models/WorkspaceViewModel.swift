@@ -21,7 +21,7 @@ final class WorkspaceViewModel: ObservableObject {
     var handleWorkspaceSelection: (Business) -> () = {_ in }
 
     func createNewWorkspace() {
-        let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], userIds: [])
+        let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], tasks: [], events: [])
         self.selectedWorkspace = business
         self.workspaceViewState = .loadingWorkspace
         newWorkspaceHandler(workspaceName) { availableBusiness in

@@ -34,25 +34,25 @@ final class BusinessManagerSingleJourneyViewModel: ObservableObject {
     
     // MARK: - Task functions
     func saveTask(_ task: Task) {
-        if let index = self.journey.tasks.firstIndex(where: { $0.id == task.id }) {
-            self.journey.tasks[index] = task
-        } else {
-            self.journey.tasks.append(task)
-        }
+//        if let index = self.journey.tasks.firstIndex(where: { $0.id == task.id }) {
+//            self.journey.tasks[index] = task
+//        } else {
+//            self.journey.tasks.append(task)
+//        }
         objectWillChange.send()
     }
     
     func removeTask(_ task: Task) {
-        if let index = journey.tasks.firstIndex(where: {$0.id == task.id}) {
-            self.journey.tasks.remove(at: index)
-        }
+//        if let index = journey.tasks.firstIndex(where: {$0.id == task.id}) {
+//            self.journey.tasks.remove(at: index)
+//        }
         objectWillChange.send()
     }
     
     func duplicateTask(_ task: Task) {
         var duplicatedTask = task
         duplicatedTask.id = UUID().uuidString
-        self.journey.tasks.append(duplicatedTask)
+//        self.journey.tasks.append(duplicatedTask)
     }
     
     func selectTask(_ task: Task) {
@@ -65,26 +65,26 @@ final class BusinessManagerSingleJourneyViewModel: ObservableObject {
     
     // MARK: - Event functions
     func saveEvent(_ event: Event) {
-        if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
-            self.journey.events[index] = event
-        } else {
-            self.journey.events.append(event)
-            sortJourneyEvents()
-        }
+//        if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
+//            self.journey.events[index] = event
+//        } else {
+//            self.journey.events.append(event)
+//            sortJourneyEvents()
+//        }
         objectWillChange.send()
     }
     
     func removeEvent(_ event: Event) {
-        if let index = journey.events.firstIndex(where: {$0.id == event.id}) {
-            self.journey.events.remove(at: index)
-        }
+//        if let index = journey.events.firstIndex(where: {$0.id == event.id}) {
+//            self.journey.events.remove(at: index)
+//        }
         objectWillChange.send()
     }
     
     func duplicateEvent(_ event: Event) {
         var duplicatedEvent = event
         duplicatedEvent.id = UUID().uuidString
-        self.journey.events.append(duplicatedEvent)
+//        self.journey.events.append(duplicatedEvent)
     }
     
     func selectEvent(_ event: Event) {
@@ -96,14 +96,14 @@ final class BusinessManagerSingleJourneyViewModel: ObservableObject {
     }
     
     func sortJourneyEvents() {
-        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
-            eventA.startDate < eventB.startDate
-        })
+//        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
+//            eventA.startDate < eventB.startDate
+//        })
     }
     
     func filterSelectedEvents() {
-        self.selectedEvents = journey.events.filter({ event in
-            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
-        })
+//        self.selectedEvents = journey.events.filter({ event in
+//            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
+//        })
     }
 }
