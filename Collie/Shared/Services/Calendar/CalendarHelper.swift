@@ -84,4 +84,11 @@ final class CalendarHelper {
         let weekday = calendar.component(.weekday, from: lastDayOfMonth) - 1
         return weekday
     }
+    
+    func endOfTheDay(of date: Date) -> Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return calendar.date(byAdding: components, to: date)!
+    }
 }

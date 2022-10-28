@@ -72,6 +72,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
@@ -105,6 +106,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
@@ -138,6 +140,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
