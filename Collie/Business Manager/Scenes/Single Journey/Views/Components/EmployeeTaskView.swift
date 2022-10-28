@@ -9,6 +9,8 @@ struct EmployeeTaskView: View {
     var handleTaskOpen: () -> ()
     var handleTaskCheckToggle: () -> ()
     
+    let lateBackgroundColor = Color(red: 255/255, green: 237/255, blue: 237/255)
+    
     var body: some View {
         ZStack {
             if isLate {
@@ -67,7 +69,7 @@ struct EmployeeTaskView: View {
             .padding(.vertical, 8)
             .padding(.horizontal)
             .frame(height: 46)
-            .background(Color.white)
+            .background(isLate ? lateBackgroundColor :Color.white)
             .cornerRadius(8)
             .modifier(CustomBorder())
             .padding(.leading, isLate ? 42 : 0)

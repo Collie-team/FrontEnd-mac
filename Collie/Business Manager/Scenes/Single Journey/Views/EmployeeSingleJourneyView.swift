@@ -233,18 +233,17 @@ struct EmployeeSingleJourneyView: View {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditTaskView(
-                        task: viewModel.chosenTaskModel?.task,
+                    EmployeeTaskFullView(
+                        userTask: viewModel.chosenTaskModel!.userTask!,
+                        task: viewModel.chosenTaskModel!.task,
                         handleClose: {
+                            viewModel.unselectTask()
+                        },
+                        handleCheckToggle: {
                             withAnimation {
-                                viewModel.unselectTask()
+                                viewModel.checkTaskModel(viewModel.chosenTaskModel!)
                             }
-                        },
-                        handleTaskSave: { task in
-//                            viewModel.saveTask(task)
-                        },
-                        handleTaskDeletion: { _ in },
-                        handleTaskDuplicate: { _ in }
+                        }
                     )
                     .frame(maxWidth: 800)
                 }
