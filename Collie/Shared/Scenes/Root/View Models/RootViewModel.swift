@@ -21,32 +21,42 @@ final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
     
     var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
+    var currentBusinessUser: BusinessUser?
     var authenticationToken: String?
     var availableBusiness: [Business] = []
+    var availableBusinessUsers: [BusinessUser] = []
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
         self.authenticationToken = authToken
         self.currentUser = user
-        businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { businessData in
-            print(businessData)
-            self.availableBusiness = businessData
+        businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { business, businessUser  in
+            print(business)
+            self.availableBusiness = business
+            self.availableBusinessUsers = businessUser
             self.navigationState = .workspace
         }
     }
     
-    func createWorkspace(workspaceName: String, _ completion: @escaping ([Business]) -> ()) {
-        businessSubscriptionService.createBusiness(user: currentUser, businessName: workspaceName, authenticationToken: authenticationToken!) { user, userBusiness in
-            self.currentUser = user
-            self.availableBusiness = userBusiness
-            completion(self.availableBusiness)
+    func createWorkspace(workspaceName: String, _ completion: @escaping (Business) -> ()) {
+        businessSubscriptionService.createBusiness(user: currentUser, businessName: workspaceName, authenticationToken: authenticationToken!) { business, businessUser  in
+            self.currentBusinessUser = businessUser
+            completion(business)
         }
     }
     
     func handleWorkspaceSelection(business: Business) {
         // GAMBIARRA MASTER WARNING
-        print("USERNAME: \(currentUser.name)")
         businessSelected = business
-        if currentUser.name.localizedCaseInsensitiveContains("GESTOR") {
+        if currentBusinessUser != nil {
+            redirectBasedOnRole()
+        } else {
+            currentBusinessUser = availableBusinessUsers.first(where: {$0.businessId == business.id})
+            redirectBasedOnRole()
+        }
+    }
+    
+    func redirectBasedOnRole() {
+        if currentBusinessUser!.role == .admin || currentBusinessUser!.role == .manager {
             self.navigationState = .manager
         } else {
             self.navigationState = .employee

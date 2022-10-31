@@ -13,7 +13,7 @@ final class BusinessSubscriptionService {
 //    private let domainUrl = "https://backend-python-dev.vercel.app/"
     private let domainUrl = "http://127.0.0.1:8000/"
     
-    func createBusiness(user: UserModel, businessName: String, authenticationToken: String, _ completion: @escaping (UserModel, [Business]) -> ()) {
+    func createBusiness(user: UserModel, businessName: String, authenticationToken: String, _ completion: @escaping (Business, BusinessUser) -> ()) {
         let url = domainUrl + "business/create/"
         
         let headers: HTTPHeaders = [
@@ -44,7 +44,7 @@ final class BusinessSubscriptionService {
                 print(response.data!.description)
                 let decodedData = try JSONDecoder().decode(User_BusinessDTO.self, from: response.data!)
                 print(decodedData)
-                completion(decodedData.user, decodedData.business)
+                completion(decodedData.business, decodedData.businessUser)
             } catch {
                 //handle error
                 print(error)
@@ -52,7 +52,7 @@ final class BusinessSubscriptionService {
         }
     }
     
-    func fetchBusiness(user: UserModel, authenticationToken: String, _ completion: @escaping ([Business]) -> ()) {
+    func fetchBusiness(user: UserModel, authenticationToken: String, _ completion: @escaping ([Business], [BusinessUser]) -> ()) {
         let url = domainUrl + "business/fetch/" + "?user_id=\(user.id)"
         
         let headers: HTTPHeaders = [
@@ -78,7 +78,7 @@ final class BusinessSubscriptionService {
             do {
                 let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
                 print(decodedData)
-                completion(decodedData.business)
+                completion(decodedData.business, decodedData.businessUsers)
             } catch {
                 //handle error
                 print(error)

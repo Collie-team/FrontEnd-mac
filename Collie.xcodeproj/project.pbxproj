@@ -13,7 +13,6 @@
 		5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */; };
 		5B1BAD4A2901C1D900EFF0E4 /* BusinessSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD492901C1D900EFF0E4 /* BusinessSubscriptionService.swift */; };
 		5B1BAD4D2901C34500EFF0E4 /* User_BusinessDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD4C2901C34500EFF0E4 /* User_BusinessDTO.swift */; };
-		5B1BAD4F2901C37000EFF0E4 /* GenericDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD4E2901C37000EFF0E4 /* GenericDTO.swift */; };
 		5B1BAD512901CEC800EFF0E4 /* BusinessDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD502901CEC800EFF0E4 /* BusinessDTO.swift */; };
 		5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */; };
 		5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */; };
@@ -116,7 +115,6 @@
 		5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSubscriptionService.swift; sourceTree = "<group>"; };
 		5B1BAD492901C1D900EFF0E4 /* BusinessSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSubscriptionService.swift; sourceTree = "<group>"; };
 		5B1BAD4C2901C34500EFF0E4 /* User_BusinessDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_BusinessDTO.swift; sourceTree = "<group>"; };
-		5B1BAD4E2901C37000EFF0E4 /* GenericDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDTO.swift; sourceTree = "<group>"; };
 		5B1BAD502901CEC800EFF0E4 /* BusinessDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDTO.swift; sourceTree = "<group>"; };
 		5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserFormsView.swift; sourceTree = "<group>"; };
 		5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				5B1BAD4C2901C34500EFF0E4 /* User_BusinessDTO.swift */,
-				5B1BAD4E2901C37000EFF0E4 /* GenericDTO.swift */,
 				5B1BAD502901CEC800EFF0E4 /* BusinessDTO.swift */,
 			);
 			path = ModelDTO;
@@ -1030,7 +1027,6 @@
 				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
 				5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */,
 				5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */,
-				5B1BAD4F2901C37000EFF0E4 /* GenericDTO.swift in Sources */,
 				5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
