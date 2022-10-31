@@ -45,7 +45,6 @@ final class RootViewModel: ObservableObject {
     }
     
     func handleWorkspaceSelection(business: Business) {
-        // GAMBIARRA MASTER WARNING
         businessSelected = business
         if currentBusinessUser != nil {
             redirectBasedOnRole()
