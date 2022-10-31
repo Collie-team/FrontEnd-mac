@@ -18,6 +18,7 @@ extension Color {
     static let collieAzulEscuro = Color(red: 11/255, green: 0/255, blue: 58/255)
     static let collieRoxo = Color(red: 88/255, green: 63/255, blue: 255/255)
     static let collieRoxoClaro = Color(red: 184/255, green: 197/255, blue: 249/255)
+    static let collieLilas = Color(red: 179/255, green: 190/255, blue: 255/255)
     static let collieAmareloForte = Color(red: 255/255, green: 239/255, blue: 100/255)
     static let collieAmareloFraco = Color(red: 255/255, green: 249/255, blue: 193/255)
     static let collieRosaEscuro = Color(red: 255/255, green: 74/255, blue: 139/255)

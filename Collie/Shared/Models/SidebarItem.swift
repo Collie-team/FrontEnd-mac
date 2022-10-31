@@ -36,11 +36,11 @@ class SidebarItem: Identifiable {
     private func getSystemImageName(for option: SidebarItemOption) -> String {
         switch option {
         case .dashboard:
-            return "star"
+            return "chart.xyaxis.line"
         case .journeys:
-            return "star"
+            return "burst"
         case .teamList:
-            return "star"
+            return "person.2"
         case .payments:
             return "star"
         }

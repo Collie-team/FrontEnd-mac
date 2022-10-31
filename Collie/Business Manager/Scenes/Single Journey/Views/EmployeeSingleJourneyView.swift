@@ -43,11 +43,23 @@ struct EmployeeSingleJourneyView: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
                             
+                            HelpButton(handleTap: {
+                                
+                            })
+                            
                             Spacer()
                             
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
                         }
+                        
+                        HStack {
+                            Text("\(viewModel.uncompletedTasksCount) tarefas pendentes")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
+                        .padding(.vertical)
                         
                         ScrollView(.vertical) {
                             HStack {
@@ -163,9 +175,13 @@ struct EmployeeSingleJourneyView: View {
                     
                     VStack {
                         HStack {
-                            Text("Calendário")
+                            Text("Eventos")
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
+                            
+                            HelpButton(handleTap: {
+                                
+                            })
                             
                             Spacer()
                         }

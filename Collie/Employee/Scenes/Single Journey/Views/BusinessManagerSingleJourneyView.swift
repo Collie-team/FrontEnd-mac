@@ -56,6 +56,10 @@ struct BusinessManagerSingleJourneyView: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
                             
+                            HelpButton(handleTap: {
+                                // TO DO
+                            })
+
                             Spacer()
                             
                             Button {
@@ -101,9 +105,13 @@ struct BusinessManagerSingleJourneyView: View {
                     
                     VStack {
                         HStack {
-                            Text("Calendário")
+                            Text("Eventos")
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
+                            
+                            HelpButton(handleTap: {
+                                // TO DO
+                            })
                             
                             Spacer()
                             

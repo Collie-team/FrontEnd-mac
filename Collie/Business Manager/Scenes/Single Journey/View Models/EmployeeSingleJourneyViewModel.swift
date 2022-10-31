@@ -38,6 +38,8 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     
     @Published var chosenEvent: Event?
     
+    @Published var uncompletedTasksCount: Int = 0
+    
     @Published var categories: [TaskCategory] = [
         TaskCategory(name: "Integração", colorName: "vermelho", systemImageName: "star"),
         TaskCategory(name: "Integração", colorName: "roxo", systemImageName: "lock"),
@@ -166,5 +168,7 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         self.nextTaskModels = allTaskModels.filter({ taskModel in
             taskModel.task.endDate > CalendarHelper().endOfTheDay(of: Date()) && taskModel.userTask?.doneDate == nil
         })
+        
+        self.uncompletedTasksCount = dailyTaskModels.count + nextTaskModels.count
     }
 }

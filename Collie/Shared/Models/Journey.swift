@@ -10,4 +10,5 @@ struct Journey: Identifiable, Codable {
     var tasks: [Task]
     var events: [Event]
     var managers: [UserModel]
+    
 }

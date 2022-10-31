@@ -14,12 +14,45 @@ struct EmployeeEventsCalendarView: View {
     
     var body: some View {
         VStack {
-            VStack {
-                EmployeeDateScrollerView(employeeEventsCalendarViewModel: viewModel)
-                dayOfWeekStack
-                calendarGrid
+            HStack {
+                Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
+                    .font(.system(size: 18, weight: .bold))
+                Spacer()
             }
-            .padding(.bottom)
+            .padding(.top)
+            
+            VStack {
+                ScrollView(.vertical) {
+                    if employeeSingleJourneyViewModel.selectedEvents.isEmpty {
+                        VStack {
+                            Spacer()
+                            Image("noEventsImage")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 250)
+                                .padding(.bottom)
+                            Text("Não tem nenhum evento programado para esse dia!")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(Color.collieLilas)
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        }
+                        .padding()
+                    } else {
+                        ForEach(employeeSingleJourneyViewModel.selectedEvents) { event in
+                            EmployeeEventView(
+                                event: event,
+                                handleEventOpen: {
+                                    handleSelectEvent(event)
+                                }
+                            )
+                        }
+                        .padding(2)
+                    }
+                }
+                .padding(.bottom)
+                Spacer()
+            }
             
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.collieCinzaBorda)
@@ -27,23 +60,12 @@ struct EmployeeEventsCalendarView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.bottom)
             
-            HStack {
-                Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
-                    .font(.system(size: 18, weight: .bold))
-                Spacer()
+            VStack {
+                EmployeeDateScrollerView(employeeEventsCalendarViewModel: viewModel)
+                dayOfWeekStack
+                calendarGrid
             }
-            
-            ScrollView(.vertical) {
-                ForEach(employeeSingleJourneyViewModel.selectedEvents) { event in
-                    EmployeeEventView(
-                        event: event,
-                        handleEventOpen: {
-                            handleSelectEvent(event)
-                        }
-                    )
-                }
-                .padding(2)
-            }
+            .padding(.bottom)
         }
     }
     

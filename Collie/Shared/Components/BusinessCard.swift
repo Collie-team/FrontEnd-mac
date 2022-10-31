@@ -29,7 +29,7 @@ struct BusinessCard: View {
             VStack {
                 Text(business.name)
                     .font(.system(size: 21, weight: .bold))
-                Text("\(business.usersIds.count) Membros")
+                Text("\(business.userIds.count) Membros")
                     .font(.system(size: 14, weight: .light))
             }
             .foregroundColor(.black)
@@ -44,7 +44,7 @@ struct BusinessCard: View {
 
 struct BusinessCard_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessCard(business: .init(name: "Aurea", description: "", journeys: [], usersIds: ["", "", "", "", "", "", "", "", ""]))
+        BusinessCard(business: .init(name: "Aurea", description: "", journeys: [], userIds: ["", "", "", "", "", "", "", "", ""]))
             .colorScheme(.light)
     }
 }

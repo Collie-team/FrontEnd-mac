@@ -2,9 +2,9 @@ import SwiftUI
 
 struct WorkspaceView: View {
     @ObservedObject var viewModel = WorkspaceViewModel()
-    @State var showCreateWorkspaceForm = false
-    @State var showSidebar = false
-        
+    @EnvironmentObject var rootViewModel: RootViewModel
+//    @State var showCreateWorkspaceForm = false
+//    @State var showSidebar = false
     var body: some View {
         ZStack {
             VStack {
@@ -16,21 +16,33 @@ struct WorkspaceView: View {
                 
                 Spacer()
                 
-                VStack {
-                    VStack {
-                        if viewModel.selectedWorkspace != nil {
-                            loadingWorkspace
-                        } else if showCreateWorkspaceForm {
-                            createWorkspaceForm
-                        } else {
-                            if viewModel.workspacesAvailable.isEmpty {
-                                noWorkspacesFoundView
-                            } else {
-                                workspacesListView
-                            }
-                        }
-                    }
+                switch viewModel.workspaceViewState {
+                case .loading:
+                    LoadingView()
+                case .loadingWorkspace:
+                    loadingWorkspace
+                case .createForm:
+                    createWorkspaceForm
+                case .noWorkspacesFound:
+                    noWorkspacesFoundView
+                case .workspaceList:
+                    workspacesListView
                 }
+//                VStack {
+//                    VStack {
+//                        if viewModel.selectedWorkspace != nil {
+//                            loadingWorkspace
+//                        } else if showCreateWorkspaceForm {
+//                            createWorkspaceForm
+//                        } else {
+//                            if viewModel.workspacesAvailable.isEmpty {
+//                                noWorkspacesFoundView
+//                            } else {
+//                                workspacesListView
+//                            }
+//                        }
+//                    }
+//                }
                 
                 Spacer()
             }
@@ -38,14 +50,20 @@ struct WorkspaceView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.collieBranco.ignoresSafeArea())
             .onAppear {
-                viewModel.handleAppear()
-            }
-            
-            if showSidebar {
-                BusinessManagerSidebarView(handleSignOut:{})
+                // WARNING - GAMBIARRA CABULOSA
+                // TODO: Dependecy injection
+                viewModel.workspacesAvailable = rootViewModel.availableBusiness
+                viewModel.newWorkspaceHandler = rootViewModel.createWorkspace
+                viewModel.handleWorkspaceSelection = rootViewModel.handleWorkspaceSelection
+                if viewModel.workspacesAvailable.isEmpty {
+                    viewModel.workspaceViewState = .noWorkspacesFound
+                } else {
+                    viewModel.workspaceViewState = .workspaceList
+                }
             }
         }
     }
+    
     
     var createWorkspaceForm: some View {
         VStack {
@@ -53,7 +71,7 @@ struct WorkspaceView: View {
                 Text("Criar Workspace")
                     .font(.system(size: 30, weight: .bold))
                     .foregroundColor(.black)
-                   
+                
                 Spacer()
                 
                 VStack {
@@ -76,12 +94,9 @@ struct WorkspaceView: View {
             .modifier(WorkspaceCardModifier())
             
             WorkspaceButton(title: "salvar", action: {
-                viewModel.createNewWorkspace {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        showSidebar = true
-                    }
-                }
+                viewModel.createNewWorkspace()
             })
+            .disabled(viewModel.workspaceName.isEmpty)
         }
     }
     
@@ -96,12 +111,12 @@ struct WorkspaceView: View {
                 LoadingIndicator()
                 Text("Carregando...")
                     .font(.system(size: 18, weight: .medium))
-                NavigationLink("", isActive: $showSidebar, destination: {
-                    BusinessManagerSidebarView(handleSignOut: {})
-                })
-                .opacity(0)
+//                NavigationLink("", isActive: $showSidebar, destination: {
+//                    BusinessManagerSidebarView()
+//                })
+//                .opacity(0)
             }
-                
+            
         }
         .frame(maxWidth: NSScreen.main!.frame.width > 600 ? (NSScreen.main!.frame.width * 0.6) : .infinity)
     }
@@ -120,7 +135,7 @@ struct WorkspaceView: View {
             .modifier(WorkspaceCardModifier())
             
             WorkspaceButton(title: "criar workspace", action: {
-                showCreateWorkspaceForm = true
+                viewModel.workspaceViewState = .createForm
             })
         }
     }
@@ -136,7 +151,7 @@ struct WorkspaceView: View {
                 }
                 .foregroundColor(.black)
                 .padding(.bottom, 32)
-
+                
                 if viewModel.workspacesAvailable.count > 3 {
                     ScrollView(.horizontal) {
                         HStack(spacing: 32) {
@@ -144,11 +159,7 @@ struct WorkspaceView: View {
                             ForEach(viewModel.workspacesAvailable) { business in
                                 BusinessCard(business: business)
                                     .onTapGesture {
-                                        viewModel.selectWorkspace(business) {
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                                showSidebar = true
-                                            }
-                                        }
+                                        viewModel.selectWorkspace(business)
                                     }
                                     .contentShape(Rectangle())
                             }
@@ -162,11 +173,7 @@ struct WorkspaceView: View {
                         ForEach(viewModel.workspacesAvailable) { business in
                             BusinessCard(business: business)
                                 .onTapGesture {
-                                    viewModel.selectWorkspace(business) {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                            showSidebar = true
-                                        }
-                                    }
+                                    viewModel.selectWorkspace(business)
                                 }
                                 .contentShape(Rectangle())
                         }
@@ -179,7 +186,7 @@ struct WorkspaceView: View {
             .modifier(WorkspaceCardModifier())
             
             WorkspaceButton(title: "criar novo workspace") {
-                showCreateWorkspaceForm = true
+                viewModel.workspaceViewState = .createForm
             }
         }
     }

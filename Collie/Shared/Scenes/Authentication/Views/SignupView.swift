@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignupView: View {
+    var completion: (UserModel, String) -> ()
     @EnvironmentObject var viewModel: AuthenticationViewModel
     @State var on = true
     var body: some View {
@@ -95,7 +96,9 @@ struct SignupView: View {
             Spacer()
             Button(action: {
                 viewModel.authenticationStatus = .valid
-                viewModel.createUser()
+                viewModel.createUser() { user, token in
+                    completion(user, token)
+                }
             }) {
                 Text("Cadastrar")
                     .foregroundColor(.white)
@@ -119,7 +122,7 @@ struct SignupView: View {
 
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupView()
+        SignupView(completion: {_,_  in})
             .environmentObject(AuthenticationViewModel())
     }
 }

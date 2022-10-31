@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewUserFormsView: View {
     @EnvironmentObject var viewModel: TeamListViewModel
-    @State var newUser = UserModel(name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: "")
+    @State var newUser = UserModel(name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: [])
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {

@@ -8,9 +8,9 @@ struct UserModel: Identifiable, Codable, Hashable {
     var jobDescription: String
     var personalDescription: String
     var imageURL: String
-    var businessId: String
+    var businessId: [String]
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
         case email = "email"
