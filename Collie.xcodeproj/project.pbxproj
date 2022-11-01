@@ -74,7 +74,6 @@
 		5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65528CFC37E006975D3 /* CustomColors.swift */; };
 		5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */; };
 		5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65A28D16FE5006975D3 /* SidebarItem.swift */; };
-		5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC65F28D243AB006975D3 /* PaymentsView.swift */; };
 		5BACC66528D24413006975D3 /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC66428D24413006975D3 /* TeamListView.swift */; };
 		5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC66928D2610F006975D3 /* BusinessManagerSingleJourneyView.swift */; };
 		5BACC66C28D26127006975D3 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC66B28D26127006975D3 /* Journey.swift */; };
@@ -176,7 +175,6 @@
 		5BACC65528CFC37E006975D3 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
 		5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItemView.swift; sourceTree = "<group>"; };
 		5BACC65A28D16FE5006975D3 /* SidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItem.swift; sourceTree = "<group>"; };
-		5BACC65F28D243AB006975D3 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 		5BACC66428D24413006975D3 /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
 		5BACC66928D2610F006975D3 /* BusinessManagerSingleJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerSingleJourneyView.swift; sourceTree = "<group>"; };
 		5BACC66B28D26127006975D3 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
@@ -512,7 +510,6 @@
 				5BDAB8CA28E4D5F2009BC353 /* CreateOrEditJourney */,
 				5BACC64A28CFC21B006975D3 /* Sidebar */,
 				5BACC66128D243D5006975D3 /* Team List */,
-				5BACC65C28D2438E006975D3 /* Payments */,
 				5BACC64228CFC12B006975D3 /* Journey List */,
 				5BACC66628D260EF006975D3 /* Single Journey */,
 				5BACC63F28CFC118006975D3 /* Dashboard */,
@@ -664,30 +661,6 @@
 				5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		5BACC65C28D2438E006975D3 /* Payments */ = {
-			isa = PBXGroup;
-			children = (
-				5BACC65E28D2439F006975D3 /* View Models */,
-				5BACC65D28D2439B006975D3 /* Views */,
-			);
-			path = Payments;
-			sourceTree = "<group>";
-		};
-		5BACC65D28D2439B006975D3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5BACC65F28D243AB006975D3 /* PaymentsView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5BACC65E28D2439F006975D3 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC66128D243D5006975D3 /* Team List */ = {
@@ -1024,7 +997,6 @@
 				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
-				5BACC66028D243AB006975D3 /* PaymentsView.swift in Sources */,
 				5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */,
 				5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */,
 				5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */,
@@ -1180,7 +1152,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = VWZ6P536SX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1205,7 +1177,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

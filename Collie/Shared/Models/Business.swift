@@ -6,7 +6,6 @@ struct Business: Codable, Identifiable {
     var description: String
     var journeys: [Journey]
     var tasks: [Task]
-//    var userIds: [String]
     var events: [Event]
     var imageURL: String?
 }

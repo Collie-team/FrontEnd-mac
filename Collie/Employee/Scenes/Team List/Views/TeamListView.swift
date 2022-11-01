@@ -2,9 +2,9 @@ import SwiftUI
 
 enum ListComponents: CGFloat {
     case tasks = 0.1
-    case progress = 0.3
-    case phase = 0.17
-    case journey = 0.12
+    case progress = 0.2
+    case contact = 0.32
+    case journey = 0.24
     
     static func alignWith(component: ListComponents) -> CGFloat {
         return component.rawValue
@@ -24,7 +24,7 @@ struct TeamListView: View {
                                 .font(.system(size: 34, weight: .bold, design: .default))
                                 .foregroundColor(Color.black)
                                 .padding(.bottom, 12)
-                            Text("Faça um acompanhamento geral do seu time :P")
+                            Text("Faça um acompanhamento geral do seu time")
                                 .font(.system(size: 16, weight: .semibold, design: .rounded))
                                 .foregroundColor(Color.black.opacity(0.6))
                         }
@@ -58,8 +58,8 @@ struct TeamListView: View {
                                     viewModel.newUserPopupEnabled = true
                                 }) {
                                     HStack {
-                                        Image(systemName: "plus.circle.fill")
-                                        Text("Adicionar Usuários")
+                                        Image(systemName: "person.crop.circle.badge.plus")
+                                        Text("Adicionar pessoas")
                                     }
                                     .foregroundColor(.white)
                                     .padding(8)
@@ -70,18 +70,18 @@ struct TeamListView: View {
                                 .cornerRadius(8)
                                 .contentShape(Rectangle())
                                 
-                                Button(action: {}) {
-                                    HStack {
-                                        Text("Filtros")
-                                            .padding(.trailing,8)
-                                        Image(systemName: "chevron.down")
-                                    }
-                                    .foregroundColor(.gray)
-                                    .padding(8)
-                                }
-                                .buttonStyle(.plain)
-                                .background(Color.white)
-                                .cornerRadius(8)
+//                                Button(action: {}) {
+//                                    HStack {
+//                                        Text("Filtros")
+//                                            .padding(.trailing,8)
+//                                        Image(systemName: "chevron.down")
+//                                    }
+//                                    .foregroundColor(.gray)
+//                                    .padding(8)
+//                                }
+//                                .buttonStyle(.plain)
+//                                .background(Color.white)
+//                                .cornerRadius(8)
                             }
                         }
                     }
@@ -103,19 +103,22 @@ struct TeamListView: View {
                                     Text("Nome")
                                     Spacer()
                                     
+                                    VStack {
+                                        Text("Contato")
+                                    }
+                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
                                     
                                     VStack {
                                         Text("Jornada")
                                     }
                                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                                     
-                                    VStack {
-                                        Text("Fase")
-                                    }
-                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .phase))
                                     
-                                    VStack {
-                                        Text("Progresso")
+                                    VStack() {
+                                        HStack {
+                                            Text("Progresso")
+                                            Spacer()
+                                        }
                                     }
                                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
                                     
@@ -123,19 +126,10 @@ struct TeamListView: View {
                                         Text("Tarefas")
                                     }
                                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
-//                                    .border(Color.blue)
+                                    
                                 }
                                 .frame(height: geometry.size.height)
                             }
-//                            .border(Color.black)
-                            Button(action: {}) {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 13))
-                                    .foregroundColor(.gray)
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(true)
-                            .opacity(0)
                         }
                         .foregroundColor(.black)
                         .font(.system(size: 20, weight: .semibold))
@@ -159,16 +153,19 @@ struct TeamListView: View {
                                         Spacer()
                                         
                                         VStack {
+                                            Text(verbatim: "emailExemple@email.com")
+                                                .font(.system(size: 15))
+                                                .opacity(0.5)
+                                                
+                                        }
+                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
+                                        
+                                        VStack {
                                             Text("iOS Dev")
                                                 .font(.system(size: 17))
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                                         
-                                        VStack {
-                                            Text("Pré-Onboarding")
-                                                .font(.system(size: 15))
-                                        }
-                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .phase))
                                         
                                         VStack {
                                             ProgressBarView()
@@ -184,14 +181,6 @@ struct TeamListView: View {
                                     }
                                 }
                                 .foregroundColor(.black)
-                                
-                                    
-                                Button(action: {}) {
-                                    Image(systemName: "xmark")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                }
-                                .buttonStyle(.plain)
                             }
                             .padding()
                             .frame(height: 60)
