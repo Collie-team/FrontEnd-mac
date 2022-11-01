@@ -56,7 +56,6 @@
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
 		5B954E7D2901C2C700FA579E /* EmployeeEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */; };
-		5B954E7F2901C30400FA579E /* UserEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E7E2901C30400FA579E /* UserEvent.swift */; };
 		5B954E812901C38D00FA579E /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E802901C38D00FA579E /* UserTask.swift */; };
 		5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E822901C6D700FA579E /* CheckBoxView.swift */; };
 		5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E842901CAB800FA579E /* EmployeeTaskView.swift */; };
@@ -66,6 +65,7 @@
 		5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */; };
 		5B954E922906C0A700FA579E /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* DemoView.swift */; };
 		5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFDF290B182900C1078A /* HelpButton.swift */; };
+		5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -158,7 +158,6 @@
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventView.swift; sourceTree = "<group>"; };
-		5B954E7E2901C30400FA579E /* UserEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEvent.swift; sourceTree = "<group>"; };
 		5B954E802901C38D00FA579E /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		5B954E822901C6D700FA579E /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		5B954E842901CAB800FA579E /* EmployeeTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskView.swift; sourceTree = "<group>"; };
@@ -168,6 +167,7 @@
 		5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDateScrollerView.swift; sourceTree = "<group>"; };
 		5B954E912906C0A700FA579E /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		5BA9AFDF290B182900C1078A /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
+		5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskFullView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -652,7 +652,6 @@
 				5BF73BD128DA3D8C00B74060 /* Task.swift */,
 				5BF73BD328DA3D9700B74060 /* TaskCategory.swift */,
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
-				5B954E7E2901C30400FA579E /* UserEvent.swift */,
 				5B954E802901C38D00FA579E /* UserTask.swift */,
 			);
 			path = Models;
@@ -825,6 +824,7 @@
 				5B954E7B2901C1F600FA579E /* Components */,
 				5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */,
 				5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */,
+				5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1016,7 +1016,6 @@
 				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
 				5B49600028E75F810024D064 /* SendButton.swift in Sources */,
-				5B954E7F2901C30400FA579E /* UserEvent.swift in Sources */,
 				5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */,
 				5B495FFE28E75EDD0024D064 /* IconButton.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
@@ -1025,6 +1024,7 @@
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
+				5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */,
 				5B49605028EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
