@@ -43,11 +43,23 @@ struct EmployeeSingleJourneyView: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
                             
+                            HelpButton(handleTap: {
+                                
+                            })
+                            
                             Spacer()
                             
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
                         }
+                        
+                        HStack {
+                            Text("\(viewModel.uncompletedTasksCount) tarefas pendentes")
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
+                        .padding(.vertical)
                         
                         ScrollView(.vertical) {
                             HStack {
@@ -72,6 +84,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
@@ -105,6 +118,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
@@ -138,6 +152,7 @@ struct EmployeeSingleJourneyView: View {
                                         task: taskModel.task,
                                         userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
                                         checked: viewModel.isTaskModelChecked(taskModel),
+                                        isLate: viewModel.isTaskModelLate(taskModel),
                                         handleTaskOpen: {
                                             viewModel.selectTaskModel(taskModel)
                                         },
@@ -160,9 +175,13 @@ struct EmployeeSingleJourneyView: View {
                     
                     VStack {
                         HStack {
-                            Text("Calendário")
+                            Text("Eventos")
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
+                            
+                            HelpButton(handleTap: {
+                                
+                            })
                             
                             Spacer()
                         }
@@ -230,18 +249,17 @@ struct EmployeeSingleJourneyView: View {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditTaskView(
-                        task: viewModel.chosenTaskModel?.task,
+                    EmployeeTaskFullView(
+                        userTask: viewModel.chosenTaskModel!.userTask!,
+                        task: viewModel.chosenTaskModel!.task,
                         handleClose: {
+                            viewModel.unselectTask()
+                        },
+                        handleCheckToggle: {
                             withAnimation {
-                                viewModel.unselectTask()
+                                viewModel.checkTaskModel(viewModel.chosenTaskModel!)
                             }
-                        },
-                        handleTaskSave: { task in
-//                            viewModel.saveTask(task)
-                        },
-                        handleTaskDeletion: { _ in },
-                        handleTaskDuplicate: { _ in }
+                        }
                     )
                     .frame(maxWidth: 800)
                 }
@@ -306,7 +324,7 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
                 journey: Journey(
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                    imageURL: URL(fileURLWithPath: ""),
+                    imageURL: "",
                     startDate: Date()
 //                    employees: [],
 //                    tasks: [

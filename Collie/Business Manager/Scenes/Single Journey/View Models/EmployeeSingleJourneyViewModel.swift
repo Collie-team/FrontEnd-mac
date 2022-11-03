@@ -26,6 +26,8 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     
     @Published var allTaskModels: [TaskModel] = []
     
+    @Published var lateTaskModels: [TaskModel] = []
+    
     @Published var dailyTaskModels: [TaskModel] = []
     
     @Published var nextTaskModels: [TaskModel] = []
@@ -35,6 +37,8 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     @Published var chosenTaskModel: TaskModel?
     
     @Published var chosenEvent: Event?
+    
+    @Published var uncompletedTasksCount: Int = 0
     
     @Published var categories: [TaskCategory] = [
         TaskCategory(name: "Integração", colorName: "vermelho", systemImageName: "star"),
@@ -83,6 +87,10 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     }
     
     // MARK: - Task functions
+    func isTaskModelLate(_ taskModel: TaskModel) -> Bool {
+        (taskModel.task.endDate.timeIntervalSince1970 < Date().timeIntervalSince1970) && taskModel.userTask?.doneDate == nil
+    }
+    
     func saveTaskModel(_ taskModel: TaskModel) {
         // TO DO
     }
@@ -154,11 +162,13 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         })
         
         self.dailyTaskModels = allTaskModels.filter({ taskModel in
-            CalendarHelper().areDatesInSameDay(taskModel.task.startDate, Date()) && taskModel.userTask?.doneDate == nil
+            taskModel.task.endDate < CalendarHelper().endOfTheDay(of: Date()) && taskModel.userTask?.doneDate == nil
         })
         
         self.nextTaskModels = allTaskModels.filter({ taskModel in
-            !dailyTaskModels.contains(where: { $0.id == taskModel.task.id }) && taskModel.userTask?.doneDate == nil
+            taskModel.task.endDate > CalendarHelper().endOfTheDay(of: Date()) && taskModel.userTask?.doneDate == nil
         })
+        
+        self.uncompletedTasksCount = dailyTaskModels.count + nextTaskModels.count
     }
 }

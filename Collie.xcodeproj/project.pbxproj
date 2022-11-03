@@ -65,6 +65,8 @@
 		5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */; };
 		5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */; };
 		5B954E922906C0A700FA579E /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* DemoView.swift */; };
+		5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFDF290B182900C1078A /* HelpButton.swift */; };
+		5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -166,6 +168,8 @@
 		5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCalendarCell.swift; sourceTree = "<group>"; };
 		5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDateScrollerView.swift; sourceTree = "<group>"; };
 		5B954E912906C0A700FA579E /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		5BA9AFDF290B182900C1078A /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
+		5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskFullView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 				5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */,
 				5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */,
 				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
+				5BA9AFDF290B182900C1078A /* HelpButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -798,6 +803,7 @@
 				5B954E7B2901C1F600FA579E /* Components */,
 				5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */,
 				5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */,
+				5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -946,6 +952,7 @@
 				5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */,
 				5B49600628E778360024D064 /* UserSelectionDropdown.swift in Sources */,
 				5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */,
+				5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
 				5B49604528ECBFA10024D064 /* CreateOrEditEventViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* BusinessJourneyListViewModel.swift in Sources */,
@@ -998,6 +1005,7 @@
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
+				5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */,
 				5B49605028EF51BC0024D064 /* BusinessManagerEventsCalendarView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,

@@ -5,7 +5,7 @@ final class BusinessJourneyListViewModel: ObservableObject {
         Journey(
             name: "Jornada iOS",
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: URL(fileURLWithPath: ""),
+            imageURL: "",
             startDate: Date()
 //            employees: [],
 //            tasks: [

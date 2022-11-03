@@ -15,34 +15,58 @@ struct BusinessManagerEventsCalendarView: View {
     var body: some View {
         VStack {
             VStack {
-                BusinessManagerDateScrollerView(businessMangerEventsCalendarViewModel: viewModel)
-                dayOfWeekStack
-                calendarGrid
-            }
-            .padding(.bottom)
-            
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.collieCinzaBorda)
-                .frame(height: 2)
-                .frame(maxWidth: .infinity)
-                .padding(.bottom)
-            
-            HStack {
-                Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
-                    .font(.system(size: 18, weight: .bold))
-                Spacer()
-            }
-            
-            ScrollView(.vertical) {
-                ForEach(singleJourneyViewModel.selectedEvents) { event in
-                    BusinessManagerEventView(
-                        event: event,
-                        handleEventOpen: {
-                            handleSelectEvent(event)
-                        }
-                    )
+                HStack {
+                    Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
+                        .font(.system(size: 18, weight: .bold))
+                    Spacer()
                 }
-                .padding(2)
+                .padding(.top)
+                
+                VStack {
+                    ScrollView(.vertical) {
+                        if singleJourneyViewModel.selectedEvents.isEmpty {
+                            VStack {
+                                Spacer()
+                                Image("noEventsImage")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 250)
+                                    .padding(.bottom)
+                                Text("Não tem nenhum evento programado para esse dia!")
+                                    .font(.system(size: 18, weight: .semibold))
+                                    .foregroundColor(Color.collieLilas)
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }
+                            .padding()
+                        } else {
+                            ForEach(singleJourneyViewModel.selectedEvents) { event in
+                                BusinessManagerEventView(
+                                    event: event,
+                                    handleEventOpen: {
+                                        handleSelectEvent(event)
+                                    }
+                                )
+                            }
+                            .padding(2)
+                        }
+                    }
+                    .padding(.bottom)
+                    Spacer()
+                }
+                
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.collieCinzaBorda)
+                    .frame(height: 2)
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom)
+                
+                VStack {
+                    BusinessManagerDateScrollerView(businessManagerEventsCalendarViewModel: viewModel)
+                    dayOfWeekStack
+                    calendarGrid
+                }
+                .padding(.bottom)
             }
         }
     }
