@@ -11,13 +11,17 @@ struct CheckBoxView: View {
             Circle()
                 .foregroundColor(checked ? green : .collieCinzaClaro)
                 .frame(width: 24, height: 24)
+                .overlay {
+                    Circle()
+                        .stroke(Color.collieCinzaBorda, lineWidth: 2)
+                }
             if checked {
                 Image(systemName: "checkmark")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
             }
         }
-        .frame(width: 24, height: 24)
+        .frame(width: 28, height: 28)
         .onTapGesture {
             withAnimation {
                 handleCheckToggle()
@@ -27,8 +31,8 @@ struct CheckBoxView: View {
     }
 }
 
-//struct CheckBoxView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CheckBoxView(checked: .constant(false))
-//    }
-//}
+struct CheckBoxView_Previews: PreviewProvider {
+    static var previews: some View {
+        CheckBoxView(checked: true, handleCheckToggle: {})
+    }
+}
