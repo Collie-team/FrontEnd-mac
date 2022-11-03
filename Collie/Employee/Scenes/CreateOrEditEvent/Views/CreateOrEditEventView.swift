@@ -27,10 +27,10 @@ struct CreateOrEditEventView: View {
             viewModel.startDate = event.startDate
             viewModel.endDate = event.endDate
             viewModel.eventDescription = event.description
-            viewModel.eventLink = event.link
+            viewModel.eventLink = event.contentLink
             
-            if let responsibleEmployees = event.responsibleEmployees {
-                viewModel.selectedUsers = responsibleEmployees
+            if !event.responsibleUserIds.isEmpty {
+//                viewModel.selectedUsers = responsibleEmployees
                 viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
                     !viewModel.selectedUsers.contains(user)
                 })
@@ -149,10 +149,11 @@ struct CreateOrEditEventView: View {
                                 id: viewModel.eventId ?? UUID().uuidString,
                                 name: viewModel.eventName,
                                 description: viewModel.eventDescription,
-                                link: viewModel.eventLink,
+                                contentLink: viewModel.eventLink,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
-                                responsibleEmployees: viewModel.selectedUsers,
+//                                responsibleEmployees: viewModel.selectedUsers,
+                                responsibleUserIds: [],
                                 category: viewModel.selectedCategory
                             )
                         )

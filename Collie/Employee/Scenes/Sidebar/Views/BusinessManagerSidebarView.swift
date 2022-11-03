@@ -2,7 +2,6 @@ import SwiftUI
 
 struct BusinessManagerSidebarView: View {
     @ObservedObject var viewModel = BusinnesManagerSidebarViewModel()
-    
     var handleSignOut: () -> ()
     
     var body: some View {

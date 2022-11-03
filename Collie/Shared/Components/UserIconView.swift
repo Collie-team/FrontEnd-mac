@@ -39,6 +39,6 @@ struct UserIconView: View {
 
 struct UserIconView_Previews: PreviewProvider {
     static var previews: some View {
-        UserIconView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: "", businessId: []))
+        UserIconView(user: UserModel(name: "André Arns", email: "", jobDescription: "", personalDescription: "", imageURL: ""))
     }
 }

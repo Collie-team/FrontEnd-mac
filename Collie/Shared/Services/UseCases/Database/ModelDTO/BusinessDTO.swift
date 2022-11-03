@@ -9,4 +9,5 @@ import Foundation
 
 struct BusinessDTO: Codable {
     var business: [Business]
+    var businessUsers: [BusinessUser]
 }

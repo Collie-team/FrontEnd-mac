@@ -63,7 +63,7 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     }
     
     func bind() {
-        self.allTasks = journey.tasks
+//        self.allTasks = journey.tasks
         let userTasks: [UserTask] = [
             UserTask(taskId: "129", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
             UserTask(taskId: "130", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
@@ -121,12 +121,12 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     
     // MARK: - Event functions
     func saveEvent(_ event: Event) {
-        if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
-            self.journey.events[index] = event
-        } else {
-            self.journey.events.append(event)
-            sortJourneyEvents()
-        }
+//        if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
+//            self.journey.events[index] = event
+//        } else {
+//            self.journey.events.append(event)
+//            sortJourneyEvents()
+//        }
         objectWillChange.send()
     }
     
@@ -139,15 +139,15 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     }
     
     func sortJourneyEvents() {
-        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
-            eventA.startDate < eventB.startDate
-        })
+//        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
+//            eventA.startDate < eventB.startDate
+//        })
     }
     
     func filterSelectedEvents() {
-        self.selectedEvents = journey.events.filter({ event in
-            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
-        })
+//        self.selectedEvents = journey.events.filter({ event in
+//            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
+//        })
     }
     
     func separateTaskModels() {

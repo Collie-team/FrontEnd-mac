@@ -17,16 +17,16 @@ final class WorkspaceViewModel: ObservableObject {
     
     private let businessSubscriptionService = BusinessSubscriptionService()
     
-    var newWorkspaceHandler: (String, @escaping ([Business]) -> ()) -> () = { _,_  in }
+    var newWorkspaceHandler: (String, @escaping (Business) -> ()) -> () = { _,_  in }
     var handleWorkspaceSelection: (Business) -> () = {_ in }
 
     func createNewWorkspace() {
-        let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], userIds: [])
+        let business = Business(id: UUID().uuidString, name: workspaceName, description: "", journeys: [], tasks: [], events: [])
         self.selectedWorkspace = business
         self.workspaceViewState = .loadingWorkspace
-        newWorkspaceHandler(workspaceName) { availableBusiness in
-            self.workspacesAvailable = availableBusiness
-            self.selectWorkspace(business)
+        newWorkspaceHandler(workspaceName) { newBusiness in
+            self.workspacesAvailable = [newBusiness]
+            self.selectWorkspace(newBusiness)
         }
     }
     

@@ -12,11 +12,11 @@ struct CreateOrEditJourneyView: View {
         self.handleClose = handleClose
         self.handleJourneySave = handleJourneySave
         if let journey = journey {
-            viewModel.tasks = journey.tasks
-            viewModel.events = journey.events
+//            viewModel.tasks = journey.tasks
+//            viewModel.events = journey.events
             viewModel.journeyId = journey.id
-            viewModel.chosenEmployees = journey.employees
-            viewModel.chosenManagers = journey.managers
+//            viewModel.chosenEmployees = journey.employees
+//            viewModel.chosenManagers = journey.managers
             viewModel.journeyName = journey.name
             viewModel.journeyDescription = journey.description
             viewModel.startDate = journey.startDate
@@ -102,13 +102,13 @@ struct CreateOrEditJourneyView: View {
                         Journey(
                             id: viewModel.journeyId ?? UUID().uuidString,
                             name: viewModel.journeyName,
-                            startDate: viewModel.startDate,
                             description: viewModel.journeyDescription,
                             imageURL: imageURL,
-                            employees: viewModel.chosenEmployees,
-                            tasks: viewModel.tasks,
-                            events: viewModel.events,
-                            managers: viewModel.chosenManagers
+                            startDate: viewModel.startDate
+//                            employees: viewModel.chosenEmployees,
+//                            tasks: viewModel.tasks,
+//                            events: viewModel.events,
+//                            managers: viewModel.chosenManagers
                         )
                     )
                     handleClose()

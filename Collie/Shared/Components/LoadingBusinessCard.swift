@@ -33,7 +33,7 @@ struct LoadingBusinessCard: View {
 
 struct LoadingBusinessCard_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingBusinessCard(business: .init(name: "Aurea", description: "", journeys: [], userIds: ["", "", "", "", "", "", "", "", ""]))
+        LoadingBusinessCard(business: .init(name: "Aurea", description: "", journeys: [], tasks: [], events: []))
             .colorScheme(.light)
     }
 }

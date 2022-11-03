@@ -23,8 +23,8 @@ struct EmployeeTaskView: View {
             HStack(spacing: 8) {
                 Image(systemName: "calendar")
                     .font(.system(size: 16, weight: .regular))
-                Text(CalendarHelper().dateString(task.endDate))
-                    .font(.system(size: 14, weight: .regular))
+//                Text(CalendarHelper().dateString(task.endDate))
+//                    .font(.system(size: 14, weight: .regular))
             }
             .foregroundColor(.black)
             .padding(.trailing)
