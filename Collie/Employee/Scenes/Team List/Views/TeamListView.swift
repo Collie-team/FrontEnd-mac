@@ -13,6 +13,7 @@ enum ListComponents: CGFloat {
 
 struct TeamListView: View {
     @ObservedObject var viewModel = TeamListViewModel()
+    @EnvironmentObject var rootViewModel: RootViewModel
     
     var body: some View {
         VStack {
@@ -69,19 +70,6 @@ struct TeamListView: View {
                                 .background(Color.collieRoxo)
                                 .cornerRadius(8)
                                 .contentShape(Rectangle())
-                                
-//                                Button(action: {}) {
-//                                    HStack {
-//                                        Text("Filtros")
-//                                            .padding(.trailing,8)
-//                                        Image(systemName: "chevron.down")
-//                                    }
-//                                    .foregroundColor(.gray)
-//                                    .padding(8)
-//                                }
-//                                .buttonStyle(.plain)
-//                                .background(Color.white)
-//                                .cornerRadius(8)
                             }
                         }
                     }
@@ -135,7 +123,7 @@ struct TeamListView: View {
                         .font(.system(size: 20, weight: .semibold))
                         .padding()
                         
-                        ForEach(viewModel.sampleUsers) { user in
+                        ForEach(viewModel.teamListUsers) { user in
                             HStack(spacing: 0) {
                                 ZStack {
                                     Circle()
@@ -200,7 +188,7 @@ struct TeamListView: View {
         .background(Color.collieBrancoFundo.ignoresSafeArea())
         .navigationTitle("Acompanhamento do time")
         .onAppear() {
-            viewModel.fetchUsers()
+            viewModel.fetchUsers(business: rootViewModel.businessSelected)
         }
         .popover(isPresented: $viewModel.newUserPopupEnabled) {
             NewUserFormsView()

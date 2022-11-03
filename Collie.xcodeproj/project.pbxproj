@@ -52,6 +52,7 @@
 		5B49605828EF535F0024D064 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605728EF535F0024D064 /* CalendarHelper.swift */; };
 		5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */; };
 		5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605C28EF5A0E0024D064 /* MonthStruct.swift */; };
+		5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
@@ -87,6 +88,7 @@
 		5BB85281290088E5008A8609 /* EmployeeJourneyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85280290088E5008A8609 /* EmployeeJourneyListViewModel.swift */; };
 		5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */; };
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
+		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
@@ -152,6 +154,7 @@
 		5B49605728EF535F0024D064 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerCalendarCell.swift; sourceTree = "<group>"; };
 		5B49605C28EF5A0E0024D064 /* MonthStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStruct.swift; sourceTree = "<group>"; };
+		5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSubscriptionService.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventView.swift; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		5BB85280290088E5008A8609 /* EmployeeJourneyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJourneyListViewModel.swift; sourceTree = "<group>"; };
 		5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyView.swift; sourceTree = "<group>"; };
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
+		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				5B1BAD4B2901C32600EFF0E4 /* ModelDTO */,
 				5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */,
 				5B1BAD492901C1D900EFF0E4 /* BusinessSubscriptionService.swift */,
+				5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			children = (
 				5B1BAD4C2901C34500EFF0E4 /* User_BusinessDTO.swift */,
 				5B1BAD502901CEC800EFF0E4 /* BusinessDTO.swift */,
+				5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */,
 			);
 			path = ModelDTO;
 			sourceTree = "<group>";
@@ -972,6 +978,7 @@
 				5B49604328ECBF930024D064 /* CreateOrEditEventView.swift in Sources */,
 				5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* BusinessJourneyListView.swift in Sources */,
+				5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */,
 				5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */,
 				5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */,
 				5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */,
@@ -1011,6 +1018,7 @@
 				5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
+				5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessManagerEventView.swift in Sources */,
 				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
 				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
@@ -1147,13 +1155,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = VWZ6P536SX;
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1164,8 +1171,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1177,12 +1183,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -1193,7 +1199,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
