@@ -5,17 +5,17 @@ struct JourneyCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if let nsImage = NSImage(contentsOf: journey.imageURL) {
-                Image(nsImage: nsImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 200)
-                    
-            } else {
-                Rectangle()
-                    .foregroundColor(.collieRosaClaro)
-                    .frame(height: 200)
-            }
+//            if let nsImage = NSImage(contentsOf: URL(fileURLWithPath: journey.imageURL) {
+//                Image(nsImage: nsImage)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(height: 200)
+//
+//            } else {
+            Rectangle()
+                .foregroundColor(.collieRosaClaro)
+                .frame(height: 200)
+//            }
                 
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
@@ -54,7 +54,7 @@ struct JourneyCard_Previews: PreviewProvider {
         JourneyCard(journey: Journey(
             name: "Jornada iOS",
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: URL(fileURLWithPath: ""),
+            imageURL: "",
             startDate: Date()
 //            employees: [],
 //            tasks: [

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CreateOrEditJourneyView: View {
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
-    @State var imageURL: URL = URL(fileURLWithPath: "")
+    @State var imageURL: String = ""//URL = URL(fileURLWithPath: "")
     
     var journey: Journey?
     var handleClose: () -> ()
@@ -36,9 +36,9 @@ struct CreateOrEditJourneyView: View {
                 HStack {
                     TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
                     
-                    FilePicker { imagePath in
-                        self.imageURL = URL(fileURLWithPath: imagePath)
-                    }
+//                    FilePicker { imagePath in
+//                        self.imageURL = URL(fileURLWithPath: imagePath)
+//                    }
                 }
                 .padding(.bottom, 40)
                           
@@ -119,16 +119,16 @@ struct CreateOrEditJourneyView: View {
         }
         .background(
             VStack(spacing: 0) {
-                if let nsImage = NSImage(contentsOf: imageURL) {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 130)
-                } else {
-                    Color.collieRoxoClaro
-                        .frame(height: 130)
-                }
+//                if let nsImage = NSImage(contentsOf: imageURL) {
+//                    Image(nsImage: nsImage)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(maxWidth: .infinity)
+//                        .frame(height: 130)
+//                } else {
+                Color.collieRoxoClaro
+                    .frame(height: 130)
+//                }
                 Color.collieBrancoFundo
             }
         )

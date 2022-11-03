@@ -324,7 +324,7 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
                 journey: Journey(
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                    imageURL: URL(fileURLWithPath: ""),
+                    imageURL: "",
                     startDate: Date()
 //                    employees: [],
 //                    tasks: [

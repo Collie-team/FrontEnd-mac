@@ -4,6 +4,6 @@ struct Journey: Identifiable, Codable {
     var id: String = UUID().uuidString
     var name: String
     var description: String
-    var imageURL: URL
+    var imageURL: String
     var startDate: Date
 }
