@@ -12,6 +12,8 @@ enum NavigationState {
     case workspace
     case manager
     case employee
+    case managerOnboarding
+    case employeeOnboarding
 }
 
 final class RootViewModel: ObservableObject {

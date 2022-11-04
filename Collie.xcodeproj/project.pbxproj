@@ -53,6 +53,8 @@
 		5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */; };
 		5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605C28EF5A0E0024D064 /* MonthStruct.swift */; };
 		5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */; };
+		5B4E312729143B590031F74F /* OnboardingFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E312629143B590031F74F /* OnboardingFinishedView.swift */; };
+		5B4E312A29143C8A0031F74F /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E312929143C8A0031F74F /* OnboardingCardView.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
@@ -67,6 +69,8 @@
 		5B954E922906C0A700FA579E /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* DemoView.swift */; };
 		5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFDF290B182900C1078A /* HelpButton.swift */; };
 		5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */; };
+		5BA9AFEA291199E300C1078A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE9291199E300C1078A /* OnboardingView.swift */; };
+		5BA9AFEC291199F000C1078A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFEB291199F000C1078A /* OnboardingViewModel.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -156,6 +160,8 @@
 		5B49605728EF535F0024D064 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManagerCalendarCell.swift; sourceTree = "<group>"; };
 		5B49605C28EF5A0E0024D064 /* MonthStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStruct.swift; sourceTree = "<group>"; };
+		5B4E312629143B590031F74F /* OnboardingFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFinishedView.swift; sourceTree = "<group>"; };
+		5B4E312929143C8A0031F74F /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSubscriptionService.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -170,6 +176,8 @@
 		5B954E912906C0A700FA579E /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		5BA9AFDF290B182900C1078A /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
 		5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskFullView.swift; sourceTree = "<group>"; };
+		5BA9AFE9291199E300C1078A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		5BA9AFEB291199F000C1078A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -298,6 +306,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5BA9AFE6291199C700C1078A /* Onboarding */,
 				5B954E8E2906C08B00FA579E /* Demo */,
 				5B1BAD3D28FF37AB00EFF0E4 /* Root */,
 				5B2D009828F87CC400131FFF /* Workspace */,
@@ -447,6 +456,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		5B4E312829143C770031F74F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5B4E312929143C8A0031F74F /* OnboardingCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5B954E7B2901C1F600FA579E /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +490,33 @@
 				5B954E912906C0A700FA579E /* DemoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5BA9AFE6291199C700C1078A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9AFE8291199D400C1078A /* View Models */,
+				5BA9AFE7291199CD00C1078A /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		5BA9AFE7291199CD00C1078A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B4E312829143C770031F74F /* Components */,
+				5BA9AFE9291199E300C1078A /* OnboardingView.swift */,
+				5B4E312629143B590031F74F /* OnboardingFinishedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BA9AFE8291199D400C1078A /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9AFEB291199F000C1078A /* OnboardingViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5BACC61D28CFB855006975D3 = {
@@ -1019,6 +1063,7 @@
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
 				5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */,
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
+				5B4E312A29143C8A0031F74F /* OnboardingCardView.swift in Sources */,
 				5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */,
 				5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */,
 				5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */,
@@ -1028,10 +1073,13 @@
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
 				5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessManagerEventView.swift in Sources */,
+				5B4E312729143B590031F74F /* OnboardingFinishedView.swift in Sources */,
 				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
+				5BA9AFEC291199F000C1078A /* OnboardingViewModel.swift in Sources */,
 				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
 				5BB8527F290088D5008A8609 /* EmployeeJourneyListView.swift in Sources */,
 				5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */,
+				5BA9AFEA291199E300C1078A /* OnboardingView.swift in Sources */,
 				5B49605528EF52810024D064 /* BusinessManagerDateScrollerView.swift in Sources */,
 				5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */,
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
@@ -1163,14 +1211,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Collie;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1179,7 +1230,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1191,14 +1243,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
-				DEVELOPMENT_TEAM = P9DY7C7A5F;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9DY7C7A5F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Collie;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1207,7 +1263,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

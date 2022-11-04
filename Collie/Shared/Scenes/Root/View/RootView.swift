@@ -26,6 +26,14 @@ struct RootView: View {
             // TODO: Business injection
             BusinessManagerSidebarView(handleSignOut: {})
                 .environmentObject(viewModel)
+        case .managerOnboarding:
+            OnboardingView(onboardingType: .businessManager, handleFinish: {
+                viewModel.navigationState = .manager
+            })
+        case .employeeOnboarding:
+            OnboardingView(onboardingType: .employee, handleFinish: {
+                viewModel.navigationState = .employee
+            })
         }
     }
 }
