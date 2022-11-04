@@ -3,7 +3,10 @@ import SwiftUI
 
 final class OnboardingViewModel: ObservableObject {
     
+    var onboardingType: OnboardingType
+    
     init(onboardingType: OnboardingType) {
+        self.onboardingType = onboardingType
         switch onboardingType {
         case .businessManager:
             self.onboardingPages = businessManagerPages
@@ -22,11 +25,11 @@ final class OnboardingViewModel: ObservableObject {
     ]
     
     var businessManagerPages: [OnboardingPage] = [
-        .init(title: "Seja bem vindo ao seu novo workspace!", subtitles: ["Com a plataforma Collie, você consegue gerar jornadas, acompanhar seus colaboradores e definir novas tarefas e eventos."], imageName: ""),
-        .init(title: "Crie jornadas customizadas para cada time", subtitles: ["Desenvolva jornadas para diferentes times de colaboradores na sua tela de jornadas.", "Crie tarefas e eventos e gerencie pessoas de forma simples e prática."], imageName: ""),
-        .init(title: "Organize rápido e fácil suas jornadas", subtitles: ["Marque e modifique eventos com facilidade, notificando o time caso seja necessário.", "Crie tarefas engajantes para seus novos colaboradores e acompanhe o progresso de cada um"], imageName: ""),
-        .init(title: "Acompanhe o progresso de cada usuário", subtitles: ["Visualize o progresso de cada colaborador, observe suas tarefas cumpridas, suas principais conquistas e dificuldades."], imageName: ""),
-        .init(title: "Gerencie seus usuários e selecione papeis", subtitles: ["Na tela configurações, adicione facilmente novos colaboradores e configure seus níveis de permissão. Acompanhe também os novos convites enviados."], imageName: "")
+        .init(title: "Seja bem vindo ao seu novo workspace!", subtitles: ["Com a plataforma Collie, você consegue gerar jornadas, acompanhar seus colaboradores e definir novas tarefas e eventos."], imageName: "onboarding-gestor1"),
+        .init(title: "Crie jornadas customizadas para cada time", subtitles: ["Desenvolva jornadas para diferentes times de colaboradores na sua tela de jornadas.", "Crie tarefas e eventos e gerencie pessoas de forma simples e prática."], imageName: "onboarding-gestor2"),
+        .init(title: "Organize rápido e fácil suas jornadas", subtitles: ["Marque e modifique eventos com facilidade, notificando o time caso seja necessário.", "Crie tarefas engajantes para seus novos colaboradores e acompanhe o progresso de cada um"], imageName: "onboarding-gestor3"),
+        .init(title: "Acompanhe o progresso de cada usuário", subtitles: ["Visualize o progresso de cada colaborador, observe suas tarefas cumpridas, suas principais conquistas e dificuldades."], imageName: "onboarding-gestor4"),
+        .init(title: "Gerencie seus usuários e selecione papeis", subtitles: ["Na tela configurações, adicione facilmente novos colaboradores e configure seus níveis de permissão. Acompanhe também os novos convites enviados."], imageName: "onboarding-gestor5")
     ]
     
     @Published var currentPage: OnboardingPage
@@ -56,6 +59,7 @@ final class OnboardingViewModel: ObservableObject {
     func finishOnboarding() {
         print("Onboarding finished")
         showFinishPage = true
+        OnboardingStorageService.shared.markOnboardingDone(onboardingType: onboardingType)
     }
     
     func skipOnboarding() {
@@ -74,9 +78,9 @@ final class OnboardingViewModel: ObservableObject {
     }
 }
 
-enum OnboardingType {
-    case employee
-    case businessManager
+enum OnboardingType: String {
+    case employee = "Employee"
+    case businessManager = "Manager"
 }
 
 struct OnboardingPage {

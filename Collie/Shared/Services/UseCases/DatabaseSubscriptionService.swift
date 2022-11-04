@@ -11,8 +11,8 @@ import Alamofire
 
 final class DatabaseSubscriptionService<ModelDTO: Codable> {
     private let route: DatabaseSubscriptionRoutes
-//    private let domainUrl = "https://backend-python-dev.vercel.app/"
-    private let domainUrl = "http://127.0.0.1:8000/"
+    private let domainUrl = "https://backend-python-dev.vercel.app/"
+//    private let domainUrl = "http://127.0.0.1:8000/"
     
     enum DatabaseSubscriptionRoutes: String {
         case journey = "journey/"

@@ -20,7 +20,6 @@ final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
     @Published var navigationState: NavigationState = .authentication
     
-    
     var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
     var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     var currentBusinessUser: BusinessUser?
@@ -58,10 +57,21 @@ final class RootViewModel: ObservableObject {
     }
     
     func redirectBasedOnRole() {
+        // AQUI
         if currentBusinessUser!.role == .admin || currentBusinessUser!.role == .manager {
-            self.navigationState = .manager
+            let isManagerOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .businessManager)
+            if isManagerOnboardingDone {
+                self.navigationState = .manager
+            } else {
+                self.navigationState = .managerOnboarding
+            }
         } else {
-            self.navigationState = .employee
+            let isEmployeeOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .employee)
+            if isEmployeeOnboardingDone {
+                self.navigationState = .employee
+            } else {
+                self.navigationState = .employeeOnboarding
+            }
         }
     }
 }

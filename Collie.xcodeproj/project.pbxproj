@@ -52,9 +52,11 @@
 		5B49605828EF535F0024D064 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605728EF535F0024D064 /* CalendarHelper.swift */; };
 		5B49605A28EF58F90024D064 /* BusinessManagerCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605928EF58F90024D064 /* BusinessManagerCalendarCell.swift */; };
 		5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49605C28EF5A0E0024D064 /* MonthStruct.swift */; };
-		5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */; };
 		5B4E312729143B590031F74F /* OnboardingFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E312629143B590031F74F /* OnboardingFinishedView.swift */; };
 		5B4E312A29143C8A0031F74F /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E312929143C8A0031F74F /* OnboardingCardView.swift */; };
+		5B4E313629158E2C0031F74F /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E313529158E2C0031F74F /* UserDefaultService.swift */; };
+		5B4E3138291594550031F74F /* OnbardingStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E3137291594550031F74F /* OnbardingStorageService.swift */; };
+		5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
@@ -162,6 +164,8 @@
 		5B49605C28EF5A0E0024D064 /* MonthStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthStruct.swift; sourceTree = "<group>"; };
 		5B4E312629143B590031F74F /* OnboardingFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFinishedView.swift; sourceTree = "<group>"; };
 		5B4E312929143C8A0031F74F /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
+		5B4E313529158E2C0031F74F /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		5B4E3137291594550031F74F /* OnbardingStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbardingStorageService.swift; sourceTree = "<group>"; };
 		5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSubscriptionService.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 		5B0F666428DCE1BC0057BA32 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5B4E313429158E0B0031F74F /* UserDefault */,
 				5B49605B28EF59E70024D064 /* Calendar */,
 				5B0F666528DCE41A0057BA32 /* UseCases */,
 			);
@@ -462,6 +467,15 @@
 				5B4E312929143C8A0031F74F /* OnboardingCardView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5B4E313429158E0B0031F74F /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				5B4E313529158E2C0031F74F /* UserDefaultService.swift */,
+				5B4E3137291594550031F74F /* OnbardingStorageService.swift */,
+			);
+			path = UserDefault;
 			sourceTree = "<group>";
 		};
 		5B954E7B2901C1F600FA579E /* Components */ = {
@@ -1040,6 +1054,7 @@
 				5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessManagerSingleJourneyView.swift in Sources */,
+				5B4E3138291594550031F74F /* OnbardingStorageService.swift in Sources */,
 				5B49600028E75F810024D064 /* SendButton.swift in Sources */,
 				5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */,
 				5B495FFE28E75EDD0024D064 /* IconButton.swift in Sources */,
@@ -1085,6 +1100,7 @@
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
 				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
+				5B4E313629158E2C0031F74F /* UserDefaultService.swift in Sources */,
 				5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
