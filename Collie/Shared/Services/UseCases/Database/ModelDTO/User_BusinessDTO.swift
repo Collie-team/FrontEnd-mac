@@ -8,6 +8,6 @@
 import Foundation
 
 struct User_BusinessDTO: Codable {
-    var user: UserModel
-    var business: [Business]
+    var business: Business
+    var businessUser: BusinessUser
 }

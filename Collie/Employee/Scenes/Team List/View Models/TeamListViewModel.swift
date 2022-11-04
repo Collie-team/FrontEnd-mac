@@ -1,20 +1,36 @@
 import Foundation
 
-final class TeamListViewModel: ObservableObject {
-    private let databaseService = DatabaseSubscriptionService<UserModel>(route: .user)
-    @Published var newUserPopupEnabled = false
-    @Published var sampleUsers: [UserModel] = [
-        UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: []),
-        UserModel(name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: []),
-        UserModel(name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: []),
-        UserModel(name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: "", businessId: []),
-        UserModel(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "", businessId: [])
-    ]
+struct TeamListUser: Identifiable {
+    var id = UUID()
     
-    func fetchUsers() {
-//        databaseService.fetchData() { userModels in
-//            self.sampleUsers = userModels
-//        }
+    var name: String
+    var email: String
+    var journey: String
+    var progress: Float {
+        return Float(self.doneTasks) / Float(self.totalTasks)
+    }
+    var totalTasks: Int
+    var doneTasks: Int
+}
+
+final class TeamListViewModel: ObservableObject {
+    private let teamListService = TeamSubscriptionService()
+    @Published var newUserPopupEnabled = false
+    @Published var teamListUsers: [TeamListUser] = []
+    var teamUsers: [UserModel] = []
+    var teamBusinessUsers: [BusinessUser] = []
+    
+    func fetchUsers(business: Business) {
+        teamListService.fetchTeamInfo(business: business, authenticationToken: "TODO: COLOCAR TOKEN AQUI") { businessUsers, users in
+            self.teamUsers = users
+            self.teamBusinessUsers = businessUsers
+        }
+    }
+    
+    func processTeamList() {
+        for (user, businessUser) in zip(self.teamUsers, self.teamBusinessUsers) {
+//            let teamListUser = TeamListUser(name: user.name, email: user.email, journey: <#T##String#>, totalTasks: <#T##Int#>, doneTasks: <#T##Int#>)
+        }
     }
     
     func registerUser(userToAdd: UserModel) {

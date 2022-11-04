@@ -13,7 +13,7 @@ extension Date {
         dateFormatter.dateFormat = "d MMMM"
         let splittedString = dateFormatter.string(from: self).split(separator: " ")
         let monthString = splittedString[1].prefix(1).uppercased() + splittedString[1].dropFirst()
-        var string = splittedString[0] + " de " + monthString
+        let string = splittedString[0] + " de " + monthString
         return string
     }
 }

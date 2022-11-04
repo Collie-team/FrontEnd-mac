@@ -6,16 +6,18 @@ struct EmployeeTaskFullView: View {
     var handleClose: () -> ()
     var handleCheckToggle: () -> ()
     
-    var responsibleName: String {
-        task.responsibleEmployees?.first?.name ?? "Nenhum responsável"
-    }
-    var responsibleEmail: String {
-        if let email = task.responsibleEmployees?.first?.email {
-            return  "(\(email))"
-        } else {
-            return ""
-        }
-    }
+    var responsibleName: String = ""
+//    {
+//        task.responsibleEmployees?.first?.name ?? "Nenhum responsável"
+//    }
+    var responsibleEmail: String = ""
+//    {
+//        if let email = task.responsibleEmployees?.first?.email {
+//            return  "(\(email))"
+//        } else {
+//            return ""
+//        }
+//    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -132,8 +134,8 @@ struct EmployeeTaskFullView: View {
     }
 }
 
-struct EmployeeTaskFullView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmployeeTaskFullView(userTask: UserTask(taskId: "", journeyId: ""), task: Task(name: "Fazer qualquer coisa", description: "Fazer qualquer coisa faz bem pra saúde", startDate: Date(), endDate: Date()), handleClose: {}, handleCheckToggle: {})
-    }
-}
+//struct EmployeeTaskFullView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmployeeTaskFullView(userTask: UserTask(taskId: "", journeyId: ""), task: Task(journeyId: "", name: "Fazer qualquer coisa", description: "Fazer qualquer coisa faz bem pra saúde", startDate: Date(), endDate: Date()), handleClose: {}, handleCheckToggle: {})
+//    }
+//}

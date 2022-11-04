@@ -5,5 +5,7 @@ struct Business: Codable, Identifiable {
     var name: String
     var description: String
     var journeys: [Journey]
-    var userIds: [String]
+    var tasks: [Task]
+    var events: [Event]
+    var imageURL: String?
 }

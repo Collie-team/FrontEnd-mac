@@ -25,11 +25,12 @@ struct EmployeeCalendarCell: View {
         monthStruct.getDayDate(day: day, month: month, year: year)
     }
     
-    var eventsInDate: [Event] {
-        employeeSingleJourneyViewModel.journey.events.filter { event in
-            event.startDate == date
-        }
-    }
+    var eventsInDate: [Event] = []
+//    {
+//        employeeSingleJourneyViewModel.journey.events.filter { event in
+//            event.startDate == date
+//        }
+//    }
     
     var body: some View {
         VStack {

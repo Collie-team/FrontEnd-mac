@@ -36,6 +36,7 @@ struct ProgressBarView: View {
             }
                 
             Text("\(Int(100 * percentage))%")
+                .opacity(0.5)
         }
     }
 }

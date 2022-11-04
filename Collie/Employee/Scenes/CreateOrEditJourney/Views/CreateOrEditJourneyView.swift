@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CreateOrEditJourneyView: View {
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
-    @State var imageURL: URL = URL(fileURLWithPath: "")
+    @State var imageURL: String = ""//URL = URL(fileURLWithPath: "")
     
     var journey: Journey?
     var handleClose: () -> ()
@@ -12,11 +12,11 @@ struct CreateOrEditJourneyView: View {
         self.handleClose = handleClose
         self.handleJourneySave = handleJourneySave
         if let journey = journey {
-            viewModel.tasks = journey.tasks
-            viewModel.events = journey.events
+//            viewModel.tasks = journey.tasks
+//            viewModel.events = journey.events
             viewModel.journeyId = journey.id
-            viewModel.chosenEmployees = journey.employees
-            viewModel.chosenManagers = journey.managers
+//            viewModel.chosenEmployees = journey.employees
+//            viewModel.chosenManagers = journey.managers
             viewModel.journeyName = journey.name
             viewModel.journeyDescription = journey.description
             viewModel.startDate = journey.startDate
@@ -36,9 +36,9 @@ struct CreateOrEditJourneyView: View {
                 HStack {
                     TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
                     
-                    FilePicker { imagePath in
-                        self.imageURL = URL(fileURLWithPath: imagePath)
-                    }
+//                    FilePicker { imagePath in
+//                        self.imageURL = URL(fileURLWithPath: imagePath)
+//                    }
                 }
                 .padding(.bottom, 40)
                           
@@ -102,13 +102,13 @@ struct CreateOrEditJourneyView: View {
                         Journey(
                             id: viewModel.journeyId ?? UUID().uuidString,
                             name: viewModel.journeyName,
-                            startDate: viewModel.startDate,
                             description: viewModel.journeyDescription,
                             imageURL: imageURL,
-                            employees: viewModel.chosenEmployees,
-                            tasks: viewModel.tasks,
-                            events: viewModel.events,
-                            managers: viewModel.chosenManagers
+                            startDate: viewModel.startDate
+//                            employees: viewModel.chosenEmployees,
+//                            tasks: viewModel.tasks,
+//                            events: viewModel.events,
+//                            managers: viewModel.chosenManagers
                         )
                     )
                     handleClose()
@@ -119,16 +119,16 @@ struct CreateOrEditJourneyView: View {
         }
         .background(
             VStack(spacing: 0) {
-                if let nsImage = NSImage(contentsOf: imageURL) {
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 130)
-                } else {
-                    Color.collieRoxoClaro
-                        .frame(height: 130)
-                }
+//                if let nsImage = NSImage(contentsOf: imageURL) {
+//                    Image(nsImage: nsImage)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(maxWidth: .infinity)
+//                        .frame(height: 130)
+//                } else {
+                Color.collieRoxoClaro
+                    .frame(height: 130)
+//                }
                 Color.collieBrancoFundo
             }
         )
