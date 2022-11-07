@@ -164,7 +164,7 @@ final class BusinessSubscriptionService {
         
         AF.request(
             url,
-            method: .post,
+            method: .put,
             parameters: business,
             encoder: JSONParameterEncoder.default,
             headers: headers

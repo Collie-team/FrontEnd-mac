@@ -8,6 +8,7 @@ final class BusinnesManagerSidebarViewModel: ObservableObject {
         .init(option: .dashboard),
         .init(option: .journeys),
         .init(option: .teamList),
+        .init(option: .settings)
 //        .init(option: .payments)
     ]
     

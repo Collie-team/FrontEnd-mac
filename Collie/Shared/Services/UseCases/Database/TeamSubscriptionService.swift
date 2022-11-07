@@ -32,7 +32,7 @@ final class TeamSubscriptionService {
             print(response.debugDescription)
             switch response.result {
             case .success:
-                print("Business created")
+                print("Team Info fetched")
             case let .failure(error):
                 print(error)
             }
@@ -42,6 +42,35 @@ final class TeamSubscriptionService {
                 completion(decodedData.businessUser, decodedData.users)
             } catch {
                 //handle error
+                print(error)
+            }
+        }
+    }
+    
+    func removeUserFromBusiness(authenticationToken: String, businessId: String, userId: String) {
+        let url = domainUrl + "team/remove/"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        let parameters = ["businessId" : businessId, "userId": userId]
+        
+        AF.request(
+            url,
+            method: .delete,
+            parameters: parameters,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 10
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                print("User deleted")
+            case let .failure(error):
                 print(error)
             }
         }
