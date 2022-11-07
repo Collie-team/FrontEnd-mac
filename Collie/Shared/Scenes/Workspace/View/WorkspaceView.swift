@@ -3,8 +3,6 @@ import SwiftUI
 struct WorkspaceView: View {
     @ObservedObject var viewModel = WorkspaceViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
-//    @State var showCreateWorkspaceForm = false
-//    @State var showSidebar = false
     var body: some View {
         ZStack {
             VStack {
@@ -27,22 +25,9 @@ struct WorkspaceView: View {
                     noWorkspacesFoundView
                 case .workspaceList:
                     workspacesListView
+                case .loginWorkspace:
+                    loginWorkspace
                 }
-//                VStack {
-//                    VStack {
-//                        if viewModel.selectedWorkspace != nil {
-//                            loadingWorkspace
-//                        } else if showCreateWorkspaceForm {
-//                            createWorkspaceForm
-//                        } else {
-//                            if viewModel.workspacesAvailable.isEmpty {
-//                                noWorkspacesFoundView
-//                            } else {
-//                                workspacesListView
-//                            }
-//                        }
-//                    }
-//                }
                 
                 Spacer()
             }
@@ -64,13 +49,81 @@ struct WorkspaceView: View {
         }
     }
     
+    var loginWorkspace: some View {
+        VStack {
+            VStack {
+                ZStack {
+                    Text("Entrar Workspace")
+                        .font(.system(size: 30, weight: .bold))
+                    .foregroundColor(.black)
+                    HStack {
+                        Button(action: {
+                            if viewModel.workspacesAvailable.isEmpty {
+                                viewModel.workspaceViewState = .noWorkspacesFound
+                            } else {
+                                viewModel.workspaceViewState = .workspaceList
+                            }
+                        }) {
+                            Image(systemName: "arrow.left")
+                        }
+                        Spacer()
+                    }
+                }
+                
+                Spacer()
+                
+                VStack {
+                    Text("Digite o código do workspace enviado pelo e-mail:")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                    if viewModel.codeResponse != .none {
+                        Text("\(Image(systemName: viewModel.codeResponse == .error ? "xmark.octagon.fill" : "checkmark.seal.fill")) \(viewModel.codeResponse.rawValue)")
+                            .font(.system(size: 12))
+                            .foregroundColor(viewModel.codeResponse == .error ? Color.collieVermelho : Color.collieVerde)
+                    }
+                    
+                    SimpleTextField(text: $viewModel.workspaceCode, showPlaceholderWhen: viewModel.workspaceCode.isEmpty, placeholderText: "Código do workspace")
+                        .modifier(CustomBorder())
+                }
+                .frame(width: 400)
+                
+                Spacer()
+            }
+            .padding(.vertical)
+            .frame(height: 400)
+            .modifier(WorkspaceCardModifier())
+            
+            WorkspaceButton(title: "Entrar", action: {
+                viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
+                    rootViewModel.availableBusiness = business
+                    rootViewModel.availableBusinessUsers = userBusiness
+                }
+            })
+            .disabled(viewModel.workspaceCode.isEmpty)
+        }
+    }
     
     var createWorkspaceForm: some View {
         VStack {
             VStack {
-                Text("Criar Workspace")
-                    .font(.system(size: 30, weight: .bold))
+                ZStack {
+                    Text("Criar Workspace")
+                        .font(.system(size: 30, weight: .bold))
                     .foregroundColor(.black)
+                    HStack {
+                        Button(action: {
+                            if viewModel.workspacesAvailable.isEmpty {
+                                viewModel.workspaceViewState = .noWorkspacesFound
+                            } else {
+                                viewModel.workspaceViewState = .workspaceList
+                            }
+                        }) {
+                            Image(systemName: "arrow.left")
+                        }
+                        Spacer()
+                    }
+                }
                 
                 Spacer()
                 
@@ -111,10 +164,6 @@ struct WorkspaceView: View {
                 LoadingIndicator()
                 Text("Carregando...")
                     .font(.system(size: 18, weight: .medium))
-//                NavigationLink("", isActive: $showSidebar, destination: {
-//                    BusinessManagerSidebarView()
-//                })
-//                .opacity(0)
             }
             
         }
@@ -136,6 +185,9 @@ struct WorkspaceView: View {
             
             WorkspaceButton(title: "criar workspace", action: {
                 viewModel.workspaceViewState = .createForm
+            })
+            WorkspaceButton(title: "entrar em workspace", action: {
+                viewModel.workspaceViewState = .loginWorkspace
             })
         }
     }
@@ -188,6 +240,9 @@ struct WorkspaceView: View {
             WorkspaceButton(title: "criar novo workspace") {
                 viewModel.workspaceViewState = .createForm
             }
+            WorkspaceButton(title: "entrar em workspace", action: {
+                viewModel.workspaceViewState = .loginWorkspace
+            })
         }
     }
 }

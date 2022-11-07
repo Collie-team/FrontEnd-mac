@@ -6,38 +6,39 @@
 //
 
 import Foundation
+import Alamofire
 
 final class APISubscriptionService {
-    private let domainUrl = "https://backend-python-dev.vercel.app/"
-    private let route: APISubscriptionRoutes
+//    private let domainUrl = "https://backend-python-dev.vercel.app/"
+    private let domainUrl = "http://127.0.0.1:8000/"
     
-    enum APISubscriptionRoutes: String {
-        case email = "email/"
-    }
-    
-    init(route: APISubscriptionRoutes) {
-        self.route = route
-    }
-    
-    func sendEmail(
-        message: String = "Esse é um e-mail teste da Collie, se você está vendo esse e-mail, significa que deu boa demais!"
-    ) {
-        let url = domainUrl + route.rawValue + "q?message=" + message
-        let myURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let URL = URL(string: myURL!)
+    func sendInviteEmail(authenticationToken: String, business: Business, email: String, _ completion: @escaping () -> Void) {
+        let url = domainUrl + "email/invite/"
         
-        let task = URLSession.shared.dataTask(with: URL!, completionHandler: { (data, response, error) in
-            if let error = error {
-                print("Error with sending email: \(error)")
-                return
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        let parameters = [ email : business ]
+        print(parameters)
+        AF.request(
+            url,
+            method: .post,
+            parameters: parameters,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 10
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                completion()
+                print("Invite email sent")
+            case let .failure(error):
+                print(error)
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Error with the response, unexpected status code: \(String(describing: response))")
-                return
-            }
-        })
-        task.resume()
+        }
     }
 }

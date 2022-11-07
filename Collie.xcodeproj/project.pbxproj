@@ -103,6 +103,7 @@
 		5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */; };
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
+		5BBBA4FD2914609A00D9949E /* UserJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FC2914609A00D9949E /* UserJourney.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
@@ -220,6 +221,7 @@
 		5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyView.swift; sourceTree = "<group>"; };
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
+		5BBBA4FC2914609A00D9949E /* UserJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJourney.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
 				5B954E802901C38D00FA579E /* UserTask.swift */,
 				5B345DBB290C4D5300978141 /* BusinessUser.swift */,
+				5BBBA4FC2914609A00D9949E /* UserJourney.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 				5BACC64E28CFC23D006975D3 /* BusinessManagerSidebarView.swift in Sources */,
 				5BF73BCA28DA3CDC00B74060 /* Business.swift in Sources */,
 				5BF73BCC28DA3CE700B74060 /* UserModel.swift in Sources */,
+				5BBBA4FD2914609A00D9949E /* UserJourney.swift in Sources */,
 				5B2B46AA28EB72DC00FC3BE9 /* AuthenticationService.swift in Sources */,
 				5BACC65028CFC25F006975D3 /* BusinessManagerSidebarViewModel.swift in Sources */,
 				5B49604728ECC50B0024D064 /* SimpleTextField.swift in Sources */,

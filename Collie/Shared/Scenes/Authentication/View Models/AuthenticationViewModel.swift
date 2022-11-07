@@ -48,8 +48,8 @@ enum AuthenticationMode {
 
 class AuthenticationViewModel: ObservableObject {
     @Published var authenticationMode: AuthenticationMode = .signup
-    //    @Published var currentUser = AuthenticationUser()
-    @Published var currentUser = AuthenticationUser(firstName: "Teste", lastName: "Backend", email: "backend@teste.com", password: "Backend123", passwordConfirmation: "Backend123", agreementToggle: true, mailingToggle: false)
+    @Published var currentUser = AuthenticationUser()
+//    @Published var currentUser = AuthenticationUser(firstName: "Teste", lastName: "Backend", email: "backend@teste.com", password: "Backend123", passwordConfirmation: "Backend123", agreementToggle: true, mailingToggle: false)
     @Published var signupEnabled = false
     @Published var loginEnabled = false
     @Published var authenticationStatus: AuthenticationStatus = .valid

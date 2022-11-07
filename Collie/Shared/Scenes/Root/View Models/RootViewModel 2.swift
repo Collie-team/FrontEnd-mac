@@ -20,9 +20,7 @@ final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
     @Published var navigationState: NavigationState = .authentication
     
-    
-    @Published var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
-    
+    var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
     var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     var currentBusinessUser: BusinessUser?
     
@@ -31,7 +29,6 @@ final class RootViewModel: ObservableObject {
     var availableBusinessUsers: [BusinessUser] = []
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
-        businessSelected.journeys
         self.authenticationToken = authToken
         self.currentUser = user
         businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { business, businessUser  in
