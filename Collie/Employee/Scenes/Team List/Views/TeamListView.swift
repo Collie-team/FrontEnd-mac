@@ -5,6 +5,10 @@ enum ListComponents: CGFloat {
     case progress = 0.2
     case contact = 0.32
     case journey = 0.24
+    case name = 0.4
+    case email = 0.27
+    case date = 0.13
+    case role = 0.17
     
     static func alignWith(component: ListComponents) -> CGFloat {
         return component.rawValue

@@ -1,9 +1,9 @@
 import Foundation
 
-enum BusinessUserRoles: String, Codable {
-    case admin
-    case manager
-    case employee
+enum BusinessUserRoles: String, Codable, CaseIterable {
+    case admin = "Admin"
+    case manager = "Gestor"
+    case employee = "Colaborador"
 }
 
 struct BusinessUser: Codable {
