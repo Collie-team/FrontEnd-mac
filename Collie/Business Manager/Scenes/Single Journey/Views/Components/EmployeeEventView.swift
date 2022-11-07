@@ -67,7 +67,7 @@ struct EmployeeEventView_Previews: PreviewProvider {
         EmployeeEventView(
             event: Event(id: "xxx",
                          name: "Workshop de Figma",
-                         description: "ndsjn dasln dsalnadslkn daslknda slndaslnk",
+                         description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", journeyId: "",
                          contentLink: "https://oi.com",
                          startDate: Date(timeIntervalSince1970: 1667591752),
                          endDate: Date(timeIntervalSince1970: 1667678152),

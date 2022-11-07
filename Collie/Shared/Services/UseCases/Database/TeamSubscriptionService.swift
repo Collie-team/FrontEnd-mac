@@ -38,9 +38,7 @@ final class TeamSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                print(response.data!.description)
                 let decodedData = try JSONDecoder().decode(TeamListDTO.self, from: response.data!)
-                print(decodedData)
                 completion(decodedData.businessUser, decodedData.users)
             } catch {
                 //handle error

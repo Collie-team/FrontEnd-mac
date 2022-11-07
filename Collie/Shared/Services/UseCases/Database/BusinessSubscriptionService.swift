@@ -43,7 +43,6 @@ final class BusinessSubscriptionService {
             do {
                 print(response.data!.description)
                 let decodedData = try JSONDecoder().decode(User_BusinessDTO.self, from: response.data!)
-                print(decodedData)
                 completion(decodedData.business, decodedData.businessUser)
             } catch {
                 //handle error
@@ -77,7 +76,6 @@ final class BusinessSubscriptionService {
             // TODO: Synchronize data from response
             do {
                 let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
-                print(decodedData)
                 completion(decodedData.business, decodedData.businessUsers)
             } catch {
                 //handle error
@@ -115,8 +113,75 @@ final class BusinessSubscriptionService {
             // TODO: Synchronize data from response
             do {
                 let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
-                print(decodedData)
                 completion(decodedData.business, decodedData.businessUsers)
+            } catch {
+                //handle error
+                print(error)
+            }
+        }
+    }
+    
+    func refreshBusiness(authenticationToken: String, businessId: String, _ completion: @escaping (Business) -> Void) {
+        let url = domainUrl + "business/refresh/" + "?businessId=\(businessId)"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 5
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                print("Business refreshing Successful")
+            case let .failure(error):
+                print(error)
+            }
+            // TODO: Synchronize data from response
+            do {
+                let decodedData = try JSONDecoder().decode(Business.self, from: response.data!)
+                completion(decodedData)
+            } catch {
+                //handle error
+                print(error)
+            }
+        }
+    }
+    
+    func updateBusiness(authenticationToken: String, business: Business, _ completion: @escaping (Business) -> Void) {
+        let url = domainUrl + "business/update/"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        AF.request(
+            url,
+            method: .post,
+            parameters: business,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 5
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                print("Business update Successful")
+            case let .failure(error):
+                print(error)
+            }
+            // TODO: Synchronize data from response
+            do {
+                let decodedData = try JSONDecoder().decode(Business.self, from: response.data!)
+                completion(decodedData)
             } catch {
                 //handle error
                 print(error)
