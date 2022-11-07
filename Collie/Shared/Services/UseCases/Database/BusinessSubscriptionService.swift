@@ -85,5 +85,43 @@ final class BusinessSubscriptionService {
             }
         }
     }
+    
+    func loginBusiness(authenticationToken: String, code: String, user: UserModel, _ completion: @escaping ([Business], [BusinessUser]) -> ()) {
+        let url = domainUrl + "business/login/"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        let requestParameters = [ code : user ] as [String : UserModel]
+        
+        AF.request(
+            url,
+            method: .post,
+            parameters: requestParameters,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 5
+        }.response { response in
+            print(response.debugDescription)
+            switch response.result {
+            case .success:
+                print("Business login Successful")
+            case let .failure(error):
+                print(error)
+            }
+            // TODO: Synchronize data from response
+            do {
+                let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
+                print(decodedData)
+                completion(decodedData.business, decodedData.businessUsers)
+            } catch {
+                //handle error
+                print(error)
+            }
+        }
+    }
 }
 

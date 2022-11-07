@@ -11,5 +11,4 @@ struct BusinessUser: Codable {
     var businessId: String
     var role: BusinessUserRoles
     var userTasks: [UserTask]
-    var userJourneys: [UserJourney]
 }

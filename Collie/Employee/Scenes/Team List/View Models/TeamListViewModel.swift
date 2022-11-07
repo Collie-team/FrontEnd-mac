@@ -19,25 +19,31 @@ final class TeamListViewModel: ObservableObject {
     @Published var teamListUsers: [TeamListUser] = []
     var teamUsers: [UserModel] = []
     var teamBusinessUsers: [BusinessUser] = []
+    var currentBusiness: Business?
     
     func fetchUsers(business: Business) {
+        currentBusiness = business
         teamListService.fetchTeamInfo(business: business, authenticationToken: "TODO: COLOCAR TOKEN AQUI") { businessUsers, users in
             self.teamUsers = users
             self.teamBusinessUsers = businessUsers
         }
     }
     
-    func processTeamList() {
+    func processTeamList(business: Business) {
+        currentBusiness = business
         for (user, businessUser) in zip(self.teamUsers, self.teamBusinessUsers) {
-//            let teamListUser = TeamListUser(name: user.name, email: user.email, journey: <#T##String#>, totalTasks: <#T##Int#>, doneTasks: <#T##Int#>)
+            for userJourney in businessUser.userJourneys {
+                let journey = business.journeys.first(where: {$0.id.description == userJourney.journeyId})
+                let teamListUser = TeamListUser(name: user.name, email: user.email, journey: journey?.name ?? "", totalTasks: 9, doneTasks: 10)
+                self.teamListUsers.append(teamListUser)
+            }
         }
     }
     
-    func registerUser(userToAdd: UserModel) {
-//        databaseService.writeData(dataToWrite: userToAdd) { response in
-//            if !response.isEmpty {
-//                self.sampleUsers.append(userToAdd)
-//            }
-//        }
+    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
+        let emailService = APISubscriptionService()
+        emailService.sendInviteEmail(authenticationToken: "", business: currentBusiness!, email: userToAdd.email) {
+            // Prompt success
+        }
     }
 }

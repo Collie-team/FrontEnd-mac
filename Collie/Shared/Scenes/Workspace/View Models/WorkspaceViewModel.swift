@@ -7,11 +7,21 @@ final class WorkspaceViewModel: ObservableObject {
         case createForm
         case noWorkspacesFound
         case workspaceList
+        case loginWorkspace
     }
+    
+    enum CodeResponse: String {
+        case none = ""
+        case success = "Sucesso. Você entrou no workspace."
+        case error = "Falha. Código inválido."
+    }
+    
     @Published var workspaceViewState: WorkspaceViewState = .loading
-    var workspacesAvailable: [Business] = []
+    @Published var workspacesAvailable: [Business] = []
     
     @Published var workspaceName: String = ""
+    @Published var workspaceCode: String = ""
+    @Published var codeResponse: CodeResponse = .none
     
     @Published var selectedWorkspace: Business?
     
@@ -33,5 +43,17 @@ final class WorkspaceViewModel: ObservableObject {
     func selectWorkspace(_ business: Business) {
         self.selectedWorkspace = business
         handleWorkspaceSelection(business)
+    }
+    
+    func loginWorkspace(user: UserModel, _ completion: @escaping ([Business], [BusinessUser]) -> Void) {
+        businessSubscriptionService.loginBusiness(authenticationToken: "", code: workspaceCode, user: user) { business, userBusiness in
+            if !business.isEmpty {
+                self.codeResponse = .success
+                self.workspacesAvailable = business
+                completion(business, userBusiness)
+            } else {
+                self.codeResponse = .error
+            }
+        }
     }
 }
