@@ -7,6 +7,8 @@ struct BusinessManagerSingleJourneyView: View {
     @State var editJourney = false
     @State var showTaskForm = false
     @State var showEventForm = false
+    @State var showTasksHint = false
+    @State var showEventsHint = false
     
     var backAction: () -> ()
     
@@ -57,8 +59,11 @@ struct BusinessManagerSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                // TO DO
+                                showTasksHint = true
                             })
+                            .popover(isPresented: $showTasksHint, arrowEdge: .bottom) {
+                                HelpView(title: "O que é uma tarefa?", subtitle: "Descrever")
+                            }
 
                             Spacer()
                             
@@ -110,8 +115,11 @@ struct BusinessManagerSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                // TO DO
+                                showEventsHint = true
                             })
+                            .popover(isPresented: $showEventsHint, arrowEdge: .bottom) {
+                                HelpView(title: "O que é um evento?", subtitle: "Descrever")
+                            }
                             
                             Spacer()
                             

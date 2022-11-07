@@ -62,6 +62,7 @@
 		5B4E31402915A78B0031F74F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E313F2915A78B0031F74F /* SettingsViewModel.swift */; };
 		5B4E31432916D9FD0031F74F /* SettingsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4E31422916D9FD0031F74F /* SettingsOptionView.swift */; };
 		5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */; };
+		5B50425E29194C29001E39A2 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B50425D29194C28001E39A2 /* HelpView.swift */; };
 		5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */; };
 		5B5F9CF828F09AB8005739C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */; };
 		5B5F9CFB28F09C0E005739C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5B5F9CFA28F09C0E005739C2 /* FirebaseAuth */; };
@@ -177,6 +178,7 @@
 		5B4E313F2915A78B0031F74F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		5B4E31422916D9FD0031F74F /* SettingsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOptionView.swift; sourceTree = "<group>"; };
 		5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSubscriptionService.swift; sourceTree = "<group>"; };
+		5B50425D29194C28001E39A2 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		5B5DD5A928F497F900B2FF0F /* CustomBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBorderModifier.swift; sourceTree = "<group>"; };
 		5B5F9CF728F09AB8005739C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B954E7C2901C2C700FA579E /* EmployeeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventView.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */,
 				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
 				5BA9AFDF290B182900C1078A /* HelpButton.swift */,
+				5B50425D29194C28001E39A2 /* HelpView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1088,6 +1091,7 @@
 				5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */,
 				5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */,
 				5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */,
+				5B50425E29194C29001E39A2 /* HelpView.swift in Sources */,
 				5B49604328ECBF930024D064 /* CreateOrEditEventView.swift in Sources */,
 				5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */,
 				5BACC65328CFC2BE006975D3 /* BusinessJourneyListView.swift in Sources */,
