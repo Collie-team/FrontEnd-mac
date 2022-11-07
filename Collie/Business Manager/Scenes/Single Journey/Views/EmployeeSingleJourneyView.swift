@@ -325,7 +325,8 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
                     imageURL: "",
-                    startDate: Date()
+                    startDate: Date(),
+                    userIds: []
 //                    employees: [],
 //                    tasks: [
 //                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),

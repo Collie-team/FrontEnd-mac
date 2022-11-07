@@ -32,11 +32,11 @@ final class TeamListViewModel: ObservableObject {
     func processTeamList(business: Business) {
         currentBusiness = business
         for (user, businessUser) in zip(self.teamUsers, self.teamBusinessUsers) {
-            for userJourney in businessUser.userJourneys {
-                let journey = business.journeys.first(where: {$0.id.description == userJourney.journeyId})
-                let teamListUser = TeamListUser(name: user.name, email: user.email, journey: journey?.name ?? "", totalTasks: 9, doneTasks: 10)
-                self.teamListUsers.append(teamListUser)
-            }
+//            for userJourney in businessUser.userJourneys {
+//                let journey = business.journeys.first(where: {$0.id.description == userJourney.journeyId})
+//                let teamListUser = TeamListUser(name: user.name, email: user.email, journey: journey?.name ?? "", totalTasks: 9, doneTasks: 10)
+//                self.teamListUsers.append(teamListUser)
+//            }
         }
     }
     
