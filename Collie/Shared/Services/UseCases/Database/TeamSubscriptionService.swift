@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 final class TeamSubscriptionService {
-    private let domainUrl = "https://backend-python-dev.vercel.app/"
-//    private let domainUrl = "http://127.0.0.1:8000/"
+//    private let domainUrl = "https://backend-python-dev.vercel.app/"
+    private let domainUrl = "http://127.0.0.1:8000/"
     
     func fetchTeamInfo(business: Business, authenticationToken: String, _ completion: @escaping ([BusinessUser],[UserModel]) -> ()) {
         let url = domainUrl + "team/fetch/"
