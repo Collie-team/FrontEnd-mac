@@ -12,6 +12,8 @@ enum NavigationState {
     case workspace
     case manager
     case employee
+    case managerOnboarding
+    case employeeOnboarding
 }
 
 final class RootViewModel: ObservableObject {
@@ -58,10 +60,21 @@ final class RootViewModel: ObservableObject {
     }
     
     func redirectBasedOnRole() {
+        // AQUI
         if currentBusinessUser!.role == .admin || currentBusinessUser!.role == .manager {
-            self.navigationState = .manager
+            let isManagerOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .businessManager)
+            if isManagerOnboardingDone {
+                self.navigationState = .manager
+            } else {
+                self.navigationState = .managerOnboarding
+            }
         } else {
-            self.navigationState = .employee
+            let isEmployeeOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .employee)
+            if isEmployeeOnboardingDone {
+                self.navigationState = .employee
+            } else {
+                self.navigationState = .employeeOnboarding
+            }
         }
     }
 }

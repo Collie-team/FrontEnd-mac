@@ -43,14 +43,16 @@ struct BusinessManagerSidebarView: View {
             
             VStack {
                 switch viewModel.selectedItem.option {
-//                case .dashboard:
-//                    DashboardView()
+                case .dashboard:
+                    DashboardView()
                 case .journeys:
                     BusinessJourneyListView()
                 case .teamList:
                     TeamListView()
 //                case .payments:
 //                    PaymentsView()
+                case .settings:
+                    SettingsView()
                 default:
                     Text("Error")
                 }

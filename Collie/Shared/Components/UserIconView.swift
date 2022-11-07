@@ -9,8 +9,8 @@ struct UserIconView: View {
                 ZStack {
                     Circle()
                         .foregroundColor(getRandomColor())
-                        .frame(width: 30, height: 30)
                     Text(getUserInitials())
+                        .font(.system(size: 16, weight: .bold))
                 }
             } else {
                 // TO DO
