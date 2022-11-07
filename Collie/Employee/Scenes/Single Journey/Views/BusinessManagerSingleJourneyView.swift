@@ -86,18 +86,18 @@ struct BusinessManagerSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-//                            ForEach(viewModel.journey.tasks) { task in
-//                                BusinessManagerTaskView(
-//                                    task: task,
-//                                    handleTaskOpen: {
-//                                        viewModel.selectTask(task)
-//                                    },
-//                                    handleTaskDuplicate: {
-//                                        viewModel.duplicateTask(task)
-//                                    }
-//                                )
-//                            }
-//                            .padding(2)
+                            ForEach(viewModel.journeyTasks) { task in
+                                BusinessManagerTaskView(
+                                    task: task,
+                                    handleTaskOpen: {
+                                        viewModel.selectTask(task)
+                                    },
+                                    handleTaskDuplicate: {
+                                        viewModel.duplicateTask(task)
+                                    }
+                                )
+                            }
+                            .padding(2)
                             
                             Spacer()
                         }
@@ -296,6 +296,9 @@ struct BusinessManagerSingleJourneyView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo)
+        .onAppear {
+            viewModel.handleAppear()
+        }
     }
 }
 

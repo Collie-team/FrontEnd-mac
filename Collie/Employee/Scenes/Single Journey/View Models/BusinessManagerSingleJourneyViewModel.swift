@@ -8,6 +8,8 @@ final class BusinessManagerSingleJourneyViewModel: ObservableObject {
         }
     }
     
+    @Published var journeyTasks: [Task] = []
+    
     @Published var chosenTask: Task?
     
     @Published var chosenEvent: Event?
@@ -30,6 +32,27 @@ final class BusinessManagerSingleJourneyViewModel: ObservableObject {
     init(journey: Journey) {
         self.journey = journey
         filterSelectedEvents()
+    }
+    
+    func handleAppear() {
+        fetchTasks()
+    }
+    
+    func fetchTasks() {
+        // TO DO
+        self.journeyTasks = [
+            Task(id: "123", journeyId: "XX", name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "124", journeyId: "XX", name: "A", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "125", journeyId: "XX", name: "B", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "126", journeyId: "XX", name: "C", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "127", journeyId: "XX", name: "D", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "128", journeyId: "XX", name: "E", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "129", journeyId: "XX", name: "F", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "130", journeyId: "XX", name: "G", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "131", journeyId: "XX", name: "H", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "132", journeyId: "XX", name: "I", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
+            Task(id: "133", journeyId: "XX", name: "J", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date())
+        ]
     }
     
     // MARK: - Task functions
