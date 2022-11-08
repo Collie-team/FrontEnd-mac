@@ -40,8 +40,8 @@ final class RootViewModel: ObservableObject {
             name: "",
             description: "",
             journeys: [
-                Journey(id: "teste1", name: "Jornada iOS", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date()),
-                Journey(id: "teste2", name: "Jornada de Design", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date())
+                Journey(id: "teste1", name: "Jornada iOS", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date(), userIds: []),
+                Journey(id: "teste2", name: "Jornada de Design", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date(), userIds: []),
             ],
             tasks: [
                 Task(id: "123", journeyId: "teste1", name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),

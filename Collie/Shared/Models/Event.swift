@@ -5,7 +5,6 @@ struct Event: Identifiable, Codable {
     var journeyId: String
     var name: String
     var description: String
-    var journeyId: String
     var contentLink: String
     var startDate: Date
     var endDate: Date

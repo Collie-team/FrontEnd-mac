@@ -10,8 +10,8 @@ import Combine
 import Alamofire
 
 final class UserSubscriptionService {
-//    private let domainUrl = "https://backend-python-dev.vercel.app/"
-    private let domainUrl = "http://127.0.0.1:8000/"
+    private let domainUrl = "https://backend-python-dev.vercel.app/"
+//    private let domainUrl = "http://127.0.0.1:8000/"
     
     func createUser(user: UserModel, authenticationToken: String, _ completion: @escaping (UserModel) -> ()) {
         let url = domainUrl + "user/create/"
