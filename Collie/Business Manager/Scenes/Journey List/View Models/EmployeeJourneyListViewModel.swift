@@ -6,7 +6,8 @@ final class EmployeeJourneyListViewModel: ObservableObject {
             name: "Jornada iOS",
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
             imageURL: "",
-            startDate: Date()
+            startDate: Date(),
+            userIds: []
         )
     ]
     

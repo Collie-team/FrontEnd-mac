@@ -152,7 +152,7 @@ struct CreateOrEditEventView: View {
                                 id: viewModel.eventId ?? UUID().uuidString,
                                 journeyId: journeyId,
                                 name: viewModel.eventName,
-                                description: viewModel.eventDescription,
+                                description: viewModel.eventDescription, journeyId: "",
                                 contentLink: viewModel.eventLink,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,

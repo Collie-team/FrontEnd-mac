@@ -80,7 +80,11 @@ struct CreateOrEditJourneyView: View {
                             name: viewModel.journeyName,
                             description: viewModel.journeyDescription,
                             imageURL: imageURL,
-                            startDate: viewModel.startDate
+                            startDate: viewModel.startDate, userIds: []
+//                            employees: viewModel.chosenEmployees,
+//                            tasks: viewModel.tasks,
+//                            events: viewModel.events,
+//                            managers: viewModel.chosenManagers
                         )
                     )
                     handleClose()

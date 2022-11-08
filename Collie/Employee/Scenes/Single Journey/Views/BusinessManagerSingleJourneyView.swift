@@ -1,15 +1,12 @@
 import SwiftUI
 
-struct EmployeeSingleJourneyView: View {
-    @ObservedObject var viewModel: EmployeeSingleJourneyViewModel
-    @ObservedObject var employeeJourneyListViewModel: EmployeeJourneyListViewModel
+struct BusinessManagerSingleJourneyView: View {
+    @ObservedObject var viewModel: BusinessManagerSingleJourneyViewModel
+    @ObservedObject var journeyListViewModel: BusinessJourneyListViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
     @State var showEventForm = false
-    @State var showDailyTasks = true
-    @State var showNextTasks = false
-    @State var showDoneTasks = true
     
     var backAction: () -> ()
     
@@ -27,6 +24,22 @@ struct EmployeeSingleJourneyView: View {
                         .font(.system(size: 40, weight: .bold, design: .default))
                     
                     Spacer()
+                    
+                    Button {
+                        editJourney = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "square.and.pencil")
+                            Text("Editar jornada")
+                        }
+                        .font(.system(size: 16, weight: .bold))
+                        .padding(8)
+                        .foregroundColor(.black)
+                        .background(Color.white)
+                        .cornerRadius(8)
+                    }
+                    .contentShape(Rectangle())
+                    .buttonStyle(.plain)
                 }
                 .foregroundColor(.black)
                 .padding(.bottom)
@@ -44,125 +57,42 @@ struct EmployeeSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                
+                                // TO DO
                             })
-                            
+
                             Spacer()
                             
+                            Button {
+                                showTaskForm = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("Nova tarefa")
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(8)
+                                .foregroundColor(.black)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .modifier(CustomBorder())
+                            }
                             .contentShape(Rectangle())
                             .buttonStyle(.plain)
                         }
                         
-                        HStack {
-                            Text("\(viewModel.uncompletedTasksCount) tarefas pendentes")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.black)
-                            Spacer()
-                        }
-                        .padding(.vertical)
-                        
                         ScrollView(.vertical) {
-                            HStack {
-                                Text("Tarefas do dia")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showDailyTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showDailyTasks.toggle()
-                                }
-                            }
-                            
-                            if showDailyTasks {
-                                ForEach($viewModel.dailyTaskModels) { $taskModel in
-                                    EmployeeTaskView(
-                                        task: taskModel.task,
-                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
-                                        checked: viewModel.isTaskModelChecked(taskModel),
-                                        isLate: viewModel.isTaskModelLate(taskModel),
-                                        handleTaskOpen: {
-                                            viewModel.selectTaskModel(taskModel)
-                                        },
-                                        handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
-                                        }
-                                    )
-                                }
-                                .padding(2)
-                            }
-                            
-                            HStack {
-                                Text("Próximas tarefas")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showNextTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showNextTasks.toggle()
-                                }
-                            }
-                            
-                            if showNextTasks {
-                                ForEach($viewModel.nextTaskModels) { $taskModel in
-                                    EmployeeTaskView(
-                                        task: taskModel.task,
-                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
-                                        checked: viewModel.isTaskModelChecked(taskModel),
-                                        isLate: viewModel.isTaskModelLate(taskModel),
-                                        handleTaskOpen: {
-                                            viewModel.selectTaskModel(taskModel)
-                                        },
-                                        handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
-                                        }
-                                    )
-                                }
-                                .padding(2)
-                            }
-                            
-                            HStack {
-                                Text("Tarefas feitas")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showDoneTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showDoneTasks.toggle()
-                                }
-                            }
-                            
-                            if showDoneTasks {
-                                ForEach($viewModel.doneTaskModels) { $taskModel in
-                                    EmployeeTaskView(
-                                        task: taskModel.task,
-                                        userTask: taskModel.userTask ?? UserTask(taskId: "", journeyId: ""),
-                                        checked: viewModel.isTaskModelChecked(taskModel),
-                                        isLate: viewModel.isTaskModelLate(taskModel),
-                                        handleTaskOpen: {
-                                            viewModel.selectTaskModel(taskModel)
-                                        },
-                                        handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
-                                        }
-                                    )
-                                }
-                                .padding(2)
-                            }
+//                            ForEach(viewModel.journey.tasks) { task in
+//                                BusinessManagerTaskView(
+//                                    task: task,
+//                                    handleTaskOpen: {
+//                                        viewModel.selectTask(task)
+//                                    },
+//                                    handleTaskDuplicate: {
+//                                        viewModel.duplicateTask(task)
+//                                    }
+//                                )
+//                            }
+//                            .padding(2)
                             
                             Spacer()
                         }
@@ -180,13 +110,31 @@ struct EmployeeSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                
+                                // TO DO
                             })
                             
                             Spacer()
+                            
+                            Button {
+                                showEventForm = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "calendar.badge.plus")
+                                    Text("Novo evento")
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(8)
+                                .foregroundColor(.black)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .modifier(CustomBorder())
+                            }
+                            .contentShape(Rectangle())
+                            .buttonStyle(.plain)
+                            
                         }
                         
-                        EmployeeEventsCalendarView(selectedDate: $viewModel.selectedDate, employeeSingleJourneyViewModel: self.viewModel) { event in
+                        BusinessManagerEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
                             viewModel.selectEvent(event)
                         }
                         
@@ -236,29 +184,48 @@ struct EmployeeSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-//                            viewModel.saveTask(task)
+                            viewModel.saveTask(task)
                         },
-                        handleTaskDeletion: { _ in },
-                        handleTaskDuplicate: { _ in }
+                        handleTaskDeletion: { task in
+                            viewModel.removeTask(task)
+                            withAnimation {
+                                showTaskForm = false
+                            }
+                        },
+                        handleTaskDuplicate: { task in
+                            viewModel.duplicateTask(task)
+                            withAnimation {
+                                showTaskForm = false
+                            }
+                        }
                     )
                     .frame(maxWidth: 800)
                 }
             }
             
-            if viewModel.chosenTaskModel != nil {
+            if viewModel.chosenTask != nil {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    EmployeeTaskFullView(
-                        userTask: viewModel.chosenTaskModel!.userTask!,
-                        task: viewModel.chosenTaskModel!.task,
+                    CreateOrEditTaskView(
+                        task: viewModel.chosenTask,
                         handleClose: {
-                            viewModel.unselectTask()
-                        },
-                        handleCheckToggle: {
                             withAnimation {
-                                viewModel.checkTaskModel(viewModel.chosenTaskModel!)
+                                viewModel.unselectTask()
                             }
+                        },
+                        handleTaskSave: { task in
+                            viewModel.saveTask(task)
+                        },
+                        handleTaskDeletion: { task in
+                            viewModel.removeTask(task)
+                            withAnimation {
+                                viewModel.unselectTask()
+                            }
+                        },
+                        handleTaskDuplicate: { task in
+                            viewModel.duplicateTask(task)
+                            viewModel.unselectTask()
                         }
                     )
                     .frame(maxWidth: 800)
@@ -272,7 +239,6 @@ struct EmployeeSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: nil,
-                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 showEventForm = false
@@ -295,7 +261,6 @@ struct EmployeeSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: viewModel.chosenEvent,
-                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
@@ -304,8 +269,18 @@ struct EmployeeSingleJourneyView: View {
                         handleEventSave: { event in
                             viewModel.saveEvent(event)
                         },
-                        handleEventDelete: { _ in },
-                        handleEventDuplicate: { _ in }
+                        handleEventDelete: { event in
+                            viewModel.removeEvent(event)
+                            withAnimation {
+                                viewModel.unselectEvent()
+                            }
+                        },
+                        handleEventDuplicate: { event in
+                            viewModel.duplicateEvent(event)
+                            withAnimation {
+                                viewModel.unselectEvent()
+                            }
+                        }
                     )
                     .frame(maxWidth: 800)
                 }
@@ -313,16 +288,13 @@ struct EmployeeSingleJourneyView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo)
-        .onAppear {
-            viewModel.handleAppear()
-        }
     }
 }
 
-struct EmployeeSingleJourneyView_Previews: PreviewProvider {
+struct SingleJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmployeeSingleJourneyView(
-            viewModel: EmployeeSingleJourneyViewModel(
+        BusinessManagerSingleJourneyView(
+            viewModel: BusinessManagerSingleJourneyViewModel(
                 journey: Journey(
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
@@ -347,7 +319,7 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
 //                    managers: []
                 )
             ),
-            employeeJourneyListViewModel: EmployeeJourneyListViewModel(),
+            journeyListViewModel: BusinessJourneyListViewModel(),
             backAction: {
                 
             }

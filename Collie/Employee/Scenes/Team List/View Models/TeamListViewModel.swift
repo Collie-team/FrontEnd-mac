@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 struct TeamListUser: Identifiable {
     var id = UUID()
@@ -26,15 +27,22 @@ final class TeamListViewModel: ObservableObject {
         teamListService.fetchTeamInfo(business: business, authenticationToken: "TODO: COLOCAR TOKEN AQUI") { businessUsers, users in
             self.teamUsers = users
             self.teamBusinessUsers = businessUsers
+            self.processTeamList()
         }
     }
     
-    func processTeamList(business: Business) {
-        currentBusiness = business
+    func processTeamList() {
         for (user, businessUser) in zip(self.teamUsers, self.teamBusinessUsers) {
-            for userJourney in businessUser.userJourneys {
-                let journey = business.journeys.first(where: {$0.id.description == userJourney.journeyId})
-                let teamListUser = TeamListUser(name: user.name, email: user.email, journey: journey?.name ?? "", totalTasks: 9, doneTasks: 10)
+            let userJourneys = currentBusiness!.journeys.filter({$0.userIds.contains(user.id)})
+            let doneTasks = businessUser.userTasks.filter({$0.doneDate == nil})
+            
+            let teamListUser = TeamListUser(
+                name: user.name,
+                email: user.email,
+                journey: userJourneys.count > 1 ? "\(userJourneys.first!.name) + \(userJourneys.count - 1)" : userJourneys.count > 0 ? userJourneys.first!.name : "Sem jornada",
+                totalTasks: businessUser.userTasks.count,
+                doneTasks: doneTasks.count)
+            withAnimation() {
                 self.teamListUsers.append(teamListUser)
             }
         }
