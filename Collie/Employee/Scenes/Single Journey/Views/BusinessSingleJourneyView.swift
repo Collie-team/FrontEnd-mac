@@ -1,8 +1,7 @@
 import SwiftUI
 
-struct BusinessManagerSingleJourneyView: View {
-    @ObservedObject var viewModel: BusinessManagerSingleJourneyViewModel
-    @ObservedObject var journeyListViewModel: BusinessJourneyListViewModel
+struct BusinessSingleJourneyView: View {
+    @StateObject var viewModel: BusinessSingleJourneyViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
@@ -10,6 +9,9 @@ struct BusinessManagerSingleJourneyView: View {
     @State var showTasksHint = false
     @State var showEventsHint = false
     
+    var handleJourneySave: (Journey) -> ()
+    var handleTaskSave: (Task) -> ()
+    var handleEventSave: (Event) -> ()
     var backAction: () -> ()
     
     var body: some View {
@@ -86,14 +88,15 @@ struct BusinessManagerSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(viewModel.journeyTasks) { task in
-                                BusinessManagerTaskView(
+                            ForEach(viewModel.business.tasks) { task in
+                                BusinessTaskView(
                                     task: task,
                                     handleTaskOpen: {
                                         viewModel.selectTask(task)
                                     },
                                     handleTaskDuplicate: {
                                         viewModel.duplicateTask(task)
+                                        handleTaskSave(task)
                                     }
                                 )
                             }
@@ -142,7 +145,7 @@ struct BusinessManagerSingleJourneyView: View {
                             
                         }
                         
-                        BusinessManagerEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
+                        BusinessEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
                             viewModel.selectEvent(event)
                         }
                         
@@ -173,7 +176,8 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleJourneySave: { journey in
-                            viewModel.journey = journey
+                            viewModel.saveJourney(journey)
+                            handleJourneySave(journey)
                         }
                     )
                     .frame(maxWidth: 800)
@@ -192,6 +196,7 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
+                            handleTaskSave(task)
                             viewModel.saveTask(task)
                         },
                         handleTaskDeletion: { task in
@@ -201,6 +206,7 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleTaskDuplicate: { task in
+                            handleTaskSave(task)
                             viewModel.duplicateTask(task)
                             withAnimation {
                                 showTaskForm = false
@@ -223,6 +229,7 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
+                            handleTaskSave(task)
                             viewModel.saveTask(task)
                         },
                         handleTaskDeletion: { task in
@@ -233,6 +240,7 @@ struct BusinessManagerSingleJourneyView: View {
                         },
                         handleTaskDuplicate: { task in
                             viewModel.duplicateTask(task)
+                            handleTaskSave(task)
                             viewModel.unselectTask()
                         }
                     )
@@ -247,13 +255,17 @@ struct BusinessManagerSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: nil,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 showEventForm = false
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event)
+                            viewModel.saveEvent(event) { _ in
+                                
+                            }
+                            handleEventSave(event)
                         },
                         handleEventDelete: { _ in },
                         handleEventDuplicate: { _ in }
@@ -269,22 +281,28 @@ struct BusinessManagerSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: viewModel.chosenEvent,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event)
+                            viewModel.saveEvent(event) { _ in
+                                
+                            }
+                            handleEventSave(event)
                         },
                         handleEventDelete: { event in
-                            viewModel.removeEvent(event)
                             withAnimation {
                                 viewModel.unselectEvent()
                             }
                         },
                         handleEventDuplicate: { event in
-                            viewModel.duplicateEvent(event)
+                            viewModel.duplicateEvent(event) { events in
+                                
+                            }
+                            handleEventSave(event)
                             withAnimation {
                                 viewModel.unselectEvent()
                             }
@@ -296,43 +314,17 @@ struct BusinessManagerSingleJourneyView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo)
-        .onAppear {
-            viewModel.handleAppear()
-        }
     }
 }
 
-struct SingleJourneyView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusinessManagerSingleJourneyView(
-            viewModel: BusinessManagerSingleJourneyViewModel(
-                journey: Journey(
-                    name: "Jornada iOS",
-                    description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                    imageURL: "",
-                    startDate: Date()
-//                    employees: [],
-//                    tasks: [
-//                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "A", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "B", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "C", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "D", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "E", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "F", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "G", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "H", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "I", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "J", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
-//                    ],
-//                    events: [],
-//                    managers: []
-                )
-            ),
-            journeyListViewModel: BusinessJourneyListViewModel(),
-            backAction: {
-                
-            }
-        )
-    }
-}
+//struct SingleJourneyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BusinessManagerSingleJourneyView(
+//            viewModel: BusinessManagerSingleJourneyViewModel(
+//                business: .init(name: "Teste", description: "Descrição", journeys: [Journey(name: "Jornada iOS", description: "Descrição", imageURL: "", startDate: Date())], tasks: [], events: []), journeyId: ""
+//            ),
+//            journeyListViewModel: BusinessJourneyListViewModel(journeyList: .constant([])),
+//            backAction: {}
+//        )
+//    }
+//}

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct BusinessManagerCalendarCell: View {
-    @ObservedObject var bmSingleJourneyListViewModel: BusinessManagerSingleJourneyViewModel
-    @ObservedObject var bmEventsCalendarViewModel: BusinessManagerEventsCalendarViewModel
+struct BusinessCalendarCell: View {
+    @ObservedObject var bmSingleJourneyListViewModel: BusinessSingleJourneyViewModel
+    @ObservedObject var bmEventsCalendarViewModel: BusinessEventsCalendarViewModel
     let count: Int
     let startingSpaces: Int
     let daysInMonth: Int

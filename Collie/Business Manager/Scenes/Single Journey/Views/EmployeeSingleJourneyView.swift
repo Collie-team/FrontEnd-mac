@@ -272,6 +272,7 @@ struct EmployeeSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: nil,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 showEventForm = false
@@ -294,6 +295,7 @@ struct EmployeeSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: viewModel.chosenEvent,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()

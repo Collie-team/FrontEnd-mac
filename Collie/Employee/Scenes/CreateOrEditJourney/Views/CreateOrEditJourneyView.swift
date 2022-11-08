@@ -4,7 +4,6 @@ struct CreateOrEditJourneyView: View {
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
     @State var imageURL: String = ""//URL = URL(fileURLWithPath: "")
     
-    var journey: Journey?
     var handleClose: () -> ()
     var handleJourneySave: (Journey) -> ()
     
@@ -12,11 +11,7 @@ struct CreateOrEditJourneyView: View {
         self.handleClose = handleClose
         self.handleJourneySave = handleJourneySave
         if let journey = journey {
-//            viewModel.tasks = journey.tasks
-//            viewModel.events = journey.events
             viewModel.journeyId = journey.id
-//            viewModel.chosenEmployees = journey.employees
-//            viewModel.chosenManagers = journey.managers
             viewModel.journeyName = journey.name
             viewModel.journeyDescription = journey.description
             viewModel.startDate = journey.startDate
@@ -60,25 +55,6 @@ struct CreateOrEditJourneyView: View {
                 }
                 
                 VStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Gestor responsável")
-                    
-                    UserSelectionDropdown(
-                        showList: $viewModel.showManagerList,
-                        label: "Adicionar gestor",
-                        allUsers: viewModel.sampleManagers,
-                        selectedUsers: viewModel.chosenManagers,
-                        allUsersScrollHeight: getAllManagersScrollHeight(),
-                        selectedUsersScrollHeight: getChosenManagersScrollHeight(),
-                        handleUserSelection: { user in
-                            viewModel.selectManager(user)
-                        },
-                        handleUserRemove: { user in
-                            viewModel.removeManager(user)
-                        }
-                    )
-                }
-                
-                VStack {
                     TitleWithIconView(systemImageName: "person.2.fill", label: "Colaboradores na Jornada (opcional)")
                     
                     UserSelectionDropdown(
@@ -100,15 +76,11 @@ struct CreateOrEditJourneyView: View {
                 SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
                     handleJourneySave(
                         Journey(
-                            id: viewModel.journeyId ?? UUID().uuidString,
+                            id: viewModel.journeyId,
                             name: viewModel.journeyName,
                             description: viewModel.journeyDescription,
                             imageURL: imageURL,
                             startDate: viewModel.startDate
-//                            employees: viewModel.chosenEmployees,
-//                            tasks: viewModel.tasks,
-//                            events: viewModel.events,
-//                            managers: viewModel.chosenManagers
                         )
                     )
                     handleClose()
@@ -133,26 +105,6 @@ struct CreateOrEditJourneyView: View {
             }
         )
         .cornerRadius(8)
-    }
-    
-    func getAllManagersScrollHeight() -> CGFloat {
-        if viewModel.showManagerList {
-            if viewModel.sampleManagers.count >= 3 {
-                return 160
-            } else {
-                return CGFloat((viewModel.sampleManagers.count + 1) * 40)
-            }
-        } else {
-            return 40
-        }
-    }
-    
-    func getChosenManagersScrollHeight() -> CGFloat {
-        if viewModel.chosenManagers.count >= 3 {
-            return 120
-        } else {
-            return CGFloat(viewModel.chosenManagers.count * 40)
-        }
     }
     
     func getAllUsersScrollHeight() -> CGFloat {

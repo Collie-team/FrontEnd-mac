@@ -25,14 +25,14 @@ final class SettingsViewModel: ObservableObject {
     ]
     
     @Published var businessUsersList: [BusinessUser] = [
-        BusinessUser(userId: "001", businessId: "", role: .employee, userTasks: []),
-        BusinessUser(userId: "002", businessId: "", role: .manager, userTasks: []),
-        BusinessUser(userId: "003", businessId: "", role: .admin, userTasks: []),
-        BusinessUser(userId: "004", businessId: "", role: .employee, userTasks: []),
-        BusinessUser(userId: "005", businessId: "", role: .employee, userTasks: []),
-        BusinessUser(userId: "006", businessId: "", role: .employee, userTasks: []),
-        BusinessUser(userId: "007", businessId: "", role: .employee, userTasks: []),
-        BusinessUser(userId: "008", businessId: "", role: .employee, userTasks: [])
+        BusinessUser(userId: "001", businessId: "", role: .employee, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "002", businessId: "", role: .manager, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "003", businessId: "", role: .admin, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "004", businessId: "", role: .employee, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "005", businessId: "", role: .employee, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "006", businessId: "", role: .employee, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "007", businessId: "", role: .employee, userTasks: [], userJourneys: []),
+        BusinessUser(userId: "008", businessId: "", role: .employee, userTasks: [], userJourneys: [])
     ]
     
     @Published var modelList: [Model] = []

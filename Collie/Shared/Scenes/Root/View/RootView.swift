@@ -24,7 +24,7 @@ struct RootView: View {
             EmployeeSidebarView(handleSignOut: {})
         case .manager:
             // TODO: Business injection
-            BusinessManagerSidebarView(handleSignOut: {})
+            BusinessSidebarView(handleSignOut: {})
                 .environmentObject(viewModel)
         case .managerOnboarding:
             OnboardingView(onboardingType: .businessManager, handleFinish: {

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct EmployeeDateScrollerView: View {
+struct BusinessDateScrollerView: View {
     
-    @ObservedObject var employeeEventsCalendarViewModel: EmployeeEventsCalendarViewModel
+    @ObservedObject var businessManagerEventsCalendarViewModel: BusinessEventsCalendarViewModel
     
     var body: some View {
         HStack {
@@ -12,7 +12,7 @@ struct EmployeeDateScrollerView: View {
                 previousMonth()
             }
             
-            Text(CalendarHelper().monthYearString(employeeEventsCalendarViewModel.date))
+            Text(CalendarHelper().monthYearString(businessManagerEventsCalendarViewModel.date))
                 .font(.system(size: 18, weight: .bold))
                 .frame(maxWidth: .infinity)
             
@@ -25,11 +25,11 @@ struct EmployeeDateScrollerView: View {
     }
     
     func previousMonth() {
-        employeeEventsCalendarViewModel.date = CalendarHelper().minusMonth(employeeEventsCalendarViewModel.date)
+        businessManagerEventsCalendarViewModel.date = CalendarHelper().minusMonth(businessManagerEventsCalendarViewModel.date)
     }
     
     func nextMonth() {
-        employeeEventsCalendarViewModel.date = CalendarHelper().plusMonth(employeeEventsCalendarViewModel.date)
+        businessManagerEventsCalendarViewModel.date = CalendarHelper().plusMonth(businessManagerEventsCalendarViewModel.date)
     }
 }
 

@@ -21,7 +21,7 @@ struct DemoView: View {
                     showEmployeeView = false
                 })
             } else if showManagerView {
-                BusinessManagerSidebarView(handleSignOut: {
+                BusinessSidebarView(handleSignOut: {
                     showManagerView = false
                 })
             }

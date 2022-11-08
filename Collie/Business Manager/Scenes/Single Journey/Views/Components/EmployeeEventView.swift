@@ -66,6 +66,7 @@ struct EmployeeEventView_Previews: PreviewProvider {
     static var previews: some View {
         EmployeeEventView(
             event: Event(id: "xxx",
+                         journeyId: "kkks",
                          name: "Workshop de Figma",
                          description: "ndsjn dasln dsalnadslkn daslknda slndaslnk",
                          contentLink: "https://oi.com",

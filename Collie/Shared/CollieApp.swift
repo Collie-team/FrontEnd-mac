@@ -11,12 +11,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct CollieApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var rootViewModel = RootViewModel()
     
     var body: some Scene {
         WindowGroup {
-            BusinessManagerSidebarView(handleSignOut: {})
+            BusinessSidebarView(handleSignOut: {})
                 .colorScheme(.light)
                 .frame(minWidth: 1200, minHeight: 800)
+                .environmentObject(rootViewModel)
         }
     }
 }

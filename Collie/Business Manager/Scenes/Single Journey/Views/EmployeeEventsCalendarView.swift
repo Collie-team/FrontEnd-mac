@@ -15,7 +15,7 @@ struct EmployeeEventsCalendarView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
+                Text(viewModel.date.dayAndMonthCustomFormat())
                     .font(.system(size: 18, weight: .bold))
                 Spacer()
             }
@@ -84,14 +84,14 @@ struct EmployeeEventsCalendarView: View {
     
     var calendarGrid: some View {
         VStack(spacing: 1) {
-            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date.wrappedValue)
-            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date.wrappedValue)
+            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date)
+            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date)
             let startingSpaces = CalendarHelper().weekDay(firstDayOfMonth)
-            let prevMonth = CalendarHelper().minusMonth(viewModel.date.wrappedValue)
+            let prevMonth = CalendarHelper().minusMonth(viewModel.date)
             let daysInPrevMonth = CalendarHelper().daysInMonth(prevMonth)
-            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date.wrappedValue)
-            let month = CalendarHelper().month(viewModel.date.wrappedValue)
-            let year = CalendarHelper().year(viewModel.date.wrappedValue)
+            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date)
+            let month = CalendarHelper().month(viewModel.date)
+            let year = CalendarHelper().year(viewModel.date)
             
             ForEach(0..<6) { row in
                 HStack(spacing: 1) {

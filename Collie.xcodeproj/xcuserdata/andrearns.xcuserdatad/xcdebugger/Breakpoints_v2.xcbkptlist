@@ -3,4 +3,117 @@
    uuid = "DD8959EA-C508-49DE-82BD-6674E125ECCF"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "946CEAD6-60A1-46FA-901B-40B13AF2183B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Collie/Employee/Scenes/Single Journey/View Models/BusinessManagerSingleJourneyViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "saveJourney(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D7F7F984-6C76-42D1-B37D-7EAEED17ACB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Collie/Employee/Scenes/Single Journey/View Models/BusinessManagerSingleJourneyViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "saveJourney(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D7F7F984-6C76-42D1-B37D-7EAEED17ACB0 - e8a49952fd80e1d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Collie.BusinessManagerSingleJourneyViewModel.saveJourney(Collie.Journey) -&gt; ()"
+                  moduleName = "Collie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrearns/Development/swift/Collie/Collie/Employee/Scenes/Single%20Journey/View%20Models/BusinessManagerSingleJourneyViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "D7F7F984-6C76-42D1-B37D-7EAEED17ACB0 - e8a49952fd80e1d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Collie.BusinessManagerSingleJourneyViewModel.saveJourney(Collie.Journey) -&gt; ()"
+                  moduleName = "Collie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrearns/Development/swift/Collie/Collie/Employee/Scenes/Single%20Journey/View%20Models/BusinessManagerSingleJourneyViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "402">
+               </Location>
+               <Location
+                  uuid = "D7F7F984-6C76-42D1-B37D-7EAEED17ACB0 - 52a00cdf8b8d5aa9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Collie.Journey) -&gt; Swift.Bool in Collie.BusinessManagerSingleJourneyViewModel.saveJourney(Collie.Journey) -&gt; ()"
+                  moduleName = "Collie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrearns/Development/swift/Collie/Collie/Employee/Scenes/Single%20Journey/View%20Models/BusinessManagerSingleJourneyViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06BEEFE4-AE4A-4D3E-A709-EAB3498A4F73"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Collie/Employee/Scenes/Single Journey/View Models/BusinessSingleJourneyViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "BusinessSingleJourneyViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "538A7C35-DBB8-4AAA-88A5-D7F63D3D281F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Collie/Employee/Scenes/Single Journey/View Models/BusinessSingleJourneyViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "saveTask(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
