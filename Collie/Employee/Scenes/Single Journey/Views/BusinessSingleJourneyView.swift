@@ -197,6 +197,7 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        journeyId: viewModel.journey.id,
                         task: nil,
                         handleClose: {
                             withAnimation {
@@ -234,6 +235,7 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        journeyId: viewModel.journey.id,
                         task: viewModel.chosenTask,
                         handleClose: {
                             withAnimation {
