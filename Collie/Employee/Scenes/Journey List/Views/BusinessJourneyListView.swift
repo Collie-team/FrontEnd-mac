@@ -36,7 +36,7 @@ struct BusinessJourneyListView: View {
                         handleJourneySave: { journey in
                             viewModel.addNewJourney(journey, business: rootViewModel.businessSelected) { business in
                                 viewModel.selectedJourney = journey
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         }
                     )

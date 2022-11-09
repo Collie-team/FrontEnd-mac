@@ -33,7 +33,6 @@ struct CreateOrEditEventView: View {
             viewModel.eventLink = event.contentLink
             
             if !event.responsibleUserIds.isEmpty {
-//                viewModel.selectedUsers = responsibleEmployees
                 viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
                     !viewModel.selectedUsers.contains(user)
                 })
@@ -156,7 +155,6 @@ struct CreateOrEditEventView: View {
                                 contentLink: viewModel.eventLink,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
-//                                responsibleEmployees: viewModel.selectedUsers,
                                 responsibleUserIds: [],
                                 category: viewModel.selectedCategory
                             )

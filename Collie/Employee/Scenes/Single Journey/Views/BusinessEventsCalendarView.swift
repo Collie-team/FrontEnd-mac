@@ -6,7 +6,7 @@ struct BusinessEventsCalendarView: View {
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, events: Binding<[Event]>, businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+    init(selectedDate: Binding<Date>, events: [Event], businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
         self.businessSingleJourneyViewModel = businessSingleJourneyViewModel
         self.viewModel = BusinessEventsCalendarViewModel(date: selectedDate, events: events)
         self.handleSelectEvent = handleSelectEvent
@@ -24,7 +24,7 @@ struct BusinessEventsCalendarView: View {
                 
                 VStack {
                     ScrollView(.vertical) {
-                        if businessSingleJourneyViewModel.selectedEvents.isEmpty {
+                        if viewModel.events.isEmpty {
                             VStack {
                                 Spacer()
                                 Image("noEventsImage")
@@ -40,7 +40,7 @@ struct BusinessEventsCalendarView: View {
                             }
                             .padding()
                         } else {
-                            ForEach(businessSingleJourneyViewModel.selectedEvents) { event in
+                            ForEach(viewModel.events) { event in
                                 BusinessEventView(
                                     event: event,
                                     handleEventOpen: {

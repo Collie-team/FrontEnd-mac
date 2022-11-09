@@ -86,7 +86,7 @@ struct BusinessSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(viewModel.business.tasks) { task in
+                            ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id })) { task in
                                 BusinessTaskView(
                                     task: task,
                                     handleTaskOpen: {
@@ -94,7 +94,7 @@ struct BusinessSingleJourneyView: View {
                                     },
                                     handleTaskDuplicate: {
                                         viewModel.duplicateTask(task) { business in
-                                            rootViewModel.updateBusiness(business)
+                                            rootViewModel.updateBusiness(business, replaceBusiness: false)
                                         }
                                     }
                                 )
@@ -146,11 +146,7 @@ struct BusinessSingleJourneyView: View {
                         
                         BusinessEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
-                            events: .constant([
-                                Event(journeyId: viewModel.journey.id, name: "Teste", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                                Event(journeyId: viewModel.journey.id, name: "Teste 2", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                                Event(journeyId: viewModel.journey.id, name: "Teste 3", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: [])
-                            ]),
+                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == viewModel.journey.id && CalendarHelper().areDatesInSameDay($0.startDate, viewModel.selectedDate)}),
                             businessSingleJourneyViewModel: self.viewModel
                         ) { event in
                             viewModel.selectEvent(event)
@@ -184,7 +180,7 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleJourneySave: { journey in
                             viewModel.saveJourney(journey) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         }
                     )
@@ -206,12 +202,12 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleTaskSave: { task in
                             viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleTaskDeletion: { task in
                             viewModel.removeTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
                             withAnimation {
                                 showTaskForm = false
@@ -219,7 +215,7 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleTaskDuplicate: { task in
                             viewModel.duplicateTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                             withAnimation {
                                 showTaskForm = false
@@ -244,12 +240,12 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleTaskSave: { task in
                             viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleTaskDeletion: { task in
                             viewModel.removeTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
                             withAnimation {
                                 viewModel.unselectTask()
@@ -257,7 +253,7 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleTaskDuplicate: { task in
                             viewModel.duplicateTask(task) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                             viewModel.unselectTask()
                         }
@@ -281,7 +277,7 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleEventSave: { event in
                             viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleEventDelete: { _ in },
@@ -306,17 +302,20 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleEventSave: { event in
                             viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleEventDelete: { event in
-                            withAnimation {
-                                viewModel.unselectEvent()
+                            viewModel.removeEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                                withAnimation {
+                                    viewModel.unselectEvent()
+                                }
                             }
                         },
                         handleEventDuplicate: { event in
                             viewModel.duplicateEvent(event) { business in
-                                rootViewModel.updateBusiness(business)
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                             withAnimation {
                                 viewModel.unselectEvent()
