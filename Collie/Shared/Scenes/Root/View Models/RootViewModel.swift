@@ -1,10 +1,3 @@
-//
-//  RootViewModel.swift
-//  Collie
-//
-//  Created by Pablo Penas on 18/10/22.
-//
-
 import SwiftUI
 
 enum NavigationState {
@@ -21,7 +14,11 @@ final class RootViewModel: ObservableObject {
     @Published var navigationState: NavigationState = .authentication
     
     
-    @Published var businessSelected: Business = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
+    @Published var businessSelected: Business {
+        didSet {
+            print(businessSelected)
+        }
+    }
     
     var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     var currentBusinessUser: BusinessUser?
@@ -30,8 +27,11 @@ final class RootViewModel: ObservableObject {
     var availableBusiness: [Business] = []
     var availableBusinessUsers: [BusinessUser] = []
     
+    init() {
+        self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
+    }
+    
     func handleAuthentication(user: UserModel, authToken: String) -> () {
-        businessSelected.journeys
         self.authenticationToken = authToken
         self.currentUser = user
         businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { business, businessUser  in
@@ -60,7 +60,6 @@ final class RootViewModel: ObservableObject {
     }
     
     func redirectBasedOnRole() {
-        // AQUI
         if currentBusinessUser!.role == .admin || currentBusinessUser!.role == .manager {
             let isManagerOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .businessManager)
             if isManagerOnboardingDone {
@@ -75,6 +74,20 @@ final class RootViewModel: ObservableObject {
             } else {
                 self.navigationState = .employeeOnboarding
             }
+        }
+    }
+    
+    func updateBusiness(_ business: Business, replaceBusiness: Bool) {
+        businessSubscriptionService.updateBusiness(overwrite: replaceBusiness, authenticationToken: "", business: business) { businessUpdated in
+            self.businessSelected = businessUpdated
+            self.objectWillChange.send()
+        }
+    }
+    
+    func refreshBusiness() {
+        businessSubscriptionService.refreshBusiness(authenticationToken: "", businessId: businessSelected.id) { business in
+            self.businessSelected = business
+            self.objectWillChange.send()
         }
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var viewModel = SettingsViewModel()
+    @EnvironmentObject var rootViewModel: RootViewModel
     @State var showDeleteAlert = false
     
     var body: some View {
@@ -127,6 +128,9 @@ struct SettingsView: View {
                     viewModel.removeBusinessUser()
                 }
             )
+        }
+        .onAppear {
+            viewModel.fetchUsers(business: rootViewModel.businessSelected)
         }
     }
     

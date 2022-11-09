@@ -8,17 +8,17 @@
 import SwiftUI
 
 extension Color {
-    static var random: Color {
-        return Color(
+    static var random: Color = Color(
             red: .random(in: 0...1),
             green: .random(in: 0...1),
             blue: .random(in: 0...1)
         )
-    }
 }
 
 struct ProgressBarView: View {
-    @State var percentage = CGFloat.random(in: 0...1)
+    var doneTasks: Int
+    var totalTasks: Int
+    @State var percentage: CGFloat = 0.0
     var body: some View {
         HStack {
             GeometryReader { geometry in
@@ -34,6 +34,9 @@ struct ProgressBarView: View {
                 }
                 .frame(maxHeight: .infinity)
             }
+            .onAppear {
+                percentage = totalTasks > 0 ? CGFloat(doneTasks) / CGFloat(totalTasks) : 1
+            }
                 
             Text("\(Int(100 * percentage))%")
                 .opacity(0.5)
@@ -43,6 +46,6 @@ struct ProgressBarView: View {
 
 struct ProgressBarView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBarView()
+        ProgressBarView(doneTasks: 10, totalTasks: 14)
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-final class BusinnesManagerSidebarViewModel: ObservableObject {
+final class BusinessSidebarViewModel: ObservableObject {
     
     @Published var selectedItem: SidebarItem = .init(option: .journeys)
     @Published var sidebarItens: [SidebarItem] = [
@@ -9,7 +9,6 @@ final class BusinnesManagerSidebarViewModel: ObservableObject {
         .init(option: .journeys),
         .init(option: .teamList),
         .init(option: .settings)
-//        .init(option: .payments)
     ]
     
     func selectSideBarItem(_ sidebarItem: SidebarItem) {

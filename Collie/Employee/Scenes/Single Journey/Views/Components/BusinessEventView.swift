@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct EmployeeEventView: View {
+struct BusinessEventView: View {
     var event: Event
     var handleEventOpen: () -> ()
     
@@ -9,7 +9,6 @@ struct EmployeeEventView: View {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
                 .foregroundColor(event.category != nil ? event.category!.color : Color.collieRoxoClaro)
-            
             VStack(spacing: 8) {
                 HStack(spacing: 16) {
                     if event.category != nil {
@@ -62,18 +61,8 @@ struct EmployeeEventView: View {
     }
 }
 
-struct EmployeeEventView_Previews: PreviewProvider {
+struct BusinessManagerEventView_Previews: PreviewProvider {
     static var previews: some View {
-        EmployeeEventView(
-            event: Event(id: "xxx",
-                         journeyId: "kkks",
-                         name: "Workshop de Figma",
-                         description: "ndsjn dasln dsalnadslkn daslknda slndaslnk",
-                         contentLink: "https://oi.com",
-                         startDate: Date(timeIntervalSince1970: 1667591752),
-                         endDate: Date(timeIntervalSince1970: 1667678152),
-                         responsibleUserIds: [],
-                         category: TaskCategory(name: "Recursos Humanos", colorName: "vermelho", systemImageName: "person.fill")),
-            handleEventOpen: {})
+        BusinessEventView(event: Event(journeyId: "", name: "Workshop de Figma", description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", contentLink: "https://oi.com", startDate: Date(timeIntervalSince1970: 1667591752), endDate: Date(timeIntervalSince1970: 1667678152), responsibleUserIds: [], category: TaskCategory(name: "Recursos Humanos", colorName: "vermelho", systemImageName: "person.fill")), handleEventOpen: {})
     }
 }

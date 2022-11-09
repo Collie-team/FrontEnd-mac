@@ -25,11 +25,12 @@ struct EmployeeJourneyListView: View {
                         LazyVGrid(columns: gridItems, spacing: 16) {
                             
                             ForEach(viewModel.sampleJourneys.reversed()) { journey in
-                                JourneyCard(journey: journey)
-                                    .frame(height: 320)
-                                    .onTapGesture {
-                                        viewModel.selectedJourney = journey
-                                    }
+                                Text(journey.name)
+//                                JourneyCard(journey: $journey)
+//                                    .frame(height: 320)
+//                                    .onTapGesture {
+//                                        viewModel.selectedJourney = journey
+//                                    }
                             }
                         }
                         

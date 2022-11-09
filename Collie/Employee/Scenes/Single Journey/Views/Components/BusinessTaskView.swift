@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct BusinessManagerTaskView: View {
+struct BusinessTaskView: View {
     var task: Task
     var handleTaskOpen: () -> ()
     var handleTaskDuplicate: () -> ()
@@ -42,7 +42,7 @@ struct BusinessManagerTaskView: View {
 
 struct BusinessManagerTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessManagerTaskView(
+        BusinessTaskView(
             task: .init(
                 journeyId: "",
                 name: "Enviar a cópia dos documentos",

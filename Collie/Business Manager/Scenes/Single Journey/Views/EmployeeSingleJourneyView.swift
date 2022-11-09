@@ -224,27 +224,6 @@ struct EmployeeSingleJourneyView: View {
                 }
             }
             
-            if showTaskForm {
-                ZStack {
-                    Color.black.opacity(0.5)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditTaskView(
-                        task: nil,
-                        handleClose: {
-                            withAnimation {
-                                showTaskForm = false
-                            }
-                        },
-                        handleTaskSave: { task in
-//                            viewModel.saveTask(task)
-                        },
-                        handleTaskDeletion: { _ in },
-                        handleTaskDuplicate: { _ in }
-                    )
-                    .frame(maxWidth: 800)
-                }
-            }
-            
             if viewModel.chosenTaskModel != nil {
                 ZStack {
                     Color.black.opacity(0.5)
@@ -265,28 +244,7 @@ struct EmployeeSingleJourneyView: View {
                 }
             }
             
-            if showEventForm {
-                ZStack {
-                    Color.black.opacity(0.5)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    CreateOrEditEventView(
-                        event: nil,
-                        handleClose: {
-                            withAnimation {
-                                showEventForm = false
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event)
-                        },
-                        handleEventDelete: { _ in },
-                        handleEventDuplicate: { _ in }
-                    )
-                    .frame(maxWidth: 800)
-                }
-            }
-            
+            // REVIEW
             if viewModel.chosenEvent != nil {
                 ZStack {
                     Color.black.opacity(0.5)
@@ -294,6 +252,7 @@ struct EmployeeSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: viewModel.chosenEvent,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
@@ -325,7 +284,8 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
                     imageURL: "",
-                    startDate: Date()
+                    startDate: Date(),
+                    userIds: []
 //                    employees: [],
 //                    tasks: [
 //                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),

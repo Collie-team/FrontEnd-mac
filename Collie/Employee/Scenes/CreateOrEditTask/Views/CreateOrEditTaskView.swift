@@ -3,6 +3,7 @@ import SwiftUI
 struct CreateOrEditTaskView: View {
     @ObservedObject var viewModel = CreateOrEditTaskViewModel()
     
+    var journeyId: String
     var task: Task?
     var handleClose: () -> ()
     var handleTaskSave: (Task) -> ()
@@ -10,12 +11,14 @@ struct CreateOrEditTaskView: View {
     var handleTaskDuplicate: (Task) -> ()
     
     init(
+        journeyId: String,
         task: Task?,
         handleClose: @escaping () -> (),
         handleTaskSave: @escaping (Task) -> (),
         handleTaskDeletion: @escaping (Task) -> (),
         handleTaskDuplicate: @escaping (Task) -> ()
     ) {
+        self.journeyId = journeyId
         self.task = task
         self.handleClose = handleClose
         self.handleTaskSave = handleTaskSave
@@ -27,12 +30,6 @@ struct CreateOrEditTaskView: View {
             viewModel.taskDescription = task.description
             viewModel.startDate = task.startDate
             viewModel.endDate = task.endDate
-//            if let responsibleEmployees = task.responsibleEmployees {
-//                viewModel.selectedUsers = responsibleEmployees
-//                viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
-//                    !viewModel.selectedUsers.contains(user)
-//                })
-//            }
             if let selectedCategory = task.taskCategory {
                 viewModel.selectedCategory = selectedCategory
                 viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
@@ -129,10 +126,8 @@ struct CreateOrEditTaskView: View {
                         handleTaskSave(
                             Task(
                                 id: viewModel.taskId ?? UUID().uuidString,
-                                journeyId: "",
+                                journeyId: journeyId,
                                 name: viewModel.taskName,
-                                
-//                                responsibleEmployees: viewModel.selectedUsers,
                                 description: viewModel.taskDescription,
                                 taskCategory: viewModel.selectedCategory,
                                 startDate: viewModel.startDate,
@@ -196,6 +191,6 @@ struct CreateOrEditTaskView: View {
 
 struct CreateOrEditTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditTaskView(task: nil, handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
+        CreateOrEditTaskView(journeyId: "", task: nil, handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }

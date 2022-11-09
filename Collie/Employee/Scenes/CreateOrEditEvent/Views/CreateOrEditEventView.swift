@@ -4,6 +4,7 @@ struct CreateOrEditEventView: View {
     @ObservedObject var viewModel = CreateOrEditEventViewModel()
     
     var event: Event?
+    var journeyId: String
     var handleClose: () -> ()
     var handleEventSave: (Event) -> ()
     var handleEventDelete: (Event) -> ()
@@ -11,12 +12,14 @@ struct CreateOrEditEventView: View {
     
     init(
         event: Event?,
+        journeyId: String,
         handleClose: @escaping () -> (),
         handleEventSave: @escaping (Event) -> (),
         handleEventDelete: @escaping (Event) -> (),
         handleEventDuplicate: @escaping(Event) -> ()
     ) {
         self.event = event
+        self.journeyId = journeyId
         self.handleClose = handleClose
         self.handleEventSave = handleEventSave
         self.handleEventDelete = handleEventDelete
@@ -30,7 +33,6 @@ struct CreateOrEditEventView: View {
             viewModel.eventLink = event.contentLink
             
             if !event.responsibleUserIds.isEmpty {
-//                viewModel.selectedUsers = responsibleEmployees
                 viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
                     !viewModel.selectedUsers.contains(user)
                 })
@@ -147,12 +149,12 @@ struct CreateOrEditEventView: View {
                     handleEventSave(
                             Event(
                                 id: viewModel.eventId ?? UUID().uuidString,
+                                journeyId: journeyId,
                                 name: viewModel.eventName,
                                 description: viewModel.eventDescription,
                                 contentLink: viewModel.eventLink,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
-//                                responsibleEmployees: viewModel.selectedUsers,
                                 responsibleUserIds: [],
                                 category: viewModel.selectedCategory
                             )

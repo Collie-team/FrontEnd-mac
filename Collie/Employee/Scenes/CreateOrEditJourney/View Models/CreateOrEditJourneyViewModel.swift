@@ -1,17 +1,13 @@
 import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
-    var journeyId: String?
+    @Published var journeyId: String = UUID().uuidString
     
     @Published var journeyName: String = ""
     
     @Published var journeyDescription: String = ""
     
-    @Published var showManagerList = false
-    
     @Published var showUsersList = false
-    
-    @Published var chosenManagers: [UserModel] = []
     
     @Published var chosenEmployees: [UserModel] = []
     
@@ -20,14 +16,6 @@ final class CreateNewJourneyViewModel: ObservableObject {
     @Published var tasks: [Task] = []
     
     @Published var events: [Event] = []
-    
-    @Published var sampleManagers: [UserModel] = [
-        UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "")
-    ]
     
     @Published var sampleUsers: [UserModel] = [
         UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
@@ -38,24 +26,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     ]
     
     func isButtonDisabled() -> Bool {
-        journeyName == "" || journeyDescription == "" || chosenManagers.isEmpty || startDate == nil
-    }
-    
-    func selectManager(_ userModel: UserModel) {
-        if !chosenManagers.contains(userModel) {
-            self.chosenManagers.append(userModel)
-            
-            if let index = sampleManagers.firstIndex(of: userModel) {
-                sampleManagers.remove(at: index)
-            }
-        }
-    }
-    
-    func removeManager(_ userModel: UserModel) {
-        if let index = chosenManagers.firstIndex(of: userModel) {
-            chosenManagers.remove(at: index)
-            sampleManagers.append(userModel)
-        }
+        journeyName == "" || journeyDescription == "" || startDate == nil
     }
     
     func selectUserModel(_ userModel: UserModel) {

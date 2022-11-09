@@ -6,4 +6,5 @@ struct Journey: Identifiable, Codable {
     var description: String
     var imageURL: String
     var startDate: Date
+    var userIds: [String]
 }

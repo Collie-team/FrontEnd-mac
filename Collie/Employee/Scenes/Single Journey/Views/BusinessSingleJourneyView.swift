@@ -1,12 +1,14 @@
 import SwiftUI
 
-struct BusinessManagerSingleJourneyView: View {
-    @ObservedObject var viewModel: BusinessManagerSingleJourneyViewModel
-    @ObservedObject var journeyListViewModel: BusinessJourneyListViewModel
+struct BusinessSingleJourneyView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @StateObject var viewModel: BusinessSingleJourneyViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
     @State var showEventForm = false
+    @State var showTasksHint = false
+    @State var showEventsHint = false
     
     var backAction: () -> ()
     
@@ -57,8 +59,11 @@ struct BusinessManagerSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                // TO DO
+                                showTasksHint = true
                             })
+                            .popover(isPresented: $showTasksHint, arrowEdge: .bottom) {
+                                HelpView(title: "O que é uma tarefa?", subtitle: "Descrever")
+                            }
 
                             Spacer()
                             
@@ -81,18 +86,20 @@ struct BusinessManagerSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-//                            ForEach(viewModel.journey.tasks) { task in
-//                                BusinessManagerTaskView(
-//                                    task: task,
-//                                    handleTaskOpen: {
-//                                        viewModel.selectTask(task)
-//                                    },
-//                                    handleTaskDuplicate: {
-//                                        viewModel.duplicateTask(task)
-//                                    }
-//                                )
-//                            }
-//                            .padding(2)
+                            ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id })) { task in
+                                BusinessTaskView(
+                                    task: task,
+                                    handleTaskOpen: {
+                                        viewModel.selectTask(task)
+                                    },
+                                    handleTaskDuplicate: {
+                                        viewModel.duplicateTask(task) { business in
+                                            rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                        }
+                                    }
+                                )
+                            }
+                            .padding(2)
                             
                             Spacer()
                         }
@@ -110,8 +117,11 @@ struct BusinessManagerSingleJourneyView: View {
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
-                                // TO DO
+                                showEventsHint = true
                             })
+                            .popover(isPresented: $showEventsHint, arrowEdge: .bottom) {
+                                HelpView(title: "O que é um evento?", subtitle: "Descrever")
+                            }
                             
                             Spacer()
                             
@@ -134,7 +144,11 @@ struct BusinessManagerSingleJourneyView: View {
                             
                         }
                         
-                        BusinessManagerEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
+                        BusinessEventsCalendarView(
+                            selectedDate: $viewModel.selectedDate,
+                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == viewModel.journey.id && CalendarHelper().areDatesInSameDay($0.startDate, viewModel.selectedDate)}),
+                            businessSingleJourneyViewModel: self.viewModel
+                        ) { event in
                             viewModel.selectEvent(event)
                         }
                         
@@ -165,7 +179,9 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleJourneySave: { journey in
-                            viewModel.journey = journey
+                            viewModel.saveJourney(journey) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -177,6 +193,7 @@ struct BusinessManagerSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        journeyId: viewModel.journey.id,
                         task: nil,
                         handleClose: {
                             withAnimation {
@@ -184,16 +201,22 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-                            viewModel.saveTask(task)
+                            viewModel.saveTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         },
                         handleTaskDeletion: { task in
-                            viewModel.removeTask(task)
+                            viewModel.removeTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                            }
                             withAnimation {
                                 showTaskForm = false
                             }
                         },
                         handleTaskDuplicate: { task in
-                            viewModel.duplicateTask(task)
+                            viewModel.duplicateTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                             withAnimation {
                                 showTaskForm = false
                             }
@@ -208,6 +231,7 @@ struct BusinessManagerSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        journeyId: viewModel.journey.id,
                         task: viewModel.chosenTask,
                         handleClose: {
                             withAnimation {
@@ -215,16 +239,22 @@ struct BusinessManagerSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-                            viewModel.saveTask(task)
+                            viewModel.saveTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         },
                         handleTaskDeletion: { task in
-                            viewModel.removeTask(task)
+                            viewModel.removeTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                            }
                             withAnimation {
                                 viewModel.unselectTask()
                             }
                         },
                         handleTaskDuplicate: { task in
-                            viewModel.duplicateTask(task)
+                            viewModel.duplicateTask(task) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                             viewModel.unselectTask()
                         }
                     )
@@ -239,13 +269,16 @@ struct BusinessManagerSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: nil,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 showEventForm = false
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event)
+                            viewModel.saveEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         },
                         handleEventDelete: { _ in },
                         handleEventDuplicate: { _ in }
@@ -261,22 +294,29 @@ struct BusinessManagerSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         event: viewModel.chosenEvent,
+                        journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event)
+                            viewModel.saveEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         },
                         handleEventDelete: { event in
-                            viewModel.removeEvent(event)
-                            withAnimation {
-                                viewModel.unselectEvent()
+                            viewModel.removeEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                                withAnimation {
+                                    viewModel.unselectEvent()
+                                }
                             }
                         },
                         handleEventDuplicate: { event in
-                            viewModel.duplicateEvent(event)
+                            viewModel.duplicateEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                             withAnimation {
                                 viewModel.unselectEvent()
                             }
@@ -291,38 +331,14 @@ struct BusinessManagerSingleJourneyView: View {
     }
 }
 
-struct SingleJourneyView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusinessManagerSingleJourneyView(
-            viewModel: BusinessManagerSingleJourneyViewModel(
-                journey: Journey(
-                    name: "Jornada iOS",
-                    description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-                    imageURL: "",
-                    startDate: Date(),
-                    userIds: []
-//                    employees: [],
-//                    tasks: [
-//                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "A", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "B", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "C", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "D", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "E", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "F", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "G", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "H", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "I", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "J", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
-//                    ],
-//                    events: [],
-//                    managers: []
-                )
-            ),
-            journeyListViewModel: BusinessJourneyListViewModel(),
-            backAction: {
-                
-            }
-        )
-    }
-}
+//struct SingleJourneyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BusinessManagerSingleJourneyView(
+//            viewModel: BusinessManagerSingleJourneyViewModel(
+//                business: .init(name: "Teste", description: "Descrição", journeys: [Journey(name: "Jornada iOS", description: "Descrição", imageURL: "", startDate: Date())], tasks: [], events: []), journeyId: ""
+//            ),
+//            journeyListViewModel: BusinessJourneyListViewModel(journeyList: .constant([])),
+//            backAction: {}
+//        )
+//    }
+//}

@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 final class APISubscriptionService {
-//    private let domainUrl = "https://backend-python-dev.vercel.app/"
-    private let domainUrl = "http://127.0.0.1:8000/"
+    private let domainUrl = "https://backend-python-dev.vercel.app/"
+//    private let domainUrl = "http://127.0.0.1:8000/"
     
     func sendInviteEmail(authenticationToken: String, business: Business, email: String, _ completion: @escaping () -> Void) {
         let url = domainUrl + "email/invite/"

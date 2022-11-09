@@ -133,7 +133,7 @@ struct TeamListView: View {
                                     Circle()
                                         .frame(width: 48, height: 48)
                                         .foregroundColor(.collieRosaClaro)
-                                    Text("AA")
+                                    Text("\(getNameLetters(fullName: user.name))")
                                         .font(.system(size: 16, weight: .bold, design: .default))
                                 }
                                 .padding(.trailing)
@@ -145,7 +145,7 @@ struct TeamListView: View {
                                         Spacer()
                                         
                                         VStack {
-                                            Text(verbatim: "emailExemple@email.com")
+                                            Text(verbatim: user.email)
                                                 .font(.system(size: 15))
                                                 .opacity(0.5)
                                                 
@@ -153,19 +153,19 @@ struct TeamListView: View {
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
                                         
                                         VStack {
-                                            Text("iOS Dev")
+                                            Text(user.journey)
                                                 .font(.system(size: 17))
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                                         
                                         
                                         VStack {
-                                            ProgressBarView()
+                                            ProgressBarView(doneTasks: user.doneTasks, totalTasks: user.totalTasks)
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
                                         
                                         VStack {
-                                            Text("3/14")
+                                            Text("\(user.doneTasks)/\(user.totalTasks)")
                                                 .font(.system(size: 17))
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
@@ -198,6 +198,12 @@ struct TeamListView: View {
             NewUserFormsView()
                 .environmentObject(viewModel)
         }
+    }
+    
+    func getNameLetters(fullName: String) -> String {
+        let firstLetter = fullName.components(separatedBy: " ")[0].uppercased().prefix(1)
+        let secondLetter = fullName.components(separatedBy: " ").count > 1 ? fullName.components(separatedBy: " ")[1].uppercased().prefix(1) : ""
+        return (String(firstLetter + secondLetter))
     }
 }
 

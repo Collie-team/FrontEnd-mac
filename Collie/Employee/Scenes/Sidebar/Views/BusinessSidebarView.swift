@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct BusinessManagerSidebarView: View {
-    @ObservedObject var viewModel = BusinnesManagerSidebarViewModel()
+struct BusinessSidebarView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @ObservedObject var viewModel = BusinessSidebarViewModel()
     var handleSignOut: () -> ()
     
     var body: some View {
@@ -49,8 +50,6 @@ struct BusinessManagerSidebarView: View {
                     BusinessJourneyListView()
                 case .teamList:
                     TeamListView()
-//                case .payments:
-//                    PaymentsView()
                 case .settings:
                     SettingsView()
                 default:

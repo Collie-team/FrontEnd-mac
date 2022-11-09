@@ -75,7 +75,7 @@ class AuthenticationViewModel: ObservableObject {
         authenticationService.createUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
             if let user = user, let token = token {
-                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "")
+                let userData = UserModel(id: user.uid, name: self.currentUser.firstName + " " + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "")
                 self.userSubscriptionService.createUser(user: userData, authenticationToken: token) { writtenData in
                     completion(writtenData, token)
                 }

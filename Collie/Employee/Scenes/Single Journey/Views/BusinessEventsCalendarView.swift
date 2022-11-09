@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct BusinessManagerEventsCalendarView: View {
-    @ObservedObject var viewModel: BusinessManagerEventsCalendarViewModel
-    @ObservedObject var singleJourneyViewModel: BusinessManagerSingleJourneyViewModel
+struct BusinessEventsCalendarView: View {
+    @ObservedObject var viewModel: BusinessEventsCalendarViewModel
+    @ObservedObject var businessSingleJourneyViewModel: BusinessSingleJourneyViewModel
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, singleJourneyViewModel: BusinessManagerSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
-        self.singleJourneyViewModel = singleJourneyViewModel
-        self.viewModel = BusinessManagerEventsCalendarViewModel(date: selectedDate)
+    init(selectedDate: Binding<Date>, events: [Event], businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+        self.businessSingleJourneyViewModel = businessSingleJourneyViewModel
+        self.viewModel = BusinessEventsCalendarViewModel(date: selectedDate, events: events)
         self.handleSelectEvent = handleSelectEvent
     }
     
@@ -16,7 +16,7 @@ struct BusinessManagerEventsCalendarView: View {
         VStack {
             VStack {
                 HStack {
-                    Text(viewModel.date.wrappedValue.dayAndMonthCustomFormat())
+                    Text(viewModel.date.dayAndMonthCustomFormat())
                         .font(.system(size: 18, weight: .bold))
                     Spacer()
                 }
@@ -24,7 +24,7 @@ struct BusinessManagerEventsCalendarView: View {
                 
                 VStack {
                     ScrollView(.vertical) {
-                        if singleJourneyViewModel.selectedEvents.isEmpty {
+                        if viewModel.events.isEmpty {
                             VStack {
                                 Spacer()
                                 Image("noEventsImage")
@@ -40,8 +40,8 @@ struct BusinessManagerEventsCalendarView: View {
                             }
                             .padding()
                         } else {
-                            ForEach(singleJourneyViewModel.selectedEvents) { event in
-                                BusinessManagerEventView(
+                            ForEach(viewModel.events) { event in
+                                BusinessEventView(
                                     event: event,
                                     handleEventOpen: {
                                         handleSelectEvent(event)
@@ -62,7 +62,7 @@ struct BusinessManagerEventsCalendarView: View {
                     .padding(.bottom)
                 
                 VStack {
-                    BusinessManagerDateScrollerView(businessManagerEventsCalendarViewModel: viewModel)
+                    BusinessDateScrollerView(businessManagerEventsCalendarViewModel: viewModel)
                     dayOfWeekStack
                     calendarGrid
                 }
@@ -86,23 +86,23 @@ struct BusinessManagerEventsCalendarView: View {
     
     var calendarGrid: some View {
         VStack(spacing: 1) {
-            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date.wrappedValue)
-            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date.wrappedValue)
+            let daysInMonth = CalendarHelper().daysInMonth(viewModel.date)
+            let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date)
             let startingSpaces = CalendarHelper().weekDay(firstDayOfMonth)
-            let prevMonth = CalendarHelper().minusMonth(viewModel.date.wrappedValue)
+            let prevMonth = CalendarHelper().minusMonth(viewModel.date)
             let daysInPrevMonth = CalendarHelper().daysInMonth(prevMonth)
-            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date.wrappedValue)
-            let month = CalendarHelper().month(viewModel.date.wrappedValue)
-            let year = CalendarHelper().year(viewModel.date.wrappedValue)
+            let prevMonthLastDayWeekday = CalendarHelper().getLastDayOfMonthWeekday(from: viewModel.date)
+            let month = CalendarHelper().month(viewModel.date)
+            let year = CalendarHelper().year(viewModel.date)
             
             ForEach(0..<6) { row in
                 HStack(spacing: 1) {
                     ForEach(1..<8) { column in
                         let count = column + (row * 7)
                         let day = count - prevMonthLastDayWeekday
-                        BusinessManagerCalendarCell(
-                            bmSingleJourneyListViewModel: singleJourneyViewModel,
-                            bmEventsCalendarViewModel: viewModel,
+                        BusinessCalendarCell(
+                            businessSingleJourneyViewModel: businessSingleJourneyViewModel,
+                            businessEventsCalendarViewModel: viewModel,
                             count: count,
                             startingSpaces: startingSpaces,
                             daysInMonth: daysInMonth,
