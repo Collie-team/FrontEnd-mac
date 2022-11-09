@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 final class SettingsViewModel: ObservableObject {
     
@@ -15,6 +16,8 @@ final class SettingsViewModel: ObservableObject {
     
     private let teamSubscriptionService = TeamSubscriptionService()
     
+    private let apiSubscriptionService = APISubscriptionService()
+    
     @Published var userModelsList: [UserModel] = []
     
     @Published var businessUsersList: [BusinessUser] = []
@@ -23,6 +26,8 @@ final class SettingsViewModel: ObservableObject {
     
     @Published var selectedOption: SettingsOptions
     @Published var selectedUserModel: UserModel?
+    
+    @Published var businessCode: String = "Carregando..."
     
     init() {
         selectedOption = .users
@@ -68,6 +73,24 @@ final class SettingsViewModel: ObservableObject {
             userModelsList.removeAll(where: { $0.id == id })
             modelList.removeAll(where: {$0.userModel.id == id})
             teamSubscriptionService.removeUserFromBusiness(authenticationToken: "", businessId: businessId, userId: id)
+        }
+    }
+    
+    func copyToClipboard(text: String) {
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.writeObjects([text as NSString])
+    }
+    
+    func fetchBusinessCode(businessId: String) {
+        apiSubscriptionService.fetchBusinessCode(authenticationToken: "", businessId: businessId) { businessKey in
+            self.businessCode = businessKey.code
+        }
+    }
+    
+    func redefineBusinessCode(businessId: String) {
+        apiSubscriptionService.redefineBusinessCode(authenticationToken: "", businessId: businessId) { businessKey in
+            self.businessCode = businessKey.code
         }
     }
 }

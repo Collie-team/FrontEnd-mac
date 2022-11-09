@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct BusinessKey: Codable {
+    var businessId: String
+    var code: String
+}
