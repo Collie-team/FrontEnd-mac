@@ -1,10 +1,11 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
     @ObservedObject var viewModel = SettingsViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
     @State var showDeleteAlert = false
-    
+    @State var copyClicked = false
     var body: some View {
         VStack {
             HStack {
@@ -107,9 +108,67 @@ struct SettingsView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 
-//                HStack {
-//                    Text("To do")
-//                }
+                HStack {
+                    VStack(spacing: 12) {
+                        Text("Código do workspace")
+                            .font(.system(size: 28, weight: .bold))
+                        Text("Esse é o código para que novos colaboradores entrem em seu workspace de maneira mais direta. A nova pessoa deve inserir o código após o login na tela de workspaces.")
+                            .font(.system(size: 16))
+                            .frame(maxWidth: 286)
+                    }
+                    Spacer()
+                    VStack {
+                        Text("Clique no código para copiar")
+                            .font(.system(size: 16))
+                        ZStack {
+                            Text(viewModel.businessCode)
+                                .font(.system(size: 28, weight: .bold))
+                            HStack {
+                                Spacer()
+                                Image(systemName: "doc.on.doc")
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .padding(.trailing, 16)
+                                    .foregroundColor(copyClicked ? Color.collieVerde : .black)
+                            }
+                        }
+                        .frame(maxWidth: 340, maxHeight: 60)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(copyClicked ? Color.collieVerde : Color.collieTextFieldBorder, lineWidth: 1)
+                            )
+                        .onTapGesture {
+                            viewModel.copyToClipboard(text: "Collie#2135")
+                            copyClicked = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.copyClicked = false
+                            }
+                        }
+                    }
+                    Spacer()
+                    VStack(spacing: 24) {
+                        Text("Caso seja necessário impedir acesso pelo código, você pode gerar um novo código que substituirá o antigo.")
+                            .font(.system(size: 16))
+                            .frame(maxWidth: 300)
+                        Button(action: {
+                            viewModel.redefineBusinessCode(businessId: rootViewModel.businessSelected.id)
+                        }) {
+                            Text("Gerar novo código aleatório")
+                                .font(.system(size: 16, weight: .semibold))
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 12)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                    )
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(32)
+                .padding(.vertical, 32)
+                .background(Color.white)
+                .cornerRadius(12)
             }
             
             Spacer()
@@ -130,6 +189,7 @@ struct SettingsView: View {
             )
         }
         .onAppear {
+            viewModel.fetchBusinessCode(businessId: rootViewModel.businessSelected.id)
             viewModel.fetchUsers(business: rootViewModel.businessSelected)
         }
     }

@@ -103,6 +103,7 @@
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
+		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
 		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
@@ -219,6 +220,7 @@
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
 				5B954E802901C38D00FA579E /* UserTask.swift */,
 				5B345DBB290C4D5300978141 /* BusinessUser.swift */,
+				5BD68490291ADEE000090481 /* BusinessKey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				5B3755152917158D00D92D15 /* RoleSelectionPicker.swift in Sources */,
 				5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
+				5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */,
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
 				5B4E31432916D9FD0031F74F /* SettingsOptionView.swift in Sources */,
 				5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */,
