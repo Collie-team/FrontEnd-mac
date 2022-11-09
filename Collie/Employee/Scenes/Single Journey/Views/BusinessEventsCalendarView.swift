@@ -2,13 +2,13 @@ import SwiftUI
 
 struct BusinessEventsCalendarView: View {
     @ObservedObject var viewModel: BusinessEventsCalendarViewModel
-    @ObservedObject var singleJourneyViewModel: BusinessSingleJourneyViewModel
+    @ObservedObject var businessSingleJourneyViewModel: BusinessSingleJourneyViewModel
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, singleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
-        self.singleJourneyViewModel = singleJourneyViewModel
-        self.viewModel = BusinessEventsCalendarViewModel(date: selectedDate)
+    init(selectedDate: Binding<Date>, events: Binding<[Event]>, businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+        self.businessSingleJourneyViewModel = businessSingleJourneyViewModel
+        self.viewModel = BusinessEventsCalendarViewModel(date: selectedDate, events: events)
         self.handleSelectEvent = handleSelectEvent
     }
     
@@ -24,7 +24,7 @@ struct BusinessEventsCalendarView: View {
                 
                 VStack {
                     ScrollView(.vertical) {
-                        if singleJourneyViewModel.selectedEvents.isEmpty {
+                        if businessSingleJourneyViewModel.selectedEvents.isEmpty {
                             VStack {
                                 Spacer()
                                 Image("noEventsImage")
@@ -40,7 +40,7 @@ struct BusinessEventsCalendarView: View {
                             }
                             .padding()
                         } else {
-                            ForEach(singleJourneyViewModel.selectedEvents) { event in
+                            ForEach(businessSingleJourneyViewModel.selectedEvents) { event in
                                 BusinessEventView(
                                     event: event,
                                     handleEventOpen: {
@@ -101,8 +101,8 @@ struct BusinessEventsCalendarView: View {
                         let count = column + (row * 7)
                         let day = count - prevMonthLastDayWeekday
                         BusinessCalendarCell(
-                            bmSingleJourneyListViewModel: singleJourneyViewModel,
-                            bmEventsCalendarViewModel: viewModel,
+                            businessSingleJourneyViewModel: businessSingleJourneyViewModel,
+                            businessEventsCalendarViewModel: viewModel,
                             count: count,
                             startingSpaces: startingSpaces,
                             daysInMonth: daysInMonth,

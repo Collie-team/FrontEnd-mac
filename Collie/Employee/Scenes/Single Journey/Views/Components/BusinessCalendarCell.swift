@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct BusinessCalendarCell: View {
-    @ObservedObject var bmSingleJourneyListViewModel: BusinessSingleJourneyViewModel
-    @ObservedObject var bmEventsCalendarViewModel: BusinessEventsCalendarViewModel
+    @ObservedObject var businessSingleJourneyViewModel: BusinessSingleJourneyViewModel
+    @ObservedObject var businessEventsCalendarViewModel: BusinessEventsCalendarViewModel
     let count: Int
     let startingSpaces: Int
     let daysInMonth: Int
@@ -12,7 +12,7 @@ struct BusinessCalendarCell: View {
     let year: Int
     
     var monthStruct: MonthStruct {
-        bmEventsCalendarViewModel.monthStruct(
+        businessEventsCalendarViewModel.monthStruct(
             startingSpaces: startingSpaces,
             count: count,
             daysInMonth: daysInMonth,
@@ -24,12 +24,11 @@ struct BusinessCalendarCell: View {
         monthStruct.getDayDate(day: day, month: month, year: year)
     }
     
-    var eventsInDate: [Event] = []
-//    {
-//        bmSingleJourneyListViewModel.journey.events.filter { event in
-//            event.startDate == date
-//        }
-//    }
+    var eventsInDate: [Event]  {
+        businessSingleJourneyViewModel.business.events.filter { event in
+            event.startDate == date
+        }
+    }
     
     var body: some View {
         VStack {
@@ -51,7 +50,7 @@ struct BusinessCalendarCell: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
-            bmEventsCalendarViewModel.selectDate(date: date)
+            businessEventsCalendarViewModel.selectDate(date: date)
         }
         .onAppear {
             print("Events in date \(date): \(eventsInDate)")
@@ -60,7 +59,7 @@ struct BusinessCalendarCell: View {
     
     func textColor() -> Color {
         let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        if bmEventsCalendarViewModel.isDateSelected(date) {
+        if businessEventsCalendarViewModel.isDateSelected(date) {
             return Color.white
         } else {
             if monthStruct.monthType == .current {
@@ -73,12 +72,12 @@ struct BusinessCalendarCell: View {
     
     func fontWeight() -> Font.Weight {
         let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return bmEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
+        return businessEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
     }
     
     func backgroundColor() -> Color {
         let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return bmEventsCalendarViewModel
+        return businessEventsCalendarViewModel
             .isDateSelected(date) ? Color.collieRoxo : Color.collieCinzaClaro
     }
 }

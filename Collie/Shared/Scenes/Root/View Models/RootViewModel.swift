@@ -1,10 +1,3 @@
-//
-//  RootViewModel.swift
-//  Collie
-//
-//  Created by Pablo Penas on 18/10/22.
-//
-
 import SwiftUI
 
 enum NavigationState {
@@ -45,25 +38,13 @@ final class RootViewModel: ObservableObject {
             ],
             tasks: [
                 Task(id: "123", journeyId: "teste1", name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "124", journeyId: "teste1", name: "A", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "125", journeyId: "teste1", name: "B", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "126", journeyId: "teste1", name: "C", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "127", journeyId: "teste1", name: "D", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "128", journeyId: "teste1", name: "E", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "129", journeyId: "teste1", name: "F", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "130", journeyId: "teste1", name: "G", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "131", journeyId: "teste1", name: "H", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "132", journeyId: "teste1", name: "I", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "133", journeyId: "teste1", name: "J", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "134", journeyId: "teste2", name: "K", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date())
-            ], events: [
+                Task(id: "124", journeyId: "teste1", name: "A", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date())
+            ],
+            events: [
                 Event(journeyId: "teste1", name: "Workshop do foda-se", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste1", name: "Workshop III", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste1", name: "Workshop VV", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste1", name: "Workshop SS", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste2", name: "Workshop kfanklasn", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste2", name: "Workshop asdnsajdnkjasdbjksadb", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: [])
-            ])
+                Event(journeyId: "teste1", name: "Workshop III", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: [])
+            ]
+        )
     }
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
@@ -95,7 +76,6 @@ final class RootViewModel: ObservableObject {
     }
     
     func redirectBasedOnRole() {
-        // AQUI
         if currentBusinessUser!.role == .admin || currentBusinessUser!.role == .manager {
             let isManagerOnboardingDone = OnboardingStorageService.shared.isOnboardingDone(onboardingType: .businessManager)
             if isManagerOnboardingDone {
@@ -114,47 +94,16 @@ final class RootViewModel: ObservableObject {
     }
     
     func updateBusiness(_ business: Business) {
-        
-    }
-    
-    func refreshBusiness(_ business: Business) {
-        
-    }
-    
-    func addNewJourney(_ journey: Journey, completion: () -> ()) {
-        businessSelected.journeys.append(journey)
-        completion()
-        objectWillChange.send()
-    }
-    
-    func saveJourney(_ journey: Journey) {
-        if let index = businessSelected.journeys.firstIndex(where: { $0.id == journey.id }) {
-            businessSelected.journeys[index] = journey
-            objectWillChange.send()
+        businessSubscriptionService.updateBusiness(authenticationToken: "", business: business) { businessUpdated in
+            self.businessSelected = businessUpdated
+            self.objectWillChange.send()
         }
     }
     
-    func addNewEvent(_ event: Event) {
-        businessSelected.events.append(event)
-        objectWillChange.send()
-    }
-    
-    func saveEvent(_ event: Event) {
-        if let index = businessSelected.events.firstIndex(where: { $0.id == event.id }) {
-            businessSelected.events[index] = event
-            objectWillChange.send()
-        }
-    }
-    
-    func addNewTask(_ task: Task) {
-        businessSelected.tasks.append(task)
-        objectWillChange.send()
-    }
-    
-    func saveTask(_ task: Task) {
-        if let index = businessSelected.tasks.firstIndex(where: { $0.id == task.id }) {
-            businessSelected.tasks[index] = task
-            objectWillChange.send()
+    func refreshBusiness() {
+        businessSubscriptionService.refreshBusiness(authenticationToken: "", businessId: businessSelected.id) { business in
+            self.businessSelected = business
+            self.objectWillChange.send()
         }
     }
 }

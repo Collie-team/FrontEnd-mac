@@ -2,16 +2,6 @@ import Foundation
 import SwiftUI
 
 final class BusinessJourneyListViewModel: ObservableObject {
-    @Published var sampleJourneys: [Journey] = [
-        Journey(
-            name: "Jornada iOS",
-            description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
-            imageURL: "",
-            startDate: Date(),
-            userIds: []
-        )
-    ]
-        
     @Published var selectedJourney: Journey? {
         didSet {
             guard let _ = selectedJourney else {
@@ -24,8 +14,10 @@ final class BusinessJourneyListViewModel: ObservableObject {
         
     @Published var navigationState: NavigationState = .journeyList
     
-    func addNewJourney(_ journey: Journey) {
-        sampleJourneys.append(journey)
+    func addNewJourney(_ journey: Journey, business: Business, completion: (Business) -> ()) {
+        var updatedBusiness = business
+        updatedBusiness.journeys.append(journey)
+        completion(updatedBusiness)
         selectedJourney = journey
     }
     

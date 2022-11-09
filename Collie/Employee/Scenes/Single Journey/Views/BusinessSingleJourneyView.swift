@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct BusinessSingleJourneyView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     @StateObject var viewModel: BusinessSingleJourneyViewModel
     
     @State var editJourney = false
@@ -9,9 +10,6 @@ struct BusinessSingleJourneyView: View {
     @State var showTasksHint = false
     @State var showEventsHint = false
     
-    var handleJourneySave: (Journey) -> ()
-    var handleTaskSave: (Task) -> ()
-    var handleEventSave: (Event) -> ()
     var backAction: () -> ()
     
     var body: some View {
@@ -95,8 +93,9 @@ struct BusinessSingleJourneyView: View {
                                         viewModel.selectTask(task)
                                     },
                                     handleTaskDuplicate: {
-                                        viewModel.duplicateTask(task)
-                                        handleTaskSave(task)
+                                        viewModel.duplicateTask(task) { business in
+                                            rootViewModel.updateBusiness(business)
+                                        }
                                     }
                                 )
                             }
@@ -145,7 +144,15 @@ struct BusinessSingleJourneyView: View {
                             
                         }
                         
-                        BusinessEventsCalendarView(selectedDate: $viewModel.selectedDate, singleJourneyViewModel: self.viewModel) { event in
+                        BusinessEventsCalendarView(
+                            selectedDate: $viewModel.selectedDate,
+                            events: .constant([
+                                Event(journeyId: viewModel.journey.id, name: "Teste", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
+                                Event(journeyId: viewModel.journey.id, name: "Teste 2", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
+                                Event(journeyId: viewModel.journey.id, name: "Teste 3", description: "Teste", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: [])
+                            ]),
+                            businessSingleJourneyViewModel: self.viewModel
+                        ) { event in
                             viewModel.selectEvent(event)
                         }
                         
@@ -176,8 +183,9 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleJourneySave: { journey in
-                            viewModel.saveJourney(journey)
-                            handleJourneySave(journey)
+                            viewModel.saveJourney(journey) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -196,18 +204,22 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-                            handleTaskSave(task)
-                            viewModel.saveTask(task)
+                            viewModel.saveTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                         },
                         handleTaskDeletion: { task in
-                            viewModel.removeTask(task)
+                            viewModel.removeTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                             withAnimation {
                                 showTaskForm = false
                             }
                         },
                         handleTaskDuplicate: { task in
-                            handleTaskSave(task)
-                            viewModel.duplicateTask(task)
+                            viewModel.duplicateTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                             withAnimation {
                                 showTaskForm = false
                             }
@@ -229,18 +241,22 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleTaskSave: { task in
-                            handleTaskSave(task)
-                            viewModel.saveTask(task)
+                            viewModel.saveTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                         },
                         handleTaskDeletion: { task in
-                            viewModel.removeTask(task)
+                            viewModel.removeTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                             withAnimation {
                                 viewModel.unselectTask()
                             }
                         },
                         handleTaskDuplicate: { task in
-                            viewModel.duplicateTask(task)
-                            handleTaskSave(task)
+                            viewModel.duplicateTask(task) { business in
+                                rootViewModel.updateBusiness(business)
+                            }
                             viewModel.unselectTask()
                         }
                     )
@@ -262,10 +278,9 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event) { _ in
-                                
+                            viewModel.saveEvent(event) { business in
+                                rootViewModel.updateBusiness(business)
                             }
-                            handleEventSave(event)
                         },
                         handleEventDelete: { _ in },
                         handleEventDuplicate: { _ in }
@@ -288,10 +303,9 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleEventSave: { event in
-                            viewModel.saveEvent(event) { _ in
-                                
+                            viewModel.saveEvent(event) { business in
+                                rootViewModel.updateBusiness(business)
                             }
-                            handleEventSave(event)
                         },
                         handleEventDelete: { event in
                             withAnimation {
@@ -299,10 +313,9 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleEventDuplicate: { event in
-                            viewModel.duplicateEvent(event) { events in
-                                
+                            viewModel.duplicateEvent(event) { business in
+                                rootViewModel.updateBusiness(business)
                             }
-                            handleEventSave(event)
                             withAnimation {
                                 viewModel.unselectEvent()
                             }

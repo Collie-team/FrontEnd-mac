@@ -4,9 +4,11 @@ import SwiftUI
 
 final class BusinessEventsCalendarViewModel: ObservableObject {
     @Binding var date: Date
+    @Binding var events: [Event]
     
-    init(date: Binding<Date>) {
+    init(date: Binding<Date>, events: Binding<[Event]>) {
         self._date = date
+        self._events = events
     }
     
     func monthStruct(startingSpaces: Int, count: Int, daysInMonth: Int, daysInPrevMonth: Int) -> MonthStruct {

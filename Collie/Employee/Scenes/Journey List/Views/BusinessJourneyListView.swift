@@ -34,9 +34,10 @@ struct BusinessJourneyListView: View {
                             }
                         },
                         handleJourneySave: { journey in
-                            rootViewModel.addNewJourney(journey, completion: {
+                            viewModel.addNewJourney(journey, business: rootViewModel.businessSelected) { business in
                                 viewModel.selectedJourney = journey
-                            })
+                                rootViewModel.updateBusiness(business)
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -46,6 +47,9 @@ struct BusinessJourneyListView: View {
         }
         .navigationTitle("Jornadas")
         .background(Color.collieBrancoFundo.ignoresSafeArea())
+        .onAppear {
+            rootViewModel.refreshBusiness()
+        }
     }
     
     var journeyList: some View {
@@ -109,25 +113,9 @@ struct BusinessJourneyListView: View {
                 business: rootViewModel.businessSelected,
                 journey: viewModel.selectedJourney!
             ),
-            handleJourneySave: { journey in
-                rootViewModel.saveJourney(journey)
-            },
-            handleTaskSave: { task in
-                rootViewModel.saveTask(task)
-            },
-            handleEventSave: { event in
-                rootViewModel.saveEvent(event)
-            },
             backAction: {
                 viewModel.selectedJourney = nil
             }
         )
     }
-    
 }
-
-//struct JourneyListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BusinessJourneyListView(viewModel: BusinessJourneyListViewModel(journeyList: .constant([])))
-//    }
-//}

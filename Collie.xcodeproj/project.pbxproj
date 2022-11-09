@@ -821,9 +821,9 @@
 		5BACC66728D260FC006975D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B49605328EF526C0024D064 /* Components */,
 				5BACC66928D2610F006975D3 /* BusinessSingleJourneyView.swift */,
 				5B49604F28EF51BC0024D064 /* BusinessEventsCalendarView.swift */,
+				5B49605328EF526C0024D064 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
