@@ -28,23 +28,7 @@ final class RootViewModel: ObservableObject {
     var availableBusinessUsers: [BusinessUser] = []
     
     init() {
-        self.businessSelected = Business(
-            id: "",
-            name: "",
-            description: "",
-            journeys: [
-                Journey(id: "teste1", name: "Jornada iOS", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date(), userIds: []),
-                Journey(id: "teste2", name: "Jornada de Design", description: "Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição ", imageURL: "", startDate: Date(), userIds: []),
-            ],
-            tasks: [
-                Task(id: "123", journeyId: "teste1", name: "Falar com X pessoa", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date()),
-                Task(id: "124", journeyId: "teste1", name: "A", description: "", taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"), startDate: Date(), endDate: Date())
-            ],
-            events: [
-                Event(journeyId: "teste1", name: "Workshop do foda-se", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: []),
-                Event(journeyId: "teste1", name: "Workshop III", description: "", contentLink: "", startDate: Date(), endDate: Date(), responsibleUserIds: [])
-            ]
-        )
+        self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
     }
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {

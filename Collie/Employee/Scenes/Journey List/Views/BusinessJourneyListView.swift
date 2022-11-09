@@ -90,7 +90,7 @@ struct BusinessJourneyListView: View {
                             showCreationPopUp = true
                         }
                         
-                        ForEach(rootViewModel.businessSelected.journeys) { journey in
+                        ForEach(rootViewModel.businessSelected.journeys.reversed()) { journey in
                             JourneyCard(journey: journey)
                                 .frame(height: 320)
                                 .onTapGesture {

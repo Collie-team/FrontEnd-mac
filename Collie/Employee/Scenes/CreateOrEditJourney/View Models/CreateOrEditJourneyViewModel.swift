@@ -1,7 +1,7 @@
 import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
-    @Published var journeyId: String = ""
+    @Published var journeyId: String = UUID().uuidString
     
     @Published var journeyName: String = ""
     
