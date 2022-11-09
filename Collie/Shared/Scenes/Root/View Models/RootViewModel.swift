@@ -78,7 +78,7 @@ final class RootViewModel: ObservableObject {
     }
     
     func updateBusiness(_ business: Business) {
-        businessSubscriptionService.updateBusiness(authenticationToken: "", business: business) { businessUpdated in
+        businessSubscriptionService.updateBusiness(overwrite: false, authenticationToken: "", business: business) { businessUpdated in
             self.businessSelected = businessUpdated
             self.objectWillChange.send()
         }

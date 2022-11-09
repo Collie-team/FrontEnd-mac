@@ -154,8 +154,8 @@ final class BusinessSubscriptionService {
         }
     }
     
-    func updateBusiness(authenticationToken: String, business: Business, _ completion: @escaping (Business) -> Void) {
-        let url = domainUrl + "business/update/"
+    func updateBusiness(overwrite: Bool, authenticationToken: String, business: Business, _ completion: @escaping (Business) -> Void) {
+        let url = domainUrl + "business/update/?overwrite=\(overwrite)"
         
         let headers: HTTPHeaders = [
             "Authorization": authenticationToken,
