@@ -6,6 +6,7 @@ struct BusinessSingleJourneyView: View {
     
     @State var editJourney = false
     @State var showTaskForm = false
+    @State var showCategoryForm = false
     @State var showEventForm = false
     @State var showTasksHint = false
     @State var showEventsHint = false
@@ -62,7 +63,7 @@ struct BusinessSingleJourneyView: View {
                                 showTasksHint = true
                             })
                             .popover(isPresented: $showTasksHint, arrowEdge: .bottom) {
-                                HelpView(title: "O que é uma tarefa?", subtitle: "Descrever")
+                                HelpView(title: "O que é uma tarefa?", subtitle: "São as atividades que você deseja que o colaborador realize durante o expediente de forma mais ativa, apenas possui uma data máxima, a qual pode ser realizada a qualquer momento dentro do prazo.")
                             }
 
                             Spacer()
@@ -73,6 +74,23 @@ struct BusinessSingleJourneyView: View {
                                 HStack {
                                     Image(systemName: "plus")
                                     Text("Nova tarefa")
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .padding(8)
+                                .foregroundColor(.black)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .modifier(CustomBorder())
+                            }
+                            .contentShape(Rectangle())
+                            .buttonStyle(.plain)
+                            
+                            Button {
+                                showCategoryForm = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "tag")
+                                    Text("Nova categoria")
                                 }
                                 .font(.system(size: 16, weight: .bold))
                                 .padding(8)
@@ -120,7 +138,7 @@ struct BusinessSingleJourneyView: View {
                                 showEventsHint = true
                             })
                             .popover(isPresented: $showEventsHint, arrowEdge: .bottom) {
-                                HelpView(title: "O que é um evento?", subtitle: "Descrever")
+                                HelpView(title: "O que é um evento?", subtitle: "São encontros que você deseja que o colaborador, envolvem palestras ou conversas com o time. Eles tem dia e hora marcada para que um grupo se encontrem.")
                             }
                             
                             Spacer()
@@ -188,6 +206,28 @@ struct BusinessSingleJourneyView: View {
                 }
             }
             
+            if showCategoryForm {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    CreateOrEditCategoryView(
+                        category: nil,
+                        handleClose: {
+                            withAnimation {
+                                showCategoryForm = false
+                            }
+                        },
+                        handleCategorySave: { taskCategory in
+                            // TO DO
+                        },
+                        handleCategoryDelete: { taskCategory in
+                            // TO DO
+                        }
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
             if showTaskForm {
                 ZStack {
                     Color.black.opacity(0.5)
@@ -226,13 +266,38 @@ struct BusinessSingleJourneyView: View {
                 }
             }
             
-            if viewModel.chosenTask != nil {
+            if showEventForm {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    CreateOrEditEventView(
+                        event: nil,
+                        journeyId: viewModel.journey.id,
+                        handleClose: {
+                            withAnimation {
+                                showEventForm = false
+                            }
+                        },
+                        handleEventSave: { event in
+                            viewModel.saveEvent(event) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
+                        },
+                        handleEventDelete: { _ in },
+                        handleEventDuplicate: { _ in }
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if let chosenTask = viewModel.chosenTask {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
                         journeyId: viewModel.journey.id,
-                        task: viewModel.chosenTask,
+                        task: chosenTask,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectTask()
@@ -262,38 +327,13 @@ struct BusinessSingleJourneyView: View {
                 }
             }
             
-            if showEventForm {
+            if let chosenEvent = viewModel.chosenEvent {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
-                        event: nil,
-                        journeyId: viewModel.journey.id,
-                        handleClose: {
-                            withAnimation {
-                                showEventForm = false
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
-                        },
-                        handleEventDelete: { _ in },
-                        handleEventDuplicate: { _ in }
-                    )
-                    .frame(maxWidth: 800)
-                }
-            }
-            
-            if viewModel.chosenEvent != nil {
-                ZStack {
-                    Color.black.opacity(0.5)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    CreateOrEditEventView(
-                        event: viewModel.chosenEvent,
+                        event: chosenEvent,
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
@@ -330,15 +370,3 @@ struct BusinessSingleJourneyView: View {
         .background(Color.collieBrancoFundo)
     }
 }
-
-//struct SingleJourneyView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BusinessManagerSingleJourneyView(
-//            viewModel: BusinessManagerSingleJourneyViewModel(
-//                business: .init(name: "Teste", description: "Descrição", journeys: [Journey(name: "Jornada iOS", description: "Descrição", imageURL: "", startDate: Date())], tasks: [], events: []), journeyId: ""
-//            ),
-//            journeyListViewModel: BusinessJourneyListViewModel(journeyList: .constant([])),
-//            backAction: {}
-//        )
-//    }
-//}

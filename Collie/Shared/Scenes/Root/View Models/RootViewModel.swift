@@ -96,7 +96,6 @@ final class RootViewModel: ObservableObject {
     func updateBusinessUser(_ businessUser: BusinessUser) {
         businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUser in
             self.currentBusinessUser = businessUser
-            self.objectWillChange.send()
         })
     }
 }

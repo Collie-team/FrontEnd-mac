@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct EmployeeTaskFullView: View {
-    var userTask: UserTask
-    var task: Task
+    @ObservedObject var employeeSingleJournerViewModel: EmployeeSingleJourneyViewModel
+    
     var handleClose: () -> ()
     var handleCheckToggle: () -> ()
     
@@ -19,35 +19,39 @@ struct EmployeeTaskFullView: View {
                     Spacer()
                 }
                 HStack {
-                    Text(task.name)
+                    Text(employeeSingleJournerViewModel.chosenTaskModel?.task.name ?? "")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.black)
                     Spacer()
                     
                     Button {
-                        print("mark check")
-                        
+                        handleCheckToggle()
+                        if employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil {
+                            employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate = Date().timeIntervalSince1970
+                        } else {
+                            employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate = nil
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "checkmark")
                                 
-                            Text(userTask.doneDate == nil ? "Marcar como feito" : "Feito")
+                            Text(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? "Marcar como feito" : "Feito")
                         }
-                        .foregroundColor(userTask.doneDate == nil ? Color.black : Color.white)
+                        .foregroundColor(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.black : Color.white)
                         .font(.system(size: 15, weight: .bold))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(userTask.doneDate == nil ? Color.white : Color.collieVerde)
+                        .background(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : Color.collieVerde)
                         .cornerRadius(8)
                         .modifier(CustomBorder())
                     }
                     .buttonStyle(.plain)
 
                 }
-                Text(task.taskCategory?.name ?? "Sem categoria")
+                Text(employeeSingleJournerViewModel.chosenTaskModel?.task.taskCategory?.name ?? "Sem categoria")
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(task.taskCategory?.color ?? .gray)
+                    .background(employeeSingleJournerViewModel.chosenTaskModel?.task.taskCategory?.color ?? .gray)
                     .cornerRadius(16)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.white)
@@ -58,14 +62,14 @@ struct EmployeeTaskFullView: View {
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString(task.startDate))
+                    Text(CalendarHelper().dateString((employeeSingleJournerViewModel.chosenTaskModel?.task.startDate) ?? Date()))
                         .font(.system(size: 16))
                     Spacer()
                 }
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString(task.endDate))
+                    Text(CalendarHelper().dateString((employeeSingleJournerViewModel.chosenTaskModel?.task.endDate) ?? Date()))
                         .font(.system(size: 16))
                     Spacer()
                 }
@@ -81,7 +85,7 @@ struct EmployeeTaskFullView: View {
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                         .frame(width: 200)
-                    Text(task.description)
+                    Text(employeeSingleJournerViewModel.chosenTaskModel?.task.description ?? "")
                         .font(.system(size: 16))
                         .multilineTextAlignment(.leading)
                     Spacer()
@@ -97,7 +101,7 @@ struct EmployeeTaskFullView: View {
         .background(
             HStack(spacing: 0) {
                 Rectangle()
-                    .foregroundColor(task.taskCategory?.color ?? .gray)
+                    .foregroundColor(employeeSingleJournerViewModel.chosenTaskModel?.task.taskCategory?.color ?? .gray)
                     .frame(width: 30)
                 ZStack {
                     Rectangle()
@@ -106,6 +110,7 @@ struct EmployeeTaskFullView: View {
                         HStack {
                             Spacer()
                             Button {
+                                employeeSingleJournerViewModel.unselectTask()
                                 handleClose()
                             } label: {
                                 Image(systemName: "xmark")
