@@ -10,8 +10,6 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         var userTask: UserTask?
     }
     
-    var journey: Journey
-    
     private var userTasks: [UserTask] = [] {
         didSet {
             syncTasks()
@@ -23,6 +21,12 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
             syncTasks()
         }
     }
+    
+    @Published var business: Business
+    
+    @Published var journey: Journey
+    
+    @Published var businessUser: BusinessUser
     
     @Published var allTaskModels: [TaskModel] = []
     
@@ -49,31 +53,17 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
     
     @Published var selectedEvents: [Event] = []
     
-    @Published var selectedDate: Date = Date() {
-        didSet {
-            filterSelectedEvents()
-        }
-    }
+    @Published var selectedDate: Date = Date()
     
-    init(journey: Journey) {
+    init(business: Business, journey: Journey, businessUser: BusinessUser) {
+        self.business = business
         self.journey = journey
-        filterSelectedEvents()
+        self.businessUser = businessUser
     }
     
     func handleAppear() {
-        bind()
-    }
-    
-    func bind() {
-//        self.allTasks = journey.tasks
-        let userTasks: [UserTask] = [
-            UserTask(taskId: "129", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
-            UserTask(taskId: "130", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
-            UserTask(taskId: "131", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
-            UserTask(taskId: "132", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
-            UserTask(taskId: "133", journeyId: "teste", doneDate: Date().timeIntervalSince1970),
-        ]
-        self.userTasks = userTasks
+        self.allTasks = business.tasks.filter({ $0.journeyId == journey.id })
+        self.userTasks = businessUser.userTasks
         separateTaskModels()
     }
     
@@ -91,10 +81,6 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         (taskModel.task.endDate.timeIntervalSince1970 < Date().timeIntervalSince1970) && taskModel.userTask?.doneDate == nil
     }
     
-    func saveTaskModel(_ taskModel: TaskModel) {
-        // TO DO
-    }
-    
     func selectTaskModel(_ taskModel: TaskModel) {
         self.chosenTaskModel = taskModel
     }
@@ -103,18 +89,28 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         chosenTaskModel = nil
     }
     
-    func checkTaskModel(_ taskModel: TaskModel) {
+    func checkTaskModel(_ taskModel: TaskModel, completion: (BusinessUser) -> ()) {
         if let index = self.allTaskModels.firstIndex(where: { $0.id == taskModel.id }) {
             if taskModel.userTask?.doneDate != nil {
                 let userTask = UserTask(taskId: taskModel.task.id, journeyId: journey.id, doneDate: nil)
                 allTaskModels[index] = TaskModel(task: allTaskModels[index].task, userTask: userTask)
+                self.updateUserTask(userTask, completion: completion)
             } else {
                 let userTask = UserTask(taskId: taskModel.task.id, journeyId: journey.id, doneDate: Date().timeIntervalSince1970)
                 allTaskModels[index] = TaskModel(task: allTaskModels[index].task, userTask: userTask)
+                self.updateUserTask(userTask, completion: completion)
             }
-            
             separateTaskModels()
         }
+    }
+    
+    private func updateUserTask(_ userTask: UserTask, completion: (BusinessUser) -> ()) {
+        if let index = businessUser.userTasks.firstIndex(where: { $0.id == userTask.id }) {
+            businessUser.userTasks[index] = userTask
+        } else {
+            businessUser.userTasks.append(userTask)
+        }
+        completion(businessUser)
     }
     
     func isTaskModelChecked(_ taskModel: TaskModel) -> Bool {
@@ -123,37 +119,6 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         } else {
             return false
         }
-    }
-    
-    // MARK: - Event functions
-    func saveEvent(_ event: Event) {
-//        if let index = self.journey.events.firstIndex(where: { $0.id == event.id }) {
-//            self.journey.events[index] = event
-//        } else {
-//            self.journey.events.append(event)
-//            sortJourneyEvents()
-//        }
-        objectWillChange.send()
-    }
-    
-    func selectEvent(_ event: Event) {
-        self.chosenEvent = event
-    }
-    
-    func unselectEvent() {
-        chosenEvent = nil
-    }
-    
-    func sortJourneyEvents() {
-//        self.journey.events = self.journey.events.sorted(by: { eventA, eventB in
-//            eventA.startDate < eventB.startDate
-//        })
-    }
-    
-    func filterSelectedEvents() {
-//        self.selectedEvents = journey.events.filter({ event in
-//            CalendarHelper().areDatesInSameDay(event.startDate, selectedDate)
-//        })
     }
     
     func separateTaskModels() {
@@ -170,5 +135,14 @@ final class EmployeeSingleJourneyViewModel: ObservableObject {
         })
         
         self.uncompletedTasksCount = dailyTaskModels.count + nextTaskModels.count
+    }
+    
+    // MARK: - Event functions
+    func selectEvent(_ event: Event) {
+        self.chosenEvent = event
+    }
+    
+    func unselectEvent() {
+        chosenEvent = nil
     }
 }

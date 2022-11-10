@@ -56,8 +56,11 @@ struct EmployeeJourneyListView: View {
     
     var singleJourney: some View {
         EmployeeSingleJourneyView(
-            viewModel: EmployeeSingleJourneyViewModel(journey: viewModel.selectedJourney!),
-            employeeJourneyListViewModel: viewModel,
+            viewModel: EmployeeSingleJourneyViewModel(
+                business: rootViewModel.businessSelected,
+                journey: viewModel.selectedJourney!,
+                businessUser: rootViewModel.currentBusinessUser!
+            ),
             backAction: {
                 viewModel.selectedJourney = nil
             }

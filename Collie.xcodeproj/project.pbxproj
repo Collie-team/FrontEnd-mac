@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
+		5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */; };
 		5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */; };
 		5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD4228FF37E700EFF0E4 /* RootViewModel.swift */; };
 		5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */; };
@@ -126,6 +127,7 @@
 
 /* Begin PBXFileReference section */
 		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
+		5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventFullView.swift; sourceTree = "<group>"; };
 		5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5B1BAD4228FF37E700EFF0E4 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSubscriptionService.swift; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 				5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */,
 				5B954E862903118500FA579E /* EmployeeEventsCalendarView.swift */,
 				5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */,
+				5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
 				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
 				5BF73BDE28DB9BB900B74060 /* TextFieldPlaceholder.swift in Sources */,
+				5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */,
 				5B4E313629158E2C0031F74F /* UserDefaultService.swift in Sources */,
 				5B2D009C28F87CEF00131FFF /* WorkspaceView.swift in Sources */,
 				5B4E31402915A78B0031F74F /* SettingsViewModel.swift in Sources */,

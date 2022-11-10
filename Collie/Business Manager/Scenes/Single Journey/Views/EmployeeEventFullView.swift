@@ -1,53 +1,33 @@
 import SwiftUI
 
-struct EmployeeTaskFullView: View {
-    var userTask: UserTask
-    var task: Task
+struct EmployeeEventFullView: View {
+    var event: Event
     var handleClose: () -> ()
-    var handleCheckToggle: () -> ()
     
     var responsibleName: String = ""
     var responsibleEmail: String = ""
+    
+    @State private var hover: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 15) {
                 HStack {
-                    Text("Tarefa")
+                    Text("Evento")
                         .font(.system(size: 16))
                         .foregroundColor(.black)
                     Spacer()
                 }
                 HStack {
-                    Text(task.name)
+                    Text(event.name)
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.black)
                     Spacer()
-                    
-                    Button {
-                        print("mark check")
-                        
-                    } label: {
-                        HStack {
-                            Image(systemName: "checkmark")
-                                
-                            Text(userTask.doneDate == nil ? "Marcar como feito" : "Feito")
-                        }
-                        .foregroundColor(userTask.doneDate == nil ? Color.black : Color.white)
-                        .font(.system(size: 15, weight: .bold))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(userTask.doneDate == nil ? Color.white : Color.collieVerde)
-                        .cornerRadius(8)
-                        .modifier(CustomBorder())
-                    }
-                    .buttonStyle(.plain)
-
                 }
-                Text(task.taskCategory?.name ?? "Sem categoria")
+                Text(event.category?.name ?? "Sem categoria")
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(task.taskCategory?.color ?? .gray)
+                    .background(event.category?.color ?? .gray)
                     .cornerRadius(16)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.white)
@@ -56,16 +36,42 @@ struct EmployeeTaskFullView: View {
             
             VStack(spacing: 24) {
                 HStack {
+                    TitleWithIconView(systemImageName: "link", label: "Link do evento")
+                        .frame(width: 200)
+                    if let url = URL(string: event.contentLink) {
+                        Link(destination: url) {
+                            Text(event.contentLink)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(hover ? .collieLilas : .collieRoxo)
+                        }
+                        .onHover { isHovered in
+                            self.hover = isHovered
+                            DispatchQueue.main.async {
+                                if (self.hover) {
+                                    NSCursor.pointingHand.push()
+                                } else {
+                                    NSCursor.pop()
+                                }
+                            }
+                        }
+                    } else {
+                        Text("Nenhum link disponível")
+                            .font(.system(size: 16))
+                    }
+                    Spacer()
+                }
+                
+                HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString(task.startDate))
+                    Text(CalendarHelper().dateString(event.startDate))
                         .font(.system(size: 16))
                     Spacer()
                 }
                 HStack {
-                    TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
+                    TitleWithIconView(systemImageName: "calendar", label: "Data de término")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString(task.endDate))
+                    Text(CalendarHelper().dateString(event.endDate))
                         .font(.system(size: 16))
                     Spacer()
                 }
@@ -81,7 +87,7 @@ struct EmployeeTaskFullView: View {
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                         .frame(width: 200)
-                    Text(task.description)
+                    Text(event.description)
                         .font(.system(size: 16))
                         .multilineTextAlignment(.leading)
                     Spacer()
@@ -97,7 +103,7 @@ struct EmployeeTaskFullView: View {
         .background(
             HStack(spacing: 0) {
                 Rectangle()
-                    .foregroundColor(task.taskCategory?.color ?? .gray)
+                    .foregroundColor(event.category?.color ?? .gray)
                     .frame(width: 30)
                 ZStack {
                     Rectangle()
@@ -124,8 +130,18 @@ struct EmployeeTaskFullView: View {
     }
 }
 
-//struct EmployeeTaskFullView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EmployeeTaskFullView(userTask: UserTask(taskId: "", journeyId: ""), task: Task(journeyId: "", name: "Fazer qualquer coisa", description: "Fazer qualquer coisa faz bem pra saúde", startDate: Date(), endDate: Date()), handleClose: {}, handleCheckToggle: {})
-//    }
-//}
+struct EmployeeEventFullView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmployeeEventFullView(
+            event: Event(
+                journeyId: "", name: "Workshop de Produtividade",
+                description: "sdkjads kadsjl aksla dslkads lkad sklds ajlkdas jadlsk  sadlkasdn",
+                contentLink: "https://aurea.yoga",
+                startDate: Date(),
+                endDate: Date(),
+                responsibleUserIds: []
+            ),
+            handleClose: {}
+        )
+    }
+}

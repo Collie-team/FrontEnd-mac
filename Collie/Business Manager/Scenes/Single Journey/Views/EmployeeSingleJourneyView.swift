@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct EmployeeSingleJourneyView: View {
-    @ObservedObject var viewModel: EmployeeSingleJourneyViewModel
-    @ObservedObject var employeeJourneyListViewModel: EmployeeJourneyListViewModel
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @StateObject var viewModel: EmployeeSingleJourneyViewModel
     
     @State var editJourney = false
     @State var showTaskForm = false
@@ -43,9 +43,9 @@ struct EmployeeSingleJourneyView: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.black)
                             
-                            HelpButton(handleTap: {
-                                
-                            })
+//                            HelpButton(handleTap: {
+//
+//                            })
                             
                             Spacer()
                             
@@ -89,7 +89,9 @@ struct EmployeeSingleJourneyView: View {
                                             viewModel.selectTaskModel(taskModel)
                                         },
                                         handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
+                                            viewModel.checkTaskModel(taskModel) { businessUser in
+                                                rootViewModel.updateBusinessUser(businessUser)
+                                            }
                                         }
                                     )
                                 }
@@ -123,7 +125,9 @@ struct EmployeeSingleJourneyView: View {
                                             viewModel.selectTaskModel(taskModel)
                                         },
                                         handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
+                                            viewModel.checkTaskModel(taskModel) { businessUser in
+                                                rootViewModel.updateBusinessUser(businessUser)
+                                            }
                                         }
                                     )
                                 }
@@ -157,7 +161,9 @@ struct EmployeeSingleJourneyView: View {
                                             viewModel.selectTaskModel(taskModel)
                                         },
                                         handleTaskCheckToggle: {
-                                            viewModel.checkTaskModel(taskModel)
+                                            viewModel.checkTaskModel(taskModel) { businessUser in
+                                                rootViewModel.updateBusinessUser(businessUser)
+                                            }
                                         }
                                     )
                                 }
@@ -186,8 +192,12 @@ struct EmployeeSingleJourneyView: View {
                             Spacer()
                         }
                         
-                        EmployeeEventsCalendarView(selectedDate: $viewModel.selectedDate, employeeSingleJourneyViewModel: self.viewModel) { event in
-                            viewModel.selectEvent(event)
+                        EmployeeEventsCalendarView(
+                            selectedDate: $viewModel.selectedDate,
+                            events: rootViewModel.businessSelected.events,
+                            employeeSingleJourneyViewModel: self.viewModel
+                        ) { event in
+                                viewModel.selectEvent(event)
                         }
                         
                         Spacer()
@@ -236,7 +246,9 @@ struct EmployeeSingleJourneyView: View {
                         },
                         handleCheckToggle: {
                             withAnimation {
-                                viewModel.checkTaskModel(viewModel.chosenTaskModel!)
+                                viewModel.checkTaskModel(viewModel.chosenTaskModel!) { businessUser in
+                                    rootViewModel.updateBusinessUser(businessUser)
+                                }
                             }
                         }
                     )
@@ -244,26 +256,15 @@ struct EmployeeSingleJourneyView: View {
                 }
             }
             
-            // REVIEW
-            if viewModel.chosenEvent != nil {
+            if let event = viewModel.chosenEvent {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    CreateOrEditEventView(
-                        event: viewModel.chosenEvent,
-                        journeyId: viewModel.journey.id,
-                        handleClose: {
-                            withAnimation {
-                                viewModel.unselectEvent()
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event)
-                        },
-                        handleEventDelete: { _ in },
-                        handleEventDuplicate: { _ in }
-                    )
+                    EmployeeEventFullView(event: event, handleClose: {
+                        withAnimation {
+                            viewModel.unselectEvent()
+                        }
+                    })
                     .frame(maxWidth: 800)
                 }
             }
@@ -280,34 +281,23 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
     static var previews: some View {
         EmployeeSingleJourneyView(
             viewModel: EmployeeSingleJourneyViewModel(
+                business: Business(
+                    name: "Aurea",
+                    description: "",
+                    journeys: [],
+                    tasks: [],
+                    events: []
+                ),
                 journey: Journey(
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
                     imageURL: "",
                     startDate: Date(),
                     userIds: []
-//                    employees: [],
-//                    tasks: [
-//                        Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "A", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "B", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "C", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "D", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "E", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "F", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "G", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "H", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "I", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                        Task(name: "J", description: "", startDate: Date(), endDate: Date(),taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
-//                    ],
-//                    events: [],
-//                    managers: []
-                )
+                ),
+                businessUser: BusinessUser(userId: "SS", businessId: "ffaasfsfa", role: .manager, userTasks: [])
             ),
-            employeeJourneyListViewModel: EmployeeJourneyListViewModel(),
-            backAction: {
-                
-            }
+            backAction: {}
         )
     }
 }

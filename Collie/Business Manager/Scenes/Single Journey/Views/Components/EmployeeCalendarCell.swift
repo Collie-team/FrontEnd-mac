@@ -12,6 +12,10 @@ struct EmployeeCalendarCell: View {
     let month: Int
     let year: Int
     
+    var hasEventsInDay: Bool {
+        employeeEventsCalendarViewModel.events.contains(where: { CalendarHelper().areDatesInSameDay(date, $0.startDate) })
+    }
+    
     var monthStruct: MonthStruct {
         employeeEventsCalendarViewModel.monthStruct(
             startingSpaces: startingSpaces,
@@ -25,15 +29,8 @@ struct EmployeeCalendarCell: View {
         monthStruct.getDayDate(day: day, month: month, year: year)
     }
     
-    var eventsInDate: [Event] = []
-//    {
-//        employeeSingleJourneyViewModel.journey.events.filter { event in
-//            event.startDate == date
-//        }
-//    }
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 4) {
             ZStack {
                 Circle()
                     .foregroundColor(backgroundColor())
@@ -42,33 +39,38 @@ struct EmployeeCalendarCell: View {
                     .foregroundColor(textColor())
                     .fontWeight(fontWeight())
             }
-            HStack {
-                ForEach(eventsInDate) { event in
-                    Circle()
-                        .foregroundColor(event.category?.color ?? .gray)
-                        .frame(width: 12, height: 12)
-                }
-            }
+            
+            Circle()
+                .foregroundColor(.collieRoxo)
+                .frame(width: 5, height: 5)
+                .opacity(hasEventsInDay ? 1 : 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .opacity(getCellOpacity())
         .onTapGesture {
             employeeEventsCalendarViewModel.selectDate(date: date)
         }
-        .onAppear {
-            print("Events in date \(date): \(eventsInDate)")
+    }
+    
+    func getCellOpacity() -> Double {
+        if hasEventsInDay || employeeEventsCalendarViewModel.isDateSelected(date) {
+            return 1
+        } else {
+            if monthStruct.monthType == .current {
+                return 0.4
+            } else {
+                return 0.2
+            }
         }
     }
     
     func textColor() -> Color {
         let date = monthStruct.getDayDate(day: day, month: month, year: year)
+        
         if employeeEventsCalendarViewModel.isDateSelected(date) {
             return Color.white
         } else {
-            if monthStruct.monthType == .current {
-                return Color.black
-            } else {
-                return Color.gray
-            }
+            return Color.black
         }
     }
     

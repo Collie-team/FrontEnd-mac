@@ -78,7 +78,6 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
             self.business.events[index] = event
         } else {
             self.business.events.append(event)
-//            sortJourneyEvents()
         }
         completion(self.business)
         objectWillChange.send()

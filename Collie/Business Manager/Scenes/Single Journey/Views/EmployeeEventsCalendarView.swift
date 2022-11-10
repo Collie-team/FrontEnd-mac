@@ -6,9 +6,9 @@ struct EmployeeEventsCalendarView: View {
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, employeeSingleJourneyViewModel: EmployeeSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+    init(selectedDate: Binding<Date>, events: [Event], employeeSingleJourneyViewModel: EmployeeSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
         self.employeeSingleJourneyViewModel = employeeSingleJourneyViewModel
-        self.viewModel = EmployeeEventsCalendarViewModel(date: selectedDate)
+        self.viewModel = EmployeeEventsCalendarViewModel(date: selectedDate, events: events)
         self.handleSelectEvent = handleSelectEvent
     }
     
@@ -23,7 +23,7 @@ struct EmployeeEventsCalendarView: View {
             
             VStack {
                 ScrollView(.vertical) {
-                    if employeeSingleJourneyViewModel.selectedEvents.isEmpty {
+                    if viewModel.events.isEmpty {
                         VStack {
                             Spacer()
                             Image("noEventsImage")
@@ -39,7 +39,7 @@ struct EmployeeEventsCalendarView: View {
                         }
                         .padding()
                     } else {
-                        ForEach(employeeSingleJourneyViewModel.selectedEvents) { event in
+                        ForEach(viewModel.events.filter({ CalendarHelper().areDatesInSameDay($0.startDate, viewModel.date)})) { event in
                             EmployeeEventView(
                                 event: event,
                                 handleEventOpen: {
@@ -83,7 +83,7 @@ struct EmployeeEventsCalendarView: View {
     }
     
     var calendarGrid: some View {
-        VStack(spacing: 1) {
+        VStack(spacing: 8) {
             let daysInMonth = CalendarHelper().daysInMonth(viewModel.date)
             let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date)
             let startingSpaces = CalendarHelper().weekDay(firstDayOfMonth)
@@ -94,7 +94,7 @@ struct EmployeeEventsCalendarView: View {
             let year = CalendarHelper().year(viewModel.date)
             
             ForEach(0..<6) { row in
-                HStack(spacing: 1) {
+                HStack(alignment: .top, spacing: 1) {
                     ForEach(1..<8) { column in
                         let count = column + (row * 7)
                         let day = count - prevMonthLastDayWeekday

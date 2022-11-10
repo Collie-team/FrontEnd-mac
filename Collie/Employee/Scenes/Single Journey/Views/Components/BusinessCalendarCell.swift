@@ -24,14 +24,8 @@ struct BusinessCalendarCell: View {
         monthStruct.getDayDate(day: day, month: month, year: year)
     }
     
-    var eventsInDate: [Event]  {
-        businessSingleJourneyViewModel.business.events.filter { event in
-            event.startDate == date
-        }
-    }
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 4) {
             ZStack {
                 Circle()
                     .foregroundColor(backgroundColor())
@@ -40,20 +34,14 @@ struct BusinessCalendarCell: View {
                     .foregroundColor(textColor())
                     .fontWeight(fontWeight())
             }
-            HStack {
-                ForEach(eventsInDate) { event in
-                    Circle()
-                        .foregroundColor(event.category?.color ?? .gray)
-                        .frame(width: 12, height: 12)
-                }
-            }
+            
+            Circle()
+                .foregroundColor(.collieRoxo)
+                .frame(width: 12, height: 12)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
             businessEventsCalendarViewModel.selectDate(date: date)
-        }
-        .onAppear {
-            print("Events in date \(date): \(eventsInDate)")
         }
     }
     
