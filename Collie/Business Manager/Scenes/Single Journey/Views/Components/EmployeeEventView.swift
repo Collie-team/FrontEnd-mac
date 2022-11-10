@@ -6,7 +6,7 @@ struct EmployeeEventView: View {
     var handleEventOpen: () -> ()
     
     var category: TaskCategory {
-        rootViewModel.getCategory(categoryId: event.id ?? "")
+        rootViewModel.getCategory(categoryId: event.categoryId ?? "")
     }
     
     var body: some View {
@@ -42,15 +42,13 @@ struct EmployeeEventView: View {
                     
                     Spacer()
                     
-                    if event.category != nil {
-                        Text(event.category!.name)
-                            .foregroundColor(.white)
-                            .font(.system(size: 12, weight: .medium))
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 8)
-                            .background(event.category!.color)
-                            .cornerRadius(50)
-                    }
+                    Text(category.name)
+                        .foregroundColor(.white)
+                        .font(.system(size: 12, weight: .medium))
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background(category.color)
+                        .cornerRadius(50)
                 }
             }
         }
@@ -76,7 +74,8 @@ struct EmployeeEventView_Previews: PreviewProvider {
                          startDate: Date(timeIntervalSince1970: 1667591752),
                          endDate: Date(timeIntervalSince1970: 1667678152),
                          responsibleUserIds: [],
-                         category: TaskCategory(name: "Recursos Humanos", colorName: "vermelho", systemImageName: "person.fill")),
+                         categoryId: ""
+                        ),
             handleEventOpen: {})
     }
 }

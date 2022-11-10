@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct EmployeeTaskFullView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
+    
     var userTask: UserTask
     var task: Task
     var handleClose: () -> ()
@@ -8,6 +10,10 @@ struct EmployeeTaskFullView: View {
     
     var responsibleName: String = ""
     var responsibleEmail: String = ""
+    
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -44,10 +50,10 @@ struct EmployeeTaskFullView: View {
                     .buttonStyle(.plain)
 
                 }
-                Text(task.taskCategory?.name ?? "Sem categoria")
+                Text(category.name)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(task.taskCategory?.color ?? .gray)
+                    .background(category.color)
                     .cornerRadius(16)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.white)
@@ -97,7 +103,7 @@ struct EmployeeTaskFullView: View {
         .background(
             HStack(spacing: 0) {
                 Rectangle()
-                    .foregroundColor(task.taskCategory?.color ?? .gray)
+                    .foregroundColor(category.color)
                     .frame(width: 30)
                 ZStack {
                     Rectangle()

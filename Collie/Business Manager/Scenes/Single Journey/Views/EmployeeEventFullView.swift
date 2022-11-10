@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EmployeeEventFullView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     var event: Event
     var handleClose: () -> ()
     
@@ -8,6 +9,10 @@ struct EmployeeEventFullView: View {
     var responsibleEmail: String = ""
     
     @State private var hover: Bool = false
+    
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: event.categoryId ?? "")
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,10 +29,10 @@ struct EmployeeEventFullView: View {
                         .foregroundColor(.black)
                     Spacer()
                 }
-                Text(event.category?.name ?? "Sem categoria")
+                Text(category.name)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(event.category?.color ?? .gray)
+                    .background(category.color)
                     .cornerRadius(16)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.white)
@@ -103,7 +108,7 @@ struct EmployeeEventFullView: View {
         .background(
             HStack(spacing: 0) {
                 Rectangle()
-                    .foregroundColor(event.category?.color ?? .gray)
+                    .foregroundColor(category.color)
                     .frame(width: 30)
                 ZStack {
                     Rectangle()

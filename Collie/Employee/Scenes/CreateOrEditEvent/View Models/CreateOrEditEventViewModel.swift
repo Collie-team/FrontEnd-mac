@@ -21,19 +21,9 @@ final class CreateOrEditEventViewModel: ObservableObject {
     
     @Published var showCategoryList = false
     
-    @Published var sampleCategories: [TaskCategory] = [
-        TaskCategory(id: "123", name: "Cultura organizacional", colorName: "vermelho", systemImageName: "lock.fill"),
-        TaskCategory(id: "124", name: "Networking", colorName: "roxo", systemImageName: "star.fill"),
-        TaskCategory(id: "125", name: "Segurança", colorName: "azulClaro", systemImageName: "checkerboard.shield")
-    ]
+    @Published var sampleCategories: [TaskCategory] = []
     
-    @Published var sampleUsers: [UserModel] = [
-        UserModel(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "")
-    ]
+    @Published var sampleUsers: [UserModel] = []
     
     func isButtonDisabled() -> Bool {
         eventName.isEmpty

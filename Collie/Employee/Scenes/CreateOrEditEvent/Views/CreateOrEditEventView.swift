@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CreateOrEditEventView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     @ObservedObject var viewModel = CreateOrEditEventViewModel()
     
     var event: Event?
@@ -38,12 +39,10 @@ struct CreateOrEditEventView: View {
                 })
             }
             
-            if let selectedCategory = event.category {
-                viewModel.selectedCategory = selectedCategory
-                viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
-                    category.id != selectedCategory.id
-                })
-            }
+            viewModel.selectedCategory = rootViewModel.getCategory(categoryId: event.categoryId ?? "")
+            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
+                category.id != viewModel.selectedCategory!.id
+            })
         }
     }
     
@@ -156,7 +155,7 @@ struct CreateOrEditEventView: View {
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
                                 responsibleUserIds: [],
-                                category: viewModel.selectedCategory.id
+                                categoryId: viewModel.selectedCategory!.id
                             )
                         )
                         handleClose()
