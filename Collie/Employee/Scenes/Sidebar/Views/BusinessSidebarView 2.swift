@@ -52,6 +52,8 @@ struct BusinessSidebarView: View {
                     TeamListView()
                 case .settings:
                     SettingsView()
+                case .profile:
+                    ProfileView()
                 default:
                     Text("Error")
                 }

@@ -112,6 +112,7 @@
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
+		5BD68496291D703500090481 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68495291D703500090481 /* ProfileView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
 		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
@@ -237,6 +238,7 @@
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
+		5BD68495291D703500090481 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5BD68492291D701500090481 /* Profile */,
 				5BA9AFE6291199C700C1078A /* Onboarding */,
 				5B954E8E2906C08B00FA579E /* Demo */,
 				5B1BAD3D28FF37AB00EFF0E4 /* Root */,
@@ -973,6 +976,30 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		5BD68492291D701500090481 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5BD68494291D702300090481 /* View Models */,
+				5BD68493291D701D00090481 /* Views */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5BD68493291D701D00090481 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BD68495291D703500090481 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BD68494291D702300090481 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		5BD8982128FDDDD20015EEDB /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,6 +1192,7 @@
 				5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */,
 				5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5BD68496291D703500090481 /* ProfileView.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */,
