@@ -16,7 +16,8 @@ struct CollieApp: App {
         WindowGroup {
 //            SettingsView()
 //                .environmentObject(RootViewModel())
-            RootView()
+//            RootView()
+            ProfileView()
                 .colorScheme(.light)
                 .frame(minWidth: 1200, minHeight: 800)
         }

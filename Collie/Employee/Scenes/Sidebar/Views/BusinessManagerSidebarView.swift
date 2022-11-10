@@ -53,6 +53,8 @@ struct BusinessManagerSidebarView: View {
 //                    PaymentsView()
                 case .settings:
                     SettingsView()
+                case .profile:
+                    ProfileView()
                 default:
                     Text("Error")
                 }
