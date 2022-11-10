@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0DC40E291D52E700CFD82A /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC40D291D52E700CFD82A /* TextExtension.swift */; };
 		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
 		5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */; };
 		5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */; };
@@ -126,6 +127,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B0DC40D291D52E700CFD82A /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
 		5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventFullView.swift; sourceTree = "<group>"; };
 		5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 				5B2B46B128EDFFF100FC3BE9 /* CheckboxStyle.swift */,
 				5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */,
 				5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */,
+				5B0DC40D291D52E700CFD82A /* TextExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 				5B2B46A228E22B0900FC3BE9 /* NewUserFormsView.swift in Sources */,
 				5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */,
 				5BF73BD828DB80F500B74060 /* TeamListViewModel.swift in Sources */,
+				5B0DC40E291D52E700CFD82A /* TextExtension.swift in Sources */,
 				5B49604528ECBFA10024D064 /* CreateOrEditEventViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* BusinessJourneyListViewModel.swift in Sources */,
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,

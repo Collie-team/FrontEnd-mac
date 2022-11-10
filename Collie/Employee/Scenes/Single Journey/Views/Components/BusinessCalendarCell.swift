@@ -3,6 +3,7 @@ import SwiftUI
 struct BusinessCalendarCell: View {
     @ObservedObject var businessSingleJourneyViewModel: BusinessSingleJourneyViewModel
     @ObservedObject var businessEventsCalendarViewModel: BusinessEventsCalendarViewModel
+    
     let count: Int
     let startingSpaces: Int
     let daysInMonth: Int
@@ -10,6 +11,10 @@ struct BusinessCalendarCell: View {
     let day: Int
     let month: Int
     let year: Int
+    
+    var hasEventsInDay: Bool {
+        businessEventsCalendarViewModel.events.contains(where: { CalendarHelper().areDatesInSameDay(date, $0.startDate) })
+    }
     
     var monthStruct: MonthStruct {
         businessEventsCalendarViewModel.monthStruct(
@@ -37,35 +42,38 @@ struct BusinessCalendarCell: View {
             
             Circle()
                 .foregroundColor(.collieRoxo)
-                .frame(width: 12, height: 12)
+                .frame(width: 5, height: 5)
+                .opacity(hasEventsInDay ? 1 : 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .opacity(getCellOpacity())
         .onTapGesture {
             businessEventsCalendarViewModel.selectDate(date: date)
         }
     }
     
-    func textColor() -> Color {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        if businessEventsCalendarViewModel.isDateSelected(date) {
-            return Color.white
+    func getCellOpacity() -> Double {
+        if hasEventsInDay || businessEventsCalendarViewModel.isDateSelected(date) {
+            return 1
         } else {
             if monthStruct.monthType == .current {
-                return Color.black
+                return 0.4
             } else {
-                return Color.gray
+                return 0.2
             }
         }
     }
     
+    func textColor() -> Color {
+        businessEventsCalendarViewModel.isDateSelected(date) ? Color.white : Color.black
+    }
+    
     func fontWeight() -> Font.Weight {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return businessEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
+        businessEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
     }
     
     func backgroundColor() -> Color {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return businessEventsCalendarViewModel
+        businessEventsCalendarViewModel
             .isDateSelected(date) ? Color.collieRoxo : Color.collieCinzaClaro
     }
 }

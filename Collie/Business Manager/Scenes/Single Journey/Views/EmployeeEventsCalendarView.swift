@@ -23,7 +23,7 @@ struct EmployeeEventsCalendarView: View {
             
             VStack {
                 ScrollView(.vertical) {
-                    if viewModel.events.isEmpty {
+                    if viewModel.events.filter({ CalendarHelper().areDatesInSameDay($0.startDate, viewModel.date)}).isEmpty {
                         VStack {
                             Spacer()
                             Image("noEventsImage")
@@ -62,7 +62,9 @@ struct EmployeeEventsCalendarView: View {
             
             VStack {
                 EmployeeDateScrollerView(employeeEventsCalendarViewModel: viewModel)
+                
                 dayOfWeekStack
+                
                 calendarGrid
             }
             .padding(.bottom)

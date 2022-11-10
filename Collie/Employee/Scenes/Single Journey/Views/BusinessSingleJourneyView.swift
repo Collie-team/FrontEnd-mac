@@ -146,7 +146,7 @@ struct BusinessSingleJourneyView: View {
                         
                         BusinessEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
-                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == viewModel.journey.id && CalendarHelper().areDatesInSameDay($0.startDate, viewModel.selectedDate)}),
+                            events: rootViewModel.businessSelected.events,
                             businessSingleJourneyViewModel: self.viewModel
                         ) { event in
                             viewModel.selectEvent(event)

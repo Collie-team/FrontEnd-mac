@@ -24,7 +24,7 @@ struct BusinessEventsCalendarView: View {
                 
                 VStack {
                     ScrollView(.vertical) {
-                        if viewModel.events.isEmpty {
+                        if viewModel.events.filter({ CalendarHelper().areDatesInSameDay($0.startDate, viewModel.date)}).isEmpty {
                             VStack {
                                 Spacer()
                                 Image("noEventsImage")
@@ -40,7 +40,7 @@ struct BusinessEventsCalendarView: View {
                             }
                             .padding()
                         } else {
-                            ForEach(viewModel.events) { event in
+                            ForEach(viewModel.events.filter({ CalendarHelper().areDatesInSameDay($0.startDate, viewModel.date)})) { event in
                                 BusinessEventView(
                                     event: event,
                                     handleEventOpen: {
@@ -63,7 +63,9 @@ struct BusinessEventsCalendarView: View {
                 
                 VStack {
                     BusinessDateScrollerView(businessManagerEventsCalendarViewModel: viewModel)
+                    
                     dayOfWeekStack
+                    
                     calendarGrid
                 }
                 .padding(.bottom)
@@ -85,7 +87,7 @@ struct BusinessEventsCalendarView: View {
     }
     
     var calendarGrid: some View {
-        VStack(spacing: 1) {
+        VStack(spacing: 8) {
             let daysInMonth = CalendarHelper().daysInMonth(viewModel.date)
             let firstDayOfMonth = CalendarHelper().firstOfMonth(viewModel.date)
             let startingSpaces = CalendarHelper().weekDay(firstDayOfMonth)
@@ -118,17 +120,3 @@ struct BusinessEventsCalendarView: View {
         .frame(maxWidth: .infinity)
     }
 }
-
-extension Text {
-    func dayOfWeek() -> some View {
-        self.frame(maxWidth: .infinity)
-            .padding(.top, 1)
-            .lineLimit(1)
-    }
-}
-
-//struct EventsCalendarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventsCalendarView(events: [])
-//    }
-//}

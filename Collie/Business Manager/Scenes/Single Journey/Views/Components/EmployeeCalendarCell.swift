@@ -65,23 +65,15 @@ struct EmployeeCalendarCell: View {
     }
     
     func textColor() -> Color {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        
-        if employeeEventsCalendarViewModel.isDateSelected(date) {
-            return Color.white
-        } else {
-            return Color.black
-        }
+        employeeEventsCalendarViewModel.isDateSelected(date) ? Color.white : Color.black
     }
     
     func fontWeight() -> Font.Weight {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return employeeEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
+        employeeEventsCalendarViewModel.isDateSelected(date) ? .bold : .regular
     }
     
     func backgroundColor() -> Color {
-        let date = monthStruct.getDayDate(day: day, month: month, year: year)
-        return employeeEventsCalendarViewModel
+        employeeEventsCalendarViewModel
             .isDateSelected(date) ? Color.collieRoxo : Color.collieCinzaClaro
     }
 }
