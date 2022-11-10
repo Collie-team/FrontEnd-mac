@@ -122,7 +122,7 @@ struct CreateOrEditTaskView: View {
                     )
                 }
 
-                SendButton(label: "Salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
                         handleTaskSave(
                             Task(
                                 id: viewModel.taskId ?? UUID().uuidString,

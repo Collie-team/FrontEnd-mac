@@ -13,7 +13,7 @@ struct SendButton: View {
                 .font(.system(size: 18, weight: .bold))
                 .padding(.vertical, 8)
                 .padding(.horizontal, 32)
-                .background(isButtonDisabled ? Color.gray : Color.collieRoxo)
+                .background(isButtonDisabled ? Color.gray : Color.collieAzulEscuro)
                 .foregroundColor(.white)
                 .cornerRadius(8)
         }

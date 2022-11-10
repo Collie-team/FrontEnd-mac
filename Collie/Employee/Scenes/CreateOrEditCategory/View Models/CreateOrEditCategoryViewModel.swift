@@ -6,8 +6,8 @@ final class CreateOrEditCategoryViewModel: ObservableObject {
     @Published var colorName: String = ""
     @Published var systemImageName: String = ""
     
-    var backgroundColor: Color {
-        switch colorName {
+    func getColor(for name: String) -> Color {
+        switch name {
         case "rosa":
             return Color.collieRosaEscuro
         case "vermelho":
@@ -25,5 +25,42 @@ final class CreateOrEditCategoryViewModel: ObservableObject {
         default:
             return Color.gray
         }
+    }
+    
+    var systemNamesArray: [String] = [
+        "network",
+        "video.fill",
+        "envelope.fill",
+        "person.crop.rectangle",
+        "phone.and.waveform.fill",
+        "car.fill",
+        "building.2.fill",
+        "bubble.left.and.bubble.right.fill"
+    ]
+    
+    var colorNamesArray: [String] = [
+        "rosa",
+        "vermelho",
+        "amarelo",
+        "verde",
+        "azulClaro",
+        "azulEscuro",
+        "roxo"
+    ]
+    
+    func isIconSelected(with name: String) -> Bool {
+        systemImageName == name
+    }
+    
+    func selectIcon(with name: String) {
+        systemImageName = name
+    }
+    
+    func isColorSelected(with name: String) -> Bool {
+        colorName == name
+    }
+    
+    func selectColor(with name: String) {
+        colorName = name
     }
 }

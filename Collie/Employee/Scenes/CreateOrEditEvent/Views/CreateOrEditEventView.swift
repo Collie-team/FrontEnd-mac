@@ -145,7 +145,7 @@ struct CreateOrEditEventView: View {
                     )
                 }
 
-                SendButton(label: "Salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
                     handleEventSave(
                             Event(
                                 id: viewModel.eventId ?? UUID().uuidString,
