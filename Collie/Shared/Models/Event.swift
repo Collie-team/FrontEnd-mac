@@ -9,5 +9,5 @@ struct Event: Identifiable, Codable {
     var startDate: Date
     var endDate: Date
     var responsibleUserIds: [String]
-    var category: TaskCategory?
+    var categoryId: String?
 }

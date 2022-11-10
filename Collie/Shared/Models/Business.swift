@@ -10,6 +10,7 @@ struct Business: Codable, Identifiable, Equatable {
     var description: String
     var journeys: [Journey]
     var tasks: [Task]
+    var categories: [TaskCategory]
     var events: [Event]
     var imageURL: String?
 }

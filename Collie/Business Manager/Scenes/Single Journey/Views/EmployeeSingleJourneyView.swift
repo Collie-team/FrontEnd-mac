@@ -280,6 +280,14 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
     static var previews: some View {
         EmployeeSingleJourneyView(
             viewModel: EmployeeSingleJourneyViewModel(
+                business: Business(
+                    name: "Aurea",
+                    description: "",
+                    journeys: [],
+                    tasks: [],
+                    categories: [],
+                    events: []
+                ),
                 journey: Journey(
                     name: "Jornada iOS",
                     description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtituo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",

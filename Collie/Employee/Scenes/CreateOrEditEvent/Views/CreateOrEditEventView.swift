@@ -156,7 +156,7 @@ struct CreateOrEditEventView: View {
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
                                 responsibleUserIds: [],
-                                category: viewModel.selectedCategory
+                                category: viewModel.selectedCategory.id
                             )
                         )
                         handleClose()

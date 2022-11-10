@@ -28,7 +28,7 @@ final class RootViewModel: ObservableObject {
     var availableBusinessUsers: [BusinessUser] = []
     
     init() {
-        self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], events: [])
+        self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], categories: [], events: [])
     }
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
@@ -89,5 +89,15 @@ final class RootViewModel: ObservableObject {
             self.businessSelected = business
             self.objectWillChange.send()
         }
+    }
+    
+    func updateBusinessUser(_ businessUser: BusinessUser) {
+        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUser in
+            self.currentBusinessUser = businessUser
+        })
+    }
+    
+    func getCategory(categoryId: String) -> TaskCategory {
+        return businessSelected.categories.first(where: {$0.id == categoryId}) ?? .init(id: "", name: "Sem categoria", colorName: "", systemImageName: "")
     }
 }

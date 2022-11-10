@@ -1,21 +1,24 @@
 import SwiftUI
 
 struct EmployeeEventView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     var event: Event
     var handleEventOpen: () -> ()
+    
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: event.id ?? "")
+    }
     
     var body: some View {
         HStack(spacing: 16) {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
-                .foregroundColor(event.category != nil ? event.category!.color : Color.collieRoxoClaro)
+                .foregroundColor(category.color)
             
             VStack(spacing: 8) {
                 HStack(spacing: 16) {
-                    if event.category != nil {
-                        Image(systemName: event.category!.systemImageName)
-                            .foregroundColor(event.category!.color)
-                    }
+                    Image(systemName: category.systemImageName)
+                        .foregroundColor(category.color)
                     
                     Text(event.name)
                         .foregroundColor(.black)

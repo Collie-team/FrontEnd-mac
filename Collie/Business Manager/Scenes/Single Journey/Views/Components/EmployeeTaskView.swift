@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EmployeeTaskView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     
     var task: Task
     var userTask: UserTask
@@ -10,6 +11,11 @@ struct EmployeeTaskView: View {
     var handleTaskCheckToggle: () -> ()
     
     let lateBackgroundColor = Color(red: 255/255, green: 237/255, blue: 237/255)
+    
+    
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+    }
     
     var body: some View {
         ZStack {
@@ -56,15 +62,13 @@ struct EmployeeTaskView: View {
                     .padding(.trailing)
                 }
                 
-                if let taskCategory = task.taskCategory {
-                    Text(taskCategory.name)
-                        .foregroundColor(.white)
-                        .font(.system(size: 12, weight: .medium))
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
-                        .background(taskCategory.color)
-                        .cornerRadius(50)
-                }
+                Text(category.name)
+                    .foregroundColor(.white)
+                    .font(.system(size: 12, weight: .medium))
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                    .background(category.color)
+                    .cornerRadius(50)
             }
             .padding(.vertical, 8)
             .padding(.horizontal)
