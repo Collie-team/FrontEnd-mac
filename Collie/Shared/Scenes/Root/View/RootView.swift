@@ -22,8 +22,8 @@ struct RootView: View {
                 .environmentObject(viewModel)
         case.employee:
             EmployeeSidebarView(handleSignOut: {})
+                .environmentObject(viewModel)
         case .manager:
-            // TODO: Business injection
             BusinessSidebarView(handleSignOut: {})
                 .environmentObject(viewModel)
         case .managerOnboarding:

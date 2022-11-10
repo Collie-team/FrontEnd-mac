@@ -1,8 +1,9 @@
 import SwiftUI
 
 struct CreateOrEditJourneyView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     @ObservedObject var viewModel = CreateNewJourneyViewModel()
-    @State var imageURL: String = ""//URL = URL(fileURLWithPath: "")
+    @State var imageURL: String = ""
     
     var handleClose: () -> ()
     var handleJourneySave: (Journey) -> ()
@@ -60,33 +61,23 @@ struct CreateOrEditJourneyView: View {
                     UserSelectionDropdown(
                         showList: $viewModel.showUsersList,
                         label: "Adicionar novo colaborador",
-                        allUsers: viewModel.sampleUsers,
-                        selectedUsers: viewModel.chosenEmployees,
+                        allUsers: viewModel.userModelList,
+                        selectedUsers: viewModel.chosenUserModels,
                         allUsersScrollHeight: getAllUsersScrollHeight(),
                         selectedUsersScrollHeight: getChosenUsersScrollHeight(),
-                        handleUserSelection: { user in
-                            viewModel.selectUserModel(user)
+                        handleUserSelection: { userModel in
+                            viewModel.selectUserModel(userModel)
                         },
-                        handleUserRemove: { user in
-                            viewModel.selectUserModel(user)
+                        handleUserRemove: { userModel in
+                            viewModel.selectUserModel(userModel)
                         }
                     )
                 }
                 
                 SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
-                    handleJourneySave(
-                        Journey(
-                            id: viewModel.journeyId,
-                            name: viewModel.journeyName,
-                            description: viewModel.journeyDescription,
-                            imageURL: imageURL,
-                            startDate: viewModel.startDate, userIds: []
-//                            employees: viewModel.chosenEmployees,
-//                            tasks: viewModel.tasks,
-//                            events: viewModel.events,
-//                            managers: viewModel.chosenManagers
-                        )
-                    )
+                    viewModel.handleJourneySave { journey in
+                        handleJourneySave(journey)
+                    }
                     handleClose()
                 }
             }
@@ -109,14 +100,17 @@ struct CreateOrEditJourneyView: View {
             }
         )
         .cornerRadius(8)
+        .onAppear {
+            viewModel.fetchUsers(business: rootViewModel.businessSelected)
+        }
     }
     
     func getAllUsersScrollHeight() -> CGFloat {
         if viewModel.showUsersList {
-            if viewModel.sampleUsers.count >= 3 {
+            if viewModel.userModelList.count >= 3 {
                 return 160
             } else {
-                return CGFloat((viewModel.sampleUsers.count + 1) * 40)
+                return CGFloat((viewModel.userModelList.count + 1) * 40)
             }
         } else {
             return 40
@@ -124,10 +118,10 @@ struct CreateOrEditJourneyView: View {
     }
     
     func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.chosenEmployees.count >= 3 {
+        if viewModel.chosenUserModels.count >= 3 {
             return 120
         } else {
-            return CGFloat(viewModel.chosenEmployees.count * 40)
+            return CGFloat(viewModel.chosenUserModels.count * 40)
         }
     }
 }

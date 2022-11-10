@@ -1,6 +1,9 @@
 import Foundation
 
 final class CreateNewJourneyViewModel: ObservableObject {
+    private let teamListService = TeamSubscriptionService()
+    private let businessSubscriptionService = BusinessSubscriptionService()
+    
     @Published var journeyId: String = UUID().uuidString
     
     @Published var journeyName: String = ""
@@ -9,40 +12,67 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     @Published var showUsersList = false
     
-    @Published var chosenEmployees: [UserModel] = []
+    @Published var chosenUserModels: [UserModel] = []
+    
+    @Published var userModelList: [UserModel] = []
     
     @Published var startDate: Date = Date()
     
-    @Published var tasks: [Task] = []
+    var currentBusiness: Business?
     
-    @Published var events: [Event] = []
+    func fetchUsers(business: Business) {
+        currentBusiness = business
+        teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
+            self.userModelList = userModels
+            
+            // Load chosen user Models
+            self.fetchOldUsersOnJourney()
+        }
+    }
     
-    @Published var sampleUsers: [UserModel] = [
-        UserModel(name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "")
-    ]
+    func fetchOldUsersOnJourney() {
+        self.chosenUserModels = userModelList.filter({ user in
+            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.journeyId}) {
+                let isUserOnJourney = journey.userIds.contains(user.id)
+                return isUserOnJourney
+            } else {
+                return false
+            }
+        })
+        objectWillChange.send()
+    }
     
     func isButtonDisabled() -> Bool {
-        journeyName == "" || journeyDescription == "" || startDate == nil
+        journeyName == "" || journeyDescription == ""
     }
     
     func selectUserModel(_ userModel: UserModel) {
-        if !chosenEmployees.contains(userModel) {
-            chosenEmployees.append(userModel)
+        if !chosenUserModels.contains(userModel) {
+            chosenUserModels.append(userModel)
             
-            if let index = sampleUsers.firstIndex(of: userModel) {
-                sampleUsers.remove(at: index)
+            if let index = userModelList.firstIndex(of: userModel) {
+                userModelList.remove(at: index)
             }
+            objectWillChange.send()
         }
     }
     
     func removeUserModel(_ userModel: UserModel) {
-        if let index = chosenEmployees.firstIndex(of: userModel) {
-            chosenEmployees.remove(at: index)
-            sampleUsers.append(userModel)
+        if let index = chosenUserModels.firstIndex(of: userModel) {
+            chosenUserModels.remove(at: index)
+            userModelList.append(userModel)
         }
+    }
+    
+    func handleJourneySave(completion: (Journey) -> ()) {
+        let journey = Journey(
+            id: journeyId,
+            name: journeyName,
+            description: journeyDescription,
+            imageURL: "",
+            startDate: startDate,
+            userIds: chosenUserModels.map({$0.id})
+        )
+        completion(journey)
     }
 }

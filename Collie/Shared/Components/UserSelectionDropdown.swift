@@ -10,6 +10,8 @@ struct UserSelectionDropdown: View {
     var handleUserSelection: (UserModel) -> ()
     var handleUserRemove: (UserModel) -> ()
     
+    @State var showLoadingIndicator = true
+    
     var body: some View {
         VStack {
             VStack {
@@ -25,7 +27,12 @@ struct UserSelectionDropdown: View {
                                     Text(label)
                                         .padding(.vertical)
                                     Spacer()
-                                    Image(systemName: "chevron.down")
+                                    if showLoadingIndicator {
+                                        LoadingIndicator()
+                                            .frame(width: 24, height: 24)
+                                    } else {
+                                        Image(systemName: "chevron.down")
+                                    }
                                 }
                                 .font(.system(size: 16))
                             }

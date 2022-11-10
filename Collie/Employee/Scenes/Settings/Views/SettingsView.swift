@@ -106,10 +106,6 @@ struct SettingsView: View {
                 .padding([.top, .horizontal], 32)
                 .background(Color.white)
                 .cornerRadius(12)
-                
-//                HStack {
-//                    Text("To do")
-//                }
             }
             
             Spacer()

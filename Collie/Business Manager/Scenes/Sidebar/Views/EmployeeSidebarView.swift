@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EmployeeSidebarView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     @ObservedObject var viewModel = EmployeeSidebarViewModel()
     
     var handleSignOut: () -> ()
@@ -28,7 +29,7 @@ struct EmployeeSidebarView: View {
                 
                 HStack {
                     Image(systemName: "scooter")
-                    Text("Sair da conta")
+                    Text("Sair do workspace")
                     Spacer()
                 }
                 .foregroundColor(.white)
@@ -37,7 +38,7 @@ struct EmployeeSidebarView: View {
                 .font(.system(size: 18, weight: .regular))
                 .background(Color.collieAzulEscuro)
                 .onTapGesture {
-                    handleSignOut()
+                    rootViewModel.navigationState = .workspace
                 }
             }
             .background(Color.collieAzulEscuro)

@@ -16,26 +16,8 @@ final class SettingsViewModel: ObservableObject {
     private let teamSubscriptionService = TeamSubscriptionService()
     
     @Published var userModelsList: [UserModel] = []
-//        UserModel(id: "001", name: "André", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "002", name: "Pablo", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "003", name: "Ana", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "004", name: "Raquel", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "005", name: "Neidi", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "006", name: "Gonzatto", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "007", name: "Fábio Binder", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: ""),
-//        UserModel(id: "008", name: "Pastre", email: "andreluisarns@gmail.com", jobDescription: "Dev iOS", personalDescription: "", imageURL: "")
-//    ]
     
     @Published var businessUsersList: [BusinessUser] = []
-//        BusinessUser(userId: "001", businessId: "", role: .employee, userTasks: []),
-//        BusinessUser(userId: "002", businessId: "", role: .manager, userTasks: []),
-//        BusinessUser(userId: "003", businessId: "", role: .admin, userTasks: []),
-//        BusinessUser(userId: "004", businessId: "", role: .employee, userTasks: []),
-//        BusinessUser(userId: "005", businessId: "", role: .employee, userTasks: []),
-//        BusinessUser(userId: "006", businessId: "", role: .employee, userTasks: []),
-//        BusinessUser(userId: "007", businessId: "", role: .employee, userTasks: []),
-//        BusinessUser(userId: "008", businessId: "", role: .employee, userTasks: [])
-//    ]
     
     @Published var modelList: [Model] = []
     

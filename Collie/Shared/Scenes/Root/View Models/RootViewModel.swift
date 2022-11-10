@@ -11,6 +11,7 @@ enum NavigationState {
 
 final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
+    private let businessUserSubscriptionService = BusinessUserSubscriptionService()
     @Published var navigationState: NavigationState = .authentication
     
     
@@ -50,13 +51,15 @@ final class RootViewModel: ObservableObject {
     }
     
     func handleWorkspaceSelection(business: Business) {
-        businessSelected = business
-        if currentBusinessUser != nil {
-            redirectBasedOnRole()
+        self.businessSelected = business
+        
+        if self.currentBusinessUser != nil {
+            self.redirectBasedOnRole()
         } else {
-            currentBusinessUser = availableBusinessUsers.first(where: {$0.businessId == business.id})
-            redirectBasedOnRole()
+            self.currentBusinessUser = self.availableBusinessUsers.first(where: {$0.businessId == business.id})
+            self.redirectBasedOnRole()
         }
+        self.objectWillChange.send()
     }
     
     func redirectBasedOnRole() {
@@ -87,7 +90,13 @@ final class RootViewModel: ObservableObject {
     func refreshBusiness() {
         businessSubscriptionService.refreshBusiness(authenticationToken: "", businessId: businessSelected.id) { business in
             self.businessSelected = business
-            self.objectWillChange.send()
         }
+    }
+    
+    func updateBusinessUser(_ businessUser: BusinessUser) {
+        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUser in
+            self.currentBusinessUser = businessUser
+            self.objectWillChange.send()
+        })
     }
 }

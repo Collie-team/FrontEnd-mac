@@ -47,9 +47,6 @@ struct BusinessJourneyListView: View {
         }
         .navigationTitle("Jornadas")
         .background(Color.collieBrancoFundo.ignoresSafeArea())
-        .onAppear {
-            rootViewModel.refreshBusiness()
-        }
     }
     
     var journeyList: some View {

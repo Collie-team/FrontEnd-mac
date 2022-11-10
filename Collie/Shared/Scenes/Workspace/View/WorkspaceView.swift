@@ -162,6 +162,7 @@ struct WorkspaceView: View {
             
             VStack(spacing: 32) {
                 LoadingIndicator()
+                    .frame(width: 100, height: 100)
                 Text("Carregando...")
                     .font(.system(size: 18, weight: .medium))
             }

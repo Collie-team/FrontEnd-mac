@@ -31,6 +31,7 @@
 		5B345DBC290C4D5300978141 /* BusinessUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B345DBB290C4D5300978141 /* BusinessUser.swift */; };
 		5B37551329170BDA00D92D15 /* SettingsUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37551229170BDA00D92D15 /* SettingsUserCell.swift */; };
 		5B3755152917158D00D92D15 /* RoleSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3755142917158D00D92D15 /* RoleSelectionPicker.swift */; };
+		5B482BBE291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B482BBD291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift */; };
 		5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */; };
 		5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */; };
 		5B495FF728E62DB60024D064 /* BusinessSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF628E62DB60024D064 /* BusinessSingleJourneyViewModel.swift */; };
@@ -147,6 +148,7 @@
 		5B345DBB290C4D5300978141 /* BusinessUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUser.swift; sourceTree = "<group>"; };
 		5B37551229170BDA00D92D15 /* SettingsUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserCell.swift; sourceTree = "<group>"; };
 		5B3755142917158D00D92D15 /* RoleSelectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionPicker.swift; sourceTree = "<group>"; };
+		5B482BBD291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUserSubscriptionService.swift; sourceTree = "<group>"; };
 		5B495FF228E622E40024D064 /* CreateOrEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskView.swift; sourceTree = "<group>"; };
 		5B495FF428E622F30024D064 /* CreateOrEditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditTaskViewModel.swift; sourceTree = "<group>"; };
 		5B495FF628E62DB60024D064 /* BusinessSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSingleJourneyViewModel.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */,
 				5B1BAD492901C1D900EFF0E4 /* BusinessSubscriptionService.swift */,
 				5B4ED92E2911A6BE00FAB9FE /* TeamSubscriptionService.swift */,
+				5B482BBD291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				5B954E812901C38D00FA579E /* UserTask.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
 				5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */,
+				5B482BBE291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift in Sources */,
 				5B954E7D2901C2C700FA579E /* EmployeeEventView.swift in Sources */,
 				5B5DD5AA28F497F900B2FF0F /* CustomBorderModifier.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessSingleJourneyView.swift in Sources */,

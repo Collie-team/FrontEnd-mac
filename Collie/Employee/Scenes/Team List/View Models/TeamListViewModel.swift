@@ -16,8 +16,10 @@ struct TeamListUser: Identifiable {
 
 final class TeamListViewModel: ObservableObject {
     private let teamListService = TeamSubscriptionService()
+    
     @Published var newUserPopupEnabled = false
     @Published var teamListUsers: [TeamListUser] = []
+    
     var teamUsers: [UserModel] = []
     var teamBusinessUsers: [BusinessUser] = []
     var currentBusiness: Business?
