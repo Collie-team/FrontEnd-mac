@@ -5,7 +5,7 @@ struct Task: Identifiable, Codable {
     var journeyId: String
     var name: String
     var description: String
-    var taskCategory: TaskCategory?
+    var categoryId: String?
     var startDate: Date
     var endDate: Date
 }

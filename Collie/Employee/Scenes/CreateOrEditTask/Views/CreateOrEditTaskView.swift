@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CreateOrEditTaskView: View {
     @ObservedObject var viewModel = CreateOrEditTaskViewModel()
+    @EnvironmentObject var rootViewModel: RootViewModel
     
     var journeyId: String
     var task: Task?
@@ -30,12 +31,11 @@ struct CreateOrEditTaskView: View {
             viewModel.taskDescription = task.description
             viewModel.startDate = task.startDate
             viewModel.endDate = task.endDate
-            if let selectedCategory = task.taskCategory {
-                viewModel.selectedCategory = selectedCategory
-                viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
-                    category.id != selectedCategory.id
-                })
-            }
+            let selectedCategory = rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+            viewModel.selectedCategory = selectedCategory
+            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
+                category.id != selectedCategory.id
+            })
         }
     }
     
@@ -129,7 +129,7 @@ struct CreateOrEditTaskView: View {
                                 journeyId: journeyId,
                                 name: viewModel.taskName,
                                 description: viewModel.taskDescription,
-                                taskCategory: viewModel.selectedCategory,
+                                categoryId: viewModel.selectedCategory?.id,
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate
                             )

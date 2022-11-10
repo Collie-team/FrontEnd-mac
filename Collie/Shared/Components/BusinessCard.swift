@@ -44,7 +44,7 @@ struct BusinessCard: View {
 
 struct BusinessCard_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessCard(business: .init(name: "Aurea", description: "", journeys: [], tasks: [], events: []))
+        BusinessCard(business: .init(name: "Aurea", description: "", journeys: [], tasks: [], categories: [], events: []))
             .colorScheme(.light)
     }
 }

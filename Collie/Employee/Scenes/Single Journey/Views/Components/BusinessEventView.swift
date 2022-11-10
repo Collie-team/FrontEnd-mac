@@ -1,20 +1,23 @@
 import SwiftUI
 
 struct BusinessEventView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     var event: Event
     var handleEventOpen: () -> ()
+    
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: event.categoryId ?? "")
+    }
     
     var body: some View {
         HStack(spacing: 16) {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
-                .foregroundColor(event.category != nil ? event.category!.color : Color.collieRoxoClaro)
+                .foregroundColor(category.color)
             VStack(spacing: 8) {
                 HStack(spacing: 16) {
-                    if event.category != nil {
-                        Image(systemName: event.category!.systemImageName)
-                            .foregroundColor(event.category!.color)
-                    }
+                    Image(systemName: category.systemImageName)
+                        .foregroundColor(category.color)
                     
                     Text(event.name)
                         .foregroundColor(.black)
@@ -38,15 +41,13 @@ struct BusinessEventView: View {
                     
                     Spacer()
                     
-                    if event.category != nil {
-                        Text(event.category!.name)
-                            .foregroundColor(.white)
-                            .font(.system(size: 12, weight: .medium))
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 8)
-                            .background(event.category!.color)
-                            .cornerRadius(50)
-                    }
+                    Text(category.name)
+                        .foregroundColor(.white)
+                        .font(.system(size: 12, weight: .medium))
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background(category.color)
+                        .cornerRadius(50)
                 }
             }
         }

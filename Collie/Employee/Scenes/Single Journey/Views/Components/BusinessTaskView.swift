@@ -1,16 +1,21 @@
 import SwiftUI
 
 struct BusinessTaskView: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
     var task: Task
     var handleTaskOpen: () -> ()
     var handleTaskDuplicate: () -> ()
     @State var showDetailIcon = false
     
+    var category: TaskCategory {
+        rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+    }
+    
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 50)
                 .frame(width: 5)
-                .foregroundColor(task.taskCategory != nil ? task.taskCategory?.color : Color.collieRoxoClaro)
+                .foregroundColor(category.color)
             
             Text(task.name)
                 .foregroundColor(.black)
@@ -47,7 +52,7 @@ struct BusinessManagerTaskView_Previews: PreviewProvider {
                 journeyId: "",
                 name: "Enviar a cópia dos documentos",
                 description: "Decrição Decrição Decrição Decrição Decrição Decrição Decrição Decrição ",
-                taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"),
+                categoryId: "",
                 startDate: Date(),
                 endDate: Date()),
             handleTaskOpen: {},

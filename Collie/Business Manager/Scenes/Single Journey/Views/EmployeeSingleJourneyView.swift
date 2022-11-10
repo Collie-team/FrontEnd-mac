@@ -286,6 +286,7 @@ struct EmployeeSingleJourneyView_Previews: PreviewProvider {
                     description: "",
                     journeys: [],
                     tasks: [],
+                    categories: [],
                     events: []
                 ),
                 journey: Journey(
