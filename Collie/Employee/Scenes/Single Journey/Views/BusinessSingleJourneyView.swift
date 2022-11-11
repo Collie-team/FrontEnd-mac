@@ -89,6 +89,7 @@ struct BusinessSingleJourneyView: View {
                             ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id })) { task in
                                 BusinessTaskView(
                                     task: task,
+                                    category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
                                     handleTaskOpen: {
                                         viewModel.selectTask(task)
                                     },
@@ -147,6 +148,7 @@ struct BusinessSingleJourneyView: View {
                         BusinessEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
                             events: rootViewModel.businessSelected.events,
+                            rootViewModel: rootViewModel,
                             businessSingleJourneyViewModel: self.viewModel
                         ) { event in
                             viewModel.selectEvent(event)
@@ -185,6 +187,7 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
+                    .environmentObject(rootViewModel)
                 }
             }
             
@@ -193,8 +196,10 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
                         journeyId: viewModel.journey.id,
                         task: nil,
+                        category: rootViewModel.getCategory(categoryId: ""),
                         handleClose: {
                             withAnimation {
                                 showTaskForm = false
@@ -223,16 +228,19 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
+                    .environmentObject(rootViewModel)
                 }
             }
             
-            if viewModel.chosenTask != nil {
+            if let chosenTask = viewModel.chosenTask {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
+                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
                         journeyId: viewModel.journey.id,
-                        task: viewModel.chosenTask,
+                        task: chosenTask,
+                        category: rootViewModel.getCategory(categoryId: chosenTask.categoryId ?? ""),
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectTask()
@@ -259,6 +267,7 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
+                    .environmentObject(rootViewModel)
                 }
             }
             
@@ -268,7 +277,9 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
+                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
                         event: nil,
+                        category: rootViewModel.getCategory(categoryId: ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
@@ -284,6 +295,7 @@ struct BusinessSingleJourneyView: View {
                         handleEventDuplicate: { _ in }
                     )
                     .frame(maxWidth: 800)
+                    .environmentObject(rootViewModel)
                 }
             }
             
@@ -293,7 +305,9 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
+                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
                         event: viewModel.chosenEvent,
+                        category: rootViewModel.getCategory(categoryId: viewModel.chosenTask?.categoryId ?? ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
@@ -323,6 +337,7 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
+                    .environmentObject(rootViewModel)
                 }
             }
         }

@@ -100,6 +100,10 @@ final class RootViewModel: ObservableObject {
     }
     
     func getCategory(categoryId: String) -> TaskCategory {
-        return businessSelected.categories.first(where: {$0.id == categoryId}) ?? .init(id: "", name: "Sem categoria", colorName: "", systemImageName: "")
+        if let category = businessSelected.categories.first(where: {$0.id == categoryId}) {
+            return category
+        } else {
+            return TaskCategory(id: "", name: "Sem categoria", colorName: "", systemImageName: "")
+        }
     }
 }

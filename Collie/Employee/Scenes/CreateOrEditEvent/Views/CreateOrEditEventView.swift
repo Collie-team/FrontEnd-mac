@@ -2,9 +2,10 @@ import SwiftUI
 
 struct CreateOrEditEventView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @ObservedObject var viewModel = CreateOrEditEventViewModel()
+    @ObservedObject var viewModel: CreateOrEditEventViewModel
     
     var event: Event?
+    var category: TaskCategory
     var journeyId: String
     var handleClose: () -> ()
     var handleEventSave: (Event) -> ()
@@ -12,14 +13,18 @@ struct CreateOrEditEventView: View {
     var handleEventDuplicate: (Event) -> ()
     
     init(
+        viewModel: CreateOrEditEventViewModel,
         event: Event?,
+        category: TaskCategory,
         journeyId: String,
         handleClose: @escaping () -> (),
         handleEventSave: @escaping (Event) -> (),
         handleEventDelete: @escaping (Event) -> (),
         handleEventDuplicate: @escaping(Event) -> ()
     ) {
+        self.viewModel = viewModel
         self.event = event
+        self.category = category
         self.journeyId = journeyId
         self.handleClose = handleClose
         self.handleEventSave = handleEventSave
@@ -34,13 +39,13 @@ struct CreateOrEditEventView: View {
             viewModel.eventLink = event.contentLink
             
             if !event.responsibleUserIds.isEmpty {
-                viewModel.sampleUsers = viewModel.sampleUsers.filter({ user in
-                    !viewModel.selectedUsers.contains(user)
+                viewModel.userModelList = viewModel.userModelList.filter({ user in
+                    !viewModel.chosenUserModels.contains(user)
                 })
             }
             
-            viewModel.selectedCategory = rootViewModel.getCategory(categoryId: event.categoryId ?? "")
-            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
+            viewModel.selectedCategory = category
+            viewModel.categoryList = viewModel.categoryList.filter({ category in
                 category.id != viewModel.selectedCategory!.id
             })
         }
@@ -114,8 +119,8 @@ struct CreateOrEditEventView: View {
                     UserSelectionDropdown(
                         showList: $viewModel.showUserList,
                         label: "Escolha um responsável",
-                        allUsers: viewModel.sampleUsers,
-                        selectedUsers: viewModel.selectedUsers,
+                        allUsers: viewModel.userModelList,
+                        selectedUsers: viewModel.chosenUserModels,
                         allUsersScrollHeight: getAllUsersScrollHeight(),
                         selectedUsersScrollHeight: getChosenUsersScrollHeight(),
                         handleUserSelection: { user in
@@ -138,7 +143,7 @@ struct CreateOrEditEventView: View {
                     CategorySelectionDropdown(
                         showList: $viewModel.showCategoryList,
                         chosenCategory: $viewModel.selectedCategory,
-                        taskCategoriesList: viewModel.sampleCategories,
+                        taskCategoriesList: viewModel.categoryList,
                         maxScrollHeight: getAllCategoriesScrollHeight(),
                         handleCategorySelection: viewModel.selectCategory
                     )
@@ -178,14 +183,17 @@ struct CreateOrEditEventView: View {
             }
         )
         .cornerRadius(8)
+        .onAppear {
+            viewModel.fetchUsers(business: rootViewModel.businessSelected)
+        }
     }
     
     func getAllCategoriesScrollHeight() -> CGFloat {
         if viewModel.showCategoryList {
-            if viewModel.sampleCategories.count >= 3 {
+            if viewModel.categoryList.count >= 3 {
                 return 160
             } else {
-                return CGFloat((viewModel.sampleCategories.count + 1) * 40)
+                return CGFloat((viewModel.categoryList.count + 1) * 40)
             }
         } else {
             return 40
@@ -194,10 +202,10 @@ struct CreateOrEditEventView: View {
     
     func getAllUsersScrollHeight() -> CGFloat {
         if viewModel.showUserList {
-            if viewModel.sampleUsers.count >= 3 {
+            if viewModel.userModelList.count >= 3 {
                 return 160
             } else {
-                return CGFloat((viewModel.sampleUsers.count + 1) * 40)
+                return CGFloat((viewModel.userModelList.count + 1) * 40)
             }
         } else {
             return 40
@@ -205,10 +213,10 @@ struct CreateOrEditEventView: View {
     }
     
     func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.selectedUsers.count >= 3 {
+        if viewModel.chosenUserModels.count >= 3 {
             return 120
         } else {
-            return CGFloat(viewModel.selectedUsers.count * 40)
+            return CGFloat(viewModel.chosenUserModels.count * 40)
         }
     }
 }

@@ -1,26 +1,31 @@
 import SwiftUI
 
 struct CreateOrEditTaskView: View {
-    @ObservedObject var viewModel = CreateOrEditTaskViewModel()
+    @ObservedObject var viewModel: CreateOrEditTaskViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
     
     var journeyId: String
     var task: Task?
+    var category: TaskCategory
     var handleClose: () -> ()
     var handleTaskSave: (Task) -> ()
     var handleTaskDeletion: (Task) -> ()
     var handleTaskDuplicate: (Task) -> ()
     
     init(
+        viewModel: CreateOrEditTaskViewModel,
         journeyId: String,
         task: Task?,
+        category: TaskCategory,
         handleClose: @escaping () -> (),
         handleTaskSave: @escaping (Task) -> (),
         handleTaskDeletion: @escaping (Task) -> (),
         handleTaskDuplicate: @escaping (Task) -> ()
     ) {
+        self.viewModel = viewModel
         self.journeyId = journeyId
         self.task = task
+        self.category = category
         self.handleClose = handleClose
         self.handleTaskSave = handleTaskSave
         self.handleTaskDeletion = handleTaskDeletion
@@ -31,11 +36,10 @@ struct CreateOrEditTaskView: View {
             viewModel.taskDescription = task.description
             viewModel.startDate = task.startDate
             viewModel.endDate = task.endDate
-            let selectedCategory = rootViewModel.getCategory(categoryId: task.categoryId ?? "")
-            viewModel.selectedCategory = selectedCategory
-            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
-                category.id != selectedCategory.id
-            })
+            viewModel.selectedCategory = category
+//            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
+//                category.id != selectedCategory.id
+//            })
         }
     }
     
@@ -92,8 +96,8 @@ struct CreateOrEditTaskView: View {
                     UserSelectionDropdown(
                         showList: $viewModel.showUserList,
                         label: "Escolha um responsável",
-                        allUsers: viewModel.sampleUsers,
-                        selectedUsers: viewModel.selectedUsers,
+                        allUsers: viewModel.userModelList,
+                        selectedUsers: viewModel.chosenUserModels,
                         allUsersScrollHeight: getAllUsersScrollHeight(),
                         selectedUsersScrollHeight: getChosenUsersScrollHeight(),
                         handleUserSelection: { user in
@@ -116,7 +120,7 @@ struct CreateOrEditTaskView: View {
                     CategorySelectionDropdown(
                         showList: $viewModel.showCategoryList,
                         chosenCategory: $viewModel.selectedCategory,
-                        taskCategoriesList: viewModel.sampleCategories,
+                        taskCategoriesList: rootViewModel.businessSelected.categories,
                         maxScrollHeight: getAllCategoriesScrollHeight(),
                         handleCategorySelection: viewModel.chooseCategory
                     )
@@ -158,10 +162,10 @@ struct CreateOrEditTaskView: View {
     
     func getAllCategoriesScrollHeight() -> CGFloat {
         if viewModel.showCategoryList {
-            if viewModel.sampleCategories.count >= 3 {
+            if viewModel.categoryList.count >= 3 {
                 return 160
             } else {
-                return CGFloat((viewModel.sampleCategories.count + 1) * 40)
+                return CGFloat((viewModel.categoryList.count + 1) * 40)
             }
         } else {
             return 40
@@ -170,10 +174,10 @@ struct CreateOrEditTaskView: View {
     
     func getAllUsersScrollHeight() -> CGFloat {
         if viewModel.showUserList {
-            if viewModel.sampleUsers.count >= 3 {
+            if viewModel.userModelList.count >= 3 {
                 return 160
             } else {
-                return CGFloat((viewModel.sampleUsers.count + 1) * 40)
+                return CGFloat((viewModel.userModelList.count + 1) * 40)
             }
         } else {
             return 40
@@ -181,16 +185,16 @@ struct CreateOrEditTaskView: View {
     }
     
     func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.selectedUsers.count >= 3 {
+        if viewModel.chosenUserModels.count >= 3 {
             return 120
         } else {
-            return CGFloat(viewModel.selectedUsers.count * 40)
+            return CGFloat(viewModel.chosenUserModels.count * 40)
         }
     }
 }
 
 struct CreateOrEditTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditTaskView(journeyId: "", task: nil, handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
+        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(categoryList: []), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }

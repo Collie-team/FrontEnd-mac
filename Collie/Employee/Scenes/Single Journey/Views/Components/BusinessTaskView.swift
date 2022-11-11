@@ -3,13 +3,10 @@ import SwiftUI
 struct BusinessTaskView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     var task: Task
+    var category: TaskCategory
     var handleTaskOpen: () -> ()
     var handleTaskDuplicate: () -> ()
     @State var showDetailIcon = false
-    
-    var category: TaskCategory {
-        rootViewModel.getCategory(categoryId: task.categoryId ?? "")
-    }
     
     var body: some View {
         HStack {
@@ -55,6 +52,7 @@ struct BusinessManagerTaskView_Previews: PreviewProvider {
                 categoryId: "",
                 startDate: Date(),
                 endDate: Date()),
+            category: .init(name: "", colorName: "", systemImageName: ""),
             handleTaskOpen: {},
             handleTaskDuplicate: {})
     }

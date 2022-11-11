@@ -1,13 +1,9 @@
 import SwiftUI
 
 struct BusinessEventView: View {
-    @EnvironmentObject var rootViewModel: RootViewModel
     var event: Event
+    var category: TaskCategory
     var handleEventOpen: () -> ()
-    
-    var category: TaskCategory {
-        rootViewModel.getCategory(categoryId: event.categoryId ?? "")
-    }
     
     var body: some View {
         HStack(spacing: 16) {
@@ -64,6 +60,6 @@ struct BusinessEventView: View {
 
 struct BusinessManagerEventView_Previews: PreviewProvider {
     static var previews: some View {
-        BusinessEventView(event: Event(journeyId: "", name: "Workshop de Figma", description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", contentLink: "https://oi.com", startDate: Date(timeIntervalSince1970: 1667591752), endDate: Date(timeIntervalSince1970: 1667678152), responsibleUserIds: [], categoryId: ""), handleEventOpen: {})
+        BusinessEventView(event: Event(journeyId: "", name: "Workshop de Figma", description: "ndsjn dasln dsalnadslkn daslknda slndaslnk", contentLink: "https://oi.com", startDate: Date(timeIntervalSince1970: 1667591752), endDate: Date(timeIntervalSince1970: 1667678152), responsibleUserIds: [], categoryId: ""), category: TaskCategory(name: "diversidade", colorName: "rosa", systemImageName: "star"), handleEventOpen: {})
     }
 }

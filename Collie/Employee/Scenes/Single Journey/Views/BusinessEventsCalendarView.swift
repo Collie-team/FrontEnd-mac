@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct BusinessEventsCalendarView: View {
+    @ObservedObject var rootViewModel: RootViewModel
     @ObservedObject var viewModel: BusinessEventsCalendarViewModel
     @ObservedObject var businessSingleJourneyViewModel: BusinessSingleJourneyViewModel
     
     var handleSelectEvent: (Event) -> ()
     
-    init(selectedDate: Binding<Date>, events: [Event], businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+    init(selectedDate: Binding<Date>, events: [Event], rootViewModel: RootViewModel, businessSingleJourneyViewModel: BusinessSingleJourneyViewModel, handleSelectEvent: @escaping (Event) -> ()) {
+        self.rootViewModel = rootViewModel
         self.businessSingleJourneyViewModel = businessSingleJourneyViewModel
         self.viewModel = BusinessEventsCalendarViewModel(date: selectedDate, events: events)
         self.handleSelectEvent = handleSelectEvent
@@ -43,6 +45,7 @@ struct BusinessEventsCalendarView: View {
                             ForEach(viewModel.events.filter({ CalendarHelper().areDatesInSameDay($0.startDate, viewModel.date)})) { event in
                                 BusinessEventView(
                                     event: event,
+                                    category: rootViewModel.getCategory(categoryId: event.categoryId ?? ""),
                                     handleEventOpen: {
                                         handleSelectEvent(event)
                                     }

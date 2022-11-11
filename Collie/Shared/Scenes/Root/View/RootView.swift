@@ -1,10 +1,3 @@
-//
-//  RootView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 18/10/22.
-//
-
 import SwiftUI
 
 struct RootView: View {
@@ -17,6 +10,7 @@ struct RootView: View {
         switch viewModel.navigationState {
         case .authentication:
             AuthenticationView(handleSingIn: viewModel.handleAuthentication)
+                .environmentObject(viewModel)
         case .workspace:
             WorkspaceView()
                 .environmentObject(viewModel)
@@ -30,16 +24,12 @@ struct RootView: View {
             OnboardingView(onboardingType: .businessManager, handleFinish: {
                 viewModel.navigationState = .manager
             })
+            .environmentObject(viewModel)
         case .employeeOnboarding:
             OnboardingView(onboardingType: .employee, handleFinish: {
                 viewModel.navigationState = .employee
             })
+            .environmentObject(viewModel)
         }
-    }
-}
-
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
     }
 }

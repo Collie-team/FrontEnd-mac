@@ -1,6 +1,8 @@
 import Foundation
 
 final class CreateOrEditTaskViewModel: ObservableObject {
+    private let teamListService = TeamSubscriptionService()
+    
     var taskId: String?
     
     @Published var taskName = ""
@@ -11,55 +13,77 @@ final class CreateOrEditTaskViewModel: ObservableObject {
     
     @Published var taskDescription = ""
     
-    @Published var sampleUsers: [UserModel] = [
-        UserModel(id: "121", name: "André Arns", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(id: "122", name: "Ana Costa", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(id: "123", name: "Raquel Zocoler", email: "", jobDescription: "Designer", personalDescription: "", imageURL: ""),
-        UserModel(id: "124", name: "Pablo Harbar", email: "", jobDescription: "Desenvolvedor iOS", personalDescription: "", imageURL: ""),
-        UserModel(id: "125", name: "Neidivaldo", email: "", jobDescription: "Designer", personalDescription: "", imageURL: "")
-    ]
-    
-    @Published var sampleCategories: [TaskCategory] = [
-        TaskCategory(id: "123", name: "Cultura organizacional", colorName: "vermelho", systemImageName: "lock.fill"),
-        TaskCategory(id: "124", name: "Networking", colorName: "roxo", systemImageName: "star.fill"),
-        TaskCategory(id: "125", name: "Segurança", colorName: "azulClaro", systemImageName: "checkerboard.shield")
-    ]
+    @Published var categoryList: [TaskCategory]
     
     @Published var selectedCategory: TaskCategory?
     
-    @Published var selectedUsers: [UserModel] = []
+    @Published var chosenUserModels: [UserModel] = []
+    
+    @Published var userModelList: [UserModel] = []
     
     @Published var showUserList = false
     
     @Published var showCategoryList = false
     
+    var currentBusiness: Business?
+    
+    init(categoryList: [TaskCategory]) {
+        self.categoryList = categoryList
+    }
+    
     func isButtonDisabled() -> Bool {
         taskName.isEmpty
     }
     
-    func chooseUser(_ user: UserModel) {
-        selectedUsers.append(user)
-        if let index = sampleUsers.firstIndex(of: user) {
-            sampleUsers.remove(at: index)
+    func fetchUsers(business: Business) {
+        currentBusiness = business
+        teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
+            self.userModelList = userModels
+            
+            // Load chosen user Models
+            self.fetchOldUsersOnTask()
         }
     }
     
-    func removeUser(_ user: UserModel) {
-        if let index = selectedUsers.firstIndex(of: user) {
-            selectedUsers.remove(at: index)
-            sampleUsers.append(user)
+    func fetchOldUsersOnTask() {
+        self.chosenUserModels = userModelList.filter({ user in
+            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.taskId}) {
+                let isUserOnJourney = journey.userIds.contains(user.id)
+                return isUserOnJourney
+            } else {
+                return false
+            }
+        })
+        self.userModelList = userModelList.filter({ userModel in
+            !chosenUserModels.contains(userModel)
+        })
+        objectWillChange.send()
+    }
+    
+    func chooseUser(_ userModel: UserModel) {
+        chosenUserModels.append(userModel)
+        
+        if let index = userModelList.firstIndex(of: userModel) {
+            userModelList.remove(at: index)
+        }
+    }
+    
+    func removeUser(_ userModel: UserModel) {
+        if let index = chosenUserModels.firstIndex(of: userModel) {
+            chosenUserModels.remove(at: index)
+            userModelList.append(userModel)
         }
     }
     
     func chooseCategory(_ taskCategory: TaskCategory) {
         if let oldSelectedCategory = selectedCategory {
-            sampleCategories.append(oldSelectedCategory)
+            categoryList.append(oldSelectedCategory)
         }
         
         self.selectedCategory = taskCategory
         
-        if let index = sampleCategories.firstIndex(where: { $0.id == taskCategory.id}) {
-            sampleCategories.remove(at: index)
+        if let index = categoryList.firstIndex(where: { $0.id == taskCategory.id}) {
+            categoryList.remove(at: index)
         }
     }
 }

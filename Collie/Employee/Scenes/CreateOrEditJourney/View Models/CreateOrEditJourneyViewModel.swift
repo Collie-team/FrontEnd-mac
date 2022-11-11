@@ -39,6 +39,9 @@ final class CreateNewJourneyViewModel: ObservableObject {
                 return false
             }
         })
+        self.userModelList = userModelList.filter({ userModel in
+            !chosenUserModels.contains(userModel)
+        })
         objectWillChange.send()
     }
     
