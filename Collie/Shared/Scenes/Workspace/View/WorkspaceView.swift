@@ -3,6 +3,11 @@ import SwiftUI
 struct WorkspaceView: View {
     @ObservedObject var viewModel = WorkspaceViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
+    
+    init(workspacesAvailable: [Business], newWorkspacesHandler: (String, @escaping (Business) -> ()) -> (), handleWorkspaceSelection: (Business) -> ()) {
+        
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -16,7 +21,7 @@ struct WorkspaceView: View {
                 
                 switch viewModel.workspaceViewState {
                 case .loading:
-                    LoadingView()
+                    LoadingIndicator()
                 case .loadingWorkspace:
                     loadingWorkspace
                 case .createForm:
@@ -37,9 +42,6 @@ struct WorkspaceView: View {
             .onAppear {
                 // WARNING - GAMBIARRA CABULOSA
                 // TODO: Dependecy injection
-                viewModel.workspacesAvailable = rootViewModel.availableBusiness
-                viewModel.newWorkspaceHandler = rootViewModel.createWorkspace
-                viewModel.handleWorkspaceSelection = rootViewModel.handleWorkspaceSelection
                 if viewModel.workspacesAvailable.isEmpty {
                     viewModel.workspaceViewState = .noWorkspacesFound
                 } else {
@@ -248,8 +250,8 @@ struct WorkspaceView: View {
     }
 }
 
-struct WorkspaceView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkspaceView()
-    }
-}
+//struct WorkspaceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WorkspaceView()
+//    }
+//}

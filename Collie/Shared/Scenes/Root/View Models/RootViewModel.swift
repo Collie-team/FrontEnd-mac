@@ -1,4 +1,6 @@
 import SwiftUI
+import FirebaseAuth
+import Firebase
 
 enum NavigationState {
     case authentication
@@ -12,8 +14,9 @@ enum NavigationState {
 final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
-    @Published var navigationState: NavigationState = .authentication
+    private let userSubscriptionService = UserSubscriptionService()
     
+    @Published var navigationState: NavigationState = .authentication
     
     @Published var businessSelected: Business {
         didSet {
@@ -28,8 +31,30 @@ final class RootViewModel: ObservableObject {
     var availableBusiness: [Business] = []
     var availableBusinessUsers: [BusinessUser] = []
     
+    var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
+    
     init() {
         self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], categories: [], events: [])
+    }
+    
+    func configureFirebaseStateDidChange() {
+        self.authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ auth, user in
+            if let authUser = Auth.auth().currentUser {
+                authUser.getIDTokenForcingRefresh(true) { idToken, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    if let token = idToken {
+                        self.userSubscriptionService.fetchUser(authenticationToken: token) { userModel in
+                            self.handleAuthentication(user: userModel, authToken: token)
+                        }
+                    }
+                }
+            } else {
+                self.navigationState = .authentication
+            }
+        })
     }
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
