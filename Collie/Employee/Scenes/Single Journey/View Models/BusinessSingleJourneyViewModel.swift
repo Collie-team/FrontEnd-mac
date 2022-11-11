@@ -11,12 +11,9 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
     
     @Published var chosenEvent: Event?
     
-    @Published var categories: [TaskCategory] = [
-        TaskCategory(name: "Integração", colorName: "vermelho", systemImageName: "star"),
-        TaskCategory(name: "Integração", colorName: "roxo", systemImageName: "lock"),
-        TaskCategory(name: "Integração", colorName: "amarelo", systemImageName: "star"),
-        TaskCategory(name: "Integração", colorName: "verde", systemImageName: "lock")
-    ]
+    @Published var chosenCategory: TaskCategory?
+    
+    @Published var categories: [TaskCategory] = []
     
     @Published var selectedEvents: [Event] = []
     
@@ -35,6 +32,23 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
             completion(business)
         }
         objectWillChange.send()
+    }
+    
+    // MARK: - Category functions
+    func saveCategory(_ taskCategory: TaskCategory, completion: (Business) -> ()) {
+        // TO DO
+    }
+    
+    func removeCategory(_ taskCategory: TaskCategory, completion: (Business) -> ()) {
+        // TO DO
+    }
+    
+    func selectCategory(_ taskCategory: TaskCategory) {
+        self.chosenCategory = taskCategory
+    }
+    
+    func unselectCategory() {
+        self.chosenCategory = nil
     }
     
     // MARK: - Task functions

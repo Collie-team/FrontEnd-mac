@@ -4,7 +4,6 @@ struct EmployeeSingleJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @StateObject var viewModel: EmployeeSingleJourneyViewModel
     
-    @State var editJourney = false
     @State var showTaskForm = false
     @State var showEventForm = false
     @State var showDailyTasks = true
@@ -215,40 +214,18 @@ struct EmployeeSingleJourneyView: View {
             .padding(.top, 32)
             .padding(.bottom)
             
-            if editJourney {
-                ZStack {
-                    Color.black.opacity(0.5)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    CreateOrEditJourneyView(
-                        journey: viewModel.journey,
-                        handleClose: {
-                            withAnimation {
-                                editJourney = false
-                            }
-                        },
-                        handleJourneySave: { journey in
-                            viewModel.journey = journey
-                        }
-                    )
-                    .frame(maxWidth: 800)
-                }
-            }
-            
-            if viewModel.chosenTaskModel != nil {
+            if let chosenTaskModel = viewModel.chosenTaskModel {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     EmployeeTaskFullView(
-                        userTask: viewModel.chosenTaskModel!.userTask!,
-                        task: viewModel.chosenTaskModel!.task,
+                        employeeSingleJournerViewModel: self.viewModel,
                         handleClose: {
                             viewModel.unselectTask()
                         },
                         handleCheckToggle: {
-                            withAnimation {
-                                viewModel.checkTaskModel(viewModel.chosenTaskModel!) { businessUser in
-                                    rootViewModel.updateBusinessUser(businessUser)
-                                }
+                            viewModel.checkTaskModel(chosenTaskModel) { businessUser in
+                                rootViewModel.updateBusinessUser(businessUser)
                             }
                         }
                     )

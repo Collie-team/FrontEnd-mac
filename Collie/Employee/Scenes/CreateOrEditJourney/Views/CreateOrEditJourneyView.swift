@@ -74,7 +74,7 @@ struct CreateOrEditJourneyView: View {
                     )
                 }
                 
-                SendButton(label: "Salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
+                SendButton(label: "salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
                     viewModel.handleJourneySave { journey in
                         handleJourneySave(journey)
                     }

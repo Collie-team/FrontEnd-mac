@@ -17,7 +17,7 @@ final class BusinessUserSubscriptionService {
             url,
             method: .put,
             parameters: businessUser,
-            encoder: .urlEncodedForm,
+            encoder: JSONParameterEncoder.default,
             headers: headers
         ) { urlRequest in
             urlRequest.timeoutInterval = 10

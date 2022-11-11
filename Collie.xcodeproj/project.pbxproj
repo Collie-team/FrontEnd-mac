@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B0DC40E291D52E700CFD82A /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC40D291D52E700CFD82A /* TextExtension.swift */; };
+		5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC412291D5FBD00CFD82A /* CreateOrEditCategoryView.swift */; };
+		5B0DC415291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */; };
 		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
 		5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */; };
 		5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */; };
@@ -128,6 +130,8 @@
 
 /* Begin PBXFileReference section */
 		5B0DC40D291D52E700CFD82A /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
+		5B0DC412291D5FBD00CFD82A /* CreateOrEditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCategoryView.swift; sourceTree = "<group>"; };
+		5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCategoryViewModel.swift; sourceTree = "<group>"; };
 		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
 		5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventFullView.swift; sourceTree = "<group>"; };
 		5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B0DC40F291D5F8600CFD82A /* CreateOrEditCategory */ = {
+			isa = PBXGroup;
+			children = (
+				5B0DC411291D5F9C00CFD82A /* View Models */,
+				5B0DC410291D5F9800CFD82A /* Views */,
+			);
+			path = CreateOrEditCategory;
+			sourceTree = "<group>";
+		};
+		5B0DC410291D5F9800CFD82A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B0DC412291D5FBD00CFD82A /* CreateOrEditCategoryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B0DC411291D5F9C00CFD82A /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		5B0F666428DCE1BC0057BA32 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +659,7 @@
 		5BACC63928CFC083006975D3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B0DC40F291D5F8600CFD82A /* CreateOrEditCategory */,
 				5B4E31392915A7580031F74F /* Settings */,
 				5B49603F28ECBF6E0024D064 /* CreateOrEditEvent */,
 				5B495FEF28E622C40024D064 /* CreateOrEditTask */,
@@ -1100,6 +1130,7 @@
 				5B49604B28ECC9B10024D064 /* DateExtension.swift in Sources */,
 				5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */,
 				5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */,
+				5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */,
 				5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */,
 				5B50425E29194C29001E39A2 /* HelpView.swift in Sources */,
 				5B49604328ECBF930024D064 /* CreateOrEditEventView.swift in Sources */,
@@ -1153,6 +1184,7 @@
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
 				5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */,
+				5B0DC415291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessEventView.swift in Sources */,
 				5B4E312729143B590031F74F /* OnboardingFinishedView.swift in Sources */,
 				5B495FF328E622E40024D064 /* CreateOrEditTaskView.swift in Sources */,
