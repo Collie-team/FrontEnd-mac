@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 final class CreateOrEditCategoryViewModel: ObservableObject {
+    var categoryId: String?
     @Published var categoryName: String = ""
     @Published var colorName: String = ""
     @Published var systemImageName: String = ""
@@ -23,7 +24,7 @@ final class CreateOrEditCategoryViewModel: ObservableObject {
         case "roxo":
             return Color.collieRoxo
         default:
-            return Color.gray
+            return Color.collieRoxoClaro
         }
     }
     

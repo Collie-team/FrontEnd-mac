@@ -19,6 +19,7 @@ struct CreateOrEditCategoryView: View {
         self.handleCategorySave = handleCategorySave
         self.handleCategoryDelete = handleCategoryDelete
         if let category = category {
+            viewModel.categoryId = category.id
             viewModel.categoryName = category.name
             viewModel.systemImageName = category.systemImageName
             viewModel.colorName = category.colorName
@@ -91,9 +92,15 @@ struct CreateOrEditCategoryView: View {
                     }
                 }
                 
-
                 SendButton(label: "salvar categoria", isButtonDisabled: false, handleSend: {
-                    // TO DO
+                    handleCategorySave(
+                        TaskCategory(
+                            id: viewModel.categoryId ?? UUID().uuidString,
+                            name: viewModel.categoryName,
+                            colorName: viewModel.colorName,
+                            systemImageName: viewModel.systemImageName
+                        )
+                    )
                     handleClose()
                 })
             }
@@ -154,7 +161,7 @@ struct CategoryColorView: View {
         case "roxo":
             return Color.collieRoxo
         default:
-            return Color.gray
+            return Color.collieRoxoClaro
         }
     }
     

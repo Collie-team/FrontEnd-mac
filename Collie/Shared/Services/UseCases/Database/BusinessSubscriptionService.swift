@@ -41,9 +41,10 @@ final class BusinessSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                print(response.data!.description)
-                let decodedData = try JSONDecoder().decode(User_BusinessDTO.self, from: response.data!)
-                completion(decodedData.business, decodedData.businessUser)
+                if let data = response.data {
+                    let decodedData = try JSONDecoder().decode(User_BusinessDTO.self, from: data)
+                    completion(decodedData.business, decodedData.businessUser)
+                }
             } catch {
                 //handle error
                 print(error)
@@ -75,8 +76,10 @@ final class BusinessSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
-                completion(decodedData.business, decodedData.businessUsers)
+                if let data = response.data {
+                    let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: data)
+                    completion(decodedData.business, decodedData.businessUsers)
+                }
             } catch {
                 //handle error
                 print(error)
@@ -112,8 +115,10 @@ final class BusinessSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: response.data!)
-                completion(decodedData.business, decodedData.businessUsers)
+                if let data = response.data {
+                    let decodedData = try JSONDecoder().decode(BusinessDTO.self, from: data)
+                    completion(decodedData.business, decodedData.businessUsers)
+                }
             } catch {
                 //handle error
                 print(error)
@@ -145,8 +150,10 @@ final class BusinessSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                let decodedData = try JSONDecoder().decode(Business.self, from: response.data!)
-                completion(decodedData)
+                if let data = response.data {
+                    let decodedData = try JSONDecoder().decode(Business.self, from: data)
+                    completion(decodedData)
+                }
             } catch {
                 //handle error
                 print(error)
@@ -180,8 +187,10 @@ final class BusinessSubscriptionService {
             }
             // TODO: Synchronize data from response
             do {
-                let decodedData = try JSONDecoder().decode(Business.self, from: response.data!)
-                completion(decodedData)
+                if let data = response.data {
+                    let decodedData = try JSONDecoder().decode(Business.self, from: data)
+                    completion(decodedData)
+                }
             } catch {
                 //handle error
                 print(error)

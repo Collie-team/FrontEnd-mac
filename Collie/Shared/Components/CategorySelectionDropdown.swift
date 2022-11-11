@@ -80,16 +80,16 @@ struct CategoryCell: View {
                     .foregroundColor(taskCategory.color)
                 Image(systemName: taskCategory.systemImageName)
                     .foregroundColor(.white)
-                    .font(.system(size: 18))
+                    .font(.system(size: 14))
             }
             .frame(width: 30, height: 30)
             
             Text(taskCategory.name)
                 .foregroundColor(.black)
+                .font(.system(size: 15))
             Spacer()
         }
         .padding(.vertical, 8)
-        .font(.system(size: 15))
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {

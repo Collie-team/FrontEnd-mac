@@ -1,14 +1,6 @@
 import Foundation
 
-struct Business: Codable, Identifiable, Equatable, Hashable {
-    static func == (lhs: Business, rhs: Business) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
+struct Business: Codable, Identifiable {
     var id: String = ""
     var name: String
     var description: String
@@ -17,4 +9,16 @@ struct Business: Codable, Identifiable, Equatable, Hashable {
     var categories: [TaskCategory]
     var events: [Event]
     var imageURL: String?
+}
+
+extension Business: Equatable {
+    static func == (lhs: Business, rhs: Business) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension Business: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

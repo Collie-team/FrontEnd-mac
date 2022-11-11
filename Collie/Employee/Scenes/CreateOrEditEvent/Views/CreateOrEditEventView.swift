@@ -149,7 +149,7 @@ struct CreateOrEditEventView: View {
                     )
                 }
 
-                SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                SendButton(label: "salvar evento", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
                     handleEventSave(
                             Event(
                                 id: viewModel.eventId ?? UUID().uuidString,
@@ -160,7 +160,7 @@ struct CreateOrEditEventView: View {
                                 startDate: viewModel.startDate,
                                 endDate: viewModel.endDate,
                                 responsibleUserIds: [],
-                                categoryId: viewModel.selectedCategory!.id
+                                categoryId: viewModel.selectedCategory?.id ?? ""
                             )
                         )
                         handleClose()

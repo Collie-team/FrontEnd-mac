@@ -36,11 +36,29 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
     
     // MARK: - Category functions
     func saveCategory(_ taskCategory: TaskCategory, completion: (Business) -> ()) {
-        // TO DO
+        if let index = self.business.categories.firstIndex(where: { $0.id == taskCategory.id }) {
+            self.business.categories[index] = taskCategory
+        } else {
+            self.business.categories.append(taskCategory)
+        }
+        completion(business)
+        objectWillChange.send()
     }
     
     func removeCategory(_ taskCategory: TaskCategory, completion: (Business) -> ()) {
-        // TO DO
+        if let index = self.business.categories.firstIndex(where: {$0.id == taskCategory.id}) {
+            self.business.categories.remove(at: index)
+            
+            // Remove category id from tasks with this category
+            for i in 0..<self.business.tasks.count {
+                if self.business.tasks[i].categoryId == taskCategory.id {
+                    self.business.tasks[i].categoryId = nil
+                }
+            }
+            
+            completion(business)
+        }
+        objectWillChange.send()
     }
     
     func selectCategory(_ taskCategory: TaskCategory) {
@@ -73,6 +91,7 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
     func duplicateTask(_ task: Task, completion: (Business) -> ()) {
         var duplicatedTask = task
         duplicatedTask.id = UUID().uuidString
+        duplicatedTask.name = "Cópia de \(task.name)"
         self.business.tasks.append(duplicatedTask)
         completion(business)
         objectWillChange.send()
@@ -108,6 +127,7 @@ final class BusinessSingleJourneyViewModel: ObservableObject {
     func duplicateEvent(_ event: Event, completion: (Business) -> ()) {
         var duplicatedEvent = event
         duplicatedEvent.id = UUID().uuidString
+        duplicatedEvent.name = "Cópia de \(event.name)"
         self.business.events.append(duplicatedEvent)
         completion(self.business)
         objectWillChange.send()

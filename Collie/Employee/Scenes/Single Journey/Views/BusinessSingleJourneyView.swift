@@ -79,6 +79,7 @@ struct BusinessSingleJourneyView: View {
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
+                                .frame(height: 45)
                                 .cornerRadius(8)
                                 .modifier(CustomBorder())
                             }
@@ -96,6 +97,7 @@ struct BusinessSingleJourneyView: View {
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
+                                .frame(height: 45)
                                 .cornerRadius(8)
                                 .modifier(CustomBorder())
                             }
@@ -104,21 +106,56 @@ struct BusinessSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id })) { task in
-                                BusinessTaskView(
-                                    task: task,
-                                    category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
-                                    handleTaskOpen: {
-                                        viewModel.selectTask(task)
-                                    },
-                                    handleTaskDuplicate: {
-                                        viewModel.duplicateTask(task) { business in
-                                            rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            ForEach(rootViewModel.businessSelected.categories, id: \.self) { category in
+                                CategoryCard(category: category) {
+                                    viewModel.selectCategory(category)
+                                }
+                                
+                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id })) { task in
+                                    BusinessTaskView(
+                                        task: task,
+                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                        handleTaskOpen: {
+                                            viewModel.selectTask(task)
+                                        },
+                                        handleTaskDuplicate: {
+                                            viewModel.duplicateTask(task) { business in
+                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                            }
                                         }
-                                    }
-                                )
+                                    )
+                                }
+                                .padding(2)
                             }
-                            .padding(2)
+                            
+                            if !(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
+                                HStack(spacing: 16) {
+                                    Text("Sem categoria")
+                                    Spacer()
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                                .background(Color.collieRoxoClaro)
+                                .cornerRadius(8)
+                                
+                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil })) { task in
+                                    BusinessTaskView(
+                                        task: task,
+                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                        handleTaskOpen: {
+                                            viewModel.selectTask(task)
+                                        },
+                                        handleTaskDuplicate: {
+                                            viewModel.duplicateTask(task) { business in
+                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                            }
+                                        }
+                                    )
+                                }
+                                .padding(2)
+                            }
                             
                             Spacer()
                         }
@@ -155,6 +192,7 @@ struct BusinessSingleJourneyView: View {
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
+                                .frame(height: 45)
                                 .cornerRadius(8)
                                 .modifier(CustomBorder())
                             }
@@ -205,7 +243,6 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
-                    .environmentObject(rootViewModel)
                 }
             }
             
@@ -221,10 +258,14 @@ struct BusinessSingleJourneyView: View {
                             }
                         },
                         handleCategorySave: { taskCategory in
-                            // TO DO
+                            viewModel.saveCategory(taskCategory) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
                         },
                         handleCategoryDelete: { taskCategory in
-                            // TO DO
+                            viewModel.removeCategory(taskCategory) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -268,17 +309,18 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
-                    .environmentObject(rootViewModel)
                 }
             }
             
-            if let chosenTask = viewModel.chosenTask {
+            if showEventForm {
                 ZStack {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
+                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
                         event: nil,
+                        category: rootViewModel.getCategory(categoryId: ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
@@ -292,6 +334,35 @@ struct BusinessSingleJourneyView: View {
                         },
                         handleEventDelete: { _ in },
                         handleEventDuplicate: { _ in }
+                    )
+                    .frame(maxWidth: 800)
+                }
+            }
+            
+            if let chosenCategory = viewModel.chosenCategory {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    CreateOrEditCategoryView(
+                        category: chosenCategory,
+                        handleClose: {
+                            withAnimation {
+                                viewModel.unselectCategory()
+                            }
+                        },
+                        handleCategorySave: { taskCategory in
+                            viewModel.saveCategory(taskCategory) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
+                        },
+                        handleCategoryDelete: { taskCategory in
+                            viewModel.removeCategory(taskCategory) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: true)
+                            }
+                            withAnimation {
+                                viewModel.unselectCategory()
+                            }
+                        }
                     )
                     .frame(maxWidth: 800)
                 }
@@ -332,7 +403,6 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
-                    .environmentObject(rootViewModel)
                 }
             }
             
@@ -343,36 +413,8 @@ struct BusinessSingleJourneyView: View {
                     
                     CreateOrEditEventView(
                         viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
-                        event: nil,
-                        category: rootViewModel.getCategory(categoryId: ""),
-                        journeyId: viewModel.journey.id,
-                        handleClose: {
-                            withAnimation {
-                                showEventForm = false
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
-                        },
-                        handleEventDelete: { _ in },
-                        handleEventDuplicate: { _ in }
-                    )
-                    .frame(maxWidth: 800)
-                    .environmentObject(rootViewModel)
-                }
-            }
-            
-            if viewModel.chosenEvent != nil {
-                ZStack {
-                    Color.black.opacity(0.5)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    CreateOrEditEventView(
-                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
-                        event: viewModel.chosenEvent,
-                        category: rootViewModel.getCategory(categoryId: viewModel.chosenTask?.categoryId ?? ""),
+                        event: chosenEvent,
+                        category: rootViewModel.getCategory(categoryId: chosenEvent.categoryId ?? ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
@@ -402,7 +444,6 @@ struct BusinessSingleJourneyView: View {
                         }
                     )
                     .frame(maxWidth: 800)
-                    .environmentObject(rootViewModel)
                 }
             }
         }

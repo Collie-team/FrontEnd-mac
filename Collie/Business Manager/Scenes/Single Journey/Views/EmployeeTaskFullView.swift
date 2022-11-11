@@ -1,19 +1,15 @@
 import SwiftUI
 
 struct EmployeeTaskFullView: View {
+    @ObservedObject var employeeSingleJourneyViewModel: EmployeeSingleJourneyViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
     
-    var userTask: UserTask
-    var task: Task
+    var category: TaskCategory
     var handleClose: () -> ()
     var handleCheckToggle: () -> ()
     
     var responsibleName: String = ""
     var responsibleEmail: String = ""
-    
-    var category: TaskCategory {
-        rootViewModel.getCategory(categoryId: task.categoryId ?? "")
-    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -25,29 +21,29 @@ struct EmployeeTaskFullView: View {
                     Spacer()
                 }
                 HStack {
-                    Text(employeeSingleJournerViewModel.chosenTaskModel?.task.name ?? "")
+                    Text(employeeSingleJourneyViewModel.chosenTaskModel?.task.name ?? "")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.black)
                     Spacer()
                     
                     Button {
                         handleCheckToggle()
-                        if employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil {
-                            employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate = Date().timeIntervalSince1970
+                        if employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil {
+                            employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate = Date().timeIntervalSince1970
                         } else {
-                            employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate = nil
+                            employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate = nil
                         }
                     } label: {
                         HStack {
                             Image(systemName: "checkmark")
                                 
-                            Text(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? "Marcar como feito" : "Feito")
+                            Text(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? "Marcar como feito" : "Feito")
                         }
-                        .foregroundColor(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.black : Color.white)
+                        .foregroundColor(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.black : Color.white)
                         .font(.system(size: 15, weight: .bold))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(employeeSingleJournerViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : Color.collieVerde)
+                        .background(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : Color.collieVerde)
                         .cornerRadius(8)
                         .modifier(CustomBorder())
                     }
@@ -68,14 +64,14 @@ struct EmployeeTaskFullView: View {
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString((employeeSingleJournerViewModel.chosenTaskModel?.task.startDate) ?? Date()))
+                    Text(CalendarHelper().dateString((employeeSingleJourneyViewModel.chosenTaskModel?.task.startDate) ?? Date()))
                         .font(.system(size: 16))
                     Spacer()
                 }
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
                         .frame(width: 200)
-                    Text(CalendarHelper().dateString((employeeSingleJournerViewModel.chosenTaskModel?.task.endDate) ?? Date()))
+                    Text(CalendarHelper().dateString((employeeSingleJourneyViewModel.chosenTaskModel?.task.endDate) ?? Date()))
                         .font(.system(size: 16))
                     Spacer()
                 }
@@ -91,7 +87,7 @@ struct EmployeeTaskFullView: View {
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                         .frame(width: 200)
-                    Text(employeeSingleJournerViewModel.chosenTaskModel?.task.description ?? "")
+                    Text(employeeSingleJourneyViewModel.chosenTaskModel?.task.description ?? "")
                         .font(.system(size: 16))
                         .multilineTextAlignment(.leading)
                     Spacer()
@@ -116,7 +112,7 @@ struct EmployeeTaskFullView: View {
                         HStack {
                             Spacer()
                             Button {
-                                employeeSingleJournerViewModel.unselectTask()
+                                employeeSingleJourneyViewModel.unselectTask()
                                 handleClose()
                             } label: {
                                 Image(systemName: "xmark")

@@ -219,7 +219,8 @@ struct EmployeeSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     EmployeeTaskFullView(
-                        employeeSingleJournerViewModel: self.viewModel,
+                        employeeSingleJourneyViewModel: self.viewModel,
+                        category: rootViewModel.getCategory(categoryId: chosenTaskModel.task.categoryId ?? ""),
                         handleClose: {
                             viewModel.unselectTask()
                         },
