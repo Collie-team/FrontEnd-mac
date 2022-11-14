@@ -14,10 +14,10 @@ struct CollieApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            SettingsView()
+//            ProfileView()
 //                .environmentObject(RootViewModel())
-//            RootView()
-            ProfileView()
+            RootView()
+//            ProfileView()
                 .colorScheme(.light)
                 .frame(minWidth: 1200, minHeight: 800)
         }

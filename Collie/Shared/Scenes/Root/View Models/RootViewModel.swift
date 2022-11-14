@@ -21,7 +21,7 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
+    @Published var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     var currentBusinessUser: BusinessUser?
     
     var authenticationToken: String?
