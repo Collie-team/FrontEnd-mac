@@ -193,7 +193,7 @@ struct EmployeeSingleJourneyView: View {
                         
                         EmployeeEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
-                            events: rootViewModel.businessSelected.events,
+                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == self.viewModel.journey.id }),
                             employeeSingleJourneyViewModel: self.viewModel
                         ) { event in
                                 viewModel.selectEvent(event)

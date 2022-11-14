@@ -11,6 +11,8 @@ struct EmployeeTaskFullView: View {
     var responsibleName: String = ""
     var responsibleEmail: String = ""
     
+    private let green = Color(red: 108/255, green: 217/255, blue: 125/255)
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 15) {
@@ -39,11 +41,11 @@ struct EmployeeTaskFullView: View {
                                 
                             Text(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? "Marcar como feito" : "Feito")
                         }
-                        .foregroundColor(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.black : Color.white)
+                        .foregroundColor(Color.black)
                         .font(.system(size: 15, weight: .bold))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : Color.collieVerde)
+                        .background(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : green)
                         .cornerRadius(8)
                         .modifier(CustomBorder())
                     }
