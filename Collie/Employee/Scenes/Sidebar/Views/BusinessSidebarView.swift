@@ -53,7 +53,7 @@ struct BusinessSidebarView: View {
                 case .settings:
                     SettingsView()
                 case .profile:
-                    ProfileView(currentUser: $rootViewModel.currentUser)
+                    ProfileView()
                 default:
                     Text("Error")
                 }

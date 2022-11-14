@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DisplayFormView: View {
+    @State var currentUser: UserModel
     @Binding var editingMode: Bool
     var body: some View {
         VStack {
@@ -28,7 +29,7 @@ struct DisplayFormView: View {
                     Text("Nome do usuário")
                         .font(.system(size: 15))
                     HStack {
-                        Text("Laura Gomes")
+                        Text(currentUser.name)
                             .font(.system(size: 22, weight: .bold))
                         Spacer()
                     }
@@ -39,7 +40,7 @@ struct DisplayFormView: View {
                     Text("Cargo")
                         .font(.system(size: 15))
                     HStack {
-                        Text("Sem cargo")
+                        Text(currentUser.jobDescription)
                             .font(.system(size: 17, weight: .bold))
                         Spacer()
                     }
@@ -50,7 +51,7 @@ struct DisplayFormView: View {
                     Text("Breve descrição")
                         .font(.system(size: 15))
                     HStack {
-                        Text("Sem descrição")
+                        Text(currentUser.personalDescription)
                             .font(.system(size: 17, weight: .bold))
                         Spacer()
                     }
@@ -82,6 +83,6 @@ struct DisplayFormView: View {
 
 struct DisplayFormView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayFormView(editingMode: .constant(true))
+        DisplayFormView(currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
     }
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EditingFormView: View {
-    @Binding var currentUser: UserModel
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @State var currentUser: UserModel
     @Binding var editingMode: Bool
     var body: some View {
         VStack {
@@ -68,6 +69,7 @@ struct EditingFormView: View {
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                         
                         Button(action: {
+                            rootViewModel.updateUser(userData: currentUser)
                             editingMode = false
                         }) {
                             Text("Salvar alterações")
@@ -88,6 +90,6 @@ struct EditingFormView: View {
 
 struct EditingFormView_Previews: PreviewProvider {
     static var previews: some View {
-        EditingFormView(currentUser: .constant(UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")), editingMode: .constant(true))
+        EditingFormView(currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
     }
 }

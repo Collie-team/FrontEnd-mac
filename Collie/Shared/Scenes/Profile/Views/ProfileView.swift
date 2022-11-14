@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Binding var currentUser: UserModel
+    @EnvironmentObject var rootViewModel: RootViewModel
     @State var editingMode: Bool = false
     var body: some View {
         VStack(spacing: 20) {
@@ -52,11 +52,11 @@ struct ProfileView: View {
                 }
                 Spacer()
                 if editingMode {
-                    EditingFormView(currentUser: $currentUser, editingMode: $editingMode)
+                    EditingFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 } else {
-                    DisplayFormView(editingMode: $editingMode)
+                    DisplayFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 }
@@ -149,6 +149,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(currentUser: .constant(UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")))
+        ProfileView()
     }
 }

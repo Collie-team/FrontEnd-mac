@@ -10,6 +10,7 @@ enum NavigationState {
 }
 
 final class RootViewModel: ObservableObject {
+    private let userSubscriptionService = UserSubscriptionService()
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
     @Published var navigationState: NavigationState = .authentication
@@ -104,6 +105,12 @@ final class RootViewModel: ObservableObject {
             return category
         } else {
             return TaskCategory(id: "", name: "Sem categoria", colorName: "", systemImageName: "")
+        }
+    }
+    
+    func updateUser(userData: UserModel) {
+        userSubscriptionService.updateUser(authenticationToken: "", userData: userData) { userModel in
+            self.currentUser = userModel
         }
     }
 }
