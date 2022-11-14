@@ -203,7 +203,7 @@ struct BusinessSingleJourneyView: View {
                         
                         BusinessEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
-                            events: rootViewModel.businessSelected.events,
+                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == self.viewModel.journey.id}),
                             rootViewModel: rootViewModel,
                             businessSingleJourneyViewModel: self.viewModel
                         ) { event in

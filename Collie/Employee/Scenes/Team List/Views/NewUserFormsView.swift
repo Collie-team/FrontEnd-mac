@@ -136,19 +136,16 @@ struct NewUserFormsView: View {
                 }
                 .foregroundColor(.black)
                 Spacer()
-                Button(action: {
-                    viewModel.inviteUser(userToAdd: newUser, role: selectedRole)
-                }) {
-                    Text("Enviar")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: 290)
-                }
-                .contentShape(Rectangle())
-                .buttonStyle(.plain)
-                .background(Color.collieRoxo)
-                .cornerRadius(8)
-                .disabled(verifyEmail(email: newUser.email))
+                Text("Enviar")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: 290)
+                    .background(Color.collieRoxo)
+                    .cornerRadius(8)
+                    .disabled(verifyEmail(email: newUser.email))
+                    .onTapGesture {
+                        viewModel.inviteUser(userToAdd: newUser, role: selectedRole)
+                    }
             }
             .padding(.horizontal, 36)
             .padding(.bottom)
