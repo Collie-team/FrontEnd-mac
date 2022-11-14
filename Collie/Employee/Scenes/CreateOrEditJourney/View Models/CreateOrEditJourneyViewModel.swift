@@ -46,7 +46,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     }
     
     func isButtonDisabled() -> Bool {
-        journeyName == "" || journeyDescription == ""
+        journeyName == ""
     }
     
     func selectUserModel(_ userModel: UserModel) {
