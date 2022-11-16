@@ -1,16 +1,14 @@
 import Foundation
 import SwiftUI
 
-final class BusinnesManagerSidebarViewModel: ObservableObject {
+final class BusinessSidebarViewModel: ObservableObject {
     
     @Published var selectedItem: SidebarItem = .init(option: .journeys)
     @Published var sidebarItens: [SidebarItem] = [
         .init(option: .dashboard),
         .init(option: .journeys),
         .init(option: .teamList),
-        .init(option: .settings),
-        .init(option: .profile)
-//        .init(option: .payments)
+        .init(option: .settings)
     ]
     
     func selectSideBarItem(_ sidebarItem: SidebarItem) {

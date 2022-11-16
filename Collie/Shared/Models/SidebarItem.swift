@@ -7,6 +7,7 @@ enum SidebarItemOption {
     case teamList
     case payments
     case settings
+    case profile
 }
 
 class SidebarItem: Identifiable {
@@ -33,6 +34,8 @@ class SidebarItem: Identifiable {
             return "Pagamentos"
         case .settings:
             return "Configurações"
+        case .profile:
+            return "Perfil"
         }
     }
     
@@ -48,6 +51,8 @@ class SidebarItem: Identifiable {
             return "star"
         case .settings:
             return "gear"
+        case .profile:
+            return "person.crop.circle"
         }
     }
 }

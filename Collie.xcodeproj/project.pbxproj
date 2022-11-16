@@ -86,6 +86,8 @@
 		5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */; };
 		5BA9AFEA291199E300C1078A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE9291199E300C1078A /* OnboardingView.swift */; };
 		5BA9AFEC291199F000C1078A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFEB291199F000C1078A /* OnboardingViewModel.swift */; };
+		5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A8C2922CA52007722A3 /* EditingFormView.swift */; };
+		5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -111,6 +113,8 @@
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
+		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
+		5BD68496291D703500090481 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68495291D703500090481 /* ProfileView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
 		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
 		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
@@ -208,6 +212,8 @@
 		5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskFullView.swift; sourceTree = "<group>"; };
 		5BA9AFE9291199E300C1078A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		5BA9AFEB291199F000C1078A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		5BAC4A8C2922CA52007722A3 /* EditingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingFormView.swift; sourceTree = "<group>"; };
+		5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayFormView.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -235,6 +241,8 @@
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
+		5BD68495291D703500090481 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
 		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
@@ -363,6 +371,7 @@
 		5B2B46AB28ECB35100FC3BE9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5BD68492291D701500090481 /* Profile */,
 				5BA9AFE6291199C700C1078A /* Onboarding */,
 				5B954E8E2906C08B00FA579E /* Demo */,
 				5B1BAD3D28FF37AB00EFF0E4 /* Root */,
@@ -806,6 +815,7 @@
 				5BF73BD528DA3FDD00B74060 /* Event.swift */,
 				5B954E802901C38D00FA579E /* UserTask.swift */,
 				5B345DBB290C4D5300978141 /* BusinessUser.swift */,
+				5BD68490291ADEE000090481 /* BusinessKey.swift */,
 				5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */,
 			);
 			path = Models;
@@ -970,6 +980,32 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		5BD68492291D701500090481 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5BD68494291D702300090481 /* View Models */,
+				5BD68493291D701D00090481 /* Views */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		5BD68493291D701D00090481 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BD68495291D703500090481 /* ProfileView.swift */,
+				5BAC4A8C2922CA52007722A3 /* EditingFormView.swift */,
+				5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BD68494291D702300090481 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		5BD8982128FDDDD20015EEDB /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1112,6 +1148,7 @@
 				5B49604528ECBFA10024D064 /* CreateOrEditEventViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* BusinessJourneyListViewModel.swift in Sources */,
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,
+				5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */,
 				5BF6693528E23678001B0A1D /* UserCellView.swift in Sources */,
 				5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessSidebarView.swift in Sources */,
@@ -1162,10 +1199,12 @@
 				5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */,
 				5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5BD68496291D703500090481 /* ProfileView.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */,
 				5B49605028EF51BC0024D064 /* BusinessEventsCalendarView.swift in Sources */,
+				5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,
@@ -1176,6 +1215,7 @@
 				5B3755152917158D00D92D15 /* RoleSelectionPicker.swift in Sources */,
 				5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */,
 				5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */,
+				5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */,
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
 				5B0DC417291E5EC800CFD82A /* BusinessUserRoles.swift in Sources */,
 				5B4E31432916D9FD0031F74F /* SettingsOptionView.swift in Sources */,
@@ -1335,7 +1375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development: Pablo Enrique Harbar Penas (F5TH3S43VV)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1354,7 +1394,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Collie distribuition";
+				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1367,8 +1407,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Collie/Collie.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: Pablo Enrique Harbar Penas (F5TH3S43VV)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1387,7 +1426,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.collie.work;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Profile Collie Pablo";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Profile Collie Pablo";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
