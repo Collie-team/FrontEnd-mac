@@ -2,7 +2,7 @@ import SwiftUI
 
 struct BusinessSidebarView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @ObservedObject var viewModel = BusinessSidebarViewModel()
+    @StateObject var viewModel = BusinessSidebarViewModel() // State to prevent reloading
     var handleSignOut: () -> ()
     
     var body: some View {
