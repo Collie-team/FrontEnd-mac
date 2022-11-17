@@ -20,10 +20,16 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     var currentBusiness: Business?
     
+    var userId: String
+    
+    init(userId: String) {
+        self.userId = userId
+    }
+    
     func fetchUsers(business: Business) {
         currentBusiness = business
         teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
-            self.userModelList = userModels
+            self.userModelList = userModels.filter({ $0.id != self.userId})
             
             // Load chosen user Models
             self.fetchOldUsersOnJourney()

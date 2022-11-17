@@ -2,12 +2,13 @@ import SwiftUI
 
 struct CreateOrEditJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @ObservedObject var viewModel = CreateNewJourneyViewModel()
+    @ObservedObject var viewModel: CreateNewJourneyViewModel
     @State var imageURL: String = ""
     
     var handleClose: () -> ()
     
-    init(journey: Journey?, handleClose: @escaping () -> ()) {
+    init(userId: String, journey: Journey?, handleClose: @escaping () -> ()) {
+        self.viewModel = CreateNewJourneyViewModel(userId: userId)
         self.handleClose = handleClose
         if let journey = journey {
             viewModel.journeyId = journey.id
@@ -126,6 +127,6 @@ struct CreateOrEditJourneyView: View {
 
 struct CreateOrEditJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditJourneyView(journey: nil, handleClose: {})
+        CreateOrEditJourneyView(userId: "", journey: nil, handleClose: {})
     }
 }
