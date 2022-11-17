@@ -21,11 +21,18 @@ struct BusinessTaskView: View {
             
             Spacer()
             
-            if showDetailIcon {
-                IconButton(imageSystemName: "rectangle.on.rectangle") {
-                    handleTaskDuplicate()
-                }
+            HStack(spacing: 4) {
+                Image(systemName: "calendar")
+                
+                Text(task.endDate.dayAndMonthCustomFormat())
             }
+            .font(.system(size: 16, weight: .regular))
+            .foregroundColor(.gray)
+            
+            IconButton(imageSystemName: "rectangle.on.rectangle") {
+                handleTaskDuplicate()
+            }
+            .opacity(showDetailIcon ? 1 : 0)
         }
         .padding(8)
         .frame(height: 46)

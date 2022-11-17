@@ -6,11 +6,9 @@ struct CreateOrEditJourneyView: View {
     @State var imageURL: String = ""
     
     var handleClose: () -> ()
-    var handleJourneySave: (Journey) -> ()
     
-    init(journey: Journey?, handleClose: @escaping () -> (), handleJourneySave: @escaping (Journey) -> ()) {
+    init(journey: Journey?, handleClose: @escaping () -> ()) {
         self.handleClose = handleClose
-        self.handleJourneySave = handleJourneySave
         if let journey = journey {
             viewModel.journeyId = journey.id
             viewModel.journeyName = journey.name
@@ -69,14 +67,14 @@ struct CreateOrEditJourneyView: View {
                             viewModel.selectUserModel(userModel)
                         },
                         handleUserRemove: { userModel in
-                            viewModel.selectUserModel(userModel)
+                            viewModel.removeUserModel(userModel)
                         }
                     )
                 }
                 
                 SendButton(label: "salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
-                    viewModel.handleJourneySave { journey in
-                        handleJourneySave(journey)
+                    viewModel.handleJourneySave { business in
+                        rootViewModel.updateBusiness(business, replaceBusiness: true)
                     }
                     handleClose()
                 }
@@ -128,6 +126,6 @@ struct CreateOrEditJourneyView: View {
 
 struct CreateOrEditJourneyView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditJourneyView(journey: nil, handleClose: {}, handleJourneySave: {_ in })
+        CreateOrEditJourneyView(journey: nil, handleClose: {})
     }
 }

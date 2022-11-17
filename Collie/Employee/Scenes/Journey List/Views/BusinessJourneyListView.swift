@@ -32,12 +32,6 @@ struct BusinessJourneyListView: View {
                             withAnimation {
                                 showCreationPopUp = false
                             }
-                        },
-                        handleJourneySave: { journey in
-                            viewModel.addNewJourney(journey, business: rootViewModel.businessSelected) { business in
-                                viewModel.selectedJourney = journey
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
                         }
                     )
                     .frame(maxWidth: 800)

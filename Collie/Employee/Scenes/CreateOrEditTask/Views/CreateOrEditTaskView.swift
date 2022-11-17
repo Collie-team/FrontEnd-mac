@@ -8,7 +8,6 @@ struct CreateOrEditTaskView: View {
     var task: Task?
     var category: TaskCategory
     var handleClose: () -> ()
-    var handleTaskSave: (Task) -> ()
     var handleTaskDeletion: (Task) -> ()
     var handleTaskDuplicate: (Task) -> ()
     
@@ -18,7 +17,6 @@ struct CreateOrEditTaskView: View {
         task: Task?,
         category: TaskCategory,
         handleClose: @escaping () -> (),
-        handleTaskSave: @escaping (Task) -> (),
         handleTaskDeletion: @escaping (Task) -> (),
         handleTaskDuplicate: @escaping (Task) -> ()
     ) {
@@ -27,7 +25,6 @@ struct CreateOrEditTaskView: View {
         self.task = task
         self.category = category
         self.handleClose = handleClose
-        self.handleTaskSave = handleTaskSave
         self.handleTaskDeletion = handleTaskDeletion
         self.handleTaskDuplicate = handleTaskDuplicate
         if let task = task {
@@ -37,9 +34,6 @@ struct CreateOrEditTaskView: View {
             viewModel.startDate = task.startDate
             viewModel.endDate = task.endDate
             viewModel.selectedCategory = category
-//            viewModel.sampleCategories = viewModel.sampleCategories.filter({ category in
-//                category.id != selectedCategory.id
-//            })
         }
     }
     
@@ -127,18 +121,10 @@ struct CreateOrEditTaskView: View {
                 }
 
                 SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
-                        handleTaskSave(
-                            Task(
-                                id: viewModel.taskId ?? UUID().uuidString,
-                                journeyId: journeyId,
-                                name: viewModel.taskName,
-                                description: viewModel.taskDescription,
-                                categoryId: viewModel.selectedCategory?.id,
-                                startDate: viewModel.startDate,
-                                endDate: viewModel.endDate
-                            )
-                        )
-                        handleClose()
+                    viewModel.handleTaskSave(journeyId: journeyId, completion: { business in
+                        rootViewModel.updateBusiness(business, replaceBusiness: true)
+                    })
+                    handleClose()
                 })
             }
             .padding(.vertical)
@@ -195,6 +181,6 @@ struct CreateOrEditTaskView: View {
 
 struct CreateOrEditTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(categoryList: []), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskSave: {_ in}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
+        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(categoryList: []), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }

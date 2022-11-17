@@ -67,7 +67,9 @@ final class CreateNewJourneyViewModel: ObservableObject {
         }
     }
     
-    func handleJourneySave(completion: (Journey) -> ()) {
+    func handleJourneySave(completion: (Business) -> ()) {
+        var updatedBusiness = currentBusiness
+        
         let journey = Journey(
             id: journeyId,
             name: journeyName,
@@ -76,6 +78,13 @@ final class CreateNewJourneyViewModel: ObservableObject {
             startDate: startDate,
             userIds: chosenUserModels.map({$0.id})
         )
-        completion(journey)
+        
+        if let journeyIndex = updatedBusiness?.journeys.firstIndex(where: {$0.id == journeyId}) {
+            updatedBusiness?.journeys[journeyIndex] = journey
+        } else {
+            updatedBusiness?.journeys.append(journey)
+        }
+        
+        completion(updatedBusiness!)
     }
 }

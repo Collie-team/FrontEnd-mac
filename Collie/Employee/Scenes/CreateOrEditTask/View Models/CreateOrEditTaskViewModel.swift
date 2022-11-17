@@ -86,4 +86,26 @@ final class CreateOrEditTaskViewModel: ObservableObject {
             categoryList.remove(at: index)
         }
     }
+    
+    func handleTaskSave(journeyId: String, completion: (Business) -> ()) {
+        var updatedBusiness = currentBusiness
+        
+        let task = Task(
+            id: taskId ?? UUID().uuidString,
+            journeyId: journeyId,
+            name: taskName,
+            description: taskDescription,
+            categoryId: selectedCategory?.id,
+            startDate: startDate,
+            endDate: endDate
+        )
+        
+        if let taskIndex = updatedBusiness?.tasks.firstIndex(where: {$0.id == taskId}) {
+            updatedBusiness?.tasks[taskIndex] = task
+        } else {
+            updatedBusiness?.tasks.append(task)
+        }
+        
+        completion(updatedBusiness!)
+    }
 }

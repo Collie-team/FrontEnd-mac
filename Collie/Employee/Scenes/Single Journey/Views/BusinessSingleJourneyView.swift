@@ -235,11 +235,6 @@ struct BusinessSingleJourneyView: View {
                             withAnimation {
                                 editJourney = false
                             }
-                        },
-                        handleJourneySave: { journey in
-                            viewModel.saveJourney(journey) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
                         }
                     )
                     .frame(maxWidth: 800)
@@ -284,11 +279,6 @@ struct BusinessSingleJourneyView: View {
                         handleClose: {
                             withAnimation {
                                 showTaskForm = false
-                            }
-                        },
-                        handleTaskSave: { task in
-                            viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleTaskDeletion: { task in
@@ -380,11 +370,6 @@ struct BusinessSingleJourneyView: View {
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectTask()
-                            }
-                        },
-                        handleTaskSave: { task in
-                            viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleTaskDeletion: { task in

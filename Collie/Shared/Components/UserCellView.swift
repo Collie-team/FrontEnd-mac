@@ -8,7 +8,7 @@ struct UserCellView: View {
         VStack(spacing: 0) {
             HStack {
                 UserIconView(user: user)
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                 
                 Text(user.name)
                 
