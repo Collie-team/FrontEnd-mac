@@ -16,11 +16,12 @@ struct AuthenticationView: View {
                 HStack {
                     Image("logoCollieBlack")
                         .resizable()
-                        .aspectRatio(204/41.42, contentMode: .fit)
+                        .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 204)
                     Spacer()
                 }
                 .padding(.bottom, 64)
+                
                 HStack(alignment: .top, spacing: 70) {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("A melhor maneira de gerenciar o onboarding de novos colaboradores")
@@ -34,7 +35,7 @@ struct AuthenticationView: View {
                             .foregroundColor(Color.collieCinzaEscuro)
                         Image("loginSplashImage")
                             .resizable()
-                            .aspectRatio(884.7/724.52, contentMode: .fit)
+                            .aspectRatio(contentMode: .fit)
                     }
                     .frame(maxWidth: geometry.size.width * 0.55, maxHeight: geometry.size.height * 0.75)
                     if viewModel.authenticationMode == .signup {
