@@ -16,7 +16,8 @@ enum ListComponents: CGFloat {
 }
 
 struct TeamListView: View {
-    @ObservedObject var viewModel = TeamListViewModel()
+    @StateObject var viewModel = TeamListViewModel()
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
     
     var body: some View {
@@ -52,10 +53,23 @@ struct TeamListView: View {
                                     )
                                 ZStack {
                                     Circle()
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(.white)
                                         .frame(width: 36, height: 36)
-                                    Text("A")
+                                    Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
                                         .font(.system(size: 14))
+                                }
+                                .onTapGesture {
+                                    viewModel.profileDetailsShowing.toggle()
+                                }
+                                .popover(isPresented: $viewModel.profileDetailsShowing,
+                                         attachmentAnchor: .point(.bottomTrailing),   // here !
+                                         arrowEdge: .bottom) {
+                                    ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, handleLogout: {
+                                        rootViewModel.navigationState = .authentication
+                                    }, navigateToProfileView: {
+                                        // TODO: Resetar rootView, e outras variaveis
+                                        businessSidebarViewModel.selectedItem = .init(option: .profile)
+                                    })
                                 }
                             }
                             HStack {
@@ -196,7 +210,6 @@ struct TeamListView: View {
         }
         .popover(isPresented: $viewModel.newUserPopupEnabled) {
             NewUserFormsView()
-                .environmentObject(viewModel)
         }
     }
     

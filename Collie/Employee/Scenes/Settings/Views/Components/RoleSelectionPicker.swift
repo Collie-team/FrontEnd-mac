@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RoleSelectionPicker: View {
     @Binding var roleSelected: BusinessUserRoles
-    
+    @Binding var workspaceAdmins: Int
     var onRoleChange: (BusinessUserRoles) -> ()
     
     var body: some View {
@@ -12,23 +12,23 @@ struct RoleSelectionPicker: View {
                     roleSelected = role
                     print(roleSelected.rawValue)
                 } label: {
-                    Text(role.rawValue)
+                    Text(role.getRoleText())
                 }
                 .buttonStyle(.plain)
             }
         }, label: {
-            Text(roleSelected.rawValue)
+            Text(roleSelected.getRoleText())
         })
         .onChange(of: roleSelected) { newRole in
-            print("Role changed")
-            self.roleSelected = newRole
             onRoleChange(newRole)
         }
+        .disabled(roleSelected == .admin && workspaceAdmins <= 1)
     }
 }
 
 struct RoleSelectionPicker_Previews: PreviewProvider {
     static var previews: some View {
-        RoleSelectionPicker(roleSelected: .constant(.manager), onRoleChange: {_ in})
+        RoleSelectionPicker(roleSelected: .constant(.manager), workspaceAdmins: .constant(1), onRoleChange: {_ in})
+            .environmentObject(RootViewModel())
     }
 }

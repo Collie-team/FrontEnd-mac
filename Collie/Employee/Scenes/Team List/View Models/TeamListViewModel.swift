@@ -18,6 +18,7 @@ final class TeamListViewModel: ObservableObject {
     private let teamListService = TeamSubscriptionService()
     
     @Published var newUserPopupEnabled = false
+    @Published var profileDetailsShowing = false
     @Published var teamListUsers: [TeamListUser] = []
     
     var teamUsers: [UserModel] = []
@@ -47,13 +48,6 @@ final class TeamListViewModel: ObservableObject {
             withAnimation() {
                 self.teamListUsers.append(teamListUser)
             }
-        }
-    }
-    
-    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
-        let emailService = APISubscriptionService()
-        emailService.sendInviteEmail(authenticationToken: "", business: currentBusiness!, email: userToAdd.email) {
-            // Prompt success
         }
     }
 }

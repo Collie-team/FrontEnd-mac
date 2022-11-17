@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @State var editingMode: Bool = false
+    @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
     var body: some View {
         VStack(spacing: 20) {
             HStack {
@@ -51,12 +51,12 @@ struct ProfileView: View {
                         )
                 }
                 Spacer()
-                if editingMode {
-                    EditingFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
+                if viewModel.editingMode {
+                    EditingFormView(rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 } else {
-                    DisplayFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
+                    DisplayFormView(rootViewModelUser: $rootViewModel.currentUser, rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 }
@@ -79,7 +79,9 @@ struct ProfileView: View {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 28))
                         .foregroundColor(Color.collieTextFieldBorder)
-                    Button(action: {}) {
+                    Button(action: {
+                        viewModel.resetPassword(email: rootViewModel.currentUser.email)
+                    }) {
                         Text("Enviar e-mail para alterar senha")
                             .padding(.horizontal, 24)
                             .padding(.vertical, 12)

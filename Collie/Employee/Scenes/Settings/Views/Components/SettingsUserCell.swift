@@ -2,7 +2,9 @@ import SwiftUI
 
 struct SettingsUserCell: View {
     @Binding var model: SettingsViewModel.Model
+    @Binding var workspaceAdmins: Int
     var handleUserDeletion: () -> ()
+    var handleRoleChange: (BusinessUser, BusinessUserRoles) -> ()
     
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
@@ -25,8 +27,8 @@ struct SettingsUserCell: View {
                     }
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .email))
 
-                    RoleSelectionPicker(roleSelected: $model.businessUser.role, onRoleChange: { role in
-                        model.businessUser.role = role
+                    RoleSelectionPicker(roleSelected: $model.businessUser.role, workspaceAdmins: $workspaceAdmins, onRoleChange: { role in
+                        handleRoleChange(model.businessUser, role)
                     })
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .role))
 

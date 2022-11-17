@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditingFormView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @Binding var rootViewModelBusinessUser: BusinessUser?
     @State var currentUser: UserModel
     @Binding var editingMode: Bool
     var body: some View {
@@ -39,18 +40,18 @@ struct EditingFormView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("Data de entrada")
-                        .font(.system(size: 15))
-                    HStack {
-                        Text("17/04/2022")
-                            .font(.system(size: 17))
-                        Spacer()
-                    }
-                    Divider()
+//                    Text("Data de entrada")
+//                        .font(.system(size: 15))
+//                    HStack {
+//                        Text("17/04/2022")
+//                            .font(.system(size: 17))
+//                        Spacer()
+//                    }
+//                    Divider()
                     Text("Papel")
                         .font(.system(size: 15))
                     HStack {
-                        Text("Colaborador")
+                        Text(rootViewModelBusinessUser!.role.getRoleText())
                             .font(.system(size: 17))
                         Spacer()
                     }
@@ -90,6 +91,6 @@ struct EditingFormView: View {
 
 struct EditingFormView_Previews: PreviewProvider {
     static var previews: some View {
-        EditingFormView(currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
+        EditingFormView(rootViewModelBusinessUser: .constant(nil), currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
     }
 }

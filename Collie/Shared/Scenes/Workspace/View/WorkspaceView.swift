@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct WorkspaceView: View {
-    @ObservedObject var viewModel = WorkspaceViewModel()
+    @StateObject var viewModel = WorkspaceViewModel() // State to prevent reloading
     @EnvironmentObject var rootViewModel: RootViewModel
     var body: some View {
         ZStack {

@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct SettingsView: View {
-    @ObservedObject var viewModel = SettingsViewModel()
+    @StateObject var viewModel = SettingsViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
     @State var showDeleteAlert = false
     @State var copyClicked = false
@@ -32,8 +32,7 @@ struct SettingsView: View {
                         }
                         
                         Button {
-                            print("Open invite")
-                            
+                            viewModel.newUserPopupEnabled = true
                         } label: {
                             HStack {
                                 Image(systemName: "person.crop.circle.badge.plus")
@@ -89,10 +88,16 @@ struct SettingsView: View {
                         ScrollView(.vertical) {
                             VStack {
                                 ForEach($viewModel.modelList, id: \.self) { $model in
-                                   SettingsUserCell(model: $model, handleUserDeletion: {
+                                    SettingsUserCell(model: $model, workspaceAdmins: $viewModel.workspaceAdmins, handleUserDeletion: {
                                        viewModel.selectedUserModel = model.userModel
                                        self.showDeleteAlert = true
-                                   })
+                                    }, handleRoleChange: { bUser, role in
+                                        var businessUser = bUser
+                                        businessUser.role = role
+                                        rootViewModel.updateBusinessUser(businessUser) { updatedBusinessUser in
+                                            viewModel.updateAdminCount(businessUser: updatedBusinessUser)
+                                        }
+                                    })
                                 }
                             }
                             .padding(.trailing, 20)
@@ -137,7 +142,7 @@ struct SettingsView: View {
                                     .stroke(copyClicked ? Color.collieVerde : Color.collieTextFieldBorder, lineWidth: 1)
                             )
                         .onTapGesture {
-                            viewModel.copyToClipboard(text: "Collie#2135")
+                            viewModel.copyToClipboard(text: viewModel.businessCode)
                             copyClicked = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.copyClicked = false
@@ -191,6 +196,10 @@ struct SettingsView: View {
         .onAppear {
             viewModel.fetchBusinessCode(businessId: rootViewModel.businessSelected.id)
             viewModel.fetchUsers(business: rootViewModel.businessSelected)
+        }
+        .popover(isPresented: $viewModel.newUserPopupEnabled) {
+            NewUserFormsView()
+                .environmentObject(viewModel)
         }
     }
     
