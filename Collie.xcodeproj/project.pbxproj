@@ -90,6 +90,7 @@
 		5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */; };
 		5BAC4A932926B5C9007722A3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A922926B5C9007722A3 /* ProfileViewModel.swift */; };
 		5BAC4A952926E996007722A3 /* ProfilePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A942926E996007722A3 /* ProfilePopUpView.swift */; };
+		5BAC4A992926FB17007722A3 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC4A982926FB17007722A3 /* FirebaseStorageService.swift */; };
 		5BACC62A28CFB855006975D3 /* CollieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62928CFB855006975D3 /* CollieApp.swift */; };
 		5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BACC62B28CFB855006975D3 /* DashboardView.swift */; };
 		5BACC62E28CFB856006975D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BACC62D28CFB856006975D3 /* Assets.xcassets */; };
@@ -218,6 +219,7 @@
 		5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayFormView.swift; sourceTree = "<group>"; };
 		5BAC4A922926B5C9007722A3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5BAC4A942926E996007722A3 /* ProfilePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopUpView.swift; sourceTree = "<group>"; };
+		5BAC4A982926FB17007722A3 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		5BACC62628CFB855006975D3 /* Collie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BACC62928CFB855006975D3 /* CollieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieApp.swift; sourceTree = "<group>"; };
 		5BACC62B28CFB855006975D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
 				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
 				5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */,
+				5BAC4A982926FB17007722A3 /* FirebaseStorageService.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1171,6 +1174,7 @@
 				5BACC67128D2634D006975D3 /* BusinessJourneyListViewModel.swift in Sources */,
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,
 				5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */,
+				5BAC4A992926FB17007722A3 /* FirebaseStorageService.swift in Sources */,
 				5BF6693528E23678001B0A1D /* UserCellView.swift in Sources */,
 				5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */,
 				5BACC64E28CFC23D006975D3 /* BusinessSidebarView.swift in Sources */,

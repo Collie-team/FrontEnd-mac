@@ -31,24 +31,52 @@ struct ProfileView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Foto de Perfil")
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.collieVermelho)
-                        .frame(width: 240, height: 240)
-                        .overlay(
-                            ZStack {
-                                Image(systemName: "camera.fill")
-                                    .foregroundColor(Color.collieRoxo)
-                                    .font(.system(size: 28))
-                            }
-                            .frame(width: 60, height: 60)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                    if let image = viewModel.image {
+                        Image(nsImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 240, height: 240)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                ZStack {
+                                    Image(systemName: "camera.fill")
+                                        .foregroundColor(Color.collieRoxo)
+                                        .font(.system(size: 28))
+                                }
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.white)
+                                    .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                    )
+                                    .offset(x: 100, y: 100)
                             )
-                            .offset(x: 100, y: 100)
-                        )
+                            .onTapGesture {
+                                viewModel.openFileSelection()
+                            }
+                    } else {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.collieVermelho)
+                            .frame(width: 240, height: 240)
+                            .overlay(
+                                ZStack {
+                                    Image(systemName: "camera.fill")
+                                        .foregroundColor(Color.collieRoxo)
+                                        .font(.system(size: 28))
+                                }
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.white)
+                                    .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                    )
+                                    .offset(x: 100, y: 100)
+                            )
+                            .onTapGesture {
+                                viewModel.openFileSelection()
+                            }
+                    }
                 }
                 Spacer()
                 if viewModel.editingMode {
