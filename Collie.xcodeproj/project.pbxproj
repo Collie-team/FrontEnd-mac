@@ -11,7 +11,6 @@
 		5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC412291D5FBD00CFD82A /* CreateOrEditCategoryView.swift */; };
 		5B0DC415291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */; };
 		5B0DC417291E5EC800CFD82A /* BusinessUserRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */; };
-		5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */; };
 		5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */; };
 		5B14E8162927069B007F5C34 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5B14E8152927069B007F5C34 /* SDWebImageSwiftUI */; };
 		5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */; };
@@ -146,7 +145,6 @@
 		5B0DC412291D5FBD00CFD82A /* CreateOrEditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCategoryView.swift; sourceTree = "<group>"; };
 		5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCategoryViewModel.swift; sourceTree = "<group>"; };
 		5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUserRoles.swift; sourceTree = "<group>"; };
-		5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSubscriptionService.swift; sourceTree = "<group>"; };
 		5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventFullView.swift; sourceTree = "<group>"; };
 		5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5B1BAD4228FF37E700EFF0E4 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 			isa = PBXGroup;
 			children = (
 				5B1BAD462901C0F000EFF0E4 /* Database */,
-				5B0F666628DCE44C0057BA32 /* DatabaseSubscriptionService.swift */,
 				5B2B46A728E6233200FC3BE9 /* APISubscriptionService.swift */,
 				5B2B46A928EB72DC00FC3BE9 /* AuthenticationService.swift */,
 				5BAC4A982926FB17007722A3 /* FirebaseStorageService.swift */,
@@ -1223,7 +1220,6 @@
 				5BAC4A952926E996007722A3 /* ProfilePopUpView.swift in Sources */,
 				5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */,
 				5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */,
-				5B0F666728DCE44C0057BA32 /* DatabaseSubscriptionService.swift in Sources */,
 				5B954E812901C38D00FA579E /* UserTask.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
 				5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */,

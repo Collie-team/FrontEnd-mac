@@ -30,7 +30,7 @@ final class BusinessSubscriptionService {
             encoder: JSONParameterEncoder.default,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             print(response.debugDescription)
             switch response.result {
@@ -65,7 +65,7 @@ final class BusinessSubscriptionService {
             method: .get,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             print(response.debugDescription)
             switch response.result {
@@ -139,7 +139,7 @@ final class BusinessSubscriptionService {
             method: .get,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             print(response.debugDescription)
             switch response.result {
@@ -176,7 +176,7 @@ final class BusinessSubscriptionService {
             encoder: JSONParameterEncoder.default,
             headers: headers
         ) { urlRequest in
-            urlRequest.timeoutInterval = 5
+            urlRequest.timeoutInterval = 10
         }.response { response in
             print(response.debugDescription)
             switch response.result {

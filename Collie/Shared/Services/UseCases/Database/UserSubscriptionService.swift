@@ -115,4 +115,32 @@ final class UserSubscriptionService {
             }
         }
     }
+    
+    func eraseUserData(userId: String, authenticationToken: String, _ completion: @escaping () -> ()) {
+        let url = domainUrl + "user/delete/"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": authenticationToken,
+            "Accept": "application/json"
+        ]
+        
+        AF.request(
+            url,
+            method: .put,
+            parameters: userId,
+            encoder: JSONParameterEncoder.default,
+            headers: headers
+        ) { urlRequest in
+            urlRequest.timeoutInterval = 10
+        }.response { response in
+            switch response.result {
+            case .success:
+                print("User deleted")
+            case let .failure(error):
+                print("ERROR:")
+                print(error)
+            }
+            completion()
+        }
+    }
 }

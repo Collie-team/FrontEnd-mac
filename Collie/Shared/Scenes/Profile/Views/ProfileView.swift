@@ -146,7 +146,9 @@ struct ProfileView: View {
                 }
                 .frame(maxWidth: 350)
                 Spacer()
-                Button(action: {}) {
+                Button(action: {
+                    viewModel.showUserDeleteAlert = true
+                }) {
                     Text("Excluir conta")
                         .padding(.horizontal, 24)
                         .padding(.vertical, 12)
@@ -173,16 +175,16 @@ struct ProfileView: View {
         .navigationTitle("Perfil")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
-        //        .alert(isPresented: $showDeleteAlert) {
-        //            Alert(
-        //                title: Text("Você realmente deseja remover \(viewModel.selectedUserModel?.name ?? "")?"),
-        //                message: Text("Essa ação é definitiva!"),
-        //                primaryButton: .cancel(),
-        //                secondaryButton: .destructive(Text("Deletar")) {
-        //                    viewModel.removeBusinessUser()
-        //                }
-        //            )
-        //        }
+        .alert(isPresented: $viewModel.showUserDeleteAlert) {
+            Alert(
+                title: Text("Você realmente deseja apagar todos os seus dados?"),
+                message: Text("Essa ação é definitiva!"),
+                primaryButton: .cancel(),
+                secondaryButton: .destructive(Text("Deletar")) {
+                    rootViewModel.deleteUserData()
+                }
+            )
+        }
     }
 }
 

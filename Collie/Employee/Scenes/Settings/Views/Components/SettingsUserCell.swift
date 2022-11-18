@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsUserCell: View {
     @Binding var model: SettingsViewModel.Model
     @Binding var workspaceAdmins: Int
+    @Binding var workspaceUsers: Int
     var handleUserDeletion: () -> ()
     var handleRoleChange: (BusinessUser, BusinessUserRoles) -> ()
     
@@ -37,6 +38,7 @@ struct SettingsUserCell: View {
                         handleUserDeletion()
                     }
                     .padding(.leading, 32)
+                    .opacity(workspaceUsers <= 1 ? 0 : 1)
                 }
             }
             .foregroundColor(.black)

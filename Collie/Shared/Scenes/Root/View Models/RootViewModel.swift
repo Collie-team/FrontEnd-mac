@@ -1,4 +1,5 @@
 import SwiftUI
+import Firebase
 
 enum NavigationState {
     case authentication
@@ -126,6 +127,23 @@ final class RootViewModel: ObservableObject {
         let emailService = APISubscriptionService()
         emailService.sendInviteEmail(authenticationToken: "", business: businessSelected, email: userToAdd.email) {
             // Prompt success
+        }
+    }
+    
+    func deleteUserData() {
+        userSubscriptionService.eraseUserData(userId: currentUser.id, authenticationToken: "") {
+            let user = Auth.auth().currentUser
+
+            user?.delete { error in
+              if let error = error {
+                // An error happened.
+                  print(error)
+              } else {
+                // Account deleted.
+                  print("User deleted")
+              }
+            }
+            self.navigationState = .authentication
         }
     }
 }

@@ -11,6 +11,7 @@ import SwiftUI
 class ProfileViewModel: ObservableObject {
     @Published var editingMode: Bool = false
     @Published var image: NSImage?
+    @Published var showUserDeleteAlert: Bool = false
     let firebaseStorageService = FirebaseStorageService()
     
     private let authenticationService = AuthenticationService()

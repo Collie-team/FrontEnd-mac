@@ -128,7 +128,7 @@ struct BusinessSingleJourneyView: View {
                                 .padding(2)
                             }
                             
-                            if !(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
+                            if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
                                 HStack(spacing: 16) {
                                     Text("Sem categoria")
                                     Spacer()
@@ -140,7 +140,7 @@ struct BusinessSingleJourneyView: View {
                                 .background(Color.collieRoxoClaro)
                                 .cornerRadius(8)
                                 
-                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil })) { task in
+                                ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil })) { task in
                                     BusinessTaskView(
                                         task: task,
                                         category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),

@@ -88,7 +88,7 @@ struct SettingsView: View {
                         ScrollView(.vertical) {
                             VStack {
                                 ForEach($viewModel.modelList, id: \.self) { $model in
-                                    SettingsUserCell(model: $model, workspaceAdmins: $viewModel.workspaceAdmins, handleUserDeletion: {
+                                    SettingsUserCell(model: $model, workspaceAdmins: $viewModel.workspaceAdmins, workspaceUsers: $viewModel.workspaceUsers, handleUserDeletion: {
                                        viewModel.selectedUserModel = model.userModel
                                        self.showDeleteAlert = true
                                     }, handleRoleChange: { bUser, role in

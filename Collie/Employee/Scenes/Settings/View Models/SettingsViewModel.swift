@@ -25,6 +25,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var modelList: [Model] = [] {
         didSet {
             workspaceAdmins = modelList.filter({$0.businessUser.role == .admin}).count
+            workspaceUsers = modelList.count
         }
     }
     
@@ -34,6 +35,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var newUserPopupEnabled = false
     
     @Published var workspaceAdmins: Int = 0
+    @Published var workspaceUsers: Int = 0
     
     @Published var businessCode: String = "Carregando..."
     
