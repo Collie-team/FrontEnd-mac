@@ -263,6 +263,7 @@ struct WorkspaceView: View {
                         Spacer()
                     }
                     .padding(2)
+                    .padding(.bottom, 30)
                 }
             }
             .padding(.vertical, 50)
