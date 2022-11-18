@@ -52,94 +52,98 @@ struct WorkspaceView: View {
     var loginWorkspace: some View {
         VStack {
             VStack {
-                ZStack {
-                    Text("Entrar Workspace")
-                        .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
-                    HStack {
-                        Button(action: {
-                            if viewModel.workspacesAvailable.isEmpty {
-                                viewModel.workspaceViewState = .noWorkspacesFound
-                            } else {
-                                viewModel.workspaceViewState = .workspaceList
-                            }
-                        }) {
-                            Image(systemName: "arrow.left")
+                HStack {
+                    Button(action: {
+                        if viewModel.workspacesAvailable.isEmpty {
+                            viewModel.workspaceViewState = .noWorkspacesFound
+                        } else {
+                            viewModel.workspaceViewState = .workspaceList
                         }
-                        Spacer()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 21, weight: .bold))
+                            .frame(width: 48, height: 48)
+                            .modifier(CustomBorder())
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
                 }
                 
                 VStack {
-                    Text("Digite o código do workspace enviado pelo e-mail:")
+                    Text("Qual é o código da sua empresa?")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
+                    
                     if viewModel.codeResponse != .none {
                         Text("\(Image(systemName: viewModel.codeResponse == .error ? "xmark.octagon.fill" : "checkmark.seal.fill")) \(viewModel.codeResponse.rawValue)")
-                            .font(.system(size: 12))
+                            .font(.system(size: 16))
                             .foregroundColor(viewModel.codeResponse == .error ? Color.collieVermelho : Color.collieVerde)
+                            .padding(.vertical)
                     }
                     
                     SimpleTextField(text: $viewModel.workspaceCode, showPlaceholderWhen: viewModel.workspaceCode.isEmpty, placeholderText: "Código do workspace")
                         .modifier(CustomBorder())
+                        .padding(.bottom, 32)
+                    
+                    WorkspaceButton(title: "entrar no workspace", action: {
+                        viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
+                            rootViewModel.availableBusiness = business
+                            rootViewModel.availableBusinessUsers = userBusiness
+                        }
+                    })
+                    .disabled(viewModel.workspaceCode.isEmpty)
                 }
                 .frame(width: 400)
             }
-            .padding(.vertical, 50)
+            .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
-            
-            WorkspaceButton(title: "Entrar", action: {
-                viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
-                    rootViewModel.availableBusiness = business
-                    rootViewModel.availableBusinessUsers = userBusiness
-                }
-            })
-            .disabled(viewModel.workspaceCode.isEmpty)
         }
     }
     
     var createWorkspaceForm: some View {
         VStack {
             VStack {
-                ZStack {
-                    Text("Criar Workspace")
-                        .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
-                    HStack {
-                        Button(action: {
-                            if viewModel.workspacesAvailable.isEmpty {
-                                viewModel.workspaceViewState = .noWorkspacesFound
-                            } else {
-                                viewModel.workspaceViewState = .workspaceList
-                            }
-                        }) {
-                            Image(systemName: "arrow.left")
+                HStack {
+                    Button(action: {
+                        if viewModel.workspacesAvailable.isEmpty {
+                            viewModel.workspaceViewState = .noWorkspacesFound
+                        } else {
+                            viewModel.workspaceViewState = .workspaceList
                         }
-                        Spacer()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 21, weight: .bold))
+                            .frame(width: 48, height: 48)
+                            .modifier(CustomBorder())
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
                 }
                 
                 VStack {
-                    HStack {
-                        Text("Qual é o nome do workspace?")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(.black)
-                        Spacer()
-                    }
+                    Text("Qual o nome da sua empresa ou equipe?")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
                     
                     SimpleTextField(text: $viewModel.workspaceName, showPlaceholderWhen: viewModel.workspaceName.isEmpty, placeholderText: "Nome do workspace")
                         .modifier(CustomBorder())
                 }
                 .frame(width: 400)
+                .padding(.bottom, 32)
                 
                 WorkspaceButton(title: "criar workspace", action: {
                     viewModel.createNewWorkspace()
                 })
+                .disabled(viewModel.workspaceName.isEmpty)
             }
-            .padding(.vertical, 50)
+            .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
-            .disabled(viewModel.workspaceName.isEmpty)
         }
     }
     
