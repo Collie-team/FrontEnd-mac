@@ -22,10 +22,18 @@ final class SettingsViewModel: ObservableObject {
     
     @Published var businessUsersList: [BusinessUser] = []
     
-    @Published var modelList: [Model] = []
+    @Published var modelList: [Model] = [] {
+        didSet {
+            workspaceAdmins = modelList.filter({$0.businessUser.role == .admin}).count
+        }
+    }
     
     @Published var selectedOption: SettingsOptions
     @Published var selectedUserModel: UserModel?
+    
+    @Published var newUserPopupEnabled = false
+    
+    @Published var workspaceAdmins: Int = 0
     
     @Published var businessCode: String = "Carregando..."
     
@@ -92,6 +100,13 @@ final class SettingsViewModel: ObservableObject {
         apiSubscriptionService.redefineBusinessCode(authenticationToken: "", businessId: businessId) { businessKey in
             self.businessCode = businessKey.code
         }
+    }
+    
+    func updateAdminCount(businessUser: BusinessUser) {
+        if let i = self.businessUsersList.firstIndex(where: {$0.userId == businessUser.userId}) {
+            self.businessUsersList[i] = businessUser
+        }
+        bind()
     }
 }
 

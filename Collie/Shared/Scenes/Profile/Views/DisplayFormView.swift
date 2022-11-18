@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DisplayFormView: View {
+    @Binding var rootViewModelUser: UserModel
+    @Binding var rootViewModelBusinessUser: BusinessUser?
     @State var currentUser: UserModel
     @Binding var editingMode: Bool
     var body: some View {
@@ -40,7 +42,7 @@ struct DisplayFormView: View {
                     Text("Cargo")
                         .font(.system(size: 15))
                     HStack {
-                        Text(currentUser.jobDescription)
+                        Text(currentUser.jobDescription == "" ? "Sem cargo" : currentUser.jobDescription)
                             .font(.system(size: 17, weight: .bold))
                         Spacer()
                     }
@@ -51,7 +53,7 @@ struct DisplayFormView: View {
                     Text("Breve descrição")
                         .font(.system(size: 15))
                     HStack {
-                        Text(currentUser.personalDescription)
+                        Text(currentUser.personalDescription == "" ? "Sem descrição" : currentUser.personalDescription)
                             .font(.system(size: 17, weight: .bold))
                         Spacer()
                     }
@@ -59,18 +61,18 @@ struct DisplayFormView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    Text("Data de entrada")
-                        .font(.system(size: 15))
-                    HStack {
-                        Text("17/04/2022")
-                            .font(.system(size: 17))
-                        Spacer()
-                    }
-                    Divider()
+//                    Text("Data de entrada")
+//                        .font(.system(size: 15))
+//                    HStack {
+//                        Text("17/04/2022")
+//                            .font(.system(size: 17))
+//                        Spacer()
+//                    }
+//                    Divider()
                     Text("Papel")
                         .font(.system(size: 15))
                     HStack {
-                        Text("Colaborador")
+                        Text(rootViewModelBusinessUser!.role.getRoleText())
                             .font(.system(size: 17))
                         Spacer()
                     }
@@ -78,11 +80,14 @@ struct DisplayFormView: View {
             }
             .frame(maxWidth: 600)
         }
+        .onChange(of: rootViewModelUser) { updatedUser in
+            currentUser = updatedUser
+        }
     }
 }
 
 struct DisplayFormView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayFormView(currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
+        DisplayFormView(rootViewModelUser: .constant(UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")), rootViewModelBusinessUser: .constant(BusinessUser(userId: "", businessId: "", role: .admin, userTasks: [])), currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
     }
 }

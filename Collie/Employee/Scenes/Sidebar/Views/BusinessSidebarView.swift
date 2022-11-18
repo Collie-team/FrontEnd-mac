@@ -50,6 +50,7 @@ struct BusinessSidebarView: View {
                     BusinessJourneyListView()
                 case .teamList:
                     TeamListView()
+                        .environmentObject(viewModel)
                 case .settings:
                     SettingsView()
                 case .profile:

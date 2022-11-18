@@ -27,7 +27,12 @@ final class RootViewModel: ObservableObject {
     
     var authenticationToken: String?
     var availableBusiness: [Business] = []
-    var availableBusinessUsers: [BusinessUser] = []
+    var availableBusinessUsers: [BusinessUser] = [] {
+        didSet{
+            
+            print("root view buser:", availableBusinessUsers.map{$0.userId})
+        }
+    }
     
     init() {
         self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], categories: [], events: [])
@@ -94,9 +99,12 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    func updateBusinessUser(_ businessUser: BusinessUser) {
-        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUser in
-            self.currentBusinessUser = businessUser
+    func updateBusinessUser(_ businessUser: BusinessUser, _ completion: @escaping (BusinessUser) -> () = {_ in }) {
+        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUserResponse in
+            if self.currentBusinessUser!.userId == businessUser.userId {
+                self.currentBusinessUser = businessUserResponse
+            }
+            completion(businessUser)
         })
     }
     
@@ -111,6 +119,13 @@ final class RootViewModel: ObservableObject {
     func updateUser(userData: UserModel) {
         userSubscriptionService.updateUser(authenticationToken: "", userData: userData) { userModel in
             self.currentUser = userModel
+        }
+    }
+    
+    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
+        let emailService = APISubscriptionService()
+        emailService.sendInviteEmail(authenticationToken: "", business: businessSelected, email: userToAdd.email) {
+            // Prompt success
         }
     }
 }

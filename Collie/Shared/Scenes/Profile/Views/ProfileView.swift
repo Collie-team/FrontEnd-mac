@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @State var editingMode: Bool = false
+    @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
     var body: some View {
         VStack(spacing: 20) {
             HStack {
@@ -31,32 +32,68 @@ struct ProfileView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Foto de Perfil")
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.collieVermelho)
-                        .frame(width: 240, height: 240)
-                        .overlay(
-                            ZStack {
-                                Image(systemName: "camera.fill")
-                                    .foregroundColor(Color.collieRoxo)
-                                    .font(.system(size: 28))
-                            }
-                            .frame(width: 60, height: 60)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                    if let url = URL(string: rootViewModel.currentUser.imageURL) {
+                        AnimatedImage(url: url)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 240, height: 240)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                ZStack {
+                                    Image(systemName: "camera.fill")
+                                        .foregroundColor(Color.collieRoxo)
+                                        .font(.system(size: 28))
+                                }
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.white)
+                                    .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                    )
+                                    .offset(x: 100, y: 100)
                             )
-                            .offset(x: 100, y: 100)
-                        )
+                            .onTapGesture {
+                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
+                                    rootViewModel.currentUser.imageURL = url
+                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
+                                    print(url)
+                                })
+                            }
+                    } else {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.collieVermelho)
+                            .frame(width: 240, height: 240)
+                            .overlay(
+                                ZStack {
+                                    Image(systemName: "camera.fill")
+                                        .foregroundColor(Color.collieRoxo)
+                                        .font(.system(size: 28))
+                                }
+                                    .frame(width: 60, height: 60)
+                                    .background(Color.white)
+                                    .cornerRadius(8)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
+                                    )
+                                    .offset(x: 100, y: 100)
+                            )
+                            .onTapGesture {
+                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
+                                    rootViewModel.currentUser.imageURL = url
+                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
+                                    print(url)
+                                })
+                            }
+                    }
                 }
                 Spacer()
-                if editingMode {
-                    EditingFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
+                if viewModel.editingMode {
+                    EditingFormView(rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 } else {
-                    DisplayFormView(currentUser: rootViewModel.currentUser, editingMode: $editingMode)
+                    DisplayFormView(rootViewModelUser: $rootViewModel.currentUser, rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
                         .preferredColorScheme(.dark)
                         .frame(maxHeight: 600)
                 }
@@ -79,7 +116,9 @@ struct ProfileView: View {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 28))
                         .foregroundColor(Color.collieTextFieldBorder)
-                    Button(action: {}) {
+                    Button(action: {
+                        viewModel.resetPassword(email: rootViewModel.currentUser.email)
+                    }) {
                         Text("Enviar e-mail para alterar senha")
                             .padding(.horizontal, 24)
                             .padding(.vertical, 12)

@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct NewUserFormsView: View {
-    @EnvironmentObject var viewModel: TeamListViewModel
+    @EnvironmentObject var rootViewModel: RootViewModel
     @State var newUser = UserModel(name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     @Environment(\.presentationMode) var presentationMode
     @State var showList = false
     @State var selectedRole: BusinessUserRoles = .employee
-    
-    func getRoleLabel(role: BusinessUserRoles) -> String {
-        switch role {
-        case .admin:
-            return "Administrador"
-        case .manager:
-            return "Gestor"
-        case .employee:
-            return "Colaborador"
-        }
-    }
     
     func getItemHeight() -> CGFloat {
         if showList {
@@ -92,7 +81,7 @@ struct NewUserFormsView: View {
                         }) {
                             VStack(spacing: 0) {
                                 HStack {
-                                    Text(getRoleLabel(role: selectedRole))
+                                    Text(selectedRole.getRoleText())
                                         .padding(.vertical)
                                     Spacer()
                                     Image(systemName: showList ? "chevron.up" : "chevron.down")
@@ -114,7 +103,7 @@ struct NewUserFormsView: View {
                                     .padding(.horizontal)
                                 ForEach(BusinessUserRoles.allCases, id:\.self) { role in
                                     HStack {
-                                        Text(getRoleLabel(role: role))
+                                        Text(role.getRoleText())
                                             .onTapGesture {
                                                 selectedRole = role
                                                 showList.toggle()
@@ -144,7 +133,7 @@ struct NewUserFormsView: View {
                     .cornerRadius(8)
                     .disabled(verifyEmail(email: newUser.email))
                     .onTapGesture {
-                        viewModel.inviteUser(userToAdd: newUser, role: selectedRole)
+                        rootViewModel.inviteUser(userToAdd: newUser, role: selectedRole)
                     }
             }
             .padding(.horizontal, 36)
@@ -161,6 +150,6 @@ struct NewUserFormsView: View {
 struct NewUserFormsView_Previews: PreviewProvider {
     static var previews: some View {
         NewUserFormsView()
-            .environmentObject(TeamListViewModel())
+            .environmentObject(RootViewModel())
     }
 }
