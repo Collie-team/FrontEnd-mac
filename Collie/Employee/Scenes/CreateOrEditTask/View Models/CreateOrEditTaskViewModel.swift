@@ -35,46 +35,6 @@ final class CreateOrEditTaskViewModel: ObservableObject {
         taskName.isEmpty
     }
     
-    func fetchUsers(business: Business) {
-        currentBusiness = business
-        teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
-            self.userModelList = userModels
-            
-            // Load chosen user Models
-            self.fetchOldUsersOnTask()
-        }
-    }
-    
-    func fetchOldUsersOnTask() {
-        self.chosenUserModels = userModelList.filter({ user in
-            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.taskId}) {
-                let isUserOnJourney = journey.userIds.contains(user.id)
-                return isUserOnJourney
-            } else {
-                return false
-            }
-        })
-        self.userModelList = userModelList.filter({ userModel in
-            !chosenUserModels.contains(userModel)
-        })
-        objectWillChange.send()
-    }
-    
-    func chooseUser(_ userModel: UserModel) {
-        chosenUserModels.append(userModel)
-        
-        if let index = userModelList.firstIndex(of: userModel) {
-            userModelList.remove(at: index)
-        }
-    }
-    
-    func removeUser(_ userModel: UserModel) {
-        if let index = chosenUserModels.firstIndex(of: userModel) {
-            chosenUserModels.remove(at: index)
-            userModelList.append(userModel)
-        }
-    }
-    
     func chooseCategory(_ taskCategory: TaskCategory) {
         if let oldSelectedCategory = selectedCategory {
             categoryList.append(oldSelectedCategory)

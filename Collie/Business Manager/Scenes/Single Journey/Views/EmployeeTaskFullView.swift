@@ -8,8 +8,8 @@ struct EmployeeTaskFullView: View {
     var handleClose: () -> ()
     var handleCheckToggle: () -> ()
     
-    var responsibleName: String = ""
-    var responsibleEmail: String = ""
+//    var responsibleName: String = ""
+//    var responsibleEmail: String = ""
     
     private let green = Color(red: 108/255, green: 217/255, blue: 125/255)
     
@@ -78,13 +78,13 @@ struct EmployeeTaskFullView: View {
                     Spacer()
                 }
                 
-                HStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                        .frame(width: 200)
-                    Text("\(responsibleName) \(responsibleEmail)")
-                        .font(.system(size: 16))
-                    Spacer()
-                }
+//                HStack {
+//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
+//                        .frame(width: 200)
+//                    Text("\(responsibleName) \(responsibleEmail)")
+//                        .font(.system(size: 16))
+//                    Spacer()
+//                }
                 
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")

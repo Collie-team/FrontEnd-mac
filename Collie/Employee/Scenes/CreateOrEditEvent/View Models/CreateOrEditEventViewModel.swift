@@ -62,14 +62,14 @@ final class CreateOrEditEventViewModel: ObservableObject {
         eventName.isEmpty
     }
     
-    func selectUser(_ userModel: UserModel) {
+    func selectUserModel(_ userModel: UserModel) {
         chosenUserModels.append(userModel)
         if let index = userModelList.firstIndex(where: { $0.id == userModel.id }) {
             userModelList.remove(at: index)
         }
     }
     
-    func removeUser(_ userModel: UserModel) {
+    func removeUserModel(_ userModel: UserModel) {
         if let index = chosenUserModels.firstIndex(where: { $0.id == userModel.id }) {
             chosenUserModels.remove(at: index)
             userModelList.append(userModel)
@@ -86,5 +86,29 @@ final class CreateOrEditEventViewModel: ObservableObject {
         if let index = categoryList.firstIndex(where: { $0.id == taskCategory.id }) {
             categoryList.remove(at: index)
         }
+    }
+    
+    func handleEventSave(journeyId: String, completion: (Business) -> ()) {
+        var updatedBusiness = currentBusiness
+        
+        let event = Event(
+            id: eventId ?? UUID().uuidString,
+            journeyId: journeyId,
+            name: eventName,
+            description: eventDescription,
+            contentLink: eventLink,
+            startDate: startDate,
+            endDate: endDate,
+            responsibleUserIds: [],
+            categoryId: selectedCategory?.id ?? ""
+        )
+        
+        if let eventIndex = updatedBusiness?.events.firstIndex(where: {$0.id == eventId}) {
+            updatedBusiness?.events[eventIndex] = event
+        } else {
+            updatedBusiness?.events.append(event)
+        }
+        
+        completion(updatedBusiness!)
     }
 }

@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct WorkspaceView: View {
-    @StateObject var viewModel = WorkspaceViewModel() // State to prevent reloading
+    // State to prevent reloading
+    @StateObject var viewModel = WorkspaceViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
+    
     var body: some View {
         ZStack {
             VStack {
@@ -35,8 +37,6 @@ struct WorkspaceView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.collieBranco.ignoresSafeArea())
             .onAppear {
-                // WARNING - GAMBIARRA CABULOSA
-                // TODO: Dependecy injection
                 viewModel.workspacesAvailable = rootViewModel.availableBusiness
                 viewModel.newWorkspaceHandler = rootViewModel.createWorkspace
                 viewModel.handleWorkspaceSelection = rootViewModel.handleWorkspaceSelection
@@ -52,104 +52,98 @@ struct WorkspaceView: View {
     var loginWorkspace: some View {
         VStack {
             VStack {
-                ZStack {
-                    Text("Entrar Workspace")
-                        .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
-                    HStack {
-                        Button(action: {
-                            if viewModel.workspacesAvailable.isEmpty {
-                                viewModel.workspaceViewState = .noWorkspacesFound
-                            } else {
-                                viewModel.workspaceViewState = .workspaceList
-                            }
-                        }) {
-                            Image(systemName: "arrow.left")
+                HStack {
+                    Button(action: {
+                        if viewModel.workspacesAvailable.isEmpty {
+                            viewModel.workspaceViewState = .noWorkspacesFound
+                        } else {
+                            viewModel.workspaceViewState = .workspaceList
                         }
-                        Spacer()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 21, weight: .bold))
+                            .frame(width: 48, height: 48)
+                            .modifier(CustomBorder())
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
                 }
                 
-                Spacer()
-                
                 VStack {
-                    Text("Digite o código do workspace enviado pelo e-mail:")
+                    Text("Qual é o código da sua empresa?")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
+                    
                     if viewModel.codeResponse != .none {
                         Text("\(Image(systemName: viewModel.codeResponse == .error ? "xmark.octagon.fill" : "checkmark.seal.fill")) \(viewModel.codeResponse.rawValue)")
-                            .font(.system(size: 12))
+                            .font(.system(size: 16))
                             .foregroundColor(viewModel.codeResponse == .error ? Color.collieVermelho : Color.collieVerde)
+                            .padding(.vertical)
                     }
                     
                     SimpleTextField(text: $viewModel.workspaceCode, showPlaceholderWhen: viewModel.workspaceCode.isEmpty, placeholderText: "Código do workspace")
                         .modifier(CustomBorder())
+                        .padding(.bottom, 32)
+                    
+                    WorkspaceButton(title: "entrar no workspace", action: {
+                        viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
+                            rootViewModel.availableBusiness = business
+                            rootViewModel.availableBusinessUsers = userBusiness
+                        }
+                    })
+                    .disabled(viewModel.workspaceCode.isEmpty)
                 }
                 .frame(width: 400)
-                
-                Spacer()
             }
-            .padding(.vertical)
-            .frame(height: 400)
+            .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
-            
-            WorkspaceButton(title: "Entrar", action: {
-                viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
-                    rootViewModel.availableBusiness = business
-                    rootViewModel.availableBusinessUsers = userBusiness
-                }
-            })
-            .disabled(viewModel.workspaceCode.isEmpty)
         }
     }
     
     var createWorkspaceForm: some View {
         VStack {
             VStack {
-                ZStack {
-                    Text("Criar Workspace")
-                        .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
-                    HStack {
-                        Button(action: {
-                            if viewModel.workspacesAvailable.isEmpty {
-                                viewModel.workspaceViewState = .noWorkspacesFound
-                            } else {
-                                viewModel.workspaceViewState = .workspaceList
-                            }
-                        }) {
-                            Image(systemName: "arrow.left")
+                HStack {
+                    Button(action: {
+                        if viewModel.workspacesAvailable.isEmpty {
+                            viewModel.workspaceViewState = .noWorkspacesFound
+                        } else {
+                            viewModel.workspaceViewState = .workspaceList
                         }
-                        Spacer()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: 21, weight: .bold))
+                            .frame(width: 48, height: 48)
+                            .modifier(CustomBorder())
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
                 }
                 
-                Spacer()
-                
                 VStack {
-                    HStack {
-                        Text("Qual é o nome da sua empresa?")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(.black)
-                        Spacer()
-                    }
+                    Text("Qual o nome da sua empresa ou equipe?")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
                     
-                    SimpleTextField(text: $viewModel.workspaceName, showPlaceholderWhen: viewModel.workspaceName.isEmpty, placeholderText: "Nome da empresa")
+                    SimpleTextField(text: $viewModel.workspaceName, showPlaceholderWhen: viewModel.workspaceName.isEmpty, placeholderText: "Nome do workspace")
                         .modifier(CustomBorder())
                 }
                 .frame(width: 400)
+                .padding(.bottom, 32)
                 
-                Spacer()
+                WorkspaceButton(title: "criar workspace", action: {
+                    viewModel.createNewWorkspace()
+                })
+                .disabled(viewModel.workspaceName.isEmpty)
             }
-            .padding(.vertical)
-            .frame(height: 400)
+            .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
-            
-            WorkspaceButton(title: "salvar", action: {
-                viewModel.createNewWorkspace()
-            })
-            .disabled(viewModel.workspaceName.isEmpty)
         }
     }
     
@@ -173,23 +167,64 @@ struct WorkspaceView: View {
     
     var noWorkspacesFoundView: some View {
         VStack {
-            VStack(spacing: 16) {
-                Text("Ih, parece que você ainda não faz parte de nenhum workspace.")
-                    .font(.system(size: 34, weight: .bold))
-                Text("Workspaces auxiliam no gerenciamento do time da sua empresa, crie e gerencie seu espaço já!")
-                    .font(.system(size: 16, weight: .regular))
+            VStack {
+                VStack(spacing: 16) {
+                    Text("Olá! Como você deseja ingressar na plataforma?")
+                        .font(.system(size: 34, weight: .bold))
+                        .lineLimit(1)
+                    Text("A plataforma é dividida em workspaces, que é a sua empresa no espaço virtual!")
+                        .font(.system(size: 16, weight: .regular))
+                        .lineLimit(1)
+                }
+                .padding(.bottom, 40)
+                
+                HStack(alignment: .top) {
+                    Spacer()
+                    
+                    VStack(spacing: 20) {
+                        WorkspaceOptionView(systemImageName: "link.badge.plus", title: "Entrar através de um código") {
+                            viewModel.workspaceViewState = .loginWorkspace
+                        }
+                        
+                        Text("Se você está entrando em um novo trabalho entre com o código fornecido pela empresa.")
+                            .foregroundColor(.black)
+                            .font(.system(size: 17))
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: 400)
+                            .minimumScaleFactor(0.5)
+                    }
+                    
+                    Spacer()
+                    
+                    RoundedRectangle(cornerRadius: 50)
+                        .frame(width: 2)
+                        .frame(maxHeight: 275)
+                        .foregroundColor(.collieCinzaBorda)
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 20) {
+                        WorkspaceOptionView(systemImageName: "plus", title: "Criar workspace") {
+                            viewModel.workspaceViewState = .createForm
+                        }
+                        
+                        Text("Caso você esteja implementando a Collie na sua empresa, crie um workspace!")
+                            .foregroundColor(.black)
+                            .font(.system(size: 17))
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: 400)
+                            .minimumScaleFactor(0.5)
+                    }
+                    
+                    Spacer()
+                }
             }
             .foregroundColor(.black)
             .multilineTextAlignment(.center)
-            .frame(height: 400)
+            .padding(.vertical, 50)
             .modifier(WorkspaceCardModifier())
-            
-            WorkspaceButton(title: "criar workspace", action: {
-                viewModel.workspaceViewState = .createForm
-            })
-            WorkspaceButton(title: "entrar em workspace", action: {
-                viewModel.workspaceViewState = .loginWorkspace
-            })
         }
     }
     
@@ -197,32 +232,27 @@ struct WorkspaceView: View {
         VStack {
             VStack {
                 VStack(spacing: 16) {
-                    Text("Selecione seu workspace e encontre seu time")
+                    Text("Olá! Como você deseja começar?")
                         .font(.system(size: 34, weight: .bold))
-                    Text("Workspaces auxiliam no gerenciamento no time da sua empresa, crie e gerencie seu espaço já!")
+                        .lineLimit(1)
+                    Text("Workspaces são a representação virtual da empresa! Se você está entrando em um novo trabalho entre com o código fornecido pela empresa. \nCaso você esteja implementando a Collie na sua empresa, crie um workspace!")
                         .font(.system(size: 16, weight: .regular))
+                        .multilineTextAlignment(.center)
                 }
                 .foregroundColor(.black)
                 .padding(.bottom, 32)
                 
-                if viewModel.workspacesAvailable.count > 3 {
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 32) {
-                            Spacer()
-                            ForEach(viewModel.workspacesAvailable) { business in
-                                BusinessCard(business: business)
-                                    .onTapGesture {
-                                        viewModel.selectWorkspace(business)
-                                    }
-                                    .contentShape(Rectangle())
-                            }
-                            Spacer()
-                        }
-                        .padding(2)
-                    }
-                } else {
-                    HStack(spacing: 32) {
+                ScrollView(.horizontal) {
+                    HStack(spacing: 16) {
                         Spacer()
+                        WorkspaceOptionView(systemImageName: "link.badge.plus", title: "Entrar através de um código") {
+                            viewModel.workspaceViewState = .loginWorkspace
+                        }
+                        
+                        WorkspaceOptionView(systemImageName: "plus", title: "Criar workspace") {
+                            viewModel.workspaceViewState = .createForm
+                        }
+                        
                         ForEach(viewModel.workspacesAvailable) { business in
                             BusinessCard(business: business)
                                 .onTapGesture {
@@ -233,17 +263,11 @@ struct WorkspaceView: View {
                         Spacer()
                     }
                     .padding(2)
+                    .padding(.bottom, 30)
                 }
-                
             }
+            .padding(.vertical, 50)
             .modifier(WorkspaceCardModifier())
-            
-            WorkspaceButton(title: "criar novo workspace") {
-                viewModel.workspaceViewState = .createForm
-            }
-            WorkspaceButton(title: "entrar em workspace", action: {
-                viewModel.workspaceViewState = .loginWorkspace
-            })
         }
     }
 }

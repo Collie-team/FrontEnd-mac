@@ -84,24 +84,24 @@ struct CreateOrEditTaskView: View {
                         .cornerRadius(8)
                 }
                 
-                VStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                    
-                    UserSelectionDropdown(
-                        showList: $viewModel.showUserList,
-                        label: "Escolha um responsável",
-                        allUsers: viewModel.userModelList,
-                        selectedUsers: viewModel.chosenUserModels,
-                        allUsersScrollHeight: getAllUsersScrollHeight(),
-                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
-                        handleUserSelection: { user in
-                            viewModel.chooseUser(user)
-                        },
-                        handleUserRemove: { user in
-                            viewModel.removeUser(user)
-                        }
-                    )
-                }
+//                VStack {
+//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
+//
+//                    UserSelectionDropdown(
+//                        showList: $viewModel.showUserList,
+//                        label: "Escolha um responsável",
+//                        allUsers: viewModel.userModelList,
+//                        selectedUsers: viewModel.chosenUserModels,
+//                        allUsersScrollHeight: getAllUsersScrollHeight(),
+//                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
+//                        handleUserSelection: { user in
+//                            viewModel.chooseUser(user)
+//                        },
+//                        handleUserRemove: { user in
+//                            viewModel.removeUser(user)
+//                        }
+//                    )
+//                }
                 
                 VStack {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
@@ -114,18 +114,19 @@ struct CreateOrEditTaskView: View {
                     CategorySelectionDropdown(
                         showList: $viewModel.showCategoryList,
                         chosenCategory: $viewModel.selectedCategory,
-                        taskCategoriesList: rootViewModel.businessSelected.categories,
+                        taskCategoriesList: rootViewModel.businessSelected.categories.filter({ $0.id != viewModel.selectedCategory?.id}),
                         maxScrollHeight: getAllCategoriesScrollHeight(),
                         handleCategorySelection: viewModel.chooseCategory
                     )
                 }
 
                 SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
-                    viewModel.handleTaskSave(journeyId: journeyId, completion: { business in
-                        rootViewModel.updateBusiness(business, replaceBusiness: true)
-                    })
-                    handleClose()
-                })
+                        viewModel.handleTaskSave(journeyId: journeyId, completion: { business in
+                            rootViewModel.updateBusiness(business, replaceBusiness: true)
+                        })
+                        handleClose()
+                    }
+                )
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
