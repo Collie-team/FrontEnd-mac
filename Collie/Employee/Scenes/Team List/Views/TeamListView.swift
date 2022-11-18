@@ -1,4 +1,5 @@
 import SwiftUI
+import SDWebImageSwiftUI
 
 enum ListComponents: CGFloat {
     case tasks = 0.1
@@ -51,25 +52,46 @@ struct TeamListView: View {
                                         }
                                         .offset(x: 7, y: -7)
                                     )
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(.white)
+                                if rootViewModel.currentUser.imageURL != "", let url = URL(string: rootViewModel.currentUser.imageURL) {
+                                    AnimatedImage(url: url)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                         .frame(width: 36, height: 36)
-                                    Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
-                                        .font(.system(size: 14))
-                                }
-                                .onTapGesture {
-                                    viewModel.profileDetailsShowing.toggle()
-                                }
-                                .popover(isPresented: $viewModel.profileDetailsShowing,
-                                         attachmentAnchor: .point(.bottomTrailing),   // here !
-                                         arrowEdge: .bottom) {
-                                    ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, handleLogout: {
-                                        rootViewModel.navigationState = .authentication
-                                    }, navigateToProfileView: {
-                                        // TODO: Resetar rootView, e outras variaveis
-                                        businessSidebarViewModel.selectedItem = .init(option: .profile)
-                                    })
+                                        .cornerRadius(18)
+                                    .onTapGesture {
+                                        viewModel.profileDetailsShowing.toggle()
+                                    }
+                                    .popover(isPresented: $viewModel.profileDetailsShowing,
+                                             attachmentAnchor: .point(.bottomTrailing),   // here !
+                                             arrowEdge: .bottom) {
+                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
+                                            rootViewModel.navigationState = .authentication
+                                        }, navigateToProfileView: {
+                                            // TODO: Resetar rootView, e outras variaveis
+                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
+                                        })
+                                    }
+                                } else {
+                                    ZStack {
+                                        Circle()
+                                            .foregroundColor(.white)
+                                            .frame(width: 36, height: 36)
+                                        Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
+                                            .font(.system(size: 14))
+                                    }
+                                    .onTapGesture {
+                                        viewModel.profileDetailsShowing.toggle()
+                                    }
+                                    .popover(isPresented: $viewModel.profileDetailsShowing,
+                                             attachmentAnchor: .point(.bottomTrailing),   // here !
+                                             arrowEdge: .bottom) {
+                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
+                                            rootViewModel.navigationState = .authentication
+                                        }, navigateToProfileView: {
+                                            // TODO: Resetar rootView, e outras variaveis
+                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
+                                        })
+                                    }
                                 }
                             }
                             HStack {
@@ -143,14 +165,23 @@ struct TeamListView: View {
                         
                         ForEach(viewModel.teamListUsers) { user in
                             HStack(spacing: 0) {
-                                ZStack {
-                                    Circle()
+                                if user.imageURL != "", let url = URL(string: user.imageURL) {
+                                    AnimatedImage(url: url)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                         .frame(width: 48, height: 48)
-                                        .foregroundColor(.collieRosaClaro)
-                                    Text("\(getNameLetters(fullName: user.name))")
-                                        .font(.system(size: 16, weight: .bold, design: .default))
+                                        .cornerRadius(24)
+                                        .padding(.trailing)
+                                } else {
+                                    ZStack {
+                                        Circle()
+                                            .frame(width: 48, height: 48)
+                                            .foregroundColor(.collieRosaClaro)
+                                        Text("\(getNameLetters(fullName: user.name))")
+                                            .font(.system(size: 16, weight: .bold, design: .default))
+                                    }
+                                    .padding(.trailing)
                                 }
-                                .padding(.trailing)
                                 
                                 GeometryReader { geometry in
                                     HStack(alignment: .center, spacing: 0) {

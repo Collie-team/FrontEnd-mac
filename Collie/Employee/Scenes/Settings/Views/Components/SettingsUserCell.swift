@@ -10,6 +10,7 @@ struct SettingsUserCell: View {
         HStack(alignment: .center, spacing: 0) {
             UserIconView(user: model.userModel)
                 .frame(width: 40, height: 40)
+                .cornerRadius(20)
             .padding(.trailing)
 
             GeometryReader { geometry in

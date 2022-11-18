@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
@@ -31,8 +32,8 @@ struct ProfileView: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     Text("Foto de Perfil")
-                    if let image = viewModel.image {
-                        Image(nsImage: image)
+                    if let url = URL(string: rootViewModel.currentUser.imageURL) {
+                        AnimatedImage(url: url)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 240, height: 240)
@@ -52,7 +53,11 @@ struct ProfileView: View {
                                     .offset(x: 100, y: 100)
                             )
                             .onTapGesture {
-                                viewModel.openFileSelection()
+                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
+                                    rootViewModel.currentUser.imageURL = url
+                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
+                                    print(url)
+                                })
                             }
                     } else {
                         RoundedRectangle(cornerRadius: 8)
@@ -74,7 +79,11 @@ struct ProfileView: View {
                                     .offset(x: 100, y: 100)
                             )
                             .onTapGesture {
-                                viewModel.openFileSelection()
+                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
+                                    rootViewModel.currentUser.imageURL = url
+                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
+                                    print(url)
+                                })
                             }
                     }
                 }

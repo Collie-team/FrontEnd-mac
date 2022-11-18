@@ -11,6 +11,7 @@ import SwiftUI
 class ProfileViewModel: ObservableObject {
     @Published var editingMode: Bool = false
     @Published var image: NSImage?
+    let firebaseStorageService = FirebaseStorageService()
     
     private let authenticationService = AuthenticationService()
     
@@ -18,7 +19,7 @@ class ProfileViewModel: ObservableObject {
         authenticationService.sendPasswordReset(withEmail: email)
     }
     
-    func openFileSelection() {
+    func openFileSelection(userId: String, handleImageUpload: @escaping (String) -> ()) {
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Select File"
         openPanel.allowsMultipleSelection = false
@@ -29,7 +30,12 @@ class ProfileViewModel: ObservableObject {
         openPanel.begin { [self] (result) -> Void in
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 let selectedPath = openPanel.url!.path
-                self.image = NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!
+                firebaseStorageService.upload(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, userId: userId)
+                firebaseStorageService.loadProfileImage(userId: userId) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        handleImageUpload(url)
+                    }
+                }
             }
         }
     }
