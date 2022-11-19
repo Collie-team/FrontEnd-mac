@@ -38,20 +38,20 @@ struct TeamListView: View {
                         Spacer()
                         VStack(alignment: .trailing) {
                             HStack {
-                                Image(systemName: "bell")
-                                    .foregroundColor(Color.collieRoxo)
-                                    .font(.system(size: 16, weight: .semibold))
-                                    .padding()
-                                    .overlay(
-                                        ZStack {
-                                            Circle()
-                                                .frame(width: 14, height: 14)
-                                                .foregroundColor(.red)
-                                            Text("4")
-                                                .font(.system(size: 10))
-                                        }
-                                        .offset(x: 7, y: -7)
-                                    )
+//                                Image(systemName: "bell")
+//                                    .foregroundColor(Color.collieRoxo)
+//                                    .font(.system(size: 16, weight: .semibold))
+//                                    .padding()
+//                                    .overlay(
+//                                        ZStack {
+//                                            Circle()
+//                                                .frame(width: 14, height: 14)
+//                                                .foregroundColor(.red)
+//                                            Text("4")
+//                                                .font(.system(size: 10))
+//                                        }
+//                                        .offset(x: 7, y: -7)
+//                                    )
                                 if rootViewModel.currentUser.imageURL != "", let url = URL(string: rootViewModel.currentUser.imageURL) {
                                     AnimatedImage(url: url)
                                         .resizable()

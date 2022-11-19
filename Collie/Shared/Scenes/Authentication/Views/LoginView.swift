@@ -80,7 +80,7 @@ struct LoginView: View {
             }
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
-            .disabled(!viewModel.loginEnabled)
+            .disabled(!viewModel.loginEnabled || viewModel.loadingState != .waiting)
         }
         .foregroundColor(.black)
         .padding(.horizontal,60)

@@ -109,7 +109,7 @@ struct SignupView: View {
             }
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
-            .disabled(!viewModel.signupEnabled)
+            .disabled(!viewModel.signupEnabled || viewModel.loadingState != .waiting)
         }
         .foregroundColor(.black)
         .padding(.horizontal,60)

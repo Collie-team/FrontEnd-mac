@@ -17,8 +17,6 @@ struct CollieApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ProfileView()
-//                .environmentObject(RootViewModel())
             RootView()
 //            ProfileView()
 //            LoadingView()

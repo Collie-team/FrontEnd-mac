@@ -62,6 +62,7 @@ struct AuthenticationView: View {
             .padding(.top, 36)
             .background(Color.collieBranco)
         }
+        .overlay(viewModel.loadingState == .fetchingData ? LoadingView() : nil)
     }
 }
 
