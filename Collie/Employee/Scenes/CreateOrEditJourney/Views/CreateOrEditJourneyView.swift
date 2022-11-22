@@ -73,7 +73,11 @@ struct CreateOrEditJourneyView: View {
                     )
                 }
                 
-                SendButton(label: "salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
+                DefaultButton(
+                    label: "salvar jornada",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled()
+                ) {
                     viewModel.handleJourneySave { business in
                         rootViewModel.updateBusiness(business, replaceBusiness: true)
                     }

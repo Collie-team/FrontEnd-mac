@@ -20,6 +20,9 @@ struct EmployeeJourneyListView: View {
             }
         }
         .navigationTitle("Suas jornadas")
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
     }
     
@@ -29,7 +32,7 @@ struct EmployeeJourneyListView: View {
                 VStack {
                     HStack {
                         Text("Suas jornadas")
-                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .collieFont(textStyle: .largeTitle)
                             .foregroundColor(Color.black)
                         Spacer()
                         
@@ -50,8 +53,6 @@ struct EmployeeJourneyListView: View {
                 }
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 32)
     }
     
     var singleJourney: some View {

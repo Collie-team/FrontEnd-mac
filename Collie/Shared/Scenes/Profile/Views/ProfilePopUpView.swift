@@ -25,18 +25,18 @@ struct ProfilePopUpView: View {
                         .overlay(
                             Text(name.split(separator: " ")[0].description.uppercased().prefix(1) + name.split(separator: " ")[1].description.uppercased().prefix(1))
                                 .foregroundColor(.white)
-                                .font(.system(size: 22))
+                                .collieFont(textStyle: .smallTitle)
                         )
                 }
                 VStack(alignment: .leading, spacing: 4) {
                     Text(name)
-                        .font(.system(size: 17, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .foregroundColor(.black)
                     Text(jobDescription == "" ? "Sem cargo" : jobDescription)
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black.opacity(0.6))
                     Text(email)
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black.opacity(0.6))
                     
                 }
@@ -47,7 +47,7 @@ struct ProfilePopUpView: View {
                     handleLogout()
                 }) {
                     Text("Sair \(Image(systemName: "arrow.uturn.right"))")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black.opacity(0.5))
                 }
                 .buttonStyle(.plain)
@@ -56,7 +56,7 @@ struct ProfilePopUpView: View {
                     navigateToProfileView()
                 }) {
                     Text("Editar perfil \(Image(systemName: "square.and.pencil"))")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(Color.collieLilas)
                 }
                 .buttonStyle(.plain)

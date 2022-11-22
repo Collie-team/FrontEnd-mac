@@ -61,7 +61,7 @@ struct WorkspaceView: View {
                         }
                     }) {
                         Image(systemName: "arrow.left")
-                            .font(.system(size: 21, weight: .bold))
+                            .collieFont(textStyle: .smallTitle)
                             .frame(width: 48, height: 48)
                             .modifier(CustomBorder())
                             .contentShape(Rectangle())
@@ -71,32 +71,37 @@ struct WorkspaceView: View {
                     Spacer()
                 }
                 
-                VStack {
+                VStack(spacing: 16) {
                     Text("Qual é o código da sua empresa?")
-                        .font(.system(size: 24, weight: .bold))
+                        .collieFont(textStyle: .title)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                     
                     if viewModel.codeResponse != .none {
                         Text("\(Image(systemName: viewModel.codeResponse == .error ? "xmark.octagon.fill" : "checkmark.seal.fill")) \(viewModel.codeResponse.rawValue)")
-                            .font(.system(size: 16))
+                            .collieFont(textStyle: .regularText)
                             .foregroundColor(viewModel.codeResponse == .error ? Color.collieVermelho : Color.collieVerde)
-                            .padding(.vertical)
                     }
                     
                     SimpleTextField(text: $viewModel.workspaceCode, showPlaceholderWhen: viewModel.workspaceCode.isEmpty, placeholderText: "Código do workspace")
                         .modifier(CustomBorder())
-                        .padding(.bottom, 32)
+                        .padding(.bottom)
                     
-                    WorkspaceButton(title: "entrar no workspace", action: {
-                        viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
-                            rootViewModel.availableBusiness = business
-                            rootViewModel.availableBusinessUsers = userBusiness
+                    DefaultButton(
+                        label: "entrar no workspace",
+                        backgroundColor: .collieAzulEscuro,
+                        isButtonDisabled: viewModel.workspaceCode.isEmpty,
+                        handleSend: {
+                            viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
+                                rootViewModel.availableBusiness = business
+                                rootViewModel.availableBusinessUsers = userBusiness
+                            }
                         }
-                    })
-                    .disabled(viewModel.workspaceCode.isEmpty)
+                    )
                 }
-                .frame(width: 400)
+                .frame(width: 450)
             }
             .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
@@ -115,7 +120,7 @@ struct WorkspaceView: View {
                         }
                     }) {
                         Image(systemName: "arrow.left")
-                            .font(.system(size: 21, weight: .bold))
+                            .collieFont(textStyle: .smallTitle)
                             .frame(width: 48, height: 48)
                             .modifier(CustomBorder())
                             .contentShape(Rectangle())
@@ -125,22 +130,28 @@ struct WorkspaceView: View {
                     Spacer()
                 }
                 
-                VStack {
+                VStack(spacing: 16) {
                     Text("Qual o nome da sua empresa ou equipe?")
-                        .font(.system(size: 24, weight: .bold))
+                        .collieFont(textStyle: .title)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                     
                     SimpleTextField(text: $viewModel.workspaceName, showPlaceholderWhen: viewModel.workspaceName.isEmpty, placeholderText: "Nome do workspace")
                         .modifier(CustomBorder())
+                        .padding(.bottom)
+                    
+                    DefaultButton(
+                        label: "criar workspace",
+                        backgroundColor: .collieAzulEscuro,
+                        isButtonDisabled: viewModel.workspaceName.isEmpty,
+                        handleSend: {
+                            viewModel.createNewWorkspace()
+                        }
+                    )
                 }
-                .frame(width: 400)
-                .padding(.bottom, 32)
-                
-                WorkspaceButton(title: "criar workspace", action: {
-                    viewModel.createNewWorkspace()
-                })
-                .disabled(viewModel.workspaceName.isEmpty)
+                .frame(width: 450)
             }
             .padding(.bottom, 50)
             .modifier(WorkspaceCardModifier())
@@ -158,7 +169,7 @@ struct WorkspaceView: View {
                 LoadingIndicator()
                     .frame(width: 100, height: 100)
                 Text("Carregando...")
-                    .font(.system(size: 18, weight: .medium))
+                    .collieFont(textStyle: .smallTitle)
             }
             
         }
@@ -170,10 +181,10 @@ struct WorkspaceView: View {
             VStack {
                 VStack(spacing: 16) {
                     Text("Olá! Como você deseja ingressar na plataforma?")
-                        .font(.system(size: 34, weight: .bold))
+                        .collieFont(textStyle: .largeTitle)
                         .lineLimit(1)
                     Text("A plataforma é dividida em workspaces, que é a sua empresa no espaço virtual!")
-                        .font(.system(size: 16, weight: .regular))
+                        .collieFont(textStyle: .regularText)
                         .lineLimit(1)
                 }
                 .padding(.bottom, 40)
@@ -188,10 +199,10 @@ struct WorkspaceView: View {
                         
                         Text("Se você está entrando em um novo trabalho entre com o código fornecido pela empresa.")
                             .foregroundColor(.black)
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .regularText)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
-                            .frame(maxWidth: 400)
+                            .frame(maxWidth: 450)
                             .minimumScaleFactor(0.5)
                     }
                     
@@ -211,7 +222,7 @@ struct WorkspaceView: View {
                         
                         Text("Caso você esteja implementando a Collie na sua empresa, crie um workspace!")
                             .foregroundColor(.black)
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .regularText)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: 400)
@@ -233,10 +244,10 @@ struct WorkspaceView: View {
             VStack {
                 VStack(spacing: 16) {
                     Text("Olá! Como você deseja começar?")
-                        .font(.system(size: 34, weight: .bold))
+                        .collieFont(textStyle: .largeTitle)
                         .lineLimit(1)
                     Text("Workspaces são a representação virtual da empresa! Se você está entrando em um novo trabalho entre com o código fornecido pela empresa. \nCaso você esteja implementando a Collie na sua empresa, crie um workspace!")
-                        .font(.system(size: 16, weight: .regular))
+                        .collieFont(textStyle: .regularText)
                         .multilineTextAlignment(.center)
                 }
                 .foregroundColor(.black)

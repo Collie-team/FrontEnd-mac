@@ -34,7 +34,7 @@ struct BusinessSidebarView: View {
                 .foregroundColor(.white)
                 .padding(.trailing)
                 .frame(height: 50)
-                .font(.system(size: 18, weight: .regular))
+                .collieFont(textStyle: .regularText)
                 .background(Color.collieAzulEscuro)
                 .onTapGesture {
                     rootViewModel.navigationState = .workspace

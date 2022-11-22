@@ -21,7 +21,7 @@ struct DisplayFormView: View {
                 }) {
                     Text("Editar \(Image(systemName: "square.and.pencil"))")
                         .foregroundColor(Color.collieRoxo)
-                        .font(.system(size: 20))
+                        .collieFont(textStyle: .smallTitle)
                 }
                 .buttonStyle(.plain)
                 .contentShape(Rectangle())
@@ -29,10 +29,10 @@ struct DisplayFormView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("Nome do usuário")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.name)
-                            .font(.system(size: 22, weight: .bold))
+                            .collieFont(textStyle: .smallTitle)
                         Spacer()
                     }
                     Divider()
@@ -40,10 +40,10 @@ struct DisplayFormView: View {
                 VStack(alignment: .leading) {
                     
                     Text("Cargo")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.jobDescription == "" ? "Sem cargo" : currentUser.jobDescription)
-                            .font(.system(size: 17, weight: .bold))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
                     Divider()
@@ -51,10 +51,10 @@ struct DisplayFormView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Breve descrição")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.personalDescription == "" ? "Sem descrição" : currentUser.personalDescription)
-                            .font(.system(size: 17, weight: .bold))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
                     Divider()
@@ -62,18 +62,18 @@ struct DisplayFormView: View {
                 
                 VStack(alignment: .leading) {
 //                    Text("Data de entrada")
-//                        .font(.system(size: 15))
+//                        .collieFont(textStyle: .regularText)
 //                    HStack {
 //                        Text("17/04/2022")
-//                            .font(.system(size: 17))
+//                            .collieFont(textStyle: .regularText)
 //                        Spacer()
 //                    }
 //                    Divider()
                     Text("Papel")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(rootViewModelBusinessUser!.role.getRoleText())
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .regularText)
                         Spacer()
                     }
                 }

@@ -25,7 +25,7 @@ struct EmployeeTaskView: View {
                         .foregroundColor(checked ? .collieVerde : .collieVermelho)
                     HStack {
                         Text("!")
-                            .font(.system(size: 32, weight: .bold))
+                            .collieFont(textStyle: .title)
                             .foregroundColor(.white)
                             .padding(.horizontal)
                         Spacer()
@@ -37,7 +37,7 @@ struct EmployeeTaskView: View {
                 
                 Text(task.name)
                     .foregroundColor(isLate ? .collieVermelho : .black)
-                    .font(.system(size: 16, weight: .semibold))
+                    .collieFont(textStyle: .subtitle)
                     .padding(.leading, 8)
                 
                 Spacer()
@@ -45,18 +45,18 @@ struct EmployeeTaskView: View {
                 if isLate {
                     HStack(spacing: 8) {
                         Image(systemName: "clock")
-                            .font(.system(size: 16, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                         Text("Atrasada!")
-                            .font(.system(size: 14, weight: .regular))
+                            .collieFont(textStyle: .regularText, textSize: 14)
                     }
                     .foregroundColor(.collieVermelho)
                     .padding(.trailing)
                 } else {
                     HStack(spacing: 8) {
                         Image(systemName: "calendar")
-                            .font(.system(size: 16, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                         Text(CalendarHelper().dateString(task.endDate))
-                            .font(.system(size: 14, weight: .regular))
+                            .collieFont(textStyle: .regularText, textSize: 14)
                     }
                     .foregroundColor(.black)
                     .padding(.trailing)
@@ -64,7 +64,7 @@ struct EmployeeTaskView: View {
                 
                 Text(category.name)
                     .foregroundColor(.white)
-                    .font(.system(size: 12, weight: .medium))
+                    .collieFont(textStyle: .subtitle, textSize: 12)
                     .padding(.horizontal)
                     .padding(.vertical, 4)
                     .background(category.color)

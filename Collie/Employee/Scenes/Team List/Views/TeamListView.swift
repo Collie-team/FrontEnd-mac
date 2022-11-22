@@ -28,11 +28,11 @@ struct TeamListView: View {
                     HStack(alignment: .bottom) {
                         VStack(alignment: .leading) {
                             Text("Acompanhamento")
-                                .font(.system(size: 34, weight: .bold, design: .default))
+                                .collieFont(textStyle: .largeTitle)
                                 .foregroundColor(Color.black)
                                 .padding(.bottom, 12)
                             Text("Faça um acompanhamento geral do seu time")
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(Color.black.opacity(0.6))
                         }
                         Spacer()
@@ -40,7 +40,7 @@ struct TeamListView: View {
                             HStack {
                                 Image(systemName: "bell")
                                     .foregroundColor(Color.collieRoxo)
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .collieFont(textStyle: .subtitle)
                                     .padding()
                                     .overlay(
                                         ZStack {
@@ -48,7 +48,7 @@ struct TeamListView: View {
                                                 .frame(width: 14, height: 14)
                                                 .foregroundColor(.red)
                                             Text("4")
-                                                .font(.system(size: 10))
+                                                .collieFont(textStyle: .regularText)
                                         }
                                         .offset(x: 7, y: -7)
                                     )
@@ -77,7 +77,7 @@ struct TeamListView: View {
                                             .foregroundColor(.white)
                                             .frame(width: 36, height: 36)
                                         Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
-                                            .font(.system(size: 14))
+                                            .collieFont(textStyle: .regularText)
                                     }
                                     .onTapGesture {
                                         viewModel.profileDetailsShowing.toggle()
@@ -160,7 +160,7 @@ struct TeamListView: View {
                             }
                         }
                         .foregroundColor(.black)
-                        .font(.system(size: 20, weight: .semibold))
+                        .collieFont(textStyle: .smallTitle)
                         .padding()
                         
                         ForEach(viewModel.teamListUsers) { user in
@@ -178,7 +178,7 @@ struct TeamListView: View {
                                             .frame(width: 48, height: 48)
                                             .foregroundColor(.collieRosaClaro)
                                         Text("\(getNameLetters(fullName: user.name))")
-                                            .font(.system(size: 16, weight: .bold, design: .default))
+                                            .collieFont(textStyle: .subtitle)
                                     }
                                     .padding(.trailing)
                                 }
@@ -191,7 +191,7 @@ struct TeamListView: View {
                                         
                                         VStack {
                                             Text(verbatim: user.email)
-                                                .font(.system(size: 15))
+                                                .collieFont(textStyle: .regularText)
                                                 .opacity(0.5)
                                                 
                                         }
@@ -199,7 +199,7 @@ struct TeamListView: View {
                                         
                                         VStack {
                                             Text(user.journey)
-                                                .font(.system(size: 17))
+                                                .collieFont(textStyle: .regularText)
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                                         
@@ -211,7 +211,7 @@ struct TeamListView: View {
                                         
                                         VStack {
                                             Text("\(user.doneTasks)/\(user.totalTasks)")
-                                                .font(.system(size: 17))
+                                                .collieFont(textStyle: .regularText)
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
                                         
@@ -230,8 +230,9 @@ struct TeamListView: View {
                 }
             }
         }
-        .padding(.horizontal, 60)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())

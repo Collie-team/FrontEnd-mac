@@ -25,7 +25,7 @@ struct WorkspaceOptionView: View {
             Spacer()
             
             Text(title)
-                .font(.system(size: 20, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
             

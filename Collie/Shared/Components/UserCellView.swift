@@ -21,7 +21,7 @@ struct UserCellView: View {
             Divider()
                 .frame(height: 1)
         }
-        .font(.system(size: 15))
+        .collieFont(textStyle: .regularText)
         .padding(.horizontal)
         .contentShape(Rectangle())
         .onTapGesture {

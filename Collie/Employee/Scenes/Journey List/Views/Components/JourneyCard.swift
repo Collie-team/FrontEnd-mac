@@ -20,7 +20,7 @@ struct JourneyCard: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text(journey.name)
-                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .collieFont(textStyle: .title)
                         .lineLimit(1)
                     Spacer()
                 }

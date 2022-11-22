@@ -15,7 +15,7 @@ struct ProfileView: View {
         VStack(spacing: 20) {
             HStack {
                 Text("Perfil")
-                    .font(.system(size: 40, weight: .bold, design: .default))
+                    .collieFont(textStyle: .title)
                     .foregroundColor(Color.black)
                 Spacer()
             }
@@ -24,9 +24,9 @@ struct ProfileView: View {
             HStack(spacing: 36) {
                 VStack(alignment: .leading) {
                     Text("Apresentação")
-                        .font(.system(size: 22, weight: .bold))
+                        .collieFont(textStyle: .smallTitle)
                     Text("Esses dados são visiveis para todos os responsáveis dentro da plataforma.")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                 }
                 .frame(maxWidth: 315)
                 Spacer()
@@ -41,7 +41,7 @@ struct ProfileView: View {
                                 ZStack {
                                     Image(systemName: "camera.fill")
                                         .foregroundColor(Color.collieRoxo)
-                                        .font(.system(size: 28))
+                                        .collieFont(textStyle: .title)
                                 }
                                     .frame(width: 60, height: 60)
                                     .background(Color.white)
@@ -67,7 +67,7 @@ struct ProfileView: View {
                                 ZStack {
                                     Image(systemName: "camera.fill")
                                         .foregroundColor(Color.collieRoxo)
-                                        .font(.system(size: 28))
+                                        .collieFont(textStyle: .title)
                                 }
                                     .frame(width: 60, height: 60)
                                     .background(Color.white)
@@ -106,15 +106,15 @@ struct ProfileView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Senha")
-                        .font(.system(size: 22, weight: .bold))
+                        .collieFont(textStyle: .smallTitle)
                     Text("Altere sua senha e a deixe mais segura. Será necessário uma validação pelo e-mail utilizado na plataforma.")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                 }
                 .frame(maxWidth: 350)
                 Spacer()
                 HStack {
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 28))
+                        .collieFont(textStyle: .title)
                         .foregroundColor(Color.collieTextFieldBorder)
                     Button(action: {
                         viewModel.resetPassword(email: rootViewModel.currentUser.email)
@@ -140,9 +140,9 @@ struct ProfileView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Remover conta")
-                        .font(.system(size: 22, weight: .bold))
+                        .collieFont(textStyle: .smallTitle)
                     Text("Ao remover sua conta, Todos os seus dados serão apagados da plataforma.")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                 }
                 .frame(maxWidth: 350)
                 Spacer()
@@ -170,8 +170,9 @@ struct ProfileView: View {
             
             Spacer()
         }
-        .padding(.horizontal, 60)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
         .navigationTitle("Perfil")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())

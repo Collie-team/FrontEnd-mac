@@ -13,7 +13,7 @@ struct EmployeeDateScrollerView: View {
             }
             
             Text(CalendarHelper().monthYearString(employeeEventsCalendarViewModel.date))
-                .font(.system(size: 18, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
                 .frame(maxWidth: .infinity)
             
             IconButton(imageSystemName: "arrow.right") {

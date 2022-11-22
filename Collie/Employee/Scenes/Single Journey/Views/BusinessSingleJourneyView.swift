@@ -18,13 +18,13 @@ struct BusinessSingleJourneyView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .bold, design: .default))
+                        .collieFont(textStyle: .title)
                         .onTapGesture {
                             backAction()
                         }
                     
                     Text(viewModel.journey.name)
-                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .collieFont(textStyle: .largeTitle)
                     
                     Spacer()
                     
@@ -35,7 +35,7 @@ struct BusinessSingleJourneyView: View {
                             Image(systemName: "square.and.pencil")
                             Text("Editar jornada")
                         }
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .padding(8)
                         .foregroundColor(.black)
                         .background(Color.white)
@@ -48,7 +48,7 @@ struct BusinessSingleJourneyView: View {
                 .padding(.bottom)
                 
                 Text(viewModel.journey.description)
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .collieFont(textStyle: .regularText)
                     .foregroundColor(.black)
                 
                 
@@ -56,7 +56,7 @@ struct BusinessSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Tarefas")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
@@ -75,7 +75,7 @@ struct BusinessSingleJourneyView: View {
                                     Image(systemName: "plus")
                                     Text("Nova tarefa")
                                 }
-                                .font(.system(size: 16, weight: .bold))
+                                .collieFont(textStyle: .subtitle)
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
@@ -93,7 +93,7 @@ struct BusinessSingleJourneyView: View {
                                     Image(systemName: "tag")
                                     Text("Nova categoria")
                                 }
-                                .font(.system(size: 16, weight: .bold))
+                                .collieFont(textStyle: .subtitle)
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
@@ -133,7 +133,7 @@ struct BusinessSingleJourneyView: View {
                                     Text("Sem categoria")
                                     Spacer()
                                 }
-                                .font(.system(size: 16, weight: .bold))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(.white)
                                 .padding(.vertical, 12)
                                 .padding(.horizontal, 16)
@@ -169,7 +169,7 @@ struct BusinessSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Eventos")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
@@ -188,7 +188,7 @@ struct BusinessSingleJourneyView: View {
                                     Image(systemName: "calendar.badge.plus")
                                     Text("Novo evento")
                                 }
-                                .font(.system(size: 16, weight: .bold))
+                                .collieFont(textStyle: .subtitle)
                                 .padding(8)
                                 .foregroundColor(.black)
                                 .background(Color.white)
@@ -221,7 +221,7 @@ struct BusinessSingleJourneyView: View {
                 
                 Spacer()
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 32)
             .padding(.top, 32)
             .padding(.bottom)
             
@@ -273,7 +273,9 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditTaskViewModel(
+                            currentBusiness: rootViewModel.businessSelected
+                        ),
                         journeyId: viewModel.journey.id,
                         task: nil,
                         category: rootViewModel.getCategory(categoryId: ""),
@@ -359,9 +361,7 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        viewModel: CreateOrEditTaskViewModel(
-                            categoryList: rootViewModel.businessSelected.categories
-                        ),
+                        viewModel: CreateOrEditTaskViewModel(currentBusiness: rootViewModel.businessSelected),
                         journeyId: viewModel.journey.id,
                         task: chosenTask,
                         category: rootViewModel.getCategory(categoryId: chosenTask.categoryId ?? ""),

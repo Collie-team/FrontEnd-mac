@@ -8,7 +8,7 @@ struct SettingsOptionView: View {
     var body: some View {
         VStack(spacing: 8) {
             Text(option.rawValue)
-                .font(.system(size: 21, weight: isSelected ? .bold : .regular))
+                .collieFont(textStyle: isSelected ? .smallTitle : .regularText, textSize: 21)
                 .foregroundColor(.black)
             RoundedRectangle(cornerRadius: 8)
                 .frame(height: 3)

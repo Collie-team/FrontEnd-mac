@@ -16,7 +16,7 @@ struct BusinessTaskView: View {
             
             Text(task.name)
                 .foregroundColor(.black)
-                .font(.system(size: 16, weight: .semibold))
+                .collieFont(textStyle: .subtitle)
                 .padding(.leading, 8)
             
             Spacer()
@@ -26,7 +26,7 @@ struct BusinessTaskView: View {
                 
                 Text(task.endDate.dayAndMonthCustomFormat())
             }
-            .font(.system(size: 16, weight: .regular))
+            .collieFont(textStyle: .regularText)
             .foregroundColor(.gray)
             
             IconButton(imageSystemName: "rectangle.on.rectangle") {

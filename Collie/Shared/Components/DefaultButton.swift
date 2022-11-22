@@ -1,8 +1,10 @@
 import SwiftUI
 
-struct SendButton: View {
+struct DefaultButton: View {
     var label: String
+    var backgroundColor: Color
     var isButtonDisabled: Bool
+    var maxWidth: CGFloat?
     var handleSend: () -> ()
     
     var body: some View {
@@ -10,10 +12,11 @@ struct SendButton: View {
             handleSend()
         } label: {
             Text(label)
-                .font(.system(size: 18, weight: .bold))
-                .padding(.vertical, 8)
+                .collieFont(textStyle: .subtitle)
+                .padding(.vertical, 12)
                 .padding(.horizontal, 32)
-                .background(isButtonDisabled ? Color.gray : Color.collieAzulEscuro)
+                .frame(maxWidth: maxWidth ?? .greatestFiniteMagnitude)
+                .background(isButtonDisabled ? Color.gray : backgroundColor)
                 .foregroundColor(.white)
                 .cornerRadius(8)
         }
@@ -25,6 +28,6 @@ struct SendButton: View {
 
 struct SendButton_Previews: PreviewProvider {
     static var previews: some View {
-        SendButton(label: "Salvar", isButtonDisabled: false, handleSend: {})
+        DefaultButton(label: "Salvar", backgroundColor: .collieAzulEscuro, isButtonDisabled: false, handleSend: {})
     }
 }

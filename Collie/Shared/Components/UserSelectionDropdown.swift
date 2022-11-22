@@ -34,7 +34,7 @@ struct UserSelectionDropdown: View {
                                         Image(systemName: "chevron.down")
                                     }
                                 }
-                                .font(.system(size: 16))
+                                .collieFont(textStyle: .regularText)
                             }
                             .frame(height: 40)
                             .frame(maxWidth: .infinity)

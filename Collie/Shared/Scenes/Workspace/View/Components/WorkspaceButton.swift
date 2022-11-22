@@ -10,10 +10,10 @@ struct WorkspaceButton: View {
         }) {
             Text(title)
                 .foregroundColor(.white)
-                .font(.system(size: 17, weight: .bold))
+                .collieFont(textStyle: .subtitle)
                 .contentShape(Rectangle())
                 .padding(.vertical)
-                .frame(width: 400)
+                .frame(maxWidth: .infinity)
                 .background(Color.collieAzulEscuro)
                 .cornerRadius(8)
         }

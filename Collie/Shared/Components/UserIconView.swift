@@ -15,7 +15,7 @@ struct UserIconView: View {
                     Circle()
                         .foregroundColor(getRandomColor())
                     Text(getUserInitials())
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                 }
             }
         }

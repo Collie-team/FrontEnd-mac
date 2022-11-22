@@ -20,39 +20,39 @@ struct EditingFormView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("Nome do usuário")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Nome", text: $currentUser.name)
                     Divider()
                 }
                 VStack(alignment: .leading) {
                     
                     Text("Cargo")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Cargo", text: $currentUser.jobDescription)
                     Divider()
                 }
                 
                 VStack(alignment: .leading) {
                     Text("Breve descrição")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Description", text: $currentUser.personalDescription)
                     Divider()
                 }
                 
                 VStack(alignment: .leading) {
 //                    Text("Data de entrada")
-//                        .font(.system(size: 15))
+//                        .collieFont(textStyle: .regularText)
 //                    HStack {
 //                        Text("17/04/2022")
-//                            .font(.system(size: 17))
+//                            .collieFont(textStyle: .regularText)
 //                        Spacer()
 //                    }
 //                    Divider()
                     Text("Papel")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(rootViewModelBusinessUser!.role.getRoleText())
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
                     HStack {

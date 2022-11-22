@@ -8,7 +8,7 @@ struct CloseButton: View {
             handleClose()
         } label: {
             Image(systemName: "xmark.circle")
-                .font(.system(size: 21, weight: .bold, design: .default))
+                .collieFont(textStyle: .smallTitle)
                 .foregroundColor(.white)
         }
         .buttonStyle(.plain)

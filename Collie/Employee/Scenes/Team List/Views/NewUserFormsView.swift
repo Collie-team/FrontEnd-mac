@@ -26,13 +26,13 @@ struct NewUserFormsView: View {
         VStack {
             HStack(alignment: .top) {
                 Image(systemName: "person.crop.circle.badge.plus")
-                    .font(.system(size: 28))
+                    .collieFont(textStyle: .title)
                 VStack(alignment: .leading) {
                     Text("Adicionar pessoas")
-                        .font(.system(size: 28, weight: .bold))
+                        .collieFont(textStyle: .title)
                         .padding(.bottom, 8)
                     Text("Convide novos usuários para a plataforma de forma rápida.")
-                        .font(.system(size: 16, weight: .regular))
+                        .collieFont(textStyle: .regularText)
                 }
                 Spacer()
                 VStack {
@@ -40,7 +40,7 @@ struct NewUserFormsView: View {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "xmark.circle")
-                            .font(.system(size: 32))
+                            .collieFont(textStyle: .title)
                     }
                     .buttonStyle(.plain)
                     .alignmentGuide(.top) { view in view[.bottom] }
@@ -63,7 +63,7 @@ struct NewUserFormsView: View {
                         .fontWeight(.semibold)
                     Spacer()
                 }
-                .font(.system(size: 17))
+                .collieFont(textStyle: .regularText)
                 .foregroundColor(.black)
                 .padding(.trailing, 64)
                 HStack(alignment: .top) {
@@ -86,7 +86,7 @@ struct NewUserFormsView: View {
                                     Spacer()
                                     Image(systemName: showList ? "chevron.up" : "chevron.down")
                                 }
-                                .font(.system(size: 15))
+                                .collieFont(textStyle: .regularText)
                             }
                             .frame(height: 40)
                             .frame(maxWidth: .infinity)
@@ -108,7 +108,7 @@ struct NewUserFormsView: View {
                                                 selectedRole = role
                                                 showList.toggle()
                                         }
-                                        .font(.system(size: 15))
+                                        .collieFont(textStyle: .regularText)
                                         .padding(.horizontal)
                                         .padding(.vertical, 8)
                                         Spacer()

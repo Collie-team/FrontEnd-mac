@@ -17,13 +17,13 @@ struct EmployeeSingleJourneyView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .bold, design: .default))
+                        .collieFont(textStyle: .title)
                         .onTapGesture {
                             backAction()
                         }
                     
                     Text(viewModel.journey.name)
-                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .collieFont(textStyle: .largeTitle)
                     
                     Spacer()
                 }
@@ -31,7 +31,7 @@ struct EmployeeSingleJourneyView: View {
                 .padding(.bottom)
                 
                 Text(viewModel.journey.description)
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .collieFont(textStyle: .regularText)
                     .foregroundColor(.black)
                 
                 
@@ -39,7 +39,7 @@ struct EmployeeSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Tarefas")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
 //                            HelpButton(handleTap: {
@@ -54,7 +54,7 @@ struct EmployeeSingleJourneyView: View {
                         
                         HStack {
                             Text("\(viewModel.uncompletedTasksCount) tarefas pendentes")
-                                .font(.system(size: 16, weight: .semibold))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(.black)
                             Spacer()
                         }
@@ -64,7 +64,7 @@ struct EmployeeSingleJourneyView: View {
                             HStack {
                                 Text("Tarefas do dia")
                                     .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .collieFont(textStyle: .smallTitle)
                                 Spacer()
                                 Image(systemName: showDailyTasks ? "chevron.up" : "chevron.down")
                             }
@@ -100,7 +100,7 @@ struct EmployeeSingleJourneyView: View {
                             HStack {
                                 Text("Próximas tarefas")
                                     .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .collieFont(textStyle: .smallTitle)
                                 Spacer()
                                 Image(systemName: showNextTasks ? "chevron.up" : "chevron.down")
                             }
@@ -136,7 +136,7 @@ struct EmployeeSingleJourneyView: View {
                             HStack {
                                 Text("Tarefas feitas")
                                     .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .collieFont(textStyle: .smallTitle)
                                 Spacer()
                                 Image(systemName: showDoneTasks ? "chevron.up" : "chevron.down")
                             }
@@ -181,7 +181,7 @@ struct EmployeeSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Eventos")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
@@ -210,7 +210,7 @@ struct EmployeeSingleJourneyView: View {
                 
                 Spacer()
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 32)
             .padding(.top, 32)
             .padding(.bottom)
             

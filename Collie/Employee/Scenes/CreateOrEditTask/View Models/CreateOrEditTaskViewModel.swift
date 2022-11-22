@@ -25,10 +25,11 @@ final class CreateOrEditTaskViewModel: ObservableObject {
     
     @Published var showCategoryList = false
     
-    var currentBusiness: Business?
+    var currentBusiness: Business
     
-    init(categoryList: [TaskCategory]) {
-        self.categoryList = categoryList
+    init(currentBusiness: Business) {
+        self.currentBusiness = currentBusiness
+        self.categoryList = currentBusiness.categories
     }
     
     func isButtonDisabled() -> Bool {
@@ -60,12 +61,12 @@ final class CreateOrEditTaskViewModel: ObservableObject {
             endDate: endDate
         )
         
-        if let taskIndex = updatedBusiness?.tasks.firstIndex(where: {$0.id == taskId}) {
-            updatedBusiness?.tasks[taskIndex] = task
+        if let taskIndex = updatedBusiness.tasks.firstIndex(where: {$0.id == taskId}) {
+            updatedBusiness.tasks[taskIndex] = task
         } else {
-            updatedBusiness?.tasks.append(task)
+            updatedBusiness.tasks.append(task)
         }
         
-        completion(updatedBusiness!)
+        completion(updatedBusiness)
     }
 }

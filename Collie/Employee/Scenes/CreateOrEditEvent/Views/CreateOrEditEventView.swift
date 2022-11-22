@@ -146,7 +146,11 @@ struct CreateOrEditEventView: View {
                     )
                 }
 
-                SendButton(label: "salvar evento", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                DefaultButton(
+                    label: "salvar evento",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled(),
+                    handleSend: {
                         viewModel.handleEventSave(journeyId: journeyId, completion: {
                             business in
                             rootViewModel.updateBusiness(business, replaceBusiness: true)

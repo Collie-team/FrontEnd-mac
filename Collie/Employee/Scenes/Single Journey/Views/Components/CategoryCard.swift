@@ -10,7 +10,7 @@ struct CategoryCard: View {
             Text(category.name)
             Spacer()
         }
-        .font(.system(size: 16, weight: .bold))
+        .collieFont(textStyle: .subtitle)
         .foregroundColor(.white)
         .padding(.vertical, 12)
         .padding(.horizontal, 16)

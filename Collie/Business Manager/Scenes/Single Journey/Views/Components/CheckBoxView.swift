@@ -17,7 +17,7 @@ struct CheckBoxView: View {
                 }
             if checked {
                 Image(systemName: "checkmark")
-                    .font(.system(size: 16, weight: .bold))
+                    .collieFont(textStyle: .subtitle)
                     .foregroundColor(.white)
             }
         }

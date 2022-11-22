@@ -30,7 +30,7 @@ struct CategorySelectionDropdown: View {
                             }
                         }
                         .contentShape(Rectangle())
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .frame(height: 40)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
@@ -80,13 +80,13 @@ struct CategoryCell: View {
                     .foregroundColor(taskCategory.color)
                 Image(systemName: taskCategory.systemImageName)
                     .foregroundColor(.white)
-                    .font(.system(size: 14))
+                    .collieFont(textStyle: .regularText)
             }
             .frame(width: 30, height: 30)
             
             Text(taskCategory.name)
                 .foregroundColor(.black)
-                .font(.system(size: 15))
+                .collieFont(textStyle: .regularText)
             Spacer()
         }
         .padding(.vertical, 8)

@@ -10,24 +10,22 @@ struct SettingsView: View {
         VStack {
             HStack {
                 Text("Configurações")
-                    .font(.system(size: 40, weight: .bold, design: .default))
+                    .collieFont(textStyle: .largeTitle)
                     .foregroundColor(Color.black)
                 Spacer()
             }
             .padding(.bottom, 32)
-            
-            //                optionsSelector
             
             VStack(spacing: 16) {
                 HStack(alignment: .center, spacing: 32) {
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Usuários ativos")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             Text("Todos os usuários ativos na plataforma da sua empresa nesse momento.")
-                                .font(.system(size: 16, weight: .regular))
+                                .collieFont(textStyle: .regularText)
                                 .foregroundColor(.black)
                         }
                         
@@ -38,7 +36,7 @@ struct SettingsView: View {
                                 Image(systemName: "person.crop.circle.badge.plus")
                                 Text("Convidar pessoas")
                             }
-                            .font(.system(size: 16, weight: .bold))
+                            .collieFont(textStyle: .subtitle)
                             .foregroundColor(.white)
                             .padding(8)
                             .background(Color.collieAzulEscuro)
@@ -49,7 +47,7 @@ struct SettingsView: View {
 
                     }
                     .padding(.bottom)
-                    .frame(maxWidth: 200)
+                    .frame(maxWidth: 300)
                     
                     VStack(alignment: .leading) {
                         HStack(alignment: .center, spacing: 0) {
@@ -83,7 +81,7 @@ struct SettingsView: View {
                         }
                         .frame(height: 50)
                         .foregroundColor(.black)
-                        .font(.system(size: 20, weight: .semibold))
+                        .collieFont(textStyle: .smallTitle)
                         
                         ScrollView(.vertical) {
                             VStack {
@@ -114,24 +112,25 @@ struct SettingsView: View {
                 .cornerRadius(12)
                 
                 HStack {
-                    VStack(spacing: 12) {
+                    VStack(alignment: .leading ,spacing: 12) {
                         Text("Código do workspace")
-                            .font(.system(size: 28, weight: .bold))
+                            .collieFont(textStyle: .title)
                         Text("Esse é o código para que novos colaboradores entrem em seu workspace de maneira mais direta. A nova pessoa deve inserir o código após o login na tela de workspaces.")
-                            .font(.system(size: 16))
-                            .frame(maxWidth: 286)
+                            .collieFont(textStyle: .regularText)
                     }
+                    .frame(maxWidth: 300)
+                    
                     Spacer()
                     VStack {
                         Text("Clique no código para copiar")
-                            .font(.system(size: 16))
+                            .collieFont(textStyle: .regularText)
                         ZStack {
                             Text(viewModel.businessCode)
-                                .font(.system(size: 28, weight: .bold))
+                                .collieFont(textStyle: .title)
                             HStack {
                                 Spacer()
                                 Image(systemName: "doc.on.doc")
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .collieFont(textStyle: .subtitle)
                                     .padding(.trailing, 16)
                                     .foregroundColor(copyClicked ? Color.collieVerde : .black)
                             }
@@ -152,13 +151,13 @@ struct SettingsView: View {
                     Spacer()
                     VStack(spacing: 24) {
                         Text("Caso seja necessário impedir acesso pelo código, você pode gerar um novo código que substituirá o antigo.")
-                            .font(.system(size: 16))
+                            .collieFont(textStyle: .regularText)
                             .frame(maxWidth: 300)
                         Button(action: {
                             viewModel.redefineBusinessCode(businessId: rootViewModel.businessSelected.id)
                         }) {
                             Text("Gerar novo código aleatório")
-                                .font(.system(size: 16, weight: .semibold))
+                                .collieFont(textStyle: .subtitle)
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 12)
                                 .overlay(
@@ -178,8 +177,9 @@ struct SettingsView: View {
             
             Spacer()
         }
-        .padding(.horizontal, 60)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
         .navigationTitle("Configurações")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())

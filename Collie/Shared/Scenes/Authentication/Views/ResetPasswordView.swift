@@ -17,11 +17,11 @@ struct ResetPasswordView: View {
                 }
             }) {
                 Image(systemName: "arrow.left")
-                    .font(.system(size: 34, weight: .bold))
+                    .collieFont(textStyle: .largeTitle)
             }
             .buttonStyle(.plain)
             Text("Redefinir sua senha")
-                .font(.system(size: 34, weight: .bold))
+                .collieFont(textStyle: .largeTitle)
             
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {

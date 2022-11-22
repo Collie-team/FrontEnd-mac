@@ -17,12 +17,11 @@ struct BusinessEventView: View {
                     
                     Text(event.name)
                         .foregroundColor(.black)
-                        .font(.system(size: 16, weight: .semibold))
                         .lineLimit(1)
                     
                     Spacer()
                 }
-                .font(.system(size: 16))
+                .collieFont(textStyle: .subtitle)
                 
                 HStack {
                     HStack {
@@ -39,7 +38,7 @@ struct BusinessEventView: View {
                     
                     Text(category.name)
                         .foregroundColor(.white)
-                        .font(.system(size: 12, weight: .medium))
+                        .collieFont(textStyle: .subtitle, textSize: 12)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 8)
                         .background(category.color)

@@ -15,11 +15,13 @@ struct BusinessJourneyListView: View {
     
     var body: some View {
         ZStack {
-            switch viewModel.navigationState {
-            case .journeyList:
-                journeyList
-            case .singleJourney:
-                singleJourney
+            Group {
+                switch viewModel.navigationState {
+                case .journeyList:
+                    journeyList
+                case .singleJourney:
+                    singleJourney
+                }
             }
             
             if showCreationPopUp {
@@ -50,7 +52,7 @@ struct BusinessJourneyListView: View {
                 VStack {
                     HStack {
                         Text("Jornadas")
-                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .collieFont(textStyle: .largeTitle)
                             .foregroundColor(Color.black)
                         Spacer()
                         
@@ -62,7 +64,7 @@ struct BusinessJourneyListView: View {
                         .padding(.horizontal)
                         .background(Color.collieRoxo)
                         .cornerRadius(50)
-                        .font(.system(size: 16, weight: .bold, design: .default))
+                        .collieFont(textStyle: .subtitle)
                         .foregroundColor(.white)
                         .onTapGesture {
                             showCreationPopUp = true
@@ -73,7 +75,7 @@ struct BusinessJourneyListView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 16)
                             Image(systemName: "plus")
-                                .font(.system(size: 50, weight: .bold, design: .default))
+                                .font(.largeTitle)
                                 .foregroundColor(.white)
                         }
                         .frame(height: 320)
@@ -95,8 +97,9 @@ struct BusinessJourneyListView: View {
                 }
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
     }
     
     var singleJourney: some View {

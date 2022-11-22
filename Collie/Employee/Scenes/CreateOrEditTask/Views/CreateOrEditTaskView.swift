@@ -120,7 +120,11 @@ struct CreateOrEditTaskView: View {
                     )
                 }
 
-                SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                DefaultButton(
+                    label: "salvar tarefa",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled(),
+                    handleSend: {
                         viewModel.handleTaskSave(journeyId: journeyId, completion: { business in
                             rootViewModel.updateBusiness(business, replaceBusiness: true)
                         })
@@ -145,9 +149,6 @@ struct CreateOrEditTaskView: View {
             }
         )
         .cornerRadius(8)
-        .onAppear {
-            viewModel.fetchUsers(business: rootViewModel.businessSelected)
-        }
     }
     
     func getAllCategoriesScrollHeight() -> CGFloat {
@@ -185,6 +186,6 @@ struct CreateOrEditTaskView: View {
 
 struct CreateOrEditTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(categoryList: []), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
+        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(currentBusiness: .init(name: "", description: "", journeys: [], tasks: [], categories: [], events: [])), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }
