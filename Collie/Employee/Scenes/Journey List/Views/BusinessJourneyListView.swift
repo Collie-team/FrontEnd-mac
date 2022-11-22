@@ -27,6 +27,7 @@ struct BusinessJourneyListView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
+                        userId: rootViewModel.currentUser.id,
                         journey: viewModel.selectedJourney,
                         handleClose: {
                             withAnimation {

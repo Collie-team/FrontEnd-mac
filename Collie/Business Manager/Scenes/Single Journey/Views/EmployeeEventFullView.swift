@@ -5,9 +5,9 @@ struct EmployeeEventFullView: View {
     var event: Event
     var handleClose: () -> ()
     
-    var responsibleName: String = ""
-    var responsibleEmail: String = ""
-    
+//    var responsibleName: String = ""
+//    var responsibleEmail: String = ""
+
     @State private var hover: Bool = false
     
     var category: TaskCategory {
@@ -81,13 +81,13 @@ struct EmployeeEventFullView: View {
                     Spacer()
                 }
                 
-                HStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                        .frame(width: 200)
-                    Text("\(responsibleName) \(responsibleEmail)")
-                        .font(.system(size: 16))
-                    Spacer()
-                }
+//                HStack {
+//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
+//                        .frame(width: 200)
+//                    Text("\(responsibleName) \(responsibleEmail)")
+//                        .font(.system(size: 16))
+//                    Spacer()
+//                }
                 
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")

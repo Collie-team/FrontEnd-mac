@@ -230,6 +230,7 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
+                        userId: rootViewModel.currentUser.id,
                         journey: viewModel.journey,
                         handleClose: {
                             withAnimation {
@@ -317,11 +318,6 @@ struct BusinessSingleJourneyView: View {
                                 showEventForm = false
                             }
                         },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
-                        },
                         handleEventDelete: { _ in },
                         handleEventDuplicate: { _ in }
                     )
@@ -363,7 +359,9 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditTaskViewModel(
+                            categoryList: rootViewModel.businessSelected.categories
+                        ),
                         journeyId: viewModel.journey.id,
                         task: chosenTask,
                         category: rootViewModel.getCategory(categoryId: chosenTask.categoryId ?? ""),
@@ -404,11 +402,6 @@ struct BusinessSingleJourneyView: View {
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleEventDelete: { event in

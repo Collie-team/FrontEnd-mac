@@ -8,7 +8,6 @@ struct CreateOrEditEventView: View {
     var category: TaskCategory
     var journeyId: String
     var handleClose: () -> ()
-    var handleEventSave: (Event) -> ()
     var handleEventDelete: (Event) -> ()
     var handleEventDuplicate: (Event) -> ()
     
@@ -18,7 +17,6 @@ struct CreateOrEditEventView: View {
         category: TaskCategory,
         journeyId: String,
         handleClose: @escaping () -> (),
-        handleEventSave: @escaping (Event) -> (),
         handleEventDelete: @escaping (Event) -> (),
         handleEventDuplicate: @escaping(Event) -> ()
     ) {
@@ -27,7 +25,6 @@ struct CreateOrEditEventView: View {
         self.category = category
         self.journeyId = journeyId
         self.handleClose = handleClose
-        self.handleEventSave = handleEventSave
         self.handleEventDelete = handleEventDelete
         self.handleEventDuplicate = handleEventDuplicate
         if let event = event {
@@ -113,24 +110,24 @@ struct CreateOrEditEventView: View {
                     SimpleTextField(text: $viewModel.eventLink, showPlaceholderWhen: viewModel.eventLink.isEmpty, placeholderText: "Adicione o link da plataforma que o evento vai acontecer")
                 }
                 
-                VStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                    
-                    UserSelectionDropdown(
-                        showList: $viewModel.showUserList,
-                        label: "Escolha um responsável",
-                        allUsers: viewModel.userModelList,
-                        selectedUsers: viewModel.chosenUserModels,
-                        allUsersScrollHeight: getAllUsersScrollHeight(),
-                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
-                        handleUserSelection: { user in
-                            viewModel.selectUser(user)
-                        },
-                        handleUserRemove: { user in
-                            viewModel.removeUser(user)
-                        }
-                    )
-                }
+//                VStack {
+//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
+//                    
+//                    UserSelectionDropdown(
+//                        showList: $viewModel.showUserList,
+//                        label: "Escolha um responsável",
+//                        allUsers: viewModel.userModelList,
+//                        selectedUsers: viewModel.chosenUserModels,
+//                        allUsersScrollHeight: getAllUsersScrollHeight(),
+//                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
+//                        handleUserSelection: { user in
+//                            viewModel.selectUser(user)
+//                        },
+//                        handleUserRemove: { user in
+//                            viewModel.removeUser(user)
+//                        }
+//                    )
+//                }
                 
                 VStack {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição do evento")
@@ -143,28 +140,20 @@ struct CreateOrEditEventView: View {
                     CategorySelectionDropdown(
                         showList: $viewModel.showCategoryList,
                         chosenCategory: $viewModel.selectedCategory,
-                        taskCategoriesList: viewModel.categoryList,
+                        taskCategoriesList: rootViewModel.businessSelected.categories.filter({ $0.id != viewModel.selectedCategory?.id}),
                         maxScrollHeight: getAllCategoriesScrollHeight(),
                         handleCategorySelection: viewModel.selectCategory
                     )
                 }
 
                 SendButton(label: "salvar evento", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
-                    handleEventSave(
-                            Event(
-                                id: viewModel.eventId ?? UUID().uuidString,
-                                journeyId: journeyId,
-                                name: viewModel.eventName,
-                                description: viewModel.eventDescription,
-                                contentLink: viewModel.eventLink,
-                                startDate: viewModel.startDate,
-                                endDate: viewModel.endDate,
-                                responsibleUserIds: [],
-                                categoryId: viewModel.selectedCategory?.id ?? ""
-                            )
-                        )
+                        viewModel.handleEventSave(journeyId: journeyId, completion: {
+                            business in
+                            rootViewModel.updateBusiness(business, replaceBusiness: true)
+                        })
                         handleClose()
-                })
+                    }
+                )
             }
             .padding(.vertical)
             .padding(.horizontal, 32)

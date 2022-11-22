@@ -119,6 +119,7 @@
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
+		5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */; };
 		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
 		5BD68496291D703500090481 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68495291D703500090481 /* ProfileView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
@@ -249,6 +250,7 @@
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceOptionView.swift; sourceTree = "<group>"; };
 		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
 		5BD68495291D703500090481 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
@@ -1049,6 +1051,7 @@
 			children = (
 				5BD8982728FE33730015EEDB /* WorkspaceButton.swift */,
 				5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */,
+				5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */,
 				5BA9AFEA291199E300C1078A /* OnboardingView.swift in Sources */,
 				5B49605528EF52810024D064 /* BusinessDateScrollerView.swift in Sources */,
+				5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */,
 				5B49603328EB74B10024D064 /* CategorySelectionDropdown.swift in Sources */,
 				5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */,
 				5B2B46B228EDFFF100FC3BE9 /* CheckboxStyle.swift in Sources */,
