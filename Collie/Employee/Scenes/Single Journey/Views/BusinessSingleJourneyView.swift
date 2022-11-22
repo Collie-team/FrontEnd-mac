@@ -17,11 +17,9 @@ struct BusinessSingleJourneyView: View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
-                    Image(systemName: "chevron.left")
-                        .collieFont(textStyle: .title)
-                        .onTapGesture {
-                            backAction()
-                        }
+                    IconButton(imageSystemName: "chevron.left") {
+                        backAction()
+                    }
                     
                     Text(viewModel.journey.name)
                         .collieFont(textStyle: .largeTitle)

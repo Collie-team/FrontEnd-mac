@@ -13,7 +13,8 @@ struct InviteUserButton: View {
             }
             .collieFont(textStyle: .subtitle)
             .foregroundColor(.white)
-            .padding(8)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
             .background(Color.collieAzulEscuro)
             .cornerRadius(8)
         }

@@ -20,9 +20,13 @@ struct SettingsView: View {
                 HStack(alignment: .center, spacing: 32) {
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Usuários ativos")
-                                .collieFont(textStyle: .title)
-                                .foregroundColor(.black)
+                            HStack {
+                                Text("Usuários ativos")
+                                    .collieFont(textStyle: .title)
+                                    .foregroundColor(.black)
+                                
+                                Spacer()
+                            }
                             
                             Text("Todos os usuários ativos na plataforma da sua empresa nesse momento.")
                                 .collieFont(textStyle: .regularText)
@@ -34,7 +38,7 @@ struct SettingsView: View {
                         }
                     }
                     .padding(.bottom)
-                    .frame(maxWidth: 300)
+                    .frame(maxWidth: 350)
                     
                     VStack(alignment: .leading) {
                         HStack(alignment: .center, spacing: 0) {
@@ -109,12 +113,17 @@ struct SettingsView: View {
                 
                 HStack {
                     VStack(alignment: .leading ,spacing: 12) {
-                        Text("Código do workspace")
-                            .collieFont(textStyle: .title)
+                        HStack {
+                            Text("Código do workspace")
+                                .collieFont(textStyle: .title)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                        }
                         Text("Esse é o código para que novos colaboradores entrem em seu workspace de maneira mais direta. A nova pessoa deve inserir o código após o login na tela de workspaces.")
                             .collieFont(textStyle: .regularText)
                     }
-                    .frame(maxWidth: 300)
+                    .frame(maxWidth: 350)
                     
                     Spacer()
                     VStack {
@@ -134,7 +143,7 @@ struct SettingsView: View {
                         .frame(maxWidth: 340, maxHeight: 60)
                         .overlay(
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(copyClicked ? Color.collieVerde : Color.collieTextFieldBorder, lineWidth: 1)
+                                    .stroke(copyClicked ? Color.collieVerde : Color.collieCinzaBorda, lineWidth: 2)
                             )
                         .onTapGesture {
                             viewModel.copyToClipboard(text: viewModel.businessCode)
@@ -144,25 +153,22 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    
                     Spacer()
-                    VStack(spacing: 24) {
-                        Text("Caso seja necessário impedir acesso pelo código, você pode gerar um novo código que substituirá o antigo.")
-                            .collieFont(textStyle: .regularText)
-                            .frame(maxWidth: 300)
-                        Button(action: {
-                            viewModel.redefineBusinessCode(businessId: rootViewModel.businessSelected.id)
-                        }) {
-                            Text("Gerar novo código aleatório")
-                                .collieFont(textStyle: .subtitle)
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 12)
-                                .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
-                                    )
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack {
+                            Text("Caso seja necessário impedir acesso pelo código, você pode gerar um novo código que substituirá o antigo.")
+                                .collieFont(textStyle: .regularText)
+                                .frame(maxWidth: 300)
+                            Spacer()
                         }
-                        .buttonStyle(.plain)
+                        
+                        SimpleButton(label: "Gerar novo código") {
+                            viewModel.redefineBusinessCode(businessId: rootViewModel.businessSelected.id)
+                        }
                     }
+                    .frame(maxWidth: 300)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(32)

@@ -1,10 +1,3 @@
-//
-//  DisplayFormView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 14/11/22.
-//
-
 import SwiftUI
 
 struct DisplayFormView: View {
@@ -12,22 +5,25 @@ struct DisplayFormView: View {
     @Binding var rootViewModelBusinessUser: BusinessUser?
     @State var currentUser: UserModel
     @Binding var editingMode: Bool
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Spacer()
                 Button(action: {
-                    editingMode = true
+                    withAnimation {
+                        editingMode = true
+                    }
                 }) {
                     Text("Editar \(Image(systemName: "square.and.pencil"))")
                         .foregroundColor(Color.collieRoxo)
-                        .collieFont(textStyle: .smallTitle)
+                        .collieFont(textStyle: .subtitle)
                 }
                 .buttonStyle(.plain)
                 .contentShape(Rectangle())
             }
-            VStack {
-                VStack(alignment: .leading) {
+            VStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Nome do usuário")
                         .collieFont(textStyle: .regularText)
                     HStack {
@@ -35,9 +31,11 @@ struct DisplayFormView: View {
                             .collieFont(textStyle: .smallTitle)
                         Spacer()
                     }
-                    Divider()
                 }
-                VStack(alignment: .leading) {
+                
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     
                     Text("Cargo")
                         .collieFont(textStyle: .regularText)
@@ -46,10 +44,11 @@ struct DisplayFormView: View {
                             .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Breve descrição")
                         .collieFont(textStyle: .regularText)
                     HStack {
@@ -57,18 +56,11 @@ struct DisplayFormView: View {
                             .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
-//                    Text("Data de entrada")
-//                        .collieFont(textStyle: .regularText)
-//                    HStack {
-//                        Text("17/04/2022")
-//                            .collieFont(textStyle: .regularText)
-//                        Spacer()
-//                    }
-//                    Divider()
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Papel")
                         .collieFont(textStyle: .regularText)
                     HStack {

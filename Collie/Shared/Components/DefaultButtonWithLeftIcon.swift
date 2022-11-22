@@ -10,11 +10,12 @@ struct DefaultButtonWithLeftIcon: View {
             onTap()
         } label: {
             HStack {
-                Image(systemName: "plus")
-                Text("Nova tarefa")
+                Image(systemName: systemImageName)
+                Text(label)
             }
             .collieFont(textStyle: .subtitle)
-            .padding(8)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
             .foregroundColor(.black)
             .frame(height: 45)
             .background(Color.white)

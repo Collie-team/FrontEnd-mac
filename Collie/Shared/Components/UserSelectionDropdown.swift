@@ -27,12 +27,7 @@ struct UserSelectionDropdown: View {
                                     Text(label)
                                         .padding(.vertical)
                                     Spacer()
-                                    if showLoadingIndicator {
-                                        LoadingIndicator()
-                                            .frame(width: 24, height: 24)
-                                    } else {
-                                        Image(systemName: "chevron.down")
-                                    }
+                                    Image(systemName: "chevron.down")
                                 }
                                 .collieFont(textStyle: .regularText)
                             }

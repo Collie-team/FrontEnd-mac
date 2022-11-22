@@ -90,8 +90,8 @@ struct LoginView: View {
         .padding(.horizontal, 60)
         .padding(.vertical, 42)
         .background(Color.white)
-        .cornerRadius(12)
-        .shadow(color: .gray, radius: 4, x: 0, y: 4)
+        .cornerRadius(8)
+        .modifier(CustomBorder())
     }
 }
 

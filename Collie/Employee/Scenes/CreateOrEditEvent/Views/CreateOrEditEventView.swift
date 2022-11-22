@@ -158,6 +158,7 @@ struct CreateOrEditEventView: View {
                         handleClose()
                     }
                 )
+                .frame(maxWidth: 300)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)

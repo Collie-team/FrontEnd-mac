@@ -20,7 +20,7 @@ struct ProfilePopUpView: View {
                         .cornerRadius(36)
                 } else {
                     Circle()
-                        .fill(Color.random)
+                        .fill(Color.collieRoxo)
                         .frame(width: 72, height: 72)
                         .overlay(
                             Text(name.split(separator: " ")[0].description.uppercased().prefix(1) + name.split(separator: " ")[1].description.uppercased().prefix(1))

@@ -30,10 +30,7 @@ struct CreateOrEditJourneyView: View {
             VStack(spacing: 16) {
                 HStack {
                     TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
-                    
-//                    FilePicker { imagePath in
-//                        self.imageURL = URL(fileURLWithPath: imagePath)
-//                    }
+            
                 }
                 .padding(.bottom, 40)
                           
@@ -83,6 +80,7 @@ struct CreateOrEditJourneyView: View {
                     }
                     handleClose()
                 }
+                .frame(maxWidth: 300)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
