@@ -123,10 +123,11 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
+    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles, _ completion: @escaping () -> ()) {
         let emailService = APISubscriptionService()
         emailService.sendInviteEmail(authenticationToken: "", business: businessSelected, email: userToAdd.email) {
             // Prompt success
+            completion()
         }
     }
     

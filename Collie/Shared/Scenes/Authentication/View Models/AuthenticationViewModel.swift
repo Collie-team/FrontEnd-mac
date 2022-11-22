@@ -86,7 +86,11 @@ class AuthenticationViewModel: ObservableObject {
         loadingState = .authenticating
         authenticationService.createUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
-            self.loadingState = .fetchingData
+            if status == .valid {
+                self.loadingState = .fetchingData
+            } else {
+                self.loadingState = .waiting
+            }
             if let user = user, let token = token {
                 let userData = UserModel(id: user.uid, name: self.currentUser.firstName + " " + self.currentUser.lastName, email: self.currentUser.email, jobDescription: "", personalDescription: "", imageURL: "")
                 self.userSubscriptionService.createUser(user: userData, authenticationToken: token) { writtenData in
@@ -100,7 +104,11 @@ class AuthenticationViewModel: ObservableObject {
         loadingState = .authenticating
         authenticationService.loginUser(email: currentUser.email, password: currentUser.password) { status, user, token in
             self.authenticationStatus = status
-            self.loadingState = .fetchingData
+            if status == .valid {
+                self.loadingState = .fetchingData
+            } else {
+                self.loadingState = .waiting
+            }
             if let _ = user, let token = token {
                 self.userSubscriptionService.fetchUser(authenticationToken: token) { userData in
                     completion(userData, token)

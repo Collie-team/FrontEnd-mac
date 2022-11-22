@@ -27,7 +27,8 @@ class ProfileViewModel: ObservableObject {
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.canChooseFiles = true
-        openPanel.allowedFileTypes = ["png","jpg","jpeg"]
+        openPanel.allowedContentTypes = [.png, .jpeg]
+//        openPanel.allowedFileTypes = ["png","jpg","jpeg"]
         openPanel.begin { [self] (result) -> Void in
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 let selectedPath = openPanel.url!.path
