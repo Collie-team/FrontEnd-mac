@@ -5,7 +5,7 @@ struct RootView: View {
     var body: some View {
         getCurrentView()
             .onAppear {
-                viewModel.configureFirebaseStateDidChange()
+                viewModel.checkIfUserIsLoggedIn()
             }
     }
     

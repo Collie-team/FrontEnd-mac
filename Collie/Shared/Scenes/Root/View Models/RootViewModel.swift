@@ -29,7 +29,11 @@ final class RootViewModel: ObservableObject {
     
     var authenticationToken: String?
     var availableBusiness: [Business] = []
-    var availableBusinessUsers: [BusinessUser] = []
+    var availableBusinessUsers: [BusinessUser] = [] {
+        didSet{
+            print("root view buser:", availableBusinessUsers.map{$0.userId})
+        }
+    }
     
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     
@@ -37,24 +41,14 @@ final class RootViewModel: ObservableObject {
         self.businessSelected = Business(id: "", name: "", description: "", journeys: [], tasks: [], categories: [], events: [])
     }
     
-    func configureFirebaseStateDidChange() {
-        self.authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ auth, user in
-            if let authUser = Auth.auth().currentUser {
-                authUser.getIDTokenForcingRefresh(true) { idToken, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                    
-                    if let token = idToken {
-                        self.userSubscriptionService.fetchUser(authenticationToken: token) { userModel in
-                            self.handleAuthentication(user: userModel, authToken: token)
-                        }
-                    }
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            if let authenticationToken = Auth.auth().currentUser?.refreshToken {
+                self.userSubscriptionService.fetchUser(authenticationToken: authenticationToken) { userModel in
+                    self.handleAuthentication(user: userModel, authToken: authenticationToken)
                 }
-            } else {
-                self.navigationState = .authentication
             }
-        })
+        }
     }
     
     func handleAuthentication(user: UserModel, authToken: String) -> () {
