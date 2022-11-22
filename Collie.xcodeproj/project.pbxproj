@@ -118,6 +118,9 @@
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
+		5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */; };
+		5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */; };
+		5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34F292D16CD00573899 /* InviteUserButton.swift */; };
 		5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */; };
 		5BD0CB13292C7BB4001E7563 /* CollieFontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */; };
 		5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB14292C8E9B001E7563 /* NakedButton.swift */; };
@@ -250,6 +253,9 @@
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButtonWithLeftIcon.swift; sourceTree = "<group>"; };
+		5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListUserCell.swift; sourceTree = "<group>"; };
+		5BC5B34F292D16CD00573899 /* InviteUserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserButton.swift; sourceTree = "<group>"; };
 		5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceOptionView.swift; sourceTree = "<group>"; };
 		5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieFontSystem.swift; sourceTree = "<group>"; };
 		5BD0CB14292C8E9B001E7563 /* NakedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NakedButton.swift; sourceTree = "<group>"; };
@@ -490,6 +496,8 @@
 				5BA9AFDF290B182900C1078A /* HelpButton.swift */,
 				5B50425D29194C28001E39A2 /* HelpView.swift */,
 				5BD0CB14292C8E9B001E7563 /* NakedButton.swift */,
+				5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */,
+				5BC5B34F292D16CD00573899 /* InviteUserButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -865,6 +873,7 @@
 		5BACC66228D24403006975D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BC5B34C292D14E800573899 /* Components */,
 				5BACC66428D24413006975D3 /* TeamListView.swift */,
 				5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */,
 				5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */,
@@ -995,6 +1004,14 @@
 				5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */,
 			);
 			path = "View Models";
+			sourceTree = "<group>";
+		};
+		5BC5B34C292D14E800573899 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		5BD68492291D701500090481 /* Profile */ = {
@@ -1212,6 +1229,7 @@
 				5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */,
 				5B954E812901C38D00FA579E /* UserTask.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
+				5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */,
 				5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */,
 				5B482BBE291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift in Sources */,
 				5B954E7D2901C2C700FA579E /* EmployeeEventView.swift in Sources */,
@@ -1253,6 +1271,7 @@
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
 				5B4E312A29143C8A0031F74F /* OnboardingCardView.swift in Sources */,
 				5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */,
+				5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */,
 				5B4E313D2915A7750031F74F /* SettingsView.swift in Sources */,
 				5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */,
 				5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */,
@@ -1260,6 +1279,7 @@
 				5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
+				5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */,
 				5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */,
 				5B0DC415291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessEventView.swift in Sources */,

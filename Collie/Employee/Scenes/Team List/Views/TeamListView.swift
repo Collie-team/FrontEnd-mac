@@ -22,98 +22,81 @@ struct TeamListView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: true) {
-                VStack {
+                VStack(spacing: 0) {
                     HStack(alignment: .bottom) {
-                        VStack(alignment: .leading) {
-                            Text("Acompanhamento")
-                                .collieFont(textStyle: .largeTitle)
-                                .foregroundColor(Color.black)
-                                .padding(.bottom, 12)
-                            Text("Faça um acompanhamento geral do seu time")
-                                .collieFont(textStyle: .subtitle)
-                                .foregroundColor(Color.black.opacity(0.6))
-                        }
+                        Text("Acompanhamento")
+                            .collieFont(textStyle: .largeTitle)
+                            .foregroundColor(Color.black)
+                        
                         Spacer()
-                        VStack(alignment: .trailing) {
-                            HStack {
-                                Image(systemName: "bell")
-                                    .foregroundColor(Color.collieRoxo)
-                                    .collieFont(textStyle: .subtitle)
-                                    .padding()
-                                    .overlay(
-                                        ZStack {
-                                            Circle()
-                                                .frame(width: 14, height: 14)
-                                                .foregroundColor(.red)
-                                            Text("4")
-                                                .collieFont(textStyle: .regularText)
-                                        }
-                                        .offset(x: 7, y: -7)
-                                    )
-                                if rootViewModel.currentUser.imageURL != "", let url = URL(string: rootViewModel.currentUser.imageURL) {
-                                    AnimatedImage(url: url)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 36, height: 36)
-                                        .cornerRadius(18)
-                                    .onTapGesture {
-                                        viewModel.profileDetailsShowing.toggle()
-                                    }
-                                    .popover(isPresented: $viewModel.profileDetailsShowing,
-                                             attachmentAnchor: .point(.bottomTrailing),   // here !
-                                             arrowEdge: .bottom) {
-                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-                                            rootViewModel.navigationState = .authentication
-                                        }, navigateToProfileView: {
-                                            // TODO: Resetar rootView, e outras variaveis
-                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
-                                        })
-                                    }
-                                } else {
-                                    ZStack {
-                                        Circle()
-                                            .foregroundColor(.white)
-                                            .frame(width: 36, height: 36)
-                                        Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
-                                            .collieFont(textStyle: .regularText)
-                                    }
-                                    .onTapGesture {
-                                        viewModel.profileDetailsShowing.toggle()
-                                    }
-                                    .popover(isPresented: $viewModel.profileDetailsShowing,
-                                             attachmentAnchor: .point(.bottomTrailing),   // here !
-                                             arrowEdge: .bottom) {
-                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-                                            rootViewModel.navigationState = .authentication
-                                        }, navigateToProfileView: {
-                                            // TODO: Resetar rootView, e outras variaveis
-                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
-                                        })
-                                    }
-                                }
-                            }
-                            HStack {
-                                Button(action: {
-                                    viewModel.newUserPopupEnabled = true
-                                }) {
-                                    HStack {
-                                        Image(systemName: "person.crop.circle.badge.plus")
-                                        Text("Adicionar pessoas")
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .padding(.horizontal,8)
-                                }
-                                .buttonStyle(.plain)
-                                .background(Color.collieRoxo)
-                                .cornerRadius(8)
-                                .contentShape(Rectangle())
-                            }
+                        
+                        InviteUserButton {
+                            viewModel.newUserPopupEnabled = true
                         }
+                        
+//                        VStack(alignment: .trailing) {
+//                            HStack {
+//                                Image(systemName: "bell")
+//                                    .foregroundColor(Color.collieRoxo)
+//                                    .collieFont(textStyle: .subtitle)
+//                                    .padding()
+//                                    .overlay(
+//                                        ZStack {
+//                                            Circle()
+//                                                .frame(width: 14, height: 14)
+//                                                .foregroundColor(.red)
+//                                            Text("4")
+//                                                .collieFont(textStyle: .regularText)
+//                                        }
+//                                        .offset(x: 7, y: -7)
+//                                    )
+//                                if rootViewModel.currentUser.imageURL != "", let url = URL(string: rootViewModel.currentUser.imageURL) {
+//                                    AnimatedImage(url: url)
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .frame(width: 36, height: 36)
+//                                        .cornerRadius(18)
+//                                    .onTapGesture {
+//                                        viewModel.profileDetailsShowing.toggle()
+//                                    }
+//                                    .popover(isPresented: $viewModel.profileDetailsShowing,
+//                                             attachmentAnchor: .point(.bottomTrailing),   // here !
+//                                             arrowEdge: .bottom) {
+//                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
+//                                            rootViewModel.navigationState = .authentication
+//                                        }, navigateToProfileView: {
+//                                            // TODO: Resetar rootView, e outras variaveis
+//                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
+//                                        })
+//                                    }
+//                                } else {
+//                                    ZStack {
+//                                        Circle()
+//                                            .foregroundColor(.white)
+//                                            .frame(width: 36, height: 36)
+//                                        Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
+//                                            .collieFont(textStyle: .regularText)
+//                                    }
+//                                    .onTapGesture {
+//                                        viewModel.profileDetailsShowing.toggle()
+//                                    }
+//                                    .popover(isPresented: $viewModel.profileDetailsShowing,
+//                                             attachmentAnchor: .point(.bottomTrailing),   // here !
+//                                             arrowEdge: .bottom) {
+//                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
+//                                            rootViewModel.navigationState = .authentication
+//                                        }, navigateToProfileView: {
+//                                            // TODO: Resetar rootView, e outras variaveis
+//                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
+//                                        })
+//                                    }
+//                                }
+//                            }
+//                        }
                     }
-                    .padding(.bottom)
+                    .padding(.bottom, 32)
                     
                     // LISTA
 
@@ -163,66 +146,16 @@ struct TeamListView: View {
                         .collieFont(textStyle: .smallTitle)
                         .padding()
                         
-                        ForEach(viewModel.teamListUsers) { user in
-                            HStack(spacing: 0) {
-                                if user.imageURL != "", let url = URL(string: user.imageURL) {
-                                    AnimatedImage(url: url)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 48, height: 48)
-                                        .cornerRadius(24)
-                                        .padding(.trailing)
-                                } else {
-                                    ZStack {
-                                        Circle()
-                                            .frame(width: 48, height: 48)
-                                            .foregroundColor(.collieRosaClaro)
-                                        Text("\(getNameLetters(fullName: user.name))")
-                                            .collieFont(textStyle: .subtitle)
-                                    }
-                                    .padding(.trailing)
-                                }
-                                
-                                GeometryReader { geometry in
-                                    HStack(alignment: .center, spacing: 0) {
-                                        Text("\(user.name)")
-                                        
-                                        Spacer()
-                                        
-                                        VStack {
-                                            Text(verbatim: user.email)
-                                                .collieFont(textStyle: .regularText)
-                                                .opacity(0.5)
-                                                
-                                        }
-                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
-                                        
-                                        VStack {
-                                            Text(user.journey)
-                                                .collieFont(textStyle: .regularText)
-                                        }
-                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
-                                        
-                                        
-                                        VStack {
-                                            ProgressBarView(doneTasks: user.doneTasks, totalTasks: user.totalTasks)
-                                        }
-                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
-                                        
-                                        VStack {
-                                            Text("\(user.doneTasks)/\(user.totalTasks)")
-                                                .collieFont(textStyle: .regularText)
-                                        }
-                                        .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
-                                        
-                                    }
-                                }
-                                .foregroundColor(.black)
+                        if viewModel.teamListUsers.isEmpty {
+                            HStack {
+                                Spacer()
+                                LoadingIndicator()
+                                Spacer()
                             }
-                            .padding()
-                            .frame(height: 60)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                        } else {
+                            ForEach(viewModel.teamListUsers) { teamListUser in
+                                TeamListUserCell(teamListUser: teamListUser)
+                            }
                         }
                     }
                     
@@ -243,12 +176,6 @@ struct TeamListView: View {
         .popover(isPresented: $viewModel.newUserPopupEnabled) {
             NewUserFormsView()
         }
-    }
-    
-    func getNameLetters(fullName: String) -> String {
-        let firstLetter = fullName.components(separatedBy: " ")[0].uppercased().prefix(1)
-        let secondLetter = fullName.components(separatedBy: " ").count > 1 ? fullName.components(separatedBy: " ")[1].uppercased().prefix(1) : ""
-        return (String(firstLetter + secondLetter))
     }
 }
 

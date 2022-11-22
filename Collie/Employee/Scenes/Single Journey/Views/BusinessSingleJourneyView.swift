@@ -28,21 +28,13 @@ struct BusinessSingleJourneyView: View {
                     
                     Spacer()
                     
-                    Button {
-                        editJourney = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.pencil")
-                            Text("Editar jornada")
+                    DefaultButtonWithLeftIcon(
+                        label: "Editar jornada",
+                        systemImageName: "square.and.pencil",
+                        onTap: {
+                            editJourney = true
                         }
-                        .collieFont(textStyle: .subtitle)
-                        .padding(8)
-                        .foregroundColor(.black)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                    }
-                    .contentShape(Rectangle())
-                    .buttonStyle(.plain)
+                    )
                 }
                 .foregroundColor(.black)
                 .padding(.bottom)
@@ -50,7 +42,6 @@ struct BusinessSingleJourneyView: View {
                 Text(viewModel.journey.description)
                     .collieFont(textStyle: .regularText)
                     .foregroundColor(.black)
-                
                 
                 HStack(spacing: 16) {
                     VStack {
@@ -68,41 +59,21 @@ struct BusinessSingleJourneyView: View {
 
                             Spacer()
                             
-                            Button {
-                                showTaskForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Nova tarefa")
+                            DefaultButtonWithLeftIcon(
+                                label: "Nova tarefa",
+                                systemImageName: "plus",
+                                onTap: {
+                                    showTaskForm = true
                                 }
-                                .collieFont(textStyle: .subtitle)
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
+                            )
                             
-                            Button {
-                                showCategoryForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "tag")
-                                    Text("Nova categoria")
+                            DefaultButtonWithLeftIcon(
+                                label: "Nova categoria",
+                                systemImageName: "tag",
+                                onTap: {
+                                    showCategoryForm = true
                                 }
-                                .collieFont(textStyle: .subtitle)
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
+                            )
                         }
                         
                         ScrollView(.vertical) {
@@ -181,24 +152,13 @@ struct BusinessSingleJourneyView: View {
                             
                             Spacer()
                             
-                            Button {
-                                showEventForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "calendar.badge.plus")
-                                    Text("Novo evento")
+                            DefaultButtonWithLeftIcon(
+                                label: "Novo evento",
+                                systemImageName: "calendar.badge.plus",
+                                onTap: {
+                                    showEventForm = true
                                 }
-                                .collieFont(textStyle: .subtitle)
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
-                            
+                            )
                         }
                         
                         BusinessEventsCalendarView(

@@ -58,27 +58,33 @@ struct SignupView: View {
                 VStack(alignment: .leading) {
                     Text("Senha")
                         .collieFont(textStyle: .regularText)
+                    
                     CustomSecureView("Senha", text: $viewModel.currentUser.password) {
                         return viewModel.currentUser.isValidPassword() || viewModel.currentUser.password == ""
                     }
+                    
                     Text("\(Image(systemName: "info.circle")) Deve conter ao menos 6 caracteres, incluindo uma letra maiúscula, uma minúscula e um número")
                         .collieFont(textStyle: .regularText, textSize: 14)
                         .foregroundColor(Color.collieCinzaEscuro.opacity(0.8))
+                        .lineLimit(2)
                 }
                 .padding(.bottom, 8)
                 
                 VStack(alignment: .leading) {
                     Text("Confirmar senha")
                         .collieFont(textStyle: .regularText)
+                    
                     CustomSecureView("Confirmar senha", text: $viewModel.currentUser.passwordConfirmation) {
                         return viewModel.currentUser.password == viewModel.currentUser.passwordConfirmation
                     }
+                    
                     Text("\(Image(systemName: "exclamationmark.circle.fill")) Senha dos campos não é a mesma")
                         .collieFont(textStyle: .regularText)
                         .foregroundColor(Color.collieVermelho)
                         .opacity(viewModel.currentUser.password != viewModel.currentUser.passwordConfirmation && viewModel.currentUser.passwordConfirmation != "" ? 1 : 0)
                 }
                 .padding(.bottom, 8)
+                
                 VStack(alignment: .leading) {
                     Toggle(isOn: $viewModel.currentUser.agreementToggle) {
                         HStack(spacing: 4) {
@@ -98,6 +104,7 @@ struct SignupView: View {
                     .toggleStyle(CheckboxStyle())
                 }
             }
+            
             Spacer()
             
             DefaultButton(
@@ -112,23 +119,6 @@ struct SignupView: View {
                     }
                 }
             )
-            
-//            Button(action: {
-//                viewModel.authenticationStatus = .valid
-//                viewModel.createUser() { user, token in
-//                    completion(user, token)
-//                }
-//            }) {
-//                Text("Cadastrar")
-//                    .foregroundColor(.white)
-//                    .frame(height: 48)
-//                    .frame(maxWidth: 400)
-//                    .background(Color.black)
-//                    .cornerRadius(8)
-//            }
-//            .buttonStyle(.plain)
-//            .frame(maxWidth: .infinity)
-//            .disabled(!viewModel.signupEnabled)
         }
         .foregroundColor(.black)
         .padding(.horizontal, 60)

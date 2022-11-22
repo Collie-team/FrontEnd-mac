@@ -63,7 +63,9 @@ struct LoginView: View {
                                 viewModel.authenticationMode = .passwordReset
                             }
                         }) {
-                            Text("Esqueci a senha")
+                            Text("esqueci minha senha")
+                                .underline()
+                                .collieFont(textStyle: .subtitle, textSize: 14)
                                 .foregroundColor(Color.collieCinzaEscuro)
                         }
                         .buttonStyle(.plain)

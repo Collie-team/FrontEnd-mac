@@ -1,20 +1,33 @@
-//
-//  DefaultButtonWithLeftIcon.swift
-//  Collie
-//
-//  Created by André Arns on 22/11/22.
-//
-
 import SwiftUI
 
 struct DefaultButtonWithLeftIcon: View {
+    var label: String
+    var systemImageName: String
+    var onTap: () -> ()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            onTap()
+        } label: {
+            HStack {
+                Image(systemName: "plus")
+                Text("Nova tarefa")
+            }
+            .collieFont(textStyle: .subtitle)
+            .padding(8)
+            .foregroundColor(.black)
+            .frame(height: 45)
+            .background(Color.white)
+            .cornerRadius(8)
+            .modifier(CustomBorder())
+        }
+        .contentShape(Rectangle())
+        .buttonStyle(.plain)
     }
 }
 
 struct DefaultButtonWithLeftIcon_Previews: PreviewProvider {
     static var previews: some View {
-        DefaultButtonWithLeftIcon()
+        DefaultButtonWithLeftIcon(label: "Nova tarefa", systemImageName: "plus", onTap: {})
     }
 }

@@ -16,6 +16,7 @@ struct LoadingIndicator: View {
             .onAppear {
                 angle -= Angle.degrees(1080)
             }
+            .frame(width: 100, height: 100)
     }
 }
 

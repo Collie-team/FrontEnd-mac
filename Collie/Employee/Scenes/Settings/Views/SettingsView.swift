@@ -7,7 +7,7 @@ struct SettingsView: View {
     @State var showDeleteAlert = false
     @State var copyClicked = false
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text("Configurações")
                     .collieFont(textStyle: .largeTitle)
@@ -29,22 +29,9 @@ struct SettingsView: View {
                                 .foregroundColor(.black)
                         }
                         
-                        Button {
+                        InviteUserButton {
                             viewModel.newUserPopupEnabled = true
-                        } label: {
-                            HStack {
-                                Image(systemName: "person.crop.circle.badge.plus")
-                                Text("Convidar pessoas")
-                            }
-                            .collieFont(textStyle: .subtitle)
-                            .foregroundColor(.white)
-                            .padding(8)
-                            .background(Color.collieAzulEscuro)
-                            .cornerRadius(8)
-                            
                         }
-                        .buttonStyle(.plain)
-
                     }
                     .padding(.bottom)
                     .frame(maxWidth: 300)
@@ -85,17 +72,26 @@ struct SettingsView: View {
                         
                         ScrollView(.vertical) {
                             VStack {
-                                ForEach($viewModel.modelList, id: \.self) { $model in
-                                    SettingsUserCell(model: $model, workspaceAdmins: $viewModel.workspaceAdmins, workspaceUsers: $viewModel.workspaceUsers, handleUserDeletion: {
-                                       viewModel.selectedUserModel = model.userModel
-                                       self.showDeleteAlert = true
-                                    }, handleRoleChange: { bUser, role in
-                                        var businessUser = bUser
-                                        businessUser.role = role
-                                        rootViewModel.updateBusinessUser(businessUser) { updatedBusinessUser in
-                                            viewModel.updateAdminCount(businessUser: updatedBusinessUser)
-                                        }
-                                    })
+                                if viewModel.modelList.isEmpty {
+                                    HStack(alignment: .center) {
+                                        Spacer()
+                                        LoadingIndicator()
+                                        Spacer()
+                                    }
+                                    .frame(maxHeight: .infinity)
+                                } else {
+                                    ForEach($viewModel.modelList, id: \.self) { $model in
+                                        SettingsUserCell(model: $model, workspaceAdmins: $viewModel.workspaceAdmins, workspaceUsers: $viewModel.workspaceUsers, handleUserDeletion: {
+                                           viewModel.selectedUserModel = model.userModel
+                                           self.showDeleteAlert = true
+                                        }, handleRoleChange: { bUser, role in
+                                            var businessUser = bUser
+                                            businessUser.role = role
+                                            rootViewModel.updateBusinessUser(businessUser) { updatedBusinessUser in
+                                                viewModel.updateAdminCount(businessUser: updatedBusinessUser)
+                                            }
+                                        })
+                                    }
                                 }
                             }
                             .padding(.trailing, 20)

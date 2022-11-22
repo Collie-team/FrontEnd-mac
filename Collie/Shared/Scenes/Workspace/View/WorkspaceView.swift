@@ -240,15 +240,17 @@ struct WorkspaceView: View {
     }
     
     var workspacesListView: some View {
-        VStack {
-            VStack {
+        VStack(spacing: 0) {
+            VStack(spacing: 0) {
                 VStack(spacing: 16) {
                     Text("Olá! Como você deseja começar?")
                         .collieFont(textStyle: .largeTitle)
                         .lineLimit(1)
-                    Text("Workspaces são a representação virtual da empresa! Se você está entrando em um novo trabalho entre com o código fornecido pela empresa. \nCaso você esteja implementando a Collie na sua empresa, crie um workspace!")
+                    Text("Workspaces são a representação virtual da empresa! Se você está entrando em um novo trabalho entre com o código fornecido pela empresa. Caso você esteja implementando a Collie na sua empresa, crie um workspace!")
                         .collieFont(textStyle: .regularText)
+                        .lineLimit(2)
                         .multilineTextAlignment(.center)
+                        .frame(minHeight: 60)
                 }
                 .foregroundColor(.black)
                 .padding(.bottom, 32)
@@ -259,6 +261,7 @@ struct WorkspaceView: View {
                         WorkspaceOptionView(systemImageName: "link.badge.plus", title: "Entrar através de um código") {
                             viewModel.workspaceViewState = .loginWorkspace
                         }
+                        .padding(.leading, 32)
                         
                         WorkspaceOptionView(systemImageName: "plus", title: "Criar workspace") {
                             viewModel.workspaceViewState = .createForm
@@ -274,8 +277,10 @@ struct WorkspaceView: View {
                         Spacer()
                     }
                     .padding(2)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 24)
                 }
+                .frame(maxHeight: 300)
+                .padding(.horizontal, -32)
             }
             .padding(.vertical, 50)
             .modifier(WorkspaceCardModifier())
