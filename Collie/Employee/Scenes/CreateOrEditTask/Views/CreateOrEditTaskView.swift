@@ -145,9 +145,6 @@ struct CreateOrEditTaskView: View {
             }
         )
         .cornerRadius(8)
-        .onAppear {
-            viewModel.fetchUsers(business: rootViewModel.businessSelected)
-        }
     }
     
     func getAllCategoriesScrollHeight() -> CGFloat {

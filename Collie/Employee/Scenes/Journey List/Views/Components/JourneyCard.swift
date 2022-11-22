@@ -1,21 +1,62 @@
 import SwiftUI
-
+import SDWebImageSwiftUI
 struct JourneyCard: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @State var cardSelection: Bool = false
     var journey: Journey
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-//            if let nsImage = NSImage(contentsOf: URL(fileURLWithPath: journey.imageURL) {
-//                Image(nsImage: nsImage)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(height: 200)
-//
-//            } else {
-            Rectangle()
-                .foregroundColor(.collieRosaClaro)
-                .frame(height: 200)
-//            }
+            if let url = URL(string: journey.imageURL), journey.imageURL != "" {
+                AnimatedImage(url: url)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 200)
+                    .onHover { hover in
+                        cardSelection = hover
+                    }
+                    .overlay(
+                        ZStack(alignment: .topTrailing) {
+                            HStack(spacing: 8) {
+                                Text("Selecionar imagem")
+                                Image(systemName: "photo")
+                            }
+                            .padding()
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            Rectangle()
+                                .fill(.black.opacity(0.2))
+                        }
+                            .opacity(cardSelection ? 1 : 0)
+                    )
+                    .onTapGesture {
+                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
+                    }
+            } else {
+                Rectangle()
+                    .foregroundColor(.collieRosaClaro)
+                    .frame(height: 200)
+                    .onHover { hover in
+                        cardSelection = hover
+                    }
+                    .overlay(
+                        ZStack(alignment: .topTrailing) {
+                            HStack(spacing: 8) {
+                                Text("Selecionar imagem")
+                                Image(systemName: "photo")
+                            }
+                            .padding()
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            Rectangle()
+                                .fill(.black.opacity(0.2))
+                        }
+                            .opacity(cardSelection ? 1 : 0)
+                    )
+                    .onTapGesture {
+                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
+                    }
+            }
                 
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
@@ -57,22 +98,6 @@ struct JourneyCard_Previews: PreviewProvider {
             imageURL: "",
             startDate: Date(),
             userIds: []
-//            employees: [],
-//            tasks: [
-//                Task(name: "Falar com X pessoa", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "A", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "B", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "C", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "D", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "E", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "F", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "G", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "H", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "I", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star")),
-//                Task(name: "J", description: "", startDate: Date(), endDate: Date(), taskCategory: TaskCategory(name: "Integração", colorName: "", systemImageName: "star"))
-//            ],
-//            events: [],
-//            managers: []
         ))
     }
 }

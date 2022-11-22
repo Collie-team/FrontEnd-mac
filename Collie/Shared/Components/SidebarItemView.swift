@@ -15,6 +15,7 @@ struct SidebarItemView: View {
                 .opacity(isSelected ? 1 : 0)
             Image(systemName: sidebarItem.systemImageName!)
             Text(sidebarItem.title!)
+                .lineLimit(1)
             Spacer()
         }
         .foregroundColor(.white)

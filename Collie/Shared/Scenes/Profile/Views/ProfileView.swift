@@ -53,11 +53,7 @@ struct ProfileView: View {
                                     .offset(x: 100, y: 100)
                             )
                             .onTapGesture {
-                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
-                                    rootViewModel.currentUser.imageURL = url
-                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
-                                    print(url)
-                                })
+                                rootViewModel.openFileSelectionForProfileImage()
                             }
                     } else {
                         RoundedRectangle(cornerRadius: 8)
@@ -79,11 +75,7 @@ struct ProfileView: View {
                                     .offset(x: 100, y: 100)
                             )
                             .onTapGesture {
-                                viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
-                                    rootViewModel.currentUser.imageURL = url
-                                    rootViewModel.updateUser(userData: rootViewModel.currentUser)
-                                    print(url)
-                                })
+                                rootViewModel.openFileSelectionForProfileImage()
                             }
                     }
                 }
