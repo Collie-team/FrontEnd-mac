@@ -27,7 +27,7 @@ struct BusinessSidebarView: View {
                 Spacer()
                 
                 SignOutSidebarItem {
-                    rootViewModel.navigationState = .workspace
+                    rootViewModel.exitCurrentWorkspace()
                 }
             }
             .background(Color.collieAzulEscuro)

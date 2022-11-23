@@ -24,13 +24,15 @@ final class RootViewModel: ObservableObject {
     }
     
     @Published var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
+    
     var currentBusinessUser: BusinessUser?
     
     var authenticationToken: String?
+    
     var availableBusiness: [Business] = []
+    
     var availableBusinessUsers: [BusinessUser] = [] {
         didSet{
-            
             print("root view buser:", availableBusinessUsers.map{$0.userId})
         }
     }
@@ -145,5 +147,10 @@ final class RootViewModel: ObservableObject {
             }
             self.navigationState = .authentication
         }
+    }
+    
+    func exitCurrentWorkspace() {
+        currentBusinessUser = nil
+        navigationState = .workspace
     }
 }
