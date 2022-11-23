@@ -42,6 +42,7 @@ struct OnboardingView: View {
                         
                         Button {
                             handleFinish()
+                            viewModel.skipOnboarding()
                         } label: {
                             Text("pular introdução")
                                 .collieFont(textStyle: .subtitle)

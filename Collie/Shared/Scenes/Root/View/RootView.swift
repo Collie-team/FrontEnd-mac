@@ -11,6 +11,10 @@ struct RootView: View {
     
     @ViewBuilder func getCurrentView() -> some View {
         switch viewModel.navigationState {
+        case .loading:
+            LoadingIndicator()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.white)
         case .authentication:
             AuthenticationView(handleSingIn: viewModel.handleAuthentication)
                 .environmentObject(viewModel)

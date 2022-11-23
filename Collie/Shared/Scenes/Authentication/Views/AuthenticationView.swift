@@ -43,19 +43,23 @@ struct AuthenticationView: View {
                     .background(Color.white)
                     .cornerRadius(8)
                     .modifier(CustomBorder())
+                    .padding(.bottom, 24)
                 } else {
                     if viewModel.authenticationMode == .signup {
                         SignupView(completion: handleSingIn)
                             .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
                             .environmentObject(viewModel)
+                            .padding(.bottom, 24)
                     } else if viewModel.authenticationMode == .login {
                         LoginView(completion: handleSingIn)
                             .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
                             .environmentObject(viewModel)
+                            .padding(.bottom, 24)
                     } else if viewModel.authenticationMode == .passwordReset {
                         ResetPasswordView()
                             .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
                             .environmentObject(viewModel)
+                            .padding(.bottom, 24)
                     }
                 }
             }

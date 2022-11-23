@@ -3,6 +3,7 @@ import FirebaseAuth
 import Firebase
 
 enum NavigationState {
+    case loading
     case authentication
     case workspace
     case manager
@@ -17,7 +18,7 @@ final class RootViewModel: ObservableObject {
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
     
-    @Published var navigationState: NavigationState = .authentication
+    @Published var navigationState: NavigationState = .loading
     
     @Published var businessSelected: Business {
         didSet {
@@ -45,12 +46,18 @@ final class RootViewModel: ObservableObject {
     }
     
     func checkIfUserIsLoggedIn() {
-        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
-            if let token = token {
-                self.userSubscriptionService.fetchUser(authenticationToken: token) { userModel in
-                    self.handleAuthentication(user: userModel, authToken: token)
+        print("Checking log in")
+        if let user = Auth.auth().currentUser {
+            user.getIDTokenForcingRefresh(false) { token, error in
+                if let token = token {
+                    print("Fetching user")
+                    self.userSubscriptionService.fetchUser(authenticationToken: token) { userModel in
+                        self.handleAuthentication(user: userModel, authToken: token)
+                    }
                 }
             }
+        } else {
+            self.navigationState = .authentication
         }
     }
     

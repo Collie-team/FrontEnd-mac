@@ -1,5 +1,6 @@
 import SwiftUI
 import SDWebImageSwiftUI
+import FirebaseAuth
 
 struct TopUserProfileIcon: View {
     @EnvironmentObject var rootViewModel: RootViewModel
@@ -36,7 +37,12 @@ struct TopUserProfileIcon: View {
                 arrowEdge: .bottom
             ) {
                 ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-                    rootViewModel.navigationState = .authentication
+                    do {
+                        try Auth.auth().signOut()
+                        rootViewModel.navigationState = .authentication
+                    } catch {
+                        print("Error while signing out!")
+                    }
                 }, navigateToProfileView: {
                     // TODO: Resetar rootView, e outras variaveis
                     navigateToProfileAction()

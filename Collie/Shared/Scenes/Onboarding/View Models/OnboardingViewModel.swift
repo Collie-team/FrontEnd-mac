@@ -63,7 +63,7 @@ final class OnboardingViewModel: ObservableObject {
     }
     
     func skipOnboarding() {
-        
+        OnboardingStorageService.shared.markOnboardingDone(onboardingType: onboardingType)
     }
     
     func restartOnboarding() {
