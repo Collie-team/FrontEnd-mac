@@ -1,10 +1,3 @@
-//
-//  EditingFormView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 14/11/22.
-//
-
 import SwiftUI
 
 struct EditingFormView: View {
@@ -12,82 +5,67 @@ struct EditingFormView: View {
     @Binding var rootViewModelBusinessUser: BusinessUser?
     @State var currentUser: UserModel
     @Binding var editingMode: Bool
+    
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-            }
-            VStack {
-                VStack(alignment: .leading) {
+            VStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Nome do usuário")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Nome", text: $currentUser.name)
-                    Divider()
                 }
-                VStack(alignment: .leading) {
-                    
+                
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Cargo")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Cargo", text: $currentUser.jobDescription)
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Breve descrição")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     CustomTextField("Description", text: $currentUser.personalDescription)
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
-//                    Text("Data de entrada")
-//                        .font(.system(size: 15))
-//                    HStack {
-//                        Text("17/04/2022")
-//                            .font(.system(size: 17))
-//                        Spacer()
-//                    }
-//                    Divider()
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Papel")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(rootViewModelBusinessUser!.role.getRoleText())
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
-                    HStack {
-                        Spacer()
-                        Button(action: {
+                }
+                
+                Divider()
+                
+                HStack(spacing: 16) {
+                    SimpleButton(label: "Reverter alterações") {
+                        withAnimation {
                             editingMode = false
-                        }) {
-                            Text("Reverter alterações")
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 12)
                         }
-                        .buttonStyle(.plain)
-                        .contentShape(Rectangle())
-                        .background(.white)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
-                        
-                        Button(action: {
+                    }
+                    
+                    SimpleButton(label: "Salvar alteraçoes") {
+                        withAnimation {
                             rootViewModel.updateUser(userData: currentUser)
                             editingMode = false
-                        }) {
-                            Text("Salvar alterações")
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 12)
                         }
-                        .buttonStyle(.plain)
-                        .contentShape(Rectangle())
-                        .background(.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                     }
+        
+                    Spacer()
                 }
             }
             .frame(maxWidth: 600)
         }
-    }}
+    }
+}
 
 struct EditingFormView_Previews: PreviewProvider {
     static var previews: some View {

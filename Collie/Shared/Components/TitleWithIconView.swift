@@ -10,7 +10,7 @@ struct TitleWithIconView: View {
             Text(label)
             Spacer()
         }
-        .font(.system(size: 16, weight: .bold))
+        .collieFont(textStyle: .subtitle)
         .foregroundColor(.black)
     }
 }

@@ -4,20 +4,14 @@ struct CheckBoxView: View {
     var checked: Bool
     var handleCheckToggle: () -> ()
     
-    let green = Color(red: 77/255, green: 174/255, blue: 0/255)
-    
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(checked ? green : .collieCinzaClaro)
+                .foregroundColor(checked ? .collieVerde : .collieCinzaClaro)
                 .frame(width: 24, height: 24)
-                .overlay {
-                    Circle()
-                        .stroke(Color.collieCinzaBorda, lineWidth: 2)
-                }
             if checked {
                 Image(systemName: "checkmark")
-                    .font(.system(size: 16, weight: .bold))
+                    .collieFont(textStyle: .subtitle)
                     .foregroundColor(.white)
             }
         }
@@ -25,7 +19,6 @@ struct CheckBoxView: View {
         .onTapGesture {
             withAnimation {
                 handleCheckToggle()
-                print("Check toggle")
             }
         }
     }

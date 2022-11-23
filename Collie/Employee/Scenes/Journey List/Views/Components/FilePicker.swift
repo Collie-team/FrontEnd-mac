@@ -21,7 +21,7 @@ struct FilePicker: View {
             }
         } label: {
             Image(systemName: "photo")
-                .font(.system(size: 24))
+                .collieFont(textStyle: .title)
         }
         .buttonStyle(.plain)
         .foregroundColor(.white)

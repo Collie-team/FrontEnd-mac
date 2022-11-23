@@ -40,6 +40,7 @@ struct CustomSecureView: View {
                 }
             }
             .padding(.trailing, 32)
+            .collieFont(textStyle: .regularText)
 
             Button(action: {
                 isSecured.toggle()

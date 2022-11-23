@@ -1,10 +1,3 @@
-//
-//  ProfileViewModel.swift
-//  Collie
-//
-//  Created by Pablo Penas on 17/11/22.
-//
-
 import Foundation
 import SwiftUI
 
@@ -14,8 +7,10 @@ class ProfileViewModel: ObservableObject {
     
     private let authenticationService = AuthenticationService()
     
-    func resetPassword(email: String) {
-        authenticationService.sendPasswordReset(withEmail: email)
+    func resetPassword(email: String, completion: @escaping () -> ()) {
+        authenticationService.sendPasswordReset(withEmail: email) {
+            completion()
+        }
     }
     
 }

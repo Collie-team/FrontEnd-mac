@@ -21,7 +21,7 @@ struct SidebarItemView: View {
         .foregroundColor(.white)
         .padding(.trailing)
         .frame(height: 50)
-        .font(.system(size: 18, weight: isSelected ? .bold : .medium, design: .rounded))
+        .collieFont(textStyle: isSelected ? .smallTitle : .subtitle, textSize: 18)
         .background(isSelected ? white : Color.collieAzulEscuro)
         .onTapGesture {
             onTap()

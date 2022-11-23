@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct CreateOrEditTaskView: View {
-    @ObservedObject var viewModel: CreateOrEditTaskViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
+    @ObservedObject var viewModel: CreateOrEditTaskViewModel
     
-    var journeyId: String
     var task: Task?
     var category: TaskCategory
+    var journeyId: String
     var handleClose: () -> ()
-    var handleTaskDeletion: (Task) -> ()
+    var handleTaskDelete: (Task) -> ()
     var handleTaskDuplicate: (Task) -> ()
     
     init(
@@ -17,7 +17,7 @@ struct CreateOrEditTaskView: View {
         task: Task?,
         category: TaskCategory,
         handleClose: @escaping () -> (),
-        handleTaskDeletion: @escaping (Task) -> (),
+        handleTaskDelete: @escaping (Task) -> (),
         handleTaskDuplicate: @escaping (Task) -> ()
     ) {
         self.viewModel = viewModel
@@ -25,7 +25,7 @@ struct CreateOrEditTaskView: View {
         self.task = task
         self.category = category
         self.handleClose = handleClose
-        self.handleTaskDeletion = handleTaskDeletion
+        self.handleTaskDelete = handleTaskDelete
         self.handleTaskDuplicate = handleTaskDuplicate
         if let task = task {
             viewModel.taskId = task.id
@@ -53,7 +53,7 @@ struct CreateOrEditTaskView: View {
                     if task != nil {
                         IconButton(imageSystemName: "trash") {
                             if let task = task {
-                                handleTaskDeletion(task)
+                                handleTaskDelete(task)
                             }
                         }
                     }
@@ -120,13 +120,18 @@ struct CreateOrEditTaskView: View {
                     )
                 }
 
-                SendButton(label: "salvar tarefa", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
+                DefaultButton(
+                    label: "salvar tarefa",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled(),
+                    handleSend: {
                         viewModel.handleTaskSave(journeyId: journeyId, completion: { business in
                             rootViewModel.updateBusiness(business, replaceBusiness: true)
                         })
                         handleClose()
                     }
                 )
+                .frame(maxWidth: 300)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
@@ -157,31 +162,5 @@ struct CreateOrEditTaskView: View {
         } else {
             return 40
         }
-    }
-    
-    func getAllUsersScrollHeight() -> CGFloat {
-        if viewModel.showUserList {
-            if viewModel.userModelList.count >= 3 {
-                return 160
-            } else {
-                return CGFloat((viewModel.userModelList.count + 1) * 40)
-            }
-        } else {
-            return 40
-        }
-    }
-    
-    func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.chosenUserModels.count >= 3 {
-            return 120
-        } else {
-            return CGFloat(viewModel.chosenUserModels.count * 40)
-        }
-    }
-}
-
-struct CreateOrEditTaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateOrEditTaskView(viewModel: CreateOrEditTaskViewModel(categoryList: []), journeyId: "", task: nil, category: .init(name: "", colorName: "", systemImageName: ""), handleClose: {}, handleTaskDeletion: {_ in}, handleTaskDuplicate: {_ in})
     }
 }

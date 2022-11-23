@@ -22,6 +22,7 @@ struct CustomTextField: View {
     var body: some View {
         HStack {
             TextField(title, text: $text)
+                .collieFont(textStyle: .regularText)
                 .textFieldStyle(PlainTextFieldStyle())
                 .foregroundColor(Color.collieCinzaEscuro)
                 .padding(.horizontal,15)

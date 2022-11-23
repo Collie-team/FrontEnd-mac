@@ -1,182 +1,171 @@
-//
-//  ProfileView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 10/11/22.
-//
-
 import SwiftUI
 import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
+    @State var showEmailSendConfirmation = false
+    
     var body: some View {
-        VStack(spacing: 20) {
-            HStack {
-                Text("Perfil")
-                    .font(.system(size: 40, weight: .bold, design: .default))
-                    .foregroundColor(Color.black)
-                Spacer()
-            }
-            .padding(.bottom, 32)
-            
-            HStack(spacing: 36) {
-                VStack(alignment: .leading) {
-                    Text("Apresentação")
-                        .font(.system(size: 22, weight: .bold))
-                    Text("Esses dados são visiveis para todos os responsáveis dentro da plataforma.")
-                        .font(.system(size: 15))
-                }
-                .frame(maxWidth: 315)
-                Spacer()
-                VStack(alignment: .leading) {
-                    Text("Foto de Perfil")
-                    if let url = URL(string: rootViewModel.currentUser.imageURL) {
-                        AnimatedImage(url: url)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 240, height: 240)
-                            .overlay(
-                                ZStack {
-                                    Image(systemName: "camera.fill")
-                                        .foregroundColor(Color.collieRoxo)
-                                        .font(.system(size: 28))
-                                }
-                                    .frame(width: 60, height: 60)
-                                    .background(Color.white)
-                                    .cornerRadius(8)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
-                                    )
-                                    .offset(x: 100, y: 100)
-                            )
-                            .onTapGesture {
-                                rootViewModel.openFileSelectionForProfileImage()
-                            }
-                    } else {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.collieVermelho)
-                            .frame(width: 240, height: 240)
-                            .overlay(
-                                ZStack {
-                                    Image(systemName: "camera.fill")
-                                        .foregroundColor(Color.collieRoxo)
-                                        .font(.system(size: 28))
-                                }
-                                    .frame(width: 60, height: 60)
-                                    .background(Color.white)
-                                    .cornerRadius(8)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.collieTextFieldBorder, lineWidth: 1)
-                                    )
-                                    .offset(x: 100, y: 100)
-                            )
-                            .onTapGesture {
-                                rootViewModel.openFileSelectionForProfileImage()
-                            }
-                    }
-                }
-                Spacer()
-                if viewModel.editingMode {
-                    EditingFormView(rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
-                        .preferredColorScheme(.dark)
-                        .frame(maxHeight: 600)
-                } else {
-                    DisplayFormView(rootViewModelUser: $rootViewModel.currentUser, rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
-                        .preferredColorScheme(.dark)
-                        .frame(maxHeight: 600)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .padding([.top, .horizontal], 32)
-            .background(Color.white)
-            .cornerRadius(12)
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Senha")
-                        .font(.system(size: 22, weight: .bold))
-                    Text("Altere sua senha e a deixe mais segura. Será necessário uma validação pelo e-mail utilizado na plataforma.")
-                        .font(.system(size: 15))
-                }
-                .frame(maxWidth: 350)
-                Spacer()
+        ScrollView(.vertical) {
+            VStack(spacing: 0) {
                 HStack {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(Color.collieTextFieldBorder)
-                    Button(action: {
-                        viewModel.resetPassword(email: rootViewModel.currentUser.email)
-                    }) {
-                        Text("Enviar e-mail para alterar senha")
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 12)
-                            .cornerRadius(8)
-                            .overlay(
+                    Text("Perfil")
+                        .collieFont(textStyle: .largeTitle)
+                        .foregroundColor(Color.black)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 32)
+                
+                VStack(spacing: 16) {
+                    HStack(alignment: .top, spacing: 36) {
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack {
+                                Text("Apresentação")
+                                    .collieFont(textStyle: .title)
+                                    .foregroundColor(.black)
+                                Spacer()
+                            }
+                            Text("Esses dados são visiveis para todos os responsáveis dentro da plataforma.")
+                                .collieFont(textStyle: .regularText)
+                        }
+                        .frame(maxWidth: 350)
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .leading) {
+                            Text("Foto de Perfil")
+                                .collieFont(textStyle: .regularText, textSize: 14)
+                                .foregroundColor(.black)
+                            
+                            if let url = URL(string: rootViewModel.currentUser.imageURL) {
+                                AnimatedImage(url: url)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 240, height: 240)
+                                    .cornerRadius(8)
+                                    .modifier(CustomBorder())
+                                    .overlay(
+                                        ChangePhotoIcon()
+                                    )
+                                    .onTapGesture {
+                                        viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
+                                            rootViewModel.currentUser.imageURL = url
+                                            rootViewModel.updateUser(userData: rootViewModel.currentUser)
+                                            print(url)
+                                        })
+                                    }
+                            } else {
                                 RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.collieTextFieldBorder, lineWidth: 1)
-                            )
+                                    .fill(Color.collieVermelho)
+                                    .frame(width: 240, height: 240)
+                                    .modifier(CustomBorder())
+                                    .overlay(
+                                        ChangePhotoIcon()
+                                    )
+                            .onTapGesture {
+                                rootViewModel.openFileSelectionForProfileImage()
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        if viewModel.editingMode {
+                            EditingFormView(rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
+                                .preferredColorScheme(.dark)
+                        } else {
+                            DisplayFormView(rootViewModelUser: $rootViewModel.currentUser, rootViewModelBusinessUser: $rootViewModel.currentBusinessUser, currentUser: rootViewModel.currentUser, editingMode: $viewModel.editingMode)
+                                .preferredColorScheme(.dark)
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .contentShape(Rectangle())
+                    .frame(maxWidth: .infinity)
+                    .padding(32)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    
+                    HStack {
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack {
+                                Text("Senha")
+                                    .collieFont(textStyle: .title)
+                                    .foregroundColor(.black)
+                                Spacer()
+                            }
+                            Text("Altere sua senha e a deixe mais segura. Será necessário uma validação pelo e-mail utilizado na plataforma.")
+                                .collieFont(textStyle: .regularText)
+                        }
+                        .frame(maxWidth: 350)
+                        
+                        Spacer()
+                        
+                        DefaultButtonWithLeftIcon(
+                            label: "Enviar e-mail para alterar senha",
+                            systemImageName: "envelope"
+                        ) {
+                            viewModel.resetPassword(email: rootViewModel.currentUser.email) {
+                                showEmailSendConfirmation = true
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(32)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    
+                    HStack {
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack {
+                                Text("Remover conta")
+                                    .collieFont(textStyle: .title)
+                                    .foregroundColor(.black)
+                                Spacer()
+                            }
+                            Text("Ao remover sua conta, Todos os seus dados serão apagados da plataforma.")
+                                .collieFont(textStyle: .regularText)
+                        }
+                        .frame(maxWidth: 350)
+                        
+                        Spacer()
+                        
+                        DestructiveButton(label: "Excluir conta") {
+                            viewModel.showUserDeleteAlert = true
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(32)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    
+                    Spacer()
                 }
             }
-            .frame(maxWidth: .infinity)
-            .padding(32)
-            .background(Color.white)
-            .cornerRadius(12)
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Remover conta")
-                        .font(.system(size: 22, weight: .bold))
-                    Text("Ao remover sua conta, Todos os seus dados serão apagados da plataforma.")
-                        .font(.system(size: 15))
-                }
-                .frame(maxWidth: 350)
-                Spacer()
-                Button(action: {
-                    viewModel.showUserDeleteAlert = true
-                }) {
-                    Text("Excluir conta")
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                        .cornerRadius(8)
-                        .foregroundColor(Color.collieVermelho)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.collieVermelho, lineWidth: 1)
-                        )
-                }
-                .buttonStyle(.plain)
-                .contentShape(Rectangle())
+            .padding(.horizontal, 32)
+            .padding(.top, 32)
+            .padding(.bottom)
+            .navigationTitle("Perfil")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.collieBrancoFundo.ignoresSafeArea())
+            .alert(isPresented: $viewModel.showUserDeleteAlert) {
+                Alert(
+                    title: Text("Você realmente deseja apagar todos os seus dados?"),
+                    message: Text("Essa ação é definitiva!"),
+                    primaryButton: .cancel(),
+                    secondaryButton: .destructive(Text("Deletar")) {
+                        rootViewModel.deleteUserData()
+                    }
+                )
             }
-            .frame(maxWidth: .infinity)
-            .padding(32)
-            .background(Color.white)
-            .cornerRadius(12)
-            
-            
-            Spacer()
+            .alert(isPresented: $showEmailSendConfirmation) {
+                Alert(
+                    title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+                    message: Text("Confira a caixa de spam :)"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
-        .padding(.horizontal, 60)
-        .padding(.vertical, 32)
-        .navigationTitle("Perfil")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
-        .alert(isPresented: $viewModel.showUserDeleteAlert) {
-            Alert(
-                title: Text("Você realmente deseja apagar todos os seus dados?"),
-                message: Text("Essa ação é definitiva!"),
-                primaryButton: .cancel(),
-                secondaryButton: .destructive(Text("Deletar")) {
-                    rootViewModel.deleteUserData()
-                }
-            )
-        }
     }
 }
 

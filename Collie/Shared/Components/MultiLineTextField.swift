@@ -10,7 +10,7 @@ struct MultiLineTextField: View {
             TextEditor(text: $text)
                 .tint(.collieRosaEscuro)
                 .frame(height: 80)
-                .font(.system(size: 16))
+                .collieFont(textStyle: .regularText)
                 .padding(.top)
                 .padding(.horizontal, 8)
             
@@ -19,7 +19,7 @@ struct MultiLineTextField: View {
                     Text(placeholderText)
                         .padding(.top)
                         .padding(.horizontal, 12)
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.gray)
                         .contentShape(NoShape())
                     Spacer()

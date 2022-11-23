@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EmployeeJourneyListView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var employeeSidebarViewModel: EmployeeSidebarViewModel
     @StateObject var viewModel = EmployeeJourneyListViewModel()
     
     var gridItems: [GridItem] = [
@@ -24,16 +25,24 @@ struct EmployeeJourneyListView: View {
     }
     
     var journeyList: some View {
-        VStack {
+        VStack(spacing: 0) {
+            
             ScrollView(.vertical, showsIndicators: true) {
-                VStack {
+                VStack(spacing: 0) {
                     HStack {
                         Text("Suas jornadas")
-                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .collieFont(textStyle: .largeTitle)
                             .foregroundColor(Color.black)
+                        
                         Spacer()
                         
+                        TopUserProfileIcon {
+                            if let profileItem = employeeSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                                employeeSidebarViewModel.selectedItem = profileItem
+                            }
+                        }
                     }
+                    .padding(.bottom, 32)
                     
                     LazyVGrid(columns: gridItems, spacing: 16) {
                         
@@ -50,8 +59,9 @@ struct EmployeeJourneyListView: View {
                 }
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
     }
     
     var singleJourney: some View {

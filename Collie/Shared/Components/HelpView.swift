@@ -7,9 +7,9 @@ struct HelpView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(title)
-                .font(.system(size: 18, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
             Text(subtitle)
-                .font(.system(size: 16, weight: .regular))
+                .collieFont(textStyle: .regularText)
         }
         .foregroundColor(.black)
         .padding()

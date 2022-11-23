@@ -1,24 +1,23 @@
-//
-//  ProgressBarView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 26/09/22.
-//
-
 import SwiftUI
-
-extension Color {
-    static var random: Color = Color(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1)
-        )
-}
 
 struct ProgressBarView: View {
     var doneTasks: Int
     var totalTasks: Int
     @State var percentage: CGFloat = 0.0
+    
+    var barColor: Color {
+        switch percentage {
+        case 0...0.5:
+            return Color.collieVermelho
+        case 0.51...0.99:
+            return Color.collieRoxo
+        case 1:
+            return Color.collieVerde
+        default:
+            return Color.collieBrancoFundo
+        }
+    }
+    
     var body: some View {
         HStack {
             GeometryReader { geometry in
@@ -29,7 +28,7 @@ struct ProgressBarView: View {
                         .cornerRadius(6)
                     Rectangle()
                         .frame(maxWidth: geometry.size.width * percentage, maxHeight: 12)
-                        .foregroundColor(Color.random)
+                        .foregroundColor(barColor)
                         .cornerRadius(6)
                 }
                 .frame(maxHeight: .infinity)

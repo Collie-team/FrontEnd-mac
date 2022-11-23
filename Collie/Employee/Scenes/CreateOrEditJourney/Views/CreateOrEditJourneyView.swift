@@ -14,10 +14,12 @@ struct CreateOrEditJourneyView: View {
         }
     }
     
+    var handleJourneySave: (Journey) -> ()
     var handleClose: () -> ()
     
-    init(userId: String, journey: Journey?, handleClose: @escaping () -> ()) {
-        self.viewModel = CreateNewJourneyViewModel(userId: userId)
+    init(userId: String, currentBusiness: Business, journey: Journey?, handleJourneySave: @escaping (Journey) -> (), handleClose: @escaping () -> ()) {
+        self.handleJourneySave = handleJourneySave
+        self.viewModel = CreateNewJourneyViewModel(userId: userId, currentBusiness: currentBusiness)
         self.handleClose = handleClose
         if let journey = journey {
             viewModel.journeyId = journey.id
@@ -84,12 +86,18 @@ struct CreateOrEditJourneyView: View {
                     )
                 }
                 
-                SendButton(label: "salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
-                    viewModel.handleJourneySave { business in
+                DefaultButton(
+                    label: "salvar jornada",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled()
+                ) {
+                    viewModel.handleJourneySave { business, journey in
                         rootViewModel.updateBusiness(business, replaceBusiness: true)
+                        handleJourneySave(journey)
                     }
                     handleClose()
                 }
+                .frame(maxWidth: 300)
                 .disabled(timeoutSaveWhenUploadsImage)
             }
             .padding(.vertical)
@@ -137,8 +145,8 @@ struct CreateOrEditJourneyView: View {
     }
 }
 
-struct CreateOrEditJourneyView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateOrEditJourneyView(userId: "", journey: nil, handleClose: {})
-    }
-}
+//struct CreateOrEditJourneyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateOrEditJourneyView(userId: "", currentBusiness: , journey: nil, handleJourneySave: {_ in }, handleClose: {})
+//    }
+//}

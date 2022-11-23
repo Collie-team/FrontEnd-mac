@@ -61,30 +61,16 @@ struct JourneyCard: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text(journey.name)
-                        .font(.system(size: 24, weight: .bold, design: .default))
+                        .collieFont(textStyle: .title)
                         .lineLimit(1)
                     Spacer()
-                }
-                HStack(spacing: 0) {
-//                    Text((journey.managers.count > 1) ? "Gestores: " : "Gestor: ")
-//                        .bold()
-//
-//                    ForEach(journey.managers) { manager in
-//                        if journey.managers.firstIndex(of: manager) == journey.managers.count - 1 {
-//                            Text("\(manager.name)")
-//                        } else {
-//                            Text("\(manager.name), ")
-//                        }
-//                    }
-                }
-                HStack {
-//                    Text("\(journey.employees.count) pessoas nessa jornada")
                 }
             }
             .padding()
             .foregroundColor(.black)
             .background(Color.white)
         }
+        .frame(height: 320)
         .frame(maxWidth: .infinity)
         .cornerRadius(16)
     }

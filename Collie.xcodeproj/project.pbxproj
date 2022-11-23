@@ -44,7 +44,7 @@
 		5B495FFA28E75CE60024D064 /* TitleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FF928E75CE60024D064 /* TitleTextField.swift */; };
 		5B495FFC28E75E450024D064 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FFB28E75E450024D064 /* CloseButton.swift */; };
 		5B495FFE28E75EDD0024D064 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FFD28E75EDD0024D064 /* IconButton.swift */; };
-		5B49600028E75F810024D064 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FFF28E75F810024D064 /* SendButton.swift */; };
+		5B49600028E75F810024D064 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B495FFF28E75F810024D064 /* DefaultButton.swift */; };
 		5B49600228E761230024D064 /* MultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600128E761230024D064 /* MultiLineTextField.swift */; };
 		5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600328E76D010024D064 /* TitleWithIconView.swift */; };
 		5B49600628E778360024D064 /* UserSelectionDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B49600528E778360024D064 /* UserSelectionDropdown.swift */; };
@@ -81,7 +81,6 @@
 		5B954E89290311A400FA579E /* EmployeeEventsCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */; };
 		5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */; };
 		5B954E8D290319B700FA579E /* EmployeeDateScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */; };
-		5B954E922906C0A700FA579E /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B954E912906C0A700FA579E /* DemoView.swift */; };
 		5BA9AFE0290B182900C1078A /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFDF290B182900C1078A /* HelpButton.swift */; };
 		5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */; };
 		5BA9AFEA291199E300C1078A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9AFE9291199E300C1078A /* OnboardingView.swift */; };
@@ -119,7 +118,19 @@
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
 		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
+		5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */; };
+		5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */; };
+		5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34F292D16CD00573899 /* InviteUserButton.swift */; };
+		5BC5B352292D77E500573899 /* DestructiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B351292D77E500573899 /* DestructiveButton.swift */; };
+		5BC5B354292D7DC400573899 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B353292D7DC400573899 /* SimpleButton.swift */; };
+		5BC5B357292D81C900573899 /* ChangePhotoIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B356292D81C900573899 /* ChangePhotoIcon.swift */; };
+		5BC5B359292DB46200573899 /* EmployeeTaskSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B358292DB46200573899 /* EmployeeTaskSection.swift */; };
+		5BC5B35B292DBC5500573899 /* SignOutSidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B35A292DBC5500573899 /* SignOutSidebarItem.swift */; };
+		5BC5B35D292DBF2E00573899 /* TopUserProfileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B35C292DBF2E00573899 /* TopUserProfileIcon.swift */; };
+		5BC5B35F292DCBD000573899 /* AuthenticationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B35E292DCBD000573899 /* AuthenticationUser.swift */; };
 		5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */; };
+		5BD0CB13292C7BB4001E7563 /* CollieFontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */; };
+		5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB14292C8E9B001E7563 /* NakedButton.swift */; };
 		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
 		5BD68496291D703500090481 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68495291D703500090481 /* ProfileView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
@@ -177,7 +188,7 @@
 		5B495FF928E75CE60024D064 /* TitleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextField.swift; sourceTree = "<group>"; };
 		5B495FFB28E75E450024D064 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		5B495FFD28E75EDD0024D064 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
-		5B495FFF28E75F810024D064 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		5B495FFF28E75F810024D064 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		5B49600128E761230024D064 /* MultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextField.swift; sourceTree = "<group>"; };
 		5B49600328E76D010024D064 /* TitleWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithIconView.swift; sourceTree = "<group>"; };
 		5B49600528E778360024D064 /* UserSelectionDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionDropdown.swift; sourceTree = "<group>"; };
@@ -213,7 +224,6 @@
 		5B954E88290311A400FA579E /* EmployeeEventsCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventsCalendarViewModel.swift; sourceTree = "<group>"; };
 		5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCalendarCell.swift; sourceTree = "<group>"; };
 		5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDateScrollerView.swift; sourceTree = "<group>"; };
-		5B954E912906C0A700FA579E /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		5BA9AFDF290B182900C1078A /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
 		5BA9AFE1290C5D6B00C1078A /* EmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskFullView.swift; sourceTree = "<group>"; };
 		5BA9AFE9291199E300C1078A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -250,7 +260,19 @@
 		5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSingleJourneyViewModel.swift; sourceTree = "<group>"; };
 		5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListDTO.swift; sourceTree = "<group>"; };
 		5BBD8A2A2907122C00DACC6D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButtonWithLeftIcon.swift; sourceTree = "<group>"; };
+		5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListUserCell.swift; sourceTree = "<group>"; };
+		5BC5B34F292D16CD00573899 /* InviteUserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserButton.swift; sourceTree = "<group>"; };
+		5BC5B351292D77E500573899 /* DestructiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestructiveButton.swift; sourceTree = "<group>"; };
+		5BC5B353292D7DC400573899 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
+		5BC5B356292D81C900573899 /* ChangePhotoIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhotoIcon.swift; sourceTree = "<group>"; };
+		5BC5B358292DB46200573899 /* EmployeeTaskSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTaskSection.swift; sourceTree = "<group>"; };
+		5BC5B35A292DBC5500573899 /* SignOutSidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutSidebarItem.swift; sourceTree = "<group>"; };
+		5BC5B35C292DBF2E00573899 /* TopUserProfileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUserProfileIcon.swift; sourceTree = "<group>"; };
+		5BC5B35E292DCBD000573899 /* AuthenticationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUser.swift; sourceTree = "<group>"; };
 		5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceOptionView.swift; sourceTree = "<group>"; };
+		5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieFontSystem.swift; sourceTree = "<group>"; };
+		5BD0CB14292C8E9B001E7563 /* NakedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NakedButton.swift; sourceTree = "<group>"; };
 		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
 		5BD68495291D703500090481 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
@@ -388,7 +410,6 @@
 				5BAC4A9029256D3F007722A3 /* Loading */,
 				5BD68492291D701500090481 /* Profile */,
 				5BA9AFE6291199C700C1078A /* Onboarding */,
-				5B954E8E2906C08B00FA579E /* Demo */,
 				5B1BAD3D28FF37AB00EFF0E4 /* Root */,
 				5B2D009828F87CC400131FFF /* Workspace */,
 				5B2B46AC28ECB3F100FC3BE9 /* Authentication */,
@@ -473,7 +494,7 @@
 				5B495FF928E75CE60024D064 /* TitleTextField.swift */,
 				5B495FFB28E75E450024D064 /* CloseButton.swift */,
 				5B495FFD28E75EDD0024D064 /* IconButton.swift */,
-				5B495FFF28E75F810024D064 /* SendButton.swift */,
+				5B495FFF28E75F810024D064 /* DefaultButton.swift */,
 				5B49600128E761230024D064 /* MultiLineTextField.swift */,
 				5B49600328E76D010024D064 /* TitleWithIconView.swift */,
 				5B49600528E778360024D064 /* UserSelectionDropdown.swift */,
@@ -488,6 +509,13 @@
 				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
 				5BA9AFDF290B182900C1078A /* HelpButton.swift */,
 				5B50425D29194C28001E39A2 /* HelpView.swift */,
+				5BD0CB14292C8E9B001E7563 /* NakedButton.swift */,
+				5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */,
+				5BC5B34F292D16CD00573899 /* InviteUserButton.swift */,
+				5BC5B351292D77E500573899 /* DestructiveButton.swift */,
+				5BC5B353292D7DC400573899 /* SimpleButton.swift */,
+				5BC5B35A292DBC5500573899 /* SignOutSidebarItem.swift */,
+				5BC5B35C292DBF2E00573899 /* TopUserProfileIcon.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -599,24 +627,9 @@
 				5B954E842901CAB800FA579E /* EmployeeTaskView.swift */,
 				5B954E8A290319A700FA579E /* EmployeeCalendarCell.swift */,
 				5B954E8C290319B700FA579E /* EmployeeDateScrollerView.swift */,
+				5BC5B358292DB46200573899 /* EmployeeTaskSection.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		5B954E8E2906C08B00FA579E /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				5B954E8F2906C09600FA579E /* Views */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		5B954E8F2906C09600FA579E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5B954E912906C0A700FA579E /* DemoView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5BA9AFE6291199C700C1078A /* Onboarding */ = {
@@ -847,6 +860,7 @@
 				5B345DBB290C4D5300978141 /* BusinessUser.swift */,
 				5BD68490291ADEE000090481 /* BusinessKey.swift */,
 				5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */,
+				5BC5B35E292DCBD000573899 /* AuthenticationUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -862,6 +876,7 @@
 				5B2B46B928EE18B000FC3BE9 /* CustomTextField.swift */,
 				5B2B46BB28EF547700FC3BE9 /* CustomSecureView.swift */,
 				5B0DC40D291D52E700CFD82A /* TextExtension.swift */,
+				5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -878,6 +893,7 @@
 		5BACC66228D24403006975D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BC5B34C292D14E800573899 /* Components */,
 				5BACC66428D24413006975D3 /* TeamListView.swift */,
 				5B2B46A128E22B0900FC3BE9 /* NewUserFormsView.swift */,
 				5B2B46A328E22C4300FC3BE9 /* ProgressBarView.swift */,
@@ -1010,6 +1026,22 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		5BC5B34C292D14E800573899 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5BC5B355292D81AF00573899 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5BC5B356292D81C900573899 /* ChangePhotoIcon.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5BD68492291D701500090481 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,6 +1054,7 @@
 		5BD68493291D701D00090481 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BC5B355292D81AF00573899 /* Components */,
 				5BD68495291D703500090481 /* ProfileView.swift */,
 				5BAC4A8C2922CA52007722A3 /* EditingFormView.swift */,
 				5BAC4A8E2922CA6B007722A3 /* DisplayFormView.swift */,
@@ -1186,6 +1219,7 @@
 				5B0DC40E291D52E700CFD82A /* TextExtension.swift in Sources */,
 				5B49604528ECBFA10024D064 /* CreateOrEditEventViewModel.swift in Sources */,
 				5BACC67128D2634D006975D3 /* BusinessJourneyListViewModel.swift in Sources */,
+				5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */,
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,
 				5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */,
 				5BAC4A992926FB17007722A3 /* FirebaseStorageService.swift in Sources */,
@@ -1198,20 +1232,22 @@
 				5BACC65028CFC25F006975D3 /* BusinessSidebarViewModel.swift in Sources */,
 				5B49604728ECC50B0024D064 /* SimpleTextField.swift in Sources */,
 				5B49605A28EF58F90024D064 /* BusinessCalendarCell.swift in Sources */,
-				5B954E922906C0A700FA579E /* DemoView.swift in Sources */,
 				5B2B46BA28EE18B000FC3BE9 /* CustomTextField.swift in Sources */,
 				5BB85281290088E5008A8609 /* EmployeeJourneyListViewModel.swift in Sources */,
 				5BF73BD228DA3D8C00B74060 /* Task.swift in Sources */,
 				5BD8982A28FE33930015EEDB /* WorkspaceCardModifier.swift in Sources */,
 				5B1BAD4A2901C1D900EFF0E4 /* BusinessSubscriptionService.swift in Sources */,
 				5B1BAD512901CEC800EFF0E4 /* BusinessDTO.swift in Sources */,
+				5BC5B35B292DBC5500573899 /* SignOutSidebarItem.swift in Sources */,
 				5BF73BDC28DB960900B74060 /* CreateOrEditJourneyViewModel.swift in Sources */,
 				5BACC62C28CFB855006975D3 /* DashboardView.swift in Sources */,
 				5B49603128EB63AB0024D064 /* BusinessTaskView.swift in Sources */,
 				5B49605828EF535F0024D064 /* CalendarHelper.swift in Sources */,
 				5B495FFA28E75CE60024D064 /* TitleTextField.swift in Sources */,
 				5B49604B28ECC9B10024D064 /* DateExtension.swift in Sources */,
+				5BC5B352292D77E500573899 /* DestructiveButton.swift in Sources */,
 				5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */,
+				5BC5B35F292DCBD000573899 /* AuthenticationUser.swift in Sources */,
 				5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */,
 				5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */,
 				5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */,
@@ -1225,6 +1261,7 @@
 				5BB8527A28FF21A5008A8609 /* LoadingBusinessCard.swift in Sources */,
 				5B954E812901C38D00FA579E /* UserTask.swift in Sources */,
 				5BF73BD428DA3D9700B74060 /* TaskCategory.swift in Sources */,
+				5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */,
 				5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */,
 				5B482BBE291C3C4B00ACB9C0 /* BusinessUserSubscriptionService.swift in Sources */,
 				5B954E7D2901C2C700FA579E /* EmployeeEventView.swift in Sources */,
@@ -1232,19 +1269,23 @@
 				5BACC66A28D2610F006975D3 /* BusinessSingleJourneyView.swift in Sources */,
 				5BACC66A28D2610F006975D3 /* BusinessSingleJourneyView.swift in Sources */,
 				5B4E3138291594550031F74F /* OnbardingStorageService.swift in Sources */,
-				5B49600028E75F810024D064 /* SendButton.swift in Sources */,
+				5B49600028E75F810024D064 /* DefaultButton.swift in Sources */,
 				5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */,
 				5B495FFE28E75EDD0024D064 /* IconButton.swift in Sources */,
+				5BC5B354292D7DC400573899 /* SimpleButton.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */,
 				5B2B46A428E22C4300FC3BE9 /* ProgressBarView.swift in Sources */,
 				5BACC65B28D16FE5006975D3 /* SidebarItem.swift in Sources */,
+				5BC5B359292DB46200573899 /* EmployeeTaskSection.swift in Sources */,
 				5BD68496291D703500090481 /* ProfileView.swift in Sources */,
+				5BC5B35D292DBF2E00573899 /* TopUserProfileIcon.swift in Sources */,
 				5B2B46A828E6233200FC3BE9 /* APISubscriptionService.swift in Sources */,
 				5BAC4A932926B5C9007722A3 /* ProfileViewModel.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BA9AFE2290C5D6B00C1078A /* EmployeeTaskFullView.swift in Sources */,
 				5B49605028EF51BC0024D064 /* BusinessEventsCalendarView.swift in Sources */,
+				5BC5B357292D81C900573899 /* ChangePhotoIcon.swift in Sources */,
 				5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
@@ -1260,11 +1301,13 @@
 				5B2B46B628EE159200FC3BE9 /* LoginView.swift in Sources */,
 				5B0DC417291E5EC800CFD82A /* BusinessUserRoles.swift in Sources */,
 				5B4E31432916D9FD0031F74F /* SettingsOptionView.swift in Sources */,
+				5BD0CB13292C7BB4001E7563 /* CollieFontSystem.swift in Sources */,
 				5B1D56E1291EC6B700EB2EB8 /* CategoryCard.swift in Sources */,
 				5B2B46B028ECB42000FC3BE9 /* AuthenticationView.swift in Sources */,
 				5BF73BD628DA3FDD00B74060 /* Event.swift in Sources */,
 				5B4E312A29143C8A0031F74F /* OnboardingCardView.swift in Sources */,
 				5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */,
+				5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */,
 				5B4E313D2915A7750031F74F /* SettingsView.swift in Sources */,
 				5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */,
 				5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */,
@@ -1272,6 +1315,7 @@
 				5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */,
 				5BACC66F28D26192006975D3 /* JourneyCard.swift in Sources */,
 				5B49600428E76D010024D064 /* TitleWithIconView.swift in Sources */,
+				5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */,
 				5B4ED92F2911A6BE00FAB9FE /* TeamSubscriptionService.swift in Sources */,
 				5B0DC415291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift in Sources */,
 				5B49604928ECC7160024D064 /* BusinessEventView.swift in Sources */,

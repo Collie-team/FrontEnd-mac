@@ -18,7 +18,7 @@ struct BusinessCard: View {
                 Circle()
                     .foregroundColor(getRandomColor())
                 Text(workspaceInitialString)
-                    .font(.system(size: 50, weight: .bold))
+                    .collieFont(textStyle: .largeTitle, textSize: 50)
                     .foregroundColor(.collieBranco)
             }
             .frame(width: 120, height: 120)
@@ -32,7 +32,7 @@ struct BusinessCard: View {
             Spacer()
             
             Text(business.name)
-                .font(.system(size: 21, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
             

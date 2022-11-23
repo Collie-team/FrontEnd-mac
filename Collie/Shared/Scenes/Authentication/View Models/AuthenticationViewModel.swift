@@ -1,12 +1,6 @@
-//
-//  AuthenticationViewModel.swift
-//  Collie
-//
-//  Created by Pablo Penas on 05/10/22.
-//
-
 import SwiftUI
 
+<<<<<<< HEAD
 struct AuthenticationUser: Equatable {
 //    var firstName: String = "André"
 //    var lastName: String = "Arns"
@@ -47,6 +41,8 @@ struct AuthenticationUser: Equatable {
     }
 }
 
+=======
+>>>>>>> adjustments
 enum AuthenticationMode {
     case signup
     case login
@@ -69,10 +65,6 @@ class AuthenticationViewModel: ObservableObject {
     
     private let authenticationService = AuthenticationService()
     private let userSubscriptionService = UserSubscriptionService()
-    
-    func resetUser() {
-        //        currentUser = AuthenticationUser()
-    }
     
     func validateSingUpFields() {
         signupEnabled = currentUser.validateSignup()
@@ -118,7 +110,9 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    func resetPassword() {
-        authenticationService.sendPasswordReset(withEmail: currentUser.email)
+    func resetPassword(completion: @escaping () -> ()) {
+        authenticationService.sendPasswordReset(withEmail: currentUser.email) {
+            completion()
+        }
     }
 }

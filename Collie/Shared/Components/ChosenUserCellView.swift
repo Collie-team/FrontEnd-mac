@@ -22,7 +22,7 @@ struct ChosenUserCellView: View {
                     }
                 } label: {
                     Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .foregroundColor(.collieRoxo)
                 }
                 .buttonStyle(.plain)
@@ -34,7 +34,7 @@ struct ChosenUserCellView: View {
             Divider()
                 .frame(height: 1)
         }
-        .font(.system(size: 15))
+        .collieFont(textStyle: .regularText)
     }
 }
 

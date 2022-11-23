@@ -7,12 +7,12 @@ struct OnboardingFinishedView: View {
     var body: some View {
         VStack(spacing: 16) {
             Text("Prontinho!")
-                .font(.system(size: 34, weight: .bold))
+                .collieFont(textStyle: .largeTitle)
                 .foregroundColor(Color.collieAzulEscuro)
             Text("Agora que já conhece um pouco o seu novo workspace, já pode começar a usar! \nTenha uma boa jornada com a Collie!")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
-                .font(.system(size: 21))
+                .collieFont(textStyle: .subtitle, textSize: 21)
             Image("onboardingFinished")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -24,7 +24,7 @@ struct OnboardingFinishedView: View {
                     Text("rever introdução")
                         .padding(.vertical, 8)
                         .padding(.horizontal, 32)
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .foregroundColor(.collieAzulEscuro)
                         .cornerRadius(8)
                         .modifier(CustomBorder())
@@ -38,7 +38,7 @@ struct OnboardingFinishedView: View {
                         .padding(.vertical, 8)
                         .padding(.horizontal, 100)
                         .background(Color.collieAzulEscuro)
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }

@@ -16,7 +16,7 @@ struct BusinessTaskView: View {
             
             Text(task.name)
                 .foregroundColor(.black)
-                .font(.system(size: 16, weight: .semibold))
+                .collieFont(textStyle: .subtitle)
                 .padding(.leading, 8)
             
             Spacer()
@@ -26,12 +26,20 @@ struct BusinessTaskView: View {
                 
                 Text(task.endDate.dayAndMonthCustomFormat())
             }
-            .font(.system(size: 16, weight: .regular))
+            .collieFont(textStyle: .regularText)
             .foregroundColor(.gray)
             
-            IconButton(imageSystemName: "rectangle.on.rectangle") {
+            Button {
                 handleTaskDuplicate()
+            } label: {
+                Image(systemName: "rectangle.on.rectangle")
+                    .collieFont(textStyle: .subtitle)
+                    .foregroundColor(.black)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white)
+                    .cornerRadius(8)
             }
+            .buttonStyle(.plain)
             .opacity(showDetailIcon ? 1 : 0)
         }
         .padding(8)

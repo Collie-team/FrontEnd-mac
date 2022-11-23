@@ -2,10 +2,12 @@ import SwiftUI
 
 struct BusinessJourneyListView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @StateObject var viewModel = BusinessJourneyListViewModel()
     
     @State var showCreationPopUp = false
     @State var selectedJourney: Journey? = nil
+    @State var showJourneyHint = false
     
     var gridItems: [GridItem] = [
         GridItem(.flexible(), spacing: 16),
@@ -15,11 +17,13 @@ struct BusinessJourneyListView: View {
     
     var body: some View {
         ZStack {
-            switch viewModel.navigationState {
-            case .journeyList:
-                journeyList
-            case .singleJourney:
-                singleJourney
+            Group {
+                switch viewModel.navigationState {
+                case .journeyList:
+                    journeyList
+                case .singleJourney:
+                    singleJourney
+                }
             }
             
             if showCreationPopUp {
@@ -28,7 +32,9 @@ struct BusinessJourneyListView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
                         userId: rootViewModel.currentUser.id,
+                        currentBusiness: rootViewModel.businessSelected,
                         journey: viewModel.selectedJourney,
+                        handleJourneySave: {_ in},
                         handleClose: {
                             withAnimation {
                                 showCreationPopUp = false
@@ -45,35 +51,42 @@ struct BusinessJourneyListView: View {
     }
     
     var journeyList: some View {
-        VStack {
+        VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: true) {
-                VStack {
-                    HStack {
+                VStack(spacing: 0) {
+                    HStack(alignment: .center, spacing: 8) {
                         Text("Jornadas")
-                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .collieFont(textStyle: .largeTitle)
                             .foregroundColor(Color.black)
+                        
+                        HelpButton {
+                            withAnimation {
+                                showJourneyHint = true
+                            }
+                        }
+                        .popover(isPresented: $showJourneyHint) {
+                            HelpView(
+                                title: "Jornada",
+                                subtitle: "É o processo de onboarding dos novos colaboradores, organize por grupos que teram as mesmas atividades durante um determinado tempo. Copie e reapreveite elas para novas jornadas."
+                            )
+                        }
+                        
                         Spacer()
                         
-                        HStack {
-                            Image(systemName: "plus")
-                            Text("Criar nova jornada")
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal)
-                        .background(Color.collieRoxo)
-                        .cornerRadius(50)
-                        .font(.system(size: 16, weight: .bold, design: .default))
-                        .foregroundColor(.white)
-                        .onTapGesture {
-                            showCreationPopUp = true
+                        TopUserProfileIcon {
+                            if let profileItem = businessSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                                businessSidebarViewModel.selectedItem = profileItem
+                            }
                         }
                     }
+                    .padding(.bottom, 32)
                     
                     LazyVGrid(columns: gridItems, spacing: 16) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 16)
+                            
                             Image(systemName: "plus")
-                                .font(.system(size: 50, weight: .bold, design: .default))
+                                .collieFont(textStyle: .largeTitle, textSize: 60)
                                 .foregroundColor(.white)
                         }
                         .frame(height: 320)
@@ -84,10 +97,9 @@ struct BusinessJourneyListView: View {
                         
                         ForEach(rootViewModel.businessSelected.journeys.reversed()) { journey in
                             JourneyCard(journey: journey)
-                                .frame(height: 320)
-                                .onTapGesture {
-                                    viewModel.selectedJourney = journey
-                                }
+                            .onTapGesture {
+                                viewModel.selectedJourney = journey
+                            }
                         }
                     }
                     
@@ -95,8 +107,9 @@ struct BusinessJourneyListView: View {
                 }
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
     }
     
     var singleJourney: some View {

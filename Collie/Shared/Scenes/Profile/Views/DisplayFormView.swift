@@ -1,10 +1,3 @@
-//
-//  DisplayFormView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 14/11/22.
-//
-
 import SwiftUI
 
 struct DisplayFormView: View {
@@ -12,68 +5,67 @@ struct DisplayFormView: View {
     @Binding var rootViewModelBusinessUser: BusinessUser?
     @State var currentUser: UserModel
     @Binding var editingMode: Bool
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Spacer()
                 Button(action: {
-                    editingMode = true
+                    withAnimation {
+                        editingMode = true
+                    }
                 }) {
                     Text("Editar \(Image(systemName: "square.and.pencil"))")
                         .foregroundColor(Color.collieRoxo)
-                        .font(.system(size: 20))
+                        .collieFont(textStyle: .subtitle)
                 }
                 .buttonStyle(.plain)
                 .contentShape(Rectangle())
             }
-            VStack {
-                VStack(alignment: .leading) {
+            VStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Nome do usuário")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.name)
-                            .font(.system(size: 22, weight: .bold))
+                            .collieFont(textStyle: .smallTitle)
                         Spacer()
                     }
-                    Divider()
                 }
-                VStack(alignment: .leading) {
+                
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     
                     Text("Cargo")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.jobDescription == "" ? "Sem cargo" : currentUser.jobDescription)
-                            .font(.system(size: 17, weight: .bold))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Breve descrição")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(currentUser.personalDescription == "" ? "Sem descrição" : currentUser.personalDescription)
-                            .font(.system(size: 17, weight: .bold))
+                            .collieFont(textStyle: .subtitle)
                         Spacer()
                     }
-                    Divider()
                 }
                 
-                VStack(alignment: .leading) {
-//                    Text("Data de entrada")
-//                        .font(.system(size: 15))
-//                    HStack {
-//                        Text("17/04/2022")
-//                            .font(.system(size: 17))
-//                        Spacer()
-//                    }
-//                    Divider()
+                Divider()
+                
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Papel")
-                        .font(.system(size: 15))
+                        .collieFont(textStyle: .regularText)
                     HStack {
                         Text(rootViewModelBusinessUser!.role.getRoleText())
-                            .font(.system(size: 17))
+                            .collieFont(textStyle: .regularText)
                         Spacer()
                     }
                 }

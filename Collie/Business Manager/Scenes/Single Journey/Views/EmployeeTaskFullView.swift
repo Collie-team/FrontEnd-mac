@@ -18,13 +18,13 @@ struct EmployeeTaskFullView: View {
             VStack(alignment: .leading, spacing: 15) {
                 HStack {
                     Text("Tarefa")
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black)
                     Spacer()
                 }
                 HStack {
                     Text(employeeSingleJourneyViewModel.chosenTaskModel?.task.name ?? "")
-                        .font(.system(size: 28, weight: .bold))
+                        .collieFont(textStyle: .title)
                         .foregroundColor(.black)
                     Spacer()
                     
@@ -42,7 +42,7 @@ struct EmployeeTaskFullView: View {
                             Text(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? "Marcar como feito" : "Feito")
                         }
                         .foregroundColor(Color.black)
-                        .font(.system(size: 15, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .background(employeeSingleJourneyViewModel.chosenTaskModel?.userTask?.doneDate == nil ? Color.white : green)
@@ -57,7 +57,7 @@ struct EmployeeTaskFullView: View {
                     .padding(.vertical, 4)
                     .background(category.color)
                     .cornerRadius(16)
-                    .font(.system(size: 12, weight: .bold))
+                    .collieFont(textStyle: .subtitle, textSize: 12)
                     .foregroundColor(.white)
             }
             .padding(.bottom, 30)
@@ -67,30 +67,23 @@ struct EmployeeTaskFullView: View {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                         .frame(width: 200)
                     Text(CalendarHelper().dateString((employeeSingleJourneyViewModel.chosenTaskModel?.task.startDate) ?? Date()))
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                     Spacer()
                 }
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
                         .frame(width: 200)
                     Text(CalendarHelper().dateString((employeeSingleJourneyViewModel.chosenTaskModel?.task.endDate) ?? Date()))
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                     Spacer()
                 }
-                
-//                HStack {
-//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-//                        .frame(width: 200)
-//                    Text("\(responsibleName) \(responsibleEmail)")
-//                        .font(.system(size: 16))
-//                    Spacer()
-//                }
+
                 
                 HStack(alignment: .top) {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                         .frame(width: 200)
                     Text(employeeSingleJourneyViewModel.chosenTaskModel?.task.description ?? "")
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
@@ -118,7 +111,7 @@ struct EmployeeTaskFullView: View {
                                 handleClose()
                             } label: {
                                 Image(systemName: "xmark")
-                                    .font(.system(size: 28, weight: .bold))
+                                    .collieFont(textStyle: .title)
                                     .foregroundColor(.black)
                             }
                             .buttonStyle(.plain)

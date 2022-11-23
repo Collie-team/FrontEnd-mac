@@ -16,14 +16,12 @@ struct EmployeeSingleJourneyView: View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .bold, design: .default))
-                        .onTapGesture {
-                            backAction()
-                        }
+                    IconButton(imageSystemName: "chevron.left") {
+                        backAction()
+                    }
                     
                     Text(viewModel.journey.name)
-                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .collieFont(textStyle: .largeTitle)
                     
                     Spacer()
                 }
@@ -31,7 +29,7 @@ struct EmployeeSingleJourneyView: View {
                 .padding(.bottom)
                 
                 Text(viewModel.journey.description)
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .collieFont(textStyle: .regularText)
                     .foregroundColor(.black)
                 
                 
@@ -39,12 +37,8 @@ struct EmployeeSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Tarefas")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
-                            
-//                            HelpButton(handleTap: {
-//
-//                            })
                             
                             Spacer()
                             
@@ -54,28 +48,18 @@ struct EmployeeSingleJourneyView: View {
                         
                         HStack {
                             Text("\(viewModel.uncompletedTasksCount) tarefas pendentes")
-                                .font(.system(size: 16, weight: .semibold))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(.black)
                             Spacer()
                         }
                         .padding(.vertical)
                         
                         ScrollView(.vertical) {
-                            HStack {
-                                Text("Tarefas do dia")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showDailyTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showDailyTasks.toggle()
-                                }
-                            }
+                            EmployeeTaskSection(
+                                sectionTitle: "Tarefas do dia",
+                                systemImageName: "note.text",
+                                shouldShowTasks: $showDailyTasks
+                            )
                             
                             if showDailyTasks {
                                 ForEach($viewModel.dailyTaskModels) { $taskModel in
@@ -97,21 +81,11 @@ struct EmployeeSingleJourneyView: View {
                                 .padding(2)
                             }
                             
-                            HStack {
-                                Text("Próximas tarefas")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showNextTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showNextTasks.toggle()
-                                }
-                            }
+                            EmployeeTaskSection(
+                                sectionTitle: "Próximas tarefas",
+                                systemImageName: "list.bullet",
+                                shouldShowTasks: $showNextTasks
+                            )
                             
                             if showNextTasks {
                                 ForEach($viewModel.nextTaskModels) { $taskModel in
@@ -133,21 +107,11 @@ struct EmployeeSingleJourneyView: View {
                                 .padding(2)
                             }
                             
-                            HStack {
-                                Text("Tarefas feitas")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 18, weight: .semibold))
-                                Spacer()
-                                Image(systemName: showDoneTasks ? "chevron.up" : "chevron.down")
-                            }
-                            .padding(24)
-                            .background(Color.collieBrancoFundo)
-                            .cornerRadius(8)
-                            .onTapGesture {
-                                withAnimation {
-                                    showDoneTasks.toggle()
-                                }
-                            }
+                            EmployeeTaskSection(
+                                sectionTitle: "Tarefas feitas",
+                                systemImageName: "sparkles",
+                                shouldShowTasks: $showDoneTasks
+                            )
                             
                             if showDoneTasks {
                                 ForEach($viewModel.doneTaskModels) { $taskModel in
@@ -181,12 +145,8 @@ struct EmployeeSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Eventos")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
-                            
-                            HelpButton(handleTap: {
-                                
-                            })
                             
                             Spacer()
                         }
@@ -210,7 +170,7 @@ struct EmployeeSingleJourneyView: View {
                 
                 Spacer()
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 32)
             .padding(.top, 32)
             .padding(.bottom)
             

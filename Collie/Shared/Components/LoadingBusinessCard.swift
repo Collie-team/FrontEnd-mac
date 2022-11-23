@@ -19,12 +19,12 @@ struct LoadingBusinessCard: View {
                     .frame(width: 120, height: 120)
                     .foregroundColor(getRandomColor())
                 Text(workspaceInitialString)
-                    .font(.system(size: 50, weight: .bold))
+                    .collieFont(textStyle: .largeTitle, textSize: 50)
                     .foregroundColor(.collieBranco)
             }
             
             Text(business.name)
-                .font(.system(size: 35, weight: .bold))
+                .collieFont(textStyle: .title)
                 .foregroundColor(.black)
         }
         .padding()

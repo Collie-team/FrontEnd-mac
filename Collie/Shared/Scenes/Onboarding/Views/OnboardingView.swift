@@ -44,7 +44,7 @@ struct OnboardingView: View {
                             handleFinish()
                         } label: {
                             Text("pular introdução")
-                                .font(.system(size: 16, weight: .bold))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(Color.collieAzulEscuro)
                         }
                         .buttonStyle(.plain)

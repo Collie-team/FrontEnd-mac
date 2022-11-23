@@ -22,7 +22,7 @@ struct SettingsUserCell: View {
 
                     VStack {
                         Text(verbatim: "\(model.userModel.email)")
-                            .font(.system(size: 15))
+                            .collieFont(textStyle: .regularText)
                             .opacity(0.5)
                             
 
@@ -37,8 +37,9 @@ struct SettingsUserCell: View {
                     IconButton(imageSystemName: "trash") {
                         handleUserDeletion()
                     }
-                    .padding(.leading, 32)
+                    .modifier(CustomBorder())
                     .opacity(workspaceUsers <= 1 ? 0 : 1)
+                    .padding(.leading, 32)
                 }
             }
             .foregroundColor(.black)

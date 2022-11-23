@@ -26,18 +26,8 @@ struct BusinessSidebarView: View {
                 }
                 Spacer()
                 
-                HStack {
-                    Image(systemName: "scooter")
-                    Text("Sair do workspace")
-                    Spacer()
-                }
-                .foregroundColor(.white)
-                .padding(.trailing)
-                .frame(height: 50)
-                .font(.system(size: 18, weight: .regular))
-                .background(Color.collieAzulEscuro)
-                .onTapGesture {
-                    rootViewModel.navigationState = .workspace
+                SignOutSidebarItem {
+                    rootViewModel.exitCurrentWorkspace()
                 }
             }
             .background(Color.collieAzulEscuro)
@@ -46,15 +36,19 @@ struct BusinessSidebarView: View {
                 switch viewModel.selectedItem.option {
                 case .dashboard:
                     DashboardView()
+                        .environmentObject(viewModel)
                 case .journeys:
                     BusinessJourneyListView()
+                        .environmentObject(viewModel)
                 case .teamList:
                     TeamListView()
                         .environmentObject(viewModel)
                 case .settings:
                     SettingsView()
+                        .environmentObject(viewModel)
                 case .profile:
                     ProfileView()
+                        .environmentObject(viewModel)
                 default:
                     Text("Error")
                 }

@@ -13,23 +13,25 @@ struct AuthenticationView: View {
                 Spacer()
             }
             .padding(.bottom, 64)
+            .padding(.horizontal, 48)
             
             HStack(alignment: .top, spacing: 70) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("A melhor maneira de gerenciar o onboarding de novos colaboradores")
-                        .font(.system(size: 34, weight: .bold))
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("A melhor maneira de gerenciar \nonboadings para novos colaboradores")
+                        .collieFont(textStyle: .largeTitle)
                         .foregroundColor(Color.collieCinzaEscuro)
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 50)
                         .fill(Color.collieRoxo)
                         .frame(width: 36, height: 5)
-                    Text("Integre novos colaboradores com seus times, gerencie e acompanhe o processo de forma simples e prática.")
-                        .font(.system(size: 20))
+                    Text("Integre novos colaboradores com seus times, gerencie e \nacompanhe o processo de forma simples e prática.")
+                        .collieFont(textStyle: .regularText, textSize: 21)
                         .foregroundColor(Color.collieCinzaEscuro)
                     Image("loginSplashImage")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
-                .frame(maxWidth: NSScreen.main!.frame.width * 0.55, maxHeight: NSScreen.main!.frame.height * 0.75)
+                
+                Spacer()
                 
                 if viewModel.authenticationMode == .signup {
                     SignupView(completion: handleSingIn)
@@ -45,15 +47,16 @@ struct AuthenticationView: View {
                         .environmentObject(viewModel)
                 }
             }
+            .padding(.horizontal, 48)
             .onChange(of: viewModel.currentUser) { _ in
                 viewModel.validateSingUpFields()
                 viewModel.validateLoginFields()
             }
+            
             Spacer()
         }
         .overlay(viewModel.loadingState == .fetchingData ? LoadingView() : nil)
-        .padding()
-        .padding(.leading, 48)
+        .padding(.horizontal, 48)
         .padding(.top, 36)
         .background(Color.collieBranco)
     }

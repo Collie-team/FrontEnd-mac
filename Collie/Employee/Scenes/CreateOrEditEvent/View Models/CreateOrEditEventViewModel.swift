@@ -27,53 +27,15 @@ final class CreateOrEditEventViewModel: ObservableObject {
     
     @Published var chosenUserModels: [UserModel] = []
     
-    var currentBusiness: Business?
+    var currentBusiness: Business
     
-    init(categoryList: [TaskCategory]) {
-        self.categoryList = categoryList
-    }
-    
-    func fetchUsers(business: Business) {
-        currentBusiness = business
-        teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
-            self.userModelList = userModels
-            
-            // Load chosen user Models
-            self.fetchOldUsersOnEvent()
-        }
-    }
-    
-    func fetchOldUsersOnEvent() {
-        self.chosenUserModels = userModelList.filter({ user in
-            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.eventId}) {
-                let isUserOnJourney = journey.userIds.contains(user.id)
-                return isUserOnJourney
-            } else {
-                return false
-            }
-        })
-        self.userModelList = userModelList.filter({ userModel in
-            !chosenUserModels.contains(userModel)
-        })
-        objectWillChange.send()
+    init(currentBusiness: Business) {
+        self.currentBusiness = currentBusiness
+        self.categoryList = currentBusiness.categories
     }
     
     func isButtonDisabled() -> Bool {
         eventName.isEmpty
-    }
-    
-    func selectUserModel(_ userModel: UserModel) {
-        chosenUserModels.append(userModel)
-        if let index = userModelList.firstIndex(where: { $0.id == userModel.id }) {
-            userModelList.remove(at: index)
-        }
-    }
-    
-    func removeUserModel(_ userModel: UserModel) {
-        if let index = chosenUserModels.firstIndex(where: { $0.id == userModel.id }) {
-            chosenUserModels.remove(at: index)
-            userModelList.append(userModel)
-        }
     }
     
     func selectCategory(_ taskCategory: TaskCategory) {
@@ -103,12 +65,12 @@ final class CreateOrEditEventViewModel: ObservableObject {
             categoryId: selectedCategory?.id ?? ""
         )
         
-        if let eventIndex = updatedBusiness?.events.firstIndex(where: {$0.id == eventId}) {
-            updatedBusiness?.events[eventIndex] = event
+        if let eventIndex = updatedBusiness.events.firstIndex(where: {$0.id == eventId}) {
+            updatedBusiness.events[eventIndex] = event
         } else {
-            updatedBusiness?.events.append(event)
+            updatedBusiness.events.append(event)
         }
         
-        completion(updatedBusiness!)
+        completion(updatedBusiness)
     }
 }
