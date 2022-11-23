@@ -6,7 +6,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
         FirebaseApp.configure()
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> develop
 //    func applicationDidFinishLaunching(_ notification: Notification) {
 //        FirebaseApp.configure()
 //    }
@@ -19,6 +22,8 @@ struct CollieApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+//            ProfileView()
+//            LoadingView()
                 .colorScheme(.light)
                 .frame(minWidth: 1200, minHeight: 800)
         }

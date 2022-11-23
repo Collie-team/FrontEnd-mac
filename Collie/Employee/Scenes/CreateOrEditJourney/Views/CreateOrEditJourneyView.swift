@@ -2,15 +2,25 @@ import SwiftUI
 
 struct CreateOrEditJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @ObservedObject var viewModel = CreateNewJourneyViewModel()
+    @ObservedObject var viewModel: CreateNewJourneyViewModel
     @State var imageURL: String = ""
+    @State var timeoutSaveWhenUploadsImage = false {
+        didSet {
+            if timeoutSaveWhenUploadsImage {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    timeoutSaveWhenUploadsImage = false
+                }
+            }
+        }
+    }
     
-    var handleClose: () -> ()
     var handleJourneySave: (Journey) -> ()
+    var handleClose: () -> ()
     
-    init(journey: Journey?, handleClose: @escaping () -> (), handleJourneySave: @escaping (Journey) -> ()) {
-        self.handleClose = handleClose
+    init(userId: String, currentBusiness: Business, journey: Journey?, handleJourneySave: @escaping (Journey) -> (), handleClose: @escaping () -> ()) {
         self.handleJourneySave = handleJourneySave
+        self.viewModel = CreateNewJourneyViewModel(userId: userId, currentBusiness: currentBusiness)
+        self.handleClose = handleClose
         if let journey = journey {
             viewModel.journeyId = journey.id
             viewModel.journeyName = journey.name
@@ -31,10 +41,12 @@ struct CreateOrEditJourneyView: View {
             VStack(spacing: 16) {
                 HStack {
                     TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
-                    
-//                    FilePicker { imagePath in
-//                        self.imageURL = URL(fileURLWithPath: imagePath)
-//                    }
+//                    IconButton(imageSystemName: "photo", action: {
+//                        // TODO: Openfile selection
+//                        rootViewModel.openFileSelectionForJourneyImage(journeyId: viewModel.journeyId) { didUpdateImage in
+//                            self.timeoutSaveWhenUploadsImage = didUpdateImage
+//                        }
+//                    })
                 }
                 .padding(.bottom, 40)
                           
@@ -69,17 +81,24 @@ struct CreateOrEditJourneyView: View {
                             viewModel.selectUserModel(userModel)
                         },
                         handleUserRemove: { userModel in
-                            viewModel.selectUserModel(userModel)
+                            viewModel.removeUserModel(userModel)
                         }
                     )
                 }
                 
-                SendButton(label: "salvar jornada", isButtonDisabled: viewModel.isButtonDisabled()) {
-                    viewModel.handleJourneySave { journey in
+                DefaultButton(
+                    label: "salvar jornada",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled()
+                ) {
+                    viewModel.handleJourneySave { business, journey in
+                        rootViewModel.updateBusiness(business, replaceBusiness: true)
                         handleJourneySave(journey)
                     }
                     handleClose()
                 }
+                .frame(maxWidth: 300)
+                .disabled(timeoutSaveWhenUploadsImage)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
@@ -126,8 +145,8 @@ struct CreateOrEditJourneyView: View {
     }
 }
 
-struct CreateOrEditJourneyView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateOrEditJourneyView(journey: nil, handleClose: {}, handleJourneySave: {_ in })
-    }
-}
+//struct CreateOrEditJourneyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateOrEditJourneyView(userId: "", currentBusiness: , journey: nil, handleJourneySave: {_ in }, handleClose: {})
+//    }
+//}

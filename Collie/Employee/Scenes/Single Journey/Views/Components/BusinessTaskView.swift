@@ -16,16 +16,31 @@ struct BusinessTaskView: View {
             
             Text(task.name)
                 .foregroundColor(.black)
-                .font(.system(size: 16, weight: .semibold))
+                .collieFont(textStyle: .subtitle)
                 .padding(.leading, 8)
             
             Spacer()
             
-            if showDetailIcon {
-                IconButton(imageSystemName: "rectangle.on.rectangle") {
-                    handleTaskDuplicate()
-                }
+            HStack(spacing: 4) {
+                Image(systemName: "calendar")
+                
+                Text(task.endDate.dayAndMonthCustomFormat())
             }
+            .collieFont(textStyle: .regularText)
+            .foregroundColor(.gray)
+            
+            Button {
+                handleTaskDuplicate()
+            } label: {
+                Image(systemName: "rectangle.on.rectangle")
+                    .collieFont(textStyle: .subtitle)
+                    .foregroundColor(.black)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white)
+                    .cornerRadius(8)
+            }
+            .buttonStyle(.plain)
+            .opacity(showDetailIcon ? 1 : 0)
         }
         .padding(8)
         .frame(height: 46)

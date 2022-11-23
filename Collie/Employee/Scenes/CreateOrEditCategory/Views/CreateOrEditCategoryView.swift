@@ -51,7 +51,7 @@ struct CreateOrEditCategoryView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         TitleWithIconView(systemImageName: "paintpalette.fill", label: "Cor")
                         Text("Cor destinada para representar todos os eventos e tarefas de uma mesma categorias.")
-                            .font(.system(size: 13, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                             .foregroundColor(.black.opacity(0.5))
                             .lineLimit(2)
                             .minimumScaleFactor(0.5)
@@ -74,7 +74,7 @@ struct CreateOrEditCategoryView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         TitleWithIconView(systemImageName: "star.fill", label: "Ícone")
                         Text("Simbolo para representar a categoria de maneira rápida.")
-                            .font(.system(size: 13, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                             .foregroundColor(.black.opacity(0.5))
                             .lineLimit(2)
                             .minimumScaleFactor(0.5)
@@ -92,8 +92,12 @@ struct CreateOrEditCategoryView: View {
                     }
                 }
                 
-                SendButton(label: "salvar categoria", isButtonDisabled: false, handleSend: {
-                    handleCategorySave(
+                DefaultButton(
+                    label: "salvar categoria",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: false,
+                    handleSend: {
+                        handleCategorySave(
                         TaskCategory(
                             id: viewModel.categoryId ?? UUID().uuidString,
                             name: viewModel.categoryName,
@@ -102,7 +106,9 @@ struct CreateOrEditCategoryView: View {
                         )
                     )
                     handleClose()
-                })
+                    }
+                )
+                .frame(maxWidth: 300)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
@@ -125,7 +131,7 @@ struct CategoryIconView: View {
     
     var body: some View {
         Image(systemName: systemImageName)
-            .font(.system(size: 18, weight: isSelected ? .bold : .regular))
+            .collieFont(textStyle: isSelected ? .smallTitle : .subtitle, textSize: 18)
             .frame(width: 40, height: 40)
             .background(isSelected ? Color.collieCinzaClaro : .white)
             .cornerRadius(8)

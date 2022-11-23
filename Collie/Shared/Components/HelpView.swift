@@ -7,14 +7,15 @@ struct HelpView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(title)
-                .font(.system(size: 21, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
             Text(subtitle)
-                .font(.system(size: 16, weight: .regular))
+                .collieFont(textStyle: .regularText)
         }
         .foregroundColor(.black)
         .padding()
         .background(Color.collieBranco.scaleEffect(1.5))
-        .frame(maxWidth: 400)
+        .frame(width: 400)
+        .fixedSize(horizontal: true, vertical: false)
     }
 }
 

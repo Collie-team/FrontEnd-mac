@@ -15,10 +15,10 @@ struct OnboardingCardView: View {
                 Spacer()
                 Text("\(currentIndex + 1)/\(pagesCount)")
                     .foregroundColor(.black)
-                    .font(.system(size: 16))
+                    .collieFont(textStyle: .regularText)
             }
             Text(title)
-                .font(.system(size: 28, weight: .bold))
+                .collieFont(textStyle: .title)
                 .foregroundColor(.black)
                 .padding(.bottom, 32)
             
@@ -29,7 +29,7 @@ struct OnboardingCardView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 22)
                     Text(subtitle)
-                        .font(.system(size: 18, weight: .regular))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black)
                 }
             }
@@ -45,7 +45,7 @@ struct OnboardingCardView: View {
                         Text("anterior")
                     }
                     .foregroundColor(.collieAzulEscuro)
-                    .font(.system(size: 16, weight: .bold))
+                    .collieFont(textStyle: .subtitle)
                     .padding(.horizontal)
                     .padding(.vertical, 8)
                     .cornerRadius(8)
@@ -64,7 +64,7 @@ struct OnboardingCardView: View {
                         Image(systemName: "arrow.right")
                     }
                     .foregroundColor(.white)
-                    .font(.system(size: 16, weight: .bold))
+                    .collieFont(textStyle: .subtitle)
                     .padding(.horizontal)
                     .padding(.vertical, 8)
                     .background(Color.collieAzulEscuro)

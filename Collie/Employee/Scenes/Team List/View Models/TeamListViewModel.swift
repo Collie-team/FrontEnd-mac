@@ -12,12 +12,14 @@ struct TeamListUser: Identifiable {
     }
     var totalTasks: Int
     var doneTasks: Int
+    var imageURL: String
 }
 
 final class TeamListViewModel: ObservableObject {
     private let teamListService = TeamSubscriptionService()
     
     @Published var newUserPopupEnabled = false
+    @Published var profileDetailsShowing = false
     @Published var teamListUsers: [TeamListUser] = []
     
     var teamUsers: [UserModel] = []
@@ -43,17 +45,10 @@ final class TeamListViewModel: ObservableObject {
                 email: user.email,
                 journey: userJourneys.count > 1 ? "\(userJourneys.first!.name) + \(userJourneys.count - 1)" : userJourneys.count > 0 ? userJourneys.first!.name : "Sem jornada",
                 totalTasks: businessUser.userTasks.count,
-                doneTasks: doneTasks.count)
+                doneTasks: doneTasks.count, imageURL: user.imageURL)
             withAnimation() {
                 self.teamListUsers.append(teamListUser)
             }
-        }
-    }
-    
-    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
-        let emailService = APISubscriptionService()
-        emailService.sendInviteEmail(authenticationToken: "", business: currentBusiness!, email: userToAdd.email) {
-            // Prompt success
         }
     }
 }

@@ -8,7 +8,6 @@ struct CreateOrEditEventView: View {
     var category: TaskCategory
     var journeyId: String
     var handleClose: () -> ()
-    var handleEventSave: (Event) -> ()
     var handleEventDelete: (Event) -> ()
     var handleEventDuplicate: (Event) -> ()
     
@@ -18,7 +17,6 @@ struct CreateOrEditEventView: View {
         category: TaskCategory,
         journeyId: String,
         handleClose: @escaping () -> (),
-        handleEventSave: @escaping (Event) -> (),
         handleEventDelete: @escaping (Event) -> (),
         handleEventDuplicate: @escaping(Event) -> ()
     ) {
@@ -27,7 +25,6 @@ struct CreateOrEditEventView: View {
         self.category = category
         self.journeyId = journeyId
         self.handleClose = handleClose
-        self.handleEventSave = handleEventSave
         self.handleEventDelete = handleEventDelete
         self.handleEventDuplicate = handleEventDuplicate
         if let event = event {
@@ -91,6 +88,11 @@ struct CreateOrEditEventView: View {
                         .frame(width: 500, height: 40)
                         .background(Color.white)
                         .cornerRadius(8)
+                        .onChange(of: viewModel.startDate) { newValue in
+                            if newValue.timeIntervalSince1970 > viewModel.endDate.timeIntervalSince1970 {
+                                viewModel.endDate = newValue
+                            }
+                        }
                 }
                 
                 HStack {
@@ -98,7 +100,7 @@ struct CreateOrEditEventView: View {
                     
                     Spacer()
                     
-                    DatePicker("", selection: $viewModel.endDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                    DatePicker("", selection: $viewModel.endDate, in: viewModel.startDate..., displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(.compact)
                         .padding(.horizontal)
                         .frame(width: 500, height: 40)
@@ -114,25 +116,6 @@ struct CreateOrEditEventView: View {
                 }
                 
                 VStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                    
-                    UserSelectionDropdown(
-                        showList: $viewModel.showUserList,
-                        label: "Escolha um responsável",
-                        allUsers: viewModel.userModelList,
-                        selectedUsers: viewModel.chosenUserModels,
-                        allUsersScrollHeight: getAllUsersScrollHeight(),
-                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
-                        handleUserSelection: { user in
-                            viewModel.selectUser(user)
-                        },
-                        handleUserRemove: { user in
-                            viewModel.removeUser(user)
-                        }
-                    )
-                }
-                
-                VStack {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição do evento")
                     
                     MultiLineTextField(text: $viewModel.eventDescription, showPlaceholderWhen: viewModel.eventDescription.isEmpty, placeholderText: "Informações sobre o evento")
@@ -143,28 +126,25 @@ struct CreateOrEditEventView: View {
                     CategorySelectionDropdown(
                         showList: $viewModel.showCategoryList,
                         chosenCategory: $viewModel.selectedCategory,
-                        taskCategoriesList: viewModel.categoryList,
+                        taskCategoriesList: rootViewModel.businessSelected.categories.filter({ $0.id != viewModel.selectedCategory?.id}),
                         maxScrollHeight: getAllCategoriesScrollHeight(),
                         handleCategorySelection: viewModel.selectCategory
                     )
                 }
 
-                SendButton(label: "salvar evento", isButtonDisabled: viewModel.isButtonDisabled(), handleSend: {
-                    handleEventSave(
-                            Event(
-                                id: viewModel.eventId ?? UUID().uuidString,
-                                journeyId: journeyId,
-                                name: viewModel.eventName,
-                                description: viewModel.eventDescription,
-                                contentLink: viewModel.eventLink,
-                                startDate: viewModel.startDate,
-                                endDate: viewModel.endDate,
-                                responsibleUserIds: [],
-                                categoryId: viewModel.selectedCategory?.id ?? ""
-                            )
-                        )
+                DefaultButton(
+                    label: "salvar evento",
+                    backgroundColor: .collieAzulEscuro,
+                    isButtonDisabled: viewModel.isButtonDisabled(),
+                    handleSend: {
+                        viewModel.handleEventSave(journeyId: journeyId, completion: {
+                            business in
+                            rootViewModel.updateBusiness(business, replaceBusiness: true)
+                        })
                         handleClose()
-                })
+                    }
+                )
+                .frame(maxWidth: 300)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)
@@ -183,46 +163,21 @@ struct CreateOrEditEventView: View {
             }
         )
         .cornerRadius(8)
-        .onAppear {
-            viewModel.fetchUsers(business: rootViewModel.businessSelected)
-        }
     }
     
     func getAllCategoriesScrollHeight() -> CGFloat {
         if viewModel.showCategoryList {
             if viewModel.categoryList.count >= 3 {
-                return 160
+                return 180
             } else {
-                return CGFloat((viewModel.categoryList.count + 1) * 40)
+                if viewModel.selectedCategory == nil {
+                    return CGFloat((viewModel.categoryList.count + 1) * 40 + 20)
+                } else {
+                    return CGFloat((viewModel.categoryList.count) * 40 + 20)
+                }
             }
         } else {
             return 40
-        }
-    }
-    
-    func getAllUsersScrollHeight() -> CGFloat {
-        if viewModel.showUserList {
-            if viewModel.userModelList.count >= 3 {
-                return 160
-            } else {
-                return CGFloat((viewModel.userModelList.count + 1) * 40)
-            }
-        } else {
-            return 40
-        }
-    }
-    
-    func getChosenUsersScrollHeight() -> CGFloat {
-        if viewModel.chosenUserModels.count >= 3 {
-            return 120
-        } else {
-            return CGFloat(viewModel.chosenUserModels.count * 40)
         }
     }
 }
-
-//struct CreateOrEditEventView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateOrEditEventView()
-//    }
-//}

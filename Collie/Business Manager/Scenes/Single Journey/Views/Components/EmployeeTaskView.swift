@@ -12,9 +12,18 @@ struct EmployeeTaskView: View {
     
     let lateBackgroundColor = Color(red: 255/255, green: 237/255, blue: 237/255)
     
-    
     var category: TaskCategory {
         rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+    }
+    
+    var textColor: Color {
+        if checked {
+            return Color.collieVerde
+        } else if isLate {
+            return Color.collieVermelho
+        } else {
+            return Color.black
+        }
     }
     
     var body: some View {
@@ -25,7 +34,7 @@ struct EmployeeTaskView: View {
                         .foregroundColor(checked ? .collieVerde : .collieVermelho)
                     HStack {
                         Text("!")
-                            .font(.system(size: 32, weight: .bold))
+                            .collieFont(textStyle: .title)
                             .foregroundColor(.white)
                             .padding(.horizontal)
                         Spacer()
@@ -36,8 +45,8 @@ struct EmployeeTaskView: View {
                 CheckBoxView(checked: checked, handleCheckToggle: handleTaskCheckToggle)
                 
                 Text(task.name)
-                    .foregroundColor(isLate ? .collieVermelho : .black)
-                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(textColor)
+                    .collieFont(textStyle: .subtitle)
                     .padding(.leading, 8)
                 
                 Spacer()
@@ -45,18 +54,18 @@ struct EmployeeTaskView: View {
                 if isLate {
                     HStack(spacing: 8) {
                         Image(systemName: "clock")
-                            .font(.system(size: 16, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                         Text("Atrasada!")
-                            .font(.system(size: 14, weight: .regular))
+                            .collieFont(textStyle: .regularText, textSize: 14)
                     }
                     .foregroundColor(.collieVermelho)
                     .padding(.trailing)
                 } else {
                     HStack(spacing: 8) {
                         Image(systemName: "calendar")
-                            .font(.system(size: 16, weight: .regular))
+                            .collieFont(textStyle: .regularText)
                         Text(CalendarHelper().dateString(task.endDate))
-                            .font(.system(size: 14, weight: .regular))
+                            .collieFont(textStyle: .regularText, textSize: 14)
                     }
                     .foregroundColor(.black)
                     .padding(.trailing)
@@ -64,7 +73,7 @@ struct EmployeeTaskView: View {
                 
                 Text(category.name)
                     .foregroundColor(.white)
-                    .font(.system(size: 12, weight: .medium))
+                    .collieFont(textStyle: .subtitle, textSize: 12)
                     .padding(.horizontal)
                     .padding(.vertical, 4)
                     .background(category.color)

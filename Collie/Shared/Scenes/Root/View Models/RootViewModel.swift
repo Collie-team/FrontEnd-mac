@@ -12,6 +12,8 @@ enum NavigationState {
 }
 
 final class RootViewModel: ObservableObject {
+    private let firebaseStorageService = FirebaseStorageService()
+    private let userSubscriptionService = UserSubscriptionService()
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
     private let userSubscriptionService = UserSubscriptionService()
@@ -24,10 +26,12 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
+    @Published var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
+    
     var currentBusinessUser: BusinessUser?
     
     var authenticationToken: String?
+    
     var availableBusiness: [Business] = []
     var availableBusinessUsers: [BusinessUser] = [] {
         didSet{
@@ -112,9 +116,12 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    func updateBusinessUser(_ businessUser: BusinessUser) {
-        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUser in
-            self.currentBusinessUser = businessUser
+    func updateBusinessUser(_ businessUser: BusinessUser, _ completion: @escaping (BusinessUser) -> () = {_ in }) {
+        businessUserSubscriptionService.updateBusinessUser(businessUser: businessUser, authenticationToken: "", { businessUserResponse in
+            if self.currentBusinessUser!.userId == businessUser.userId {
+                self.currentBusinessUser = businessUserResponse
+            }
+            completion(businessUser)
         })
     }
     
@@ -123,6 +130,99 @@ final class RootViewModel: ObservableObject {
             return category
         } else {
             return TaskCategory(id: "", name: "Sem categoria", colorName: "", systemImageName: "")
+        }
+    }
+    
+    func updateUser(userData: UserModel) {
+        userSubscriptionService.updateUser(authenticationToken: "", userData: userData) { userModel in
+            self.currentUser = userModel
+        }
+    }
+    
+    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles, _ completion: @escaping () -> ()) {
+        let emailService = APISubscriptionService()
+        emailService.sendInviteEmail(authenticationToken: "", business: businessSelected, email: userToAdd.email) {
+            // Prompt success
+            completion()
+        }
+    }
+    
+    func deleteUserData() {
+        userSubscriptionService.eraseUserData(userId: currentUser.id, authenticationToken: "") {
+            let user = Auth.auth().currentUser
+
+            user?.delete { error in
+              if let error = error {
+                // An error happened.
+                  print(error)
+              } else {
+                // Account deleted.
+                  print("User deleted")
+              }
+            }
+            self.navigationState = .authentication
+        }
+    }
+    
+    func exitCurrentWorkspace() {
+        navigationState = .workspace
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.currentBusinessUser = nil
+        })
+    }
+    
+    func openFileSelectionForProfileImage() {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "Select File"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.png, .jpeg]
+        openPanel.begin { [self] (result) -> Void in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                let selectedPath = openPanel.url!.path
+                firebaseStorageService.uploadProfileImage(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, userId: currentUser.id)
+                firebaseStorageService.loadProfileImage(userId: currentUser.id) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.currentUser.imageURL = url
+                        self.updateUser(userData: self.currentUser)
+                    }
+                }
+            }
+        }
+    }
+    
+    func openFileSelectionForJourneyImage(journeyId: String, _ completion: @escaping (Bool) -> ()) {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "Select File"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.png, .jpeg]
+        openPanel.begin { [self] (result) -> Void in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                completion(true)
+                let selectedPath = openPanel.url!.path
+                firebaseStorageService.uploadJourneyImage(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, journeyId: journeyId)
+                firebaseStorageService.loadJourneyImage(journeyId: journeyId) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.businessSelected.journeys = self.businessSelected.journeys.map { (businessJourney: Journey) -> Journey in
+                            if businessJourney.id == journeyId {
+                                var responseJourney = businessJourney
+                                responseJourney.imageURL = url
+                                return responseJourney
+                            } else {
+                                return businessJourney
+                            }
+                        }
+                        self.updateBusiness(self.businessSelected, replaceBusiness: false)
+                    }
+                }
+            } else {
+                completion(false)
+            }
         }
     }
 }

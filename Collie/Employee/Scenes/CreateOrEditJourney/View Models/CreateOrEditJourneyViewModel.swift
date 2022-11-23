@@ -18,12 +18,19 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     @Published var startDate: Date = Date()
     
-    var currentBusiness: Business?
+    var currentBusiness: Business
+    
+    var userId: String
+    
+    init(userId: String, currentBusiness: Business) {
+        self.userId = userId
+        self.currentBusiness = currentBusiness
+    }
     
     func fetchUsers(business: Business) {
         currentBusiness = business
         teamListService.fetchTeamInfo(business: business, authenticationToken: "TO DO") { businessUsers, userModels in
-            self.userModelList = userModels
+            self.userModelList = userModels.filter({ $0.id != self.userId})
             
             // Load chosen user Models
             self.fetchOldUsersOnJourney()
@@ -32,7 +39,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     func fetchOldUsersOnJourney() {
         self.chosenUserModels = userModelList.filter({ user in
-            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.journeyId}) {
+            if let journey = currentBusiness.journeys.first(where: {$0.id == self.journeyId}) {
                 let isUserOnJourney = journey.userIds.contains(user.id)
                 return isUserOnJourney
             } else {
@@ -46,7 +53,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     }
     
     func isButtonDisabled() -> Bool {
-        journeyName == "" || journeyDescription == ""
+        journeyName == ""
     }
     
     func selectUserModel(_ userModel: UserModel) {
@@ -67,7 +74,9 @@ final class CreateNewJourneyViewModel: ObservableObject {
         }
     }
     
-    func handleJourneySave(completion: (Journey) -> ()) {
+    func handleJourneySave(completion: (Business, Journey) -> ()) {
+        var updatedBusiness = currentBusiness
+        
         let journey = Journey(
             id: journeyId,
             name: journeyName,
@@ -76,6 +85,13 @@ final class CreateNewJourneyViewModel: ObservableObject {
             startDate: startDate,
             userIds: chosenUserModels.map({$0.id})
         )
-        completion(journey)
+        
+        if let journeyIndex = updatedBusiness.journeys.firstIndex(where: {$0.id == journeyId}) {
+            updatedBusiness.journeys[journeyIndex] = journey
+        } else {
+            updatedBusiness.journeys.append(journey)
+        }
+        
+        completion(updatedBusiness, journey)
     }
 }

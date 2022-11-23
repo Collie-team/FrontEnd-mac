@@ -19,26 +19,21 @@ struct CategorySelectionDropdown: View {
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                 }
-                                .contentShape(Rectangle())
+                                .contentShape(NoShape())
                             } else {
                                 HStack {
                                     CategoryCell(taskCategory: chosenCategory!, onSelect: {})
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                 }
-                                .contentShape(Rectangle())
+                                .contentShape(NoShape())
                             }
                         }
-                        .contentShape(Rectangle())
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .frame(height: 40)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
-                        .onTapGesture {
-                            withAnimation {
-                                showList.toggle()
-                            }
-                        }
+                        .contentShape(Rectangle())
                         
                         Divider()
                             .frame(height: 1)
@@ -59,6 +54,11 @@ struct CategorySelectionDropdown: View {
                         }
                     }
                     .cornerRadius(8)
+                    .onTapGesture {
+                        withAnimation {
+                            showList.toggle()
+                        }
+                    }
                 }
                 .frame(maxHeight: maxScrollHeight)
             }
@@ -80,16 +80,16 @@ struct CategoryCell: View {
                     .foregroundColor(taskCategory.color)
                 Image(systemName: taskCategory.systemImageName)
                     .foregroundColor(.white)
-                    .font(.system(size: 14))
+                    .collieFont(textStyle: .regularText)
             }
             .frame(width: 30, height: 30)
             
             Text(taskCategory.name)
                 .foregroundColor(.black)
-                .font(.system(size: 15))
+                .collieFont(textStyle: .regularText)
             Spacer()
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 5)
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {

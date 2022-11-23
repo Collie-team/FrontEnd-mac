@@ -19,7 +19,7 @@ struct BusinessEventsCalendarView: View {
             VStack {
                 HStack {
                     Text(viewModel.date.dayAndMonthCustomFormat())
-                        .font(.system(size: 18, weight: .bold))
+                        .collieFont(textStyle: .smallTitle)
                     Spacer()
                 }
                 .padding(.top)
@@ -35,7 +35,7 @@ struct BusinessEventsCalendarView: View {
                                     .frame(maxWidth: 250)
                                     .padding(.bottom)
                                 Text("Não tem nenhum evento programado para esse dia!")
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .collieFont(textStyle: .smallTitle)
                                     .foregroundColor(Color.collieLilas)
                                     .multilineTextAlignment(.center)
                                 Spacer()
@@ -86,7 +86,7 @@ struct BusinessEventsCalendarView: View {
             Text("Sex").dayOfWeek()
             Text("Sáb").dayOfWeek()
         }
-        .font(.system(size: 16, weight: .bold))
+        .collieFont(textStyle: .subtitle)
     }
     
     var calendarGrid: some View {

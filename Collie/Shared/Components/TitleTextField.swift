@@ -9,11 +9,10 @@ struct TitleTextField: View {
         TextField("", text: $text)
             .placeholder(when: showPlaceholderWhen) {
                 Text(placeholderText)
-                    .font(.system(size: 21))
-                    .bold()
+                    .collieFont(textStyle: .smallTitle)
                     .foregroundColor(.gray)
             }
-            .font(.system(size: 21, weight: .bold))
+            .collieFont(textStyle: .smallTitle)
             .padding(.horizontal)
             .tint(.collieRosaEscuro)
             .textFieldStyle(.plain)

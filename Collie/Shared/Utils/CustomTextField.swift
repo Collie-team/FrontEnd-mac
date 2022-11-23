@@ -1,10 +1,3 @@
-//
-//  CustomTextFieldStyle.swift
-//  Collie
-//
-//  Created by Pablo Penas on 05/10/22.
-//
-
 import Foundation
 import SwiftUI
 
@@ -22,16 +15,17 @@ struct CustomTextField: View {
     var body: some View {
         HStack {
             TextField(title, text: $text)
+                .collieFont(textStyle: .regularText)
                 .textFieldStyle(PlainTextFieldStyle())
                 .foregroundColor(Color.collieCinzaEscuro)
                 .padding(.horizontal,15)
-                .padding(.vertical, 8)
+                .frame(height: 40)
                 .background(Color.collieTextFieldBackground)
                 .cornerRadius(8)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .strokeBorder(
-                            (validationFunction ?? {return true})() ? (isFocused ? Color.collieRoxo : Color.collieTextFieldBorder) : Color.collieVermelho, lineWidth: 1) // Review later, field validation function for email and password confirmation
+                            (validationFunction ?? {return true})() ? (isFocused ? Color.collieRoxo : Color.collieCinzaBorda) : Color.collieVermelho, lineWidth: 2)
                 )
                 .focused($isFocused)
         }
@@ -41,7 +35,7 @@ struct CustomTextField: View {
 
 struct CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField("E-mail", text: .constant("Pablo@hotmail.com")) { return false }
+        CustomTextField("E-mail", text: .constant("Pablo@hotmail.com")) { return true }
             .padding()
             .background(Color.white)
     }

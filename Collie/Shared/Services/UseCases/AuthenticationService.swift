@@ -90,11 +90,12 @@ final class AuthenticationService {
         }
     }
     
-    func sendPasswordReset(withEmail email: String) {
+    func sendPasswordReset(withEmail email: String, completion: @escaping () -> ()) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if error == nil {
                 // Email sent
                 print("Email sent")
+                completion()
             }
         }
     }

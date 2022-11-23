@@ -5,9 +5,9 @@ struct EmployeeEventFullView: View {
     var event: Event
     var handleClose: () -> ()
     
-    var responsibleName: String = ""
-    var responsibleEmail: String = ""
-    
+//    var responsibleName: String = ""
+//    var responsibleEmail: String = ""
+
     @State private var hover: Bool = false
     
     var category: TaskCategory {
@@ -19,13 +19,13 @@ struct EmployeeEventFullView: View {
             VStack(alignment: .leading, spacing: 15) {
                 HStack {
                     Text("Evento")
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .foregroundColor(.black)
                     Spacer()
                 }
                 HStack {
                     Text(event.name)
-                        .font(.system(size: 28, weight: .bold))
+                        .collieFont(textStyle: .title)
                         .foregroundColor(.black)
                     Spacer()
                 }
@@ -34,7 +34,7 @@ struct EmployeeEventFullView: View {
                     .padding(.vertical, 4)
                     .background(category.color)
                     .cornerRadius(16)
-                    .font(.system(size: 12, weight: .bold))
+                    .collieFont(textStyle: .subtitle, textSize: 12)
                     .foregroundColor(.white)
             }
             .padding(.bottom, 30)
@@ -46,7 +46,7 @@ struct EmployeeEventFullView: View {
                     if let url = URL(string: event.contentLink) {
                         Link(destination: url) {
                             Text(event.contentLink)
-                                .font(.system(size: 16, weight: .medium))
+                                .collieFont(textStyle: .subtitle)
                                 .foregroundColor(hover ? .collieLilas : .collieRoxo)
                         }
                         .onHover { isHovered in
@@ -61,7 +61,7 @@ struct EmployeeEventFullView: View {
                         }
                     } else {
                         Text("Nenhum link disponível")
-                            .font(.system(size: 16))
+                            .collieFont(textStyle: .regularText)
                     }
                     Spacer()
                 }
@@ -70,22 +70,14 @@ struct EmployeeEventFullView: View {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de início")
                         .frame(width: 200)
                     Text(CalendarHelper().dateString(event.startDate))
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                     Spacer()
                 }
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de término")
                         .frame(width: 200)
                     Text(CalendarHelper().dateString(event.endDate))
-                        .font(.system(size: 16))
-                    Spacer()
-                }
-                
-                HStack {
-                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-                        .frame(width: 200)
-                    Text("\(responsibleName) \(responsibleEmail)")
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                     Spacer()
                 }
                 
@@ -93,7 +85,7 @@ struct EmployeeEventFullView: View {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                         .frame(width: 200)
                     Text(event.description)
-                        .font(.system(size: 16))
+                        .collieFont(textStyle: .regularText)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
@@ -120,7 +112,7 @@ struct EmployeeEventFullView: View {
                                 handleClose()
                             } label: {
                                 Image(systemName: "xmark")
-                                    .font(.system(size: 28, weight: .bold))
+                                    .collieFont(textStyle: .title)
                                     .foregroundColor(.black)
                             }
                             .buttonStyle(.plain)

@@ -1,19 +1,22 @@
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UserIconView: View {
     var user: UserModel
     
     var body: some View {
         VStack {
-            if user.imageURL == "" {
+            if user.imageURL != "", let url = URL(string: user.imageURL) {
+                AnimatedImage(url: url)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else {
                 ZStack {
                     Circle()
                         .foregroundColor(getRandomColor())
                     Text(getUserInitials())
-                        .font(.system(size: 16, weight: .bold))
+                        .collieFont(textStyle: .subtitle)
                 }
-            } else {
-                // TO DO
             }
         }
     }

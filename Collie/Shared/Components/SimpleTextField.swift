@@ -9,10 +9,10 @@ struct SimpleTextField: View {
         TextField("", text: $text)
             .placeholder(when: showPlaceholderWhen) {
                 Text(placeholderText)
-                    .font(.system(size: 16))
+                    .collieFont(textStyle: .regularText)
                     .foregroundColor(.gray)
             }
-            .font(.system(size: 16))
+            .collieFont(textStyle: .regularText)
             .padding(.horizontal)
             .tint(.collieRosaEscuro)
             .textFieldStyle(.plain)

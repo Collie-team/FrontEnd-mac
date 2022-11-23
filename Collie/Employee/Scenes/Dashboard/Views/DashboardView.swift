@@ -7,7 +7,7 @@ struct DashboardView: View {
                 VStack {
                     HStack {
                         Text("Dashboard")
-                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .collieFont(textStyle: .title)
                             .foregroundColor(Color.black)
                         
                         Spacer()
@@ -17,8 +17,9 @@ struct DashboardView: View {
                 }
             }
         }
-        .padding(.horizontal)
-        .padding(.vertical, 32)
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())

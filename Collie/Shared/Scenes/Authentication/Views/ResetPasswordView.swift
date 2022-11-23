@@ -1,60 +1,64 @@
-//
-//  ResetPasswordView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 10/10/22.
-//
-
 import SwiftUI
 
 struct ResetPasswordView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    @State var showEmailSendConfirmation = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 26) {
-            Button(action: {
-                withAnimation(.spring()) {
-                    viewModel.authenticationMode = .login
+            IconButton(
+                imageSystemName: "arrow.left",
+                action: {
+                    withAnimation(.spring()) {
+                        viewModel.authenticationMode = .login
+                    }
                 }
-            }) {
-                Image(systemName: "arrow.left")
-                    .font(.system(size: 34, weight: .bold))
-            }
-            .buttonStyle(.plain)
+            )
+            
             Text("Redefinir sua senha")
-                .font(.system(size: 34, weight: .bold))
+                .collieFont(textStyle: .largeTitle)
             
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
                     Text("Enviar e-mail")
+                        .collieFont(textStyle: .regularText)
+                    
                     CustomTextField("E-mail", text: $viewModel.currentUser.email)  {
                         return viewModel.currentUser.isValidEmail() || viewModel.currentUser.email == ""
                     }
                 }
             }
+            
             Spacer()
-            Button(action: {
-                viewModel.resetPassword()
-                withAnimation(.spring()) {
-                    viewModel.authenticationMode = .login
+            
+            DefaultButton(
+                label: "Enviar e-mail",
+                backgroundColor: .collieAzulEscuro,
+                isButtonDisabled: !viewModel.currentUser.isValidEmail(),
+                handleSend: {
+                    viewModel.resetPassword {
+                        withAnimation(.spring()) {
+                            showEmailSendConfirmation = true
+                        }
+                    }
                 }
-            }) {
-                Text("Enviar e-mail")
-                    .foregroundColor(.white)
-                    .frame(height: 48)
-                    .frame(maxWidth: 400)
-                    .background(Color.black)
-                    .cornerRadius(8)
-            }
-            .buttonStyle(.plain)
-            .frame(maxWidth: .infinity)
-            .disabled(!viewModel.currentUser.isValidEmail())
+            )
+            .frame(maxWidth: 400)
+            
         }
         .foregroundColor(.black)
-        .padding(.horizontal,60)
-        .padding(.vertical,42)
+        .padding(.horizontal, 60)
+        .padding(.vertical, 42)
         .background(Color.white)
-        .cornerRadius(12)
-        .shadow(color: .gray, radius: 4, x: 0, y: 4)
+        .cornerRadius(8)
+        .modifier(CustomBorder())
+        .alert(isPresented: $showEmailSendConfirmation) {
+            Alert(
+                title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+                message: Text("Confira a caixa de spam :)"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 

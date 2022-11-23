@@ -16,26 +16,29 @@ struct BusinessCard: View {
         VStack {
             ZStack {
                 Circle()
-                    .frame(width: 120, height: 120)
                     .foregroundColor(getRandomColor())
                 Text(workspaceInitialString)
-                    .font(.system(size: 50, weight: .bold))
+                    .collieFont(textStyle: .largeTitle, textSize: 50)
                     .foregroundColor(.collieBranco)
             }
-            .padding(32)
+            .frame(width: 120, height: 120)
+            .padding(.vertical, 32)
             
             Divider()
+                .frame(height: 2)
+                .background(Color.collieCinzaBorda)
+                .padding(.horizontal)
             
-            VStack {
-                Text(business.name)
-                    .font(.system(size: 21, weight: .bold))
-//                Text("\(business.userIds.count) Membros")
-//                    .font(.system(size: 14, weight: .light))
-            }
-            .foregroundColor(.black)
+            Spacer()
+            
+            Text(business.name)
+                .collieFont(textStyle: .smallTitle)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+            
+            Spacer()
         }
-        .padding()
-        .frame(width: 300)
+        .frame(width: 250, height: 275)
         .background(Color.white)
         .cornerRadius(8)
         .modifier(CustomBorder())

@@ -8,7 +8,7 @@ struct UserCellView: View {
         VStack(spacing: 0) {
             HStack {
                 UserIconView(user: user)
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                 
                 Text(user.name)
                 
@@ -21,7 +21,7 @@ struct UserCellView: View {
             Divider()
                 .frame(height: 1)
         }
-        .font(.system(size: 15))
+        .collieFont(textStyle: .regularText)
         .padding(.horizontal)
         .contentShape(Rectangle())
         .onTapGesture {

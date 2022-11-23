@@ -1,4 +1,5 @@
 import SwiftUI
+import SDWebImageSwiftUI
 
 enum ListComponents: CGFloat {
     case tasks = 0.1
@@ -16,177 +17,122 @@ enum ListComponents: CGFloat {
 }
 
 struct TeamListView: View {
-    @ObservedObject var viewModel = TeamListViewModel()
+    @StateObject var viewModel = TeamListViewModel()
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
     
+    @State var showEmailSendConfirmation = false
+    
     var body: some View {
-        VStack {
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack {
-                    HStack(alignment: .bottom) {
-                        VStack(alignment: .leading) {
+        ZStack {
+            VStack(spacing: 0) {
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 0) {
+                        HStack(alignment: .bottom, spacing: 16) {
                             Text("Acompanhamento")
-                                .font(.system(size: 34, weight: .bold, design: .default))
+                                .collieFont(textStyle: .largeTitle)
                                 .foregroundColor(Color.black)
-                                .padding(.bottom, 12)
-                            Text("Faça um acompanhamento geral do seu time")
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
-                                .foregroundColor(Color.black.opacity(0.6))
-                        }
-                        Spacer()
-                        VStack(alignment: .trailing) {
-                            HStack {
-                                Image(systemName: "bell")
-                                    .foregroundColor(Color.collieRoxo)
-                                    .font(.system(size: 16, weight: .semibold))
-                                    .padding()
-                                    .overlay(
-                                        ZStack {
-                                            Circle()
-                                                .frame(width: 14, height: 14)
-                                                .foregroundColor(.red)
-                                            Text("4")
-                                                .font(.system(size: 10))
-                                        }
-                                        .offset(x: 7, y: -7)
-                                    )
-                                ZStack {
-                                    Circle()
-                                        .foregroundColor(.gray)
-                                        .frame(width: 36, height: 36)
-                                    Text("A")
-                                        .font(.system(size: 14))
-                                }
-                            }
-                            HStack {
-                                Button(action: {
-                                    viewModel.newUserPopupEnabled = true
-                                }) {
-                                    HStack {
-                                        Image(systemName: "person.crop.circle.badge.plus")
-                                        Text("Adicionar pessoas")
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .padding(.horizontal,8)
-                                }
-                                .buttonStyle(.plain)
-                                .background(Color.collieRoxo)
-                                .cornerRadius(8)
-                                .contentShape(Rectangle())
-                            }
-                        }
-                    }
-                    .padding(.bottom)
-                    
-                    // LISTA
-
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 0) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 48, height: 48)
-                            }
-                            .padding(.trailing)
-                            .opacity(0)
                             
-                            GeometryReader { geometry in
-                                HStack(alignment: .center, spacing: 0) {
-                                    Text("Nome")
-                                    Spacer()
-                                    
-                                    VStack {
-                                        Text("Contato")
-                                    }
-                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
-                                    
-                                    VStack {
-                                        Text("Jornada")
-                                    }
-                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
-                                    
-                                    
-                                    VStack() {
-                                        HStack {
-                                            Text("Progresso")
-                                            Spacer()
-                                        }
-                                    }
-                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
-                                    
-                                    VStack {
-                                        Text("Tarefas")
-                                    }
-                                    .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
-                                    
+                            InviteUserButton {
+                                viewModel.newUserPopupEnabled = true
+                            }
+                            
+                            Spacer()
+                            
+                            TopUserProfileIcon {
+                                if let profileItem = businessSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                                    businessSidebarViewModel.selectedItem = profileItem
                                 }
-                                .frame(height: geometry.size.height)
                             }
                         }
-                        .foregroundColor(.black)
-                        .font(.system(size: 20, weight: .semibold))
-                        .padding()
+                        .padding(.bottom, 32)
                         
-                        ForEach(viewModel.teamListUsers) { user in
+                        // LISTA
+
+                        VStack(alignment: .leading) {
                             HStack(spacing: 0) {
                                 ZStack {
                                     Circle()
                                         .frame(width: 48, height: 48)
-                                        .foregroundColor(.collieRosaClaro)
-                                    Text("\(getNameLetters(fullName: user.name))")
-                                        .font(.system(size: 16, weight: .bold, design: .default))
                                 }
                                 .padding(.trailing)
+                                .opacity(0)
                                 
                                 GeometryReader { geometry in
                                     HStack(alignment: .center, spacing: 0) {
-                                        Text("\(user.name)")
-                                        
+                                        Text("Nome")
                                         Spacer()
                                         
                                         VStack {
-                                            Text(verbatim: user.email)
-                                                .font(.system(size: 15))
-                                                .opacity(0.5)
-                                                
+                                            Text("Contato")
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
                                         
                                         VStack {
-                                            Text(user.journey)
-                                                .font(.system(size: 17))
+                                            Text("Jornada")
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                                         
                                         
-                                        VStack {
-                                            ProgressBarView(doneTasks: user.doneTasks, totalTasks: user.totalTasks)
+                                        VStack() {
+                                            HStack {
+                                                Text("Progresso")
+                                                Spacer()
+                                            }
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .progress))
                                         
                                         VStack {
-                                            Text("\(user.doneTasks)/\(user.totalTasks)")
-                                                .font(.system(size: 17))
+                                            Text("Tarefas")
                                         }
                                         .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
                                         
                                     }
+                                    .frame(height: geometry.size.height)
                                 }
-                                .foregroundColor(.black)
                             }
+                            .foregroundColor(.black)
+                            .collieFont(textStyle: .smallTitle)
                             .padding()
-                            .frame(height: 60)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                            
+                            if viewModel.teamListUsers.isEmpty {
+                                HStack {
+                                    Spacer()
+                                    LoadingIndicator()
+                                    Spacer()
+                                }
+                            } else {
+                                ForEach(viewModel.teamListUsers) { teamListUser in
+                                    TeamListUserCell(teamListUser: teamListUser)
+                                }
+                            }
                         }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
+                }
+            }
+            .padding(.horizontal, 32)
+            .padding(.top, 32)
+            .padding(.bottom)
+            
+            if viewModel.newUserPopupEnabled {
+                ZStack {
+                    Color.black.opacity(0.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    NewUserFormsView(
+                        handleClose: {
+                            viewModel.newUserPopupEnabled = false
+                        },
+                        handleEmailSend: {
+                            viewModel.newUserPopupEnabled = false
+                            showEmailSendConfirmation = true
+                        }
+                    )
+                    .environmentObject(viewModel)
                 }
             }
         }
-        .padding(.horizontal, 60)
-        .padding(.vertical, 32)
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
@@ -194,16 +140,13 @@ struct TeamListView: View {
         .onAppear() {
             viewModel.fetchUsers(business: rootViewModel.businessSelected)
         }
-        .popover(isPresented: $viewModel.newUserPopupEnabled) {
-            NewUserFormsView()
-                .environmentObject(viewModel)
+        .alert(isPresented: $showEmailSendConfirmation) {
+            Alert(
+                title: Text("O convite foi enviado por e-mail com sucesso!"),
+                message: Text("Agora é só aguardar o novo funcionário entrar no workspace."),
+                dismissButton: .default(Text("OK"))
+            )
         }
-    }
-    
-    func getNameLetters(fullName: String) -> String {
-        let firstLetter = fullName.components(separatedBy: " ")[0].uppercased().prefix(1)
-        let secondLetter = fullName.components(separatedBy: " ").count > 1 ? fullName.components(separatedBy: " ")[1].uppercased().prefix(1) : ""
-        return (String(firstLetter + secondLetter))
     }
 }
 

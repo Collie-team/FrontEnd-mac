@@ -9,13 +9,14 @@ struct IconButton: View {
             action()
         } label: {
             Image(systemName: imageSystemName)
-                .font(.system(size: 18, weight: .medium))
+                .collieFont(textStyle: .subtitle)
                 .foregroundColor(.black)
                 .frame(width: 40, height: 40)
                 .background(Color.white)
                 .cornerRadius(8)
         }
         .buttonStyle(.plain)
+        .modifier(CustomBorder())
     }
 }
 

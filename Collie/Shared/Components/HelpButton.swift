@@ -8,8 +8,8 @@ struct HelpButton: View {
             handleTap()
         } label: {
             Image(systemName: "questionmark.circle")
-                .font(.system(size: 21, weight: .bold))
-                .foregroundColor(Color.collieLilas)
+                .collieFont(textStyle: .smallTitle)
+                .foregroundColor(Color.collieRoxo)
         }
         .buttonStyle(.plain)
     }

@@ -13,7 +13,7 @@ struct BusinessDateScrollerView: View {
             }
             
             Text(CalendarHelper().monthYearString(businessManagerEventsCalendarViewModel.date))
-                .font(.system(size: 18, weight: .bold))
+                .collieFont(textStyle: .smallTitle)
                 .frame(maxWidth: .infinity)
             
             IconButton(imageSystemName: "arrow.right") {

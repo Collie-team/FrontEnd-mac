@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 final class SettingsViewModel: ObservableObject {
     
@@ -15,14 +16,28 @@ final class SettingsViewModel: ObservableObject {
     
     private let teamSubscriptionService = TeamSubscriptionService()
     
+    private let apiSubscriptionService = APISubscriptionService()
+    
     @Published var userModelsList: [UserModel] = []
     
     @Published var businessUsersList: [BusinessUser] = []
     
-    @Published var modelList: [Model] = []
+    @Published var modelList: [Model] = [] {
+        didSet {
+            workspaceAdmins = modelList.filter({$0.businessUser.role == .admin}).count
+            workspaceUsers = modelList.count
+        }
+    }
     
     @Published var selectedOption: SettingsOptions
     @Published var selectedUserModel: UserModel?
+    
+    @Published var newUserPopupEnabled = false
+    
+    @Published var workspaceAdmins: Int = 0
+    @Published var workspaceUsers: Int = 0
+    
+    @Published var businessCode: String = "Carregando..."
     
     init() {
         selectedOption = .users
@@ -69,6 +84,31 @@ final class SettingsViewModel: ObservableObject {
             modelList.removeAll(where: {$0.userModel.id == id})
             teamSubscriptionService.removeUserFromBusiness(authenticationToken: "", businessId: businessId, userId: id)
         }
+    }
+    
+    func copyToClipboard(text: String) {
+        let pasteBoard = NSPasteboard.general
+        pasteBoard.clearContents()
+        pasteBoard.writeObjects([text as NSString])
+    }
+    
+    func fetchBusinessCode(businessId: String) {
+        apiSubscriptionService.fetchBusinessCode(authenticationToken: "", businessId: businessId) { businessKey in
+            self.businessCode = businessKey.code
+        }
+    }
+    
+    func redefineBusinessCode(businessId: String) {
+        apiSubscriptionService.redefineBusinessCode(authenticationToken: "", businessId: businessId) { businessKey in
+            self.businessCode = businessKey.code
+        }
+    }
+    
+    func updateAdminCount(businessUser: BusinessUser) {
+        if let i = self.businessUsersList.firstIndex(where: {$0.userId == businessUser.userId}) {
+            self.businessUsersList[i] = businessUser
+        }
+        bind()
     }
 }
 

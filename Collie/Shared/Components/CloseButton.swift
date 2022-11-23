@@ -7,9 +7,14 @@ struct CloseButton: View {
         Button {
             handleClose()
         } label: {
-            Image(systemName: "xmark.circle")
-                .font(.system(size: 21, weight: .bold, design: .default))
-                .foregroundColor(.white)
+            ZStack {
+                Circle()
+                    .frame(width: 36, height: 36)
+                    .foregroundColor(.black.opacity(0.2))
+                Image(systemName: "xmark")
+                    .collieFont(textStyle: .smallTitle)
+                    .foregroundColor(.white)
+            }
         }
         .buttonStyle(.plain)
     }
@@ -18,5 +23,6 @@ struct CloseButton: View {
 struct CloseButton_Previews: PreviewProvider {
     static var previews: some View {
         CloseButton(handleClose: {})
+            .background(Color.collieVermelho)
     }
 }

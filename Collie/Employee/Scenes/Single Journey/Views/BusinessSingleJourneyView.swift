@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BusinessSingleJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @StateObject var viewModel: BusinessSingleJourneyViewModel
     
     @State var editJourney = false
@@ -17,46 +18,35 @@ struct BusinessSingleJourneyView: View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 30, weight: .bold, design: .default))
-                        .onTapGesture {
-                            backAction()
-                        }
+                    IconButton(imageSystemName: "chevron.left") {
+                        backAction()
+                    }
                     
                     Text(viewModel.journey.name)
-                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .collieFont(textStyle: .largeTitle)
                     
                     Spacer()
                     
-                    Button {
-                        editJourney = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.pencil")
-                            Text("Editar jornada")
+                    DefaultButtonWithLeftIcon(
+                        label: "Editar jornada",
+                        systemImageName: "square.and.pencil",
+                        onTap: {
+                            editJourney = true
                         }
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(8)
-                        .foregroundColor(.black)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                    }
-                    .contentShape(Rectangle())
-                    .buttonStyle(.plain)
+                    )
                 }
                 .foregroundColor(.black)
                 .padding(.bottom)
                 
                 Text(viewModel.journey.description)
-                    .font(.system(size: 16, weight: .regular, design: .default))
+                    .collieFont(textStyle: .regularText)
                     .foregroundColor(.black)
-                
                 
                 HStack(spacing: 16) {
                     VStack {
                         HStack {
                             Text("Tarefas")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
@@ -68,97 +58,105 @@ struct BusinessSingleJourneyView: View {
 
                             Spacer()
                             
-                            Button {
-                                showTaskForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Nova tarefa")
+                            DefaultButtonWithLeftIcon(
+                                label: "Nova tarefa",
+                                systemImageName: "plus",
+                                onTap: {
+                                    showTaskForm = true
                                 }
-                                .font(.system(size: 16, weight: .bold))
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
+                            )
                             
-                            Button {
-                                showCategoryForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "tag")
-                                    Text("Nova categoria")
+                            DefaultButtonWithLeftIcon(
+                                label: "Nova categoria",
+                                systemImageName: "tag",
+                                onTap: {
+                                    showCategoryForm = true
                                 }
-                                .font(.system(size: 16, weight: .bold))
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
+                            )
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(rootViewModel.businessSelected.categories, id: \.self) { category in
-                                CategoryCard(category: category) {
-                                    viewModel.selectCategory(category)
-                                }
-                                
-                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id })) { task in
-                                    BusinessTaskView(
-                                        task: task,
-                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
-                                        handleTaskOpen: {
-                                            viewModel.selectTask(task)
-                                        },
-                                        handleTaskDuplicate: {
-                                            viewModel.duplicateTask(task) { business in
-                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                                            }
-                                        }
-                                    )
-                                }
-                                .padding(2)
-                            }
-                            
-                            if !(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
-                                HStack(spacing: 16) {
-                                    Text("Sem categoria")
+                            if rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id }).isEmpty {
+                                VStack {
+                                    Spacer()
+                                    Image("noTasksFound")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 175)
+                                        .padding(.bottom)
+                                    
+                                    Text("Nada por aqui")
+                                        .collieFont(textStyle: .regularText)
+                                        .foregroundColor(Color.collieLilas)
+                                    
+                                    Text("Crie uma nova tarefa!")
+                                        .collieFont(textStyle: .smallTitle)
+                                        .foregroundColor(Color.collieLilas)
+                                        .multilineTextAlignment(.center)
                                     Spacer()
                                 }
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.white)
-                                .padding(.vertical, 12)
-                                .padding(.horizontal, 16)
-                                .background(Color.collieRoxoClaro)
-                                .cornerRadius(8)
-                                
-                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil })) { task in
-                                    BusinessTaskView(
-                                        task: task,
-                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
-                                        handleTaskOpen: {
-                                            viewModel.selectTask(task)
-                                        },
-                                        handleTaskDuplicate: {
-                                            viewModel.duplicateTask(task) { business in
-                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                .padding()
+                            } else {
+                                VStack {
+                                    ForEach(rootViewModel.businessSelected.categories, id: \.self) { category in
+                                        if !rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id }).isEmpty {
+                                            CategoryCard(category: category) {
+                                                viewModel.selectCategory(category)
                                             }
                                         }
-                                    )
+                                        
+                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id }).sorted(by: {$0.endDate < $1.endDate})) { task in
+                                            BusinessTaskView(
+                                                task: task,
+                                                category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                                handleTaskOpen: {
+                                                    viewModel.selectTask(task)
+                                                },
+                                                handleTaskDuplicate: {
+                                                    viewModel.duplicateTask(task) { business in
+                                                        rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                                    }
+                                                }
+                                            )
+                                        }
+                                        .padding(2)
+                                    }
+                                    
+                                    if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && ($0.categoryId == "" || $0.categoryId == nil)})).isEmpty {
+                                        HStack(spacing: 16) {
+                                            Text("Sem categoria")
+                                            Spacer()
+                                        }
+                                        .collieFont(textStyle: .subtitle)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 12)
+                                        .padding(.horizontal, 16)
+                                        .background(Color.collieRoxoClaro)
+                                        .cornerRadius(8)
+                                        
+                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && ($0.categoryId == "" || $0.categoryId == nil) }).sorted(by: {$0.endDate < $1.endDate})) { task in
+                                            BusinessTaskView(
+                                                task: task,
+                                                category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                                handleTaskOpen: {
+                                                    viewModel.selectTask(task)
+                                                },
+                                                handleTaskDuplicate: {
+                                                    viewModel.duplicateTask(task) { business in
+                                                        rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                                    }
+                                                }
+                                            )
+                                        }
+                                        .padding(2)
+                                    }
+                                    
+                                    Spacer()
                                 }
-                                .padding(2)
+                                .padding(.trailing, 16)
                             }
-                            
-                            Spacer()
                         }
+                        .padding(.trailing, -16)
                     }
                     .padding(.horizontal, 32)
                     .padding(.top, 32)
@@ -169,7 +167,7 @@ struct BusinessSingleJourneyView: View {
                     VStack {
                         HStack {
                             Text("Eventos")
-                                .font(.system(size: 24, weight: .bold))
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
                             
                             HelpButton(handleTap: {
@@ -181,29 +179,18 @@ struct BusinessSingleJourneyView: View {
                             
                             Spacer()
                             
-                            Button {
-                                showEventForm = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "calendar.badge.plus")
-                                    Text("Novo evento")
+                            DefaultButtonWithLeftIcon(
+                                label: "Novo evento",
+                                systemImageName: "calendar.badge.plus",
+                                onTap: {
+                                    showEventForm = true
                                 }
-                                .font(.system(size: 16, weight: .bold))
-                                .padding(8)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                                .frame(height: 45)
-                                .cornerRadius(8)
-                                .modifier(CustomBorder())
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(.plain)
-                            
+                            )
                         }
                         
                         BusinessEventsCalendarView(
                             selectedDate: $viewModel.selectedDate,
-                            events: rootViewModel.businessSelected.events,
+                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == self.viewModel.journey.id}),
                             rootViewModel: rootViewModel,
                             businessSingleJourneyViewModel: self.viewModel
                         ) { event in
@@ -221,7 +208,7 @@ struct BusinessSingleJourneyView: View {
                 
                 Spacer()
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 32)
             .padding(.top, 32)
             .padding(.bottom)
             
@@ -230,15 +217,17 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
+                        userId: rootViewModel.currentUser.id,
+                        currentBusiness: rootViewModel.businessSelected,
                         journey: viewModel.journey,
-                        handleClose: {
-                            withAnimation {
-                                editJourney = false
-                            }
-                        },
                         handleJourneySave: { journey in
                             viewModel.saveJourney(journey) { business in
                                 rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
+                        },
+                        handleClose: {
+                            withAnimation {
+                                editJourney = false
                             }
                         }
                     )
@@ -277,7 +266,9 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditTaskViewModel(
+                            currentBusiness: rootViewModel.businessSelected
+                        ),
                         journeyId: viewModel.journey.id,
                         task: nil,
                         category: rootViewModel.getCategory(categoryId: ""),
@@ -286,12 +277,7 @@ struct BusinessSingleJourneyView: View {
                                 showTaskForm = false
                             }
                         },
-                        handleTaskSave: { task in
-                            viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
-                        },
-                        handleTaskDeletion: { task in
+                        handleTaskDelete: { task in
                             viewModel.removeTask(task) { business in
                                 rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
@@ -318,18 +304,13 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
-                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditEventViewModel(currentBusiness: rootViewModel.businessSelected),
                         event: nil,
                         category: rootViewModel.getCategory(categoryId: ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 showEventForm = false
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleEventDelete: { _ in },
@@ -373,7 +354,7 @@ struct BusinessSingleJourneyView: View {
                     Color.black.opacity(0.5)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditTaskView(
-                        viewModel: CreateOrEditTaskViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditTaskViewModel(currentBusiness: rootViewModel.businessSelected),
                         journeyId: viewModel.journey.id,
                         task: chosenTask,
                         category: rootViewModel.getCategory(categoryId: chosenTask.categoryId ?? ""),
@@ -382,12 +363,7 @@ struct BusinessSingleJourneyView: View {
                                 viewModel.unselectTask()
                             }
                         },
-                        handleTaskSave: { task in
-                            viewModel.saveTask(task) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                            }
-                        },
-                        handleTaskDeletion: { task in
+                        handleTaskDelete: { task in
                             viewModel.removeTask(task) { business in
                                 rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
@@ -412,18 +388,13 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
-                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditEventViewModel(currentBusiness: rootViewModel.businessSelected),
                         event: chosenEvent,
                         category: rootViewModel.getCategory(categoryId: chosenEvent.categoryId ?? ""),
                         journeyId: viewModel.journey.id,
                         handleClose: {
                             withAnimation {
                                 viewModel.unselectEvent()
-                            }
-                        },
-                        handleEventSave: { event in
-                            viewModel.saveEvent(event) { business in
-                                rootViewModel.updateBusiness(business, replaceBusiness: false)
                             }
                         },
                         handleEventDelete: { event in
