@@ -177,6 +177,18 @@ final class RootViewModel: ObservableObject {
         })
     }
     
+    func exitUserAccount() {
+        do {
+            try Auth.auth().signOut()
+            navigationState = .authentication
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.currentBusinessUser = nil
+            })
+        } catch {
+            print("Error while signing out!")
+        }
+    }
+    
     func openFileSelectionForProfileImage() {
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Select File"

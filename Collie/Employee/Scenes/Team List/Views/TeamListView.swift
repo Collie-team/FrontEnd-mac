@@ -24,6 +24,15 @@ struct TeamListView: View {
     @State var showEmailSendConfirmation = false
     
     var body: some View {
+        switch viewModel.teamListViewState {
+        case .teamList:
+            teamList
+        case .inspectView:
+            InspectView(backAction: {viewModel.teamListViewState = .teamList})
+        }
+    }
+    
+    var teamList: some View {
         ZStack {
             VStack(spacing: 0) {
                 ScrollView(.vertical, showsIndicators: true) {
@@ -102,8 +111,11 @@ struct TeamListView: View {
                                     Spacer()
                                 }
                             } else {
-                                ForEach(viewModel.teamListUsers) { teamListUser in
+                                ForEach(viewModel.teamListUsers.filter({$0.role == .employee})) { teamListUser in
                                     TeamListUserCell(teamListUser: teamListUser)
+                                        .onTapGesture {
+                                            viewModel.teamListViewState = .inspectView
+                                        }
                                 }
                             }
                         }

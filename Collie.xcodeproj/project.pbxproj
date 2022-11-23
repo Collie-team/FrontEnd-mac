@@ -13,6 +13,8 @@
 		5B0DC417291E5EC800CFD82A /* BusinessUserRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */; };
 		5B132A9D291D2F5000C82A09 /* EmployeeEventFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */; };
 		5B14E8162927069B007F5C34 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5B14E8152927069B007F5C34 /* SDWebImageSwiftUI */; };
+		5B14E81B292ED9C2007F5C34 /* InspectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14E81A292ED9C2007F5C34 /* InspectView.swift */; };
+		5B14E81D292EDDCA007F5C34 /* InspectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B14E81C292EDDCA007F5C34 /* InspectViewModel.swift */; };
 		5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */; };
 		5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD4228FF37E700EFF0E4 /* RootViewModel.swift */; };
 		5B1BAD482901C10100EFF0E4 /* UserSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */; };
@@ -117,7 +119,6 @@
 		5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */; };
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
-		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */; };
 		5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */; };
 		5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34F292D16CD00573899 /* InviteUserButton.swift */; };
@@ -159,6 +160,8 @@
 		5B0DC414291D5FC900CFD82A /* CreateOrEditCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditCategoryViewModel.swift; sourceTree = "<group>"; };
 		5B0DC416291E5EC800CFD82A /* BusinessUserRoles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUserRoles.swift; sourceTree = "<group>"; };
 		5B132A9C291D2F5000C82A09 /* EmployeeEventFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEventFullView.swift; sourceTree = "<group>"; };
+		5B14E81A292ED9C2007F5C34 /* InspectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectView.swift; sourceTree = "<group>"; };
+		5B14E81C292EDDCA007F5C34 /* InspectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectViewModel.swift; sourceTree = "<group>"; };
 		5B1BAD3F28FF37C700EFF0E4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5B1BAD4228FF37E700EFF0E4 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		5B1BAD472901C10100EFF0E4 /* UserSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSubscriptionService.swift; sourceTree = "<group>"; };
@@ -357,6 +360,31 @@
 				5BAC4A982926FB17007722A3 /* FirebaseStorageService.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		5B14E817292ED982007F5C34 /* InspectEmployee */ = {
+			isa = PBXGroup;
+			children = (
+				5B14E819292ED998007F5C34 /* View Models */,
+				5B14E818292ED993007F5C34 /* Views */,
+			);
+			path = InspectEmployee;
+			sourceTree = "<group>";
+		};
+		5B14E818292ED993007F5C34 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B14E81A292ED9C2007F5C34 /* InspectView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B14E819292ED998007F5C34 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				5B14E81C292EDDCA007F5C34 /* InspectViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		5B1BAD3D28FF37AB00EFF0E4 /* Root */ = {
@@ -718,6 +746,7 @@
 		5BACC63928CFC083006975D3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5B14E817292ED982007F5C34 /* InspectEmployee */,
 				5B0DC40F291D5F8600CFD82A /* CreateOrEditCategory */,
 				5B4E31392915A7580031F74F /* Settings */,
 				5B49603F28ECBF6E0024D064 /* CreateOrEditEvent */,
@@ -1206,6 +1235,7 @@
 				5BF6693928E23A4D001B0A1D /* UserIconView.swift in Sources */,
 				5BB2FC7F28F9F672003EE3F9 /* EmployeeSidebarView.swift in Sources */,
 				5B954E872903118500FA579E /* EmployeeEventsCalendarView.swift in Sources */,
+				5B14E81D292EDDCA007F5C34 /* InspectViewModel.swift in Sources */,
 				5B954E8B290319A700FA579E /* EmployeeCalendarCell.swift in Sources */,
 				5B495FF728E62DB60024D064 /* BusinessSingleJourneyViewModel.swift in Sources */,
 				5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */,
@@ -1291,6 +1321,7 @@
 				5B49605028EF51BC0024D064 /* BusinessEventsCalendarView.swift in Sources */,
 				5BC5B357292D81C900573899 /* ChangePhotoIcon.swift in Sources */,
 				5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */,
+				5B14E81B292ED9C2007F5C34 /* InspectView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
 				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,

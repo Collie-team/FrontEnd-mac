@@ -37,12 +37,7 @@ struct TopUserProfileIcon: View {
                 arrowEdge: .bottom
             ) {
                 ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-                    do {
-                        try Auth.auth().signOut()
-                        rootViewModel.navigationState = .authentication
-                    } catch {
-                        print("Error while signing out!")
-                    }
+                    rootViewModel.exitUserAccount()
                 }, navigateToProfileView: {
                     // TODO: Resetar rootView, e outras variaveis
                     navigateToProfileAction()

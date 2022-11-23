@@ -77,6 +77,6 @@ struct TeamListUserCell: View {
 
 struct TeamListUserCell_Previews: PreviewProvider {
     static var previews: some View {
-        TeamListUserCell(teamListUser: .init(name: "André", email: "andreluisarns@gmail.com", journey: "", totalTasks: 40, doneTasks: 10, imageURL: ""))
+        TeamListUserCell(teamListUser: .init(name: "André", email: "andreluisarns@gmail.com", journey: "", totalTasks: 40, doneTasks: 10, imageURL: "", role: .employee))
     }
 }
