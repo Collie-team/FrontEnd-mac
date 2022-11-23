@@ -29,9 +29,17 @@ struct BusinessTaskView: View {
             .collieFont(textStyle: .regularText)
             .foregroundColor(.gray)
             
-            IconButton(imageSystemName: "rectangle.on.rectangle") {
+            Button {
                 handleTaskDuplicate()
+            } label: {
+                Image(systemName: "rectangle.on.rectangle")
+                    .collieFont(textStyle: .subtitle)
+                    .foregroundColor(.black)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white)
+                    .cornerRadius(8)
             }
+            .buttonStyle(.plain)
             .opacity(showDetailIcon ? 1 : 0)
         }
         .padding(8)

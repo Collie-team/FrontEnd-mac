@@ -47,6 +47,8 @@ struct EmployeeSidebarView: View {
                 switch viewModel.selectedItem.option {
                 case .journeys:
                     EmployeeJourneyListView()
+                case .profile :
+                    ProfileView()
                 default:
                     Text("Error")
                 }

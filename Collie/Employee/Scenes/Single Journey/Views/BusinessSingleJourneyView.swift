@@ -75,58 +75,84 @@ struct BusinessSingleJourneyView: View {
                         }
                         
                         ScrollView(.vertical) {
-                            ForEach(rootViewModel.businessSelected.categories, id: \.self) { category in
-                                CategoryCard(category: category) {
-                                    viewModel.selectCategory(category)
-                                }
-                                
-                                ForEach(viewModel.business.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id })) { task in
-                                    BusinessTaskView(
-                                        task: task,
-                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
-                                        handleTaskOpen: {
-                                            viewModel.selectTask(task)
-                                        },
-                                        handleTaskDuplicate: {
-                                            viewModel.duplicateTask(task) { business in
-                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
-                                            }
-                                        }
-                                    )
-                                }
-                                .padding(2)
-                            }
-                            
-                            if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
-                                HStack(spacing: 16) {
-                                    Text("Sem categoria")
+                            if rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id }).isEmpty {
+                                VStack {
+                                    Spacer()
+                                    Image("noTasksFound")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 175)
+                                        .padding(.bottom)
+                                    
+                                    Text("Nada por aqui")
+                                        .collieFont(textStyle: .regularText)
+                                        .foregroundColor(Color.collieLilas)
+                                    
+                                    Text("Crie uma nova tarefa!")
+                                        .collieFont(textStyle: .smallTitle)
+                                        .foregroundColor(Color.collieLilas)
+                                        .multilineTextAlignment(.center)
                                     Spacer()
                                 }
-                                .collieFont(textStyle: .subtitle)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 12)
-                                .padding(.horizontal, 16)
-                                .background(Color.collieRoxoClaro)
-                                .cornerRadius(8)
-                                
-                                ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil })) { task in
-                                    BusinessTaskView(
-                                        task: task,
-                                        category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
-                                        handleTaskOpen: {
-                                            viewModel.selectTask(task)
-                                        },
-                                        handleTaskDuplicate: {
-                                            viewModel.duplicateTask(task) { business in
-                                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                .padding()
+                            } else {
+                                VStack {
+                                    ForEach(rootViewModel.businessSelected.categories, id: \.self) { category in
+                                        if !rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id }).isEmpty {
+                                            CategoryCard(category: category) {
+                                                viewModel.selectCategory(category)
                                             }
                                         }
-                                    )
+                                        
+                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == category.id }).sorted(by: {$0.endDate < $1.endDate})) { task in
+                                            BusinessTaskView(
+                                                task: task,
+                                                category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                                handleTaskOpen: {
+                                                    viewModel.selectTask(task)
+                                                },
+                                                handleTaskDuplicate: {
+                                                    viewModel.duplicateTask(task) { business in
+                                                        rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                                    }
+                                                }
+                                            )
+                                        }
+                                        .padding(2)
+                                    }
+                                    
+                                    if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
+                                        HStack(spacing: 16) {
+                                            Text("Sem categoria")
+                                            Spacer()
+                                        }
+                                        .collieFont(textStyle: .subtitle)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 12)
+                                        .padding(.horizontal, 16)
+                                        .background(Color.collieRoxoClaro)
+                                        .cornerRadius(8)
+                                        
+                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil }).sorted(by: {$0.endDate < $1.endDate})) { task in
+                                            BusinessTaskView(
+                                                task: task,
+                                                category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
+                                                handleTaskOpen: {
+                                                    viewModel.selectTask(task)
+                                                },
+                                                handleTaskDuplicate: {
+                                                    viewModel.duplicateTask(task) { business in
+                                                        rootViewModel.updateBusiness(business, replaceBusiness: false)
+                                                    }
+                                                }
+                                            )
+                                        }
+                                        .padding(2)
+                                    }
+                                    
+                                    Spacer()
                                 }
-                                .padding(2)
                             }
-                            
-                            Spacer()
                         }
                     }
                     .padding(.horizontal, 32)
@@ -242,7 +268,7 @@ struct BusinessSingleJourneyView: View {
                                 showTaskForm = false
                             }
                         },
-                        handleTaskDeletion: { task in
+                        handleTaskDelete: { task in
                             viewModel.removeTask(task) { business in
                                 rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
@@ -269,7 +295,7 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
-                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditEventViewModel(currentBusiness: rootViewModel.businessSelected),
                         event: nil,
                         category: rootViewModel.getCategory(categoryId: ""),
                         journeyId: viewModel.journey.id,
@@ -328,7 +354,7 @@ struct BusinessSingleJourneyView: View {
                                 viewModel.unselectTask()
                             }
                         },
-                        handleTaskDeletion: { task in
+                        handleTaskDelete: { task in
                             viewModel.removeTask(task) { business in
                                 rootViewModel.updateBusiness(business, replaceBusiness: true)
                             }
@@ -353,7 +379,7 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     CreateOrEditEventView(
-                        viewModel: CreateOrEditEventViewModel(categoryList: rootViewModel.businessSelected.categories),
+                        viewModel: CreateOrEditEventViewModel(currentBusiness: rootViewModel.businessSelected),
                         event: chosenEvent,
                         category: rootViewModel.getCategory(categoryId: chosenEvent.categoryId ?? ""),
                         journeyId: viewModel.journey.id,

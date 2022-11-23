@@ -56,7 +56,7 @@ final class CreateOrEditTaskViewModel: ObservableObject {
             journeyId: journeyId,
             name: taskName,
             description: taskDescription,
-            categoryId: selectedCategory?.id,
+            categoryId: selectedCategory?.id ?? "",
             startDate: startDate,
             endDate: endDate
         )

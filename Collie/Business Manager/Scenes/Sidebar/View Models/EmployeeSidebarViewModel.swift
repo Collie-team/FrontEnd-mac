@@ -2,9 +2,10 @@ import Foundation
 import SwiftUI
 
 final class EmployeeSidebarViewModel: ObservableObject {
-    @Published var selectedItem: SidebarItem = .init(option: .dashboard)
+    @Published var selectedItem: SidebarItem = .init(option: .journeys)
     @Published var sidebarItens: [SidebarItem] = [
-        .init(option: .journeys)
+        .init(option: .journeys),
+        .init(option: .profile)
     ]
     
     func selectSideBarItem(_ sidebarItem: SidebarItem) {

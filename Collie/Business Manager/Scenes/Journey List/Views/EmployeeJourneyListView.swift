@@ -20,9 +20,6 @@ struct EmployeeJourneyListView: View {
             }
         }
         .navigationTitle("Suas jornadas")
-        .padding(.horizontal, 32)
-        .padding(.top, 32)
-        .padding(.bottom)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
     }
     
@@ -53,6 +50,9 @@ struct EmployeeJourneyListView: View {
                 }
             }
         }
+        .padding(.horizontal, 32)
+        .padding(.top, 32)
+        .padding(.bottom)
     }
     
     var singleJourney: some View {

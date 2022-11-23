@@ -12,9 +12,18 @@ struct EmployeeTaskView: View {
     
     let lateBackgroundColor = Color(red: 255/255, green: 237/255, blue: 237/255)
     
-    
     var category: TaskCategory {
         rootViewModel.getCategory(categoryId: task.categoryId ?? "")
+    }
+    
+    var textColor: Color {
+        if checked {
+            return Color.collieVerde
+        } else if isLate {
+            return Color.collieVermelho
+        } else {
+            return Color.black
+        }
     }
     
     var body: some View {
@@ -36,7 +45,7 @@ struct EmployeeTaskView: View {
                 CheckBoxView(checked: checked, handleCheckToggle: handleTaskCheckToggle)
                 
                 Text(task.name)
-                    .foregroundColor(isLate ? .collieVermelho : .black)
+                    .foregroundColor(textColor)
                     .collieFont(textStyle: .subtitle)
                     .padding(.leading, 8)
                 
