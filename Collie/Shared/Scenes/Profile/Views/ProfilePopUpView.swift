@@ -57,14 +57,14 @@ struct ProfilePopUpView: View {
                 }) {
                     Text("Editar perfil \(Image(systemName: "square.and.pencil"))")
                         .collieFont(textStyle: .regularText)
-                        .foregroundColor(Color.collieLilas)
+                        .foregroundColor(Color.collieRoxo)
                 }
                 .buttonStyle(.plain)
             }
         }
         .padding(20)
         .frame(width: 320)
-        .background(Color.white)
+        .background(Color.white.scaleEffect(1.5))
         .cornerRadius(12)
     }
 }

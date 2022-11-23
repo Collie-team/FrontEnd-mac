@@ -29,7 +29,6 @@ struct LoginView: View {
                 Spacer()
                 
                 NakedButton(title: "Registrar") {
-                    viewModel.resetUser()
                     withAnimation(.spring()) {
                         viewModel.authenticationMode = .signup
                     }

@@ -4,6 +4,7 @@ import SDWebImageSwiftUI
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
+    @State var showEmailSendConfirmation = false
     
     var body: some View {
         ScrollView(.vertical) {
@@ -107,7 +108,9 @@ struct ProfileView: View {
                             label: "Enviar e-mail para alterar senha",
                             systemImageName: "envelope"
                         ) {
-                            viewModel.resetPassword(email: rootViewModel.currentUser.email)
+                            viewModel.resetPassword(email: rootViewModel.currentUser.email) {
+                                showEmailSendConfirmation = true
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -156,6 +159,13 @@ struct ProfileView: View {
                     secondaryButton: .destructive(Text("Deletar")) {
                         rootViewModel.deleteUserData()
                     }
+                )
+            }
+            .alert(isPresented: $showEmailSendConfirmation) {
+                Alert(
+                    title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+                    message: Text("Confira a caixa de spam :)"),
+                    dismissButton: .default(Text("OK"))
                 )
             }
         }

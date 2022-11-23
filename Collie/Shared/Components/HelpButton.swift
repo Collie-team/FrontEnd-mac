@@ -9,7 +9,7 @@ struct HelpButton: View {
         } label: {
             Image(systemName: "questionmark.circle")
                 .collieFont(textStyle: .smallTitle)
-                .foregroundColor(Color.collieLilas)
+                .foregroundColor(Color.collieRoxo)
         }
         .buttonStyle(.plain)
     }

@@ -5,10 +5,12 @@ struct CreateOrEditJourneyView: View {
     @ObservedObject var viewModel: CreateNewJourneyViewModel
     @State var imageURL: String = ""
     
+    var handleJourneySave: (Journey) -> ()
     var handleClose: () -> ()
     
-    init(userId: String, journey: Journey?, handleClose: @escaping () -> ()) {
-        self.viewModel = CreateNewJourneyViewModel(userId: userId)
+    init(userId: String, currentBusiness: Business, journey: Journey?, handleJourneySave: @escaping (Journey) -> (), handleClose: @escaping () -> ()) {
+        self.handleJourneySave = handleJourneySave
+        self.viewModel = CreateNewJourneyViewModel(userId: userId, currentBusiness: currentBusiness)
         self.handleClose = handleClose
         if let journey = journey {
             viewModel.journeyId = journey.id
@@ -75,8 +77,9 @@ struct CreateOrEditJourneyView: View {
                     backgroundColor: .collieAzulEscuro,
                     isButtonDisabled: viewModel.isButtonDisabled()
                 ) {
-                    viewModel.handleJourneySave { business in
+                    viewModel.handleJourneySave { business, journey in
                         rootViewModel.updateBusiness(business, replaceBusiness: true)
+                        handleJourneySave(journey)
                     }
                     handleClose()
                 }
@@ -127,8 +130,8 @@ struct CreateOrEditJourneyView: View {
     }
 }
 
-struct CreateOrEditJourneyView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateOrEditJourneyView(userId: "", journey: nil, handleClose: {})
-    }
-}
+//struct CreateOrEditJourneyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateOrEditJourneyView(userId: "", currentBusiness: , journey: nil, handleJourneySave: {_ in }, handleClose: {})
+//    }
+//}

@@ -216,7 +216,13 @@ struct BusinessSingleJourneyView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
                         userId: rootViewModel.currentUser.id,
+                        currentBusiness: rootViewModel.businessSelected,
                         journey: viewModel.journey,
+                        handleJourneySave: { journey in
+                            viewModel.saveJourney(journey) { business in
+                                rootViewModel.updateBusiness(business, replaceBusiness: false)
+                            }
+                        },
                         handleClose: {
                             withAnimation {
                                 editJourney = false

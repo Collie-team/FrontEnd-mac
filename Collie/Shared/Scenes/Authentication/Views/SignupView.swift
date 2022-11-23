@@ -21,7 +21,6 @@ struct SignupView: View {
                 Spacer()
                 
                 NakedButton(title: "Fazer login") {
-                    viewModel.resetUser()
                     withAnimation(.spring()) {
                         viewModel.authenticationMode = .login
                     }

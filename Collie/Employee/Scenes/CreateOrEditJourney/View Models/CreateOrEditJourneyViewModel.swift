@@ -18,12 +18,13 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     @Published var startDate: Date = Date()
     
-    var currentBusiness: Business?
+    var currentBusiness: Business
     
     var userId: String
     
-    init(userId: String) {
+    init(userId: String, currentBusiness: Business) {
         self.userId = userId
+        self.currentBusiness = currentBusiness
     }
     
     func fetchUsers(business: Business) {
@@ -38,7 +39,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
     
     func fetchOldUsersOnJourney() {
         self.chosenUserModels = userModelList.filter({ user in
-            if let journey = currentBusiness!.journeys.first(where: {$0.id == self.journeyId}) {
+            if let journey = currentBusiness.journeys.first(where: {$0.id == self.journeyId}) {
                 let isUserOnJourney = journey.userIds.contains(user.id)
                 return isUserOnJourney
             } else {
@@ -73,7 +74,7 @@ final class CreateNewJourneyViewModel: ObservableObject {
         }
     }
     
-    func handleJourneySave(completion: (Business) -> ()) {
+    func handleJourneySave(completion: (Business, Journey) -> ()) {
         var updatedBusiness = currentBusiness
         
         let journey = Journey(
@@ -85,12 +86,12 @@ final class CreateNewJourneyViewModel: ObservableObject {
             userIds: chosenUserModels.map({$0.id})
         )
         
-        if let journeyIndex = updatedBusiness?.journeys.firstIndex(where: {$0.id == journeyId}) {
-            updatedBusiness?.journeys[journeyIndex] = journey
+        if let journeyIndex = updatedBusiness.journeys.firstIndex(where: {$0.id == journeyId}) {
+            updatedBusiness.journeys[journeyIndex] = journey
         } else {
-            updatedBusiness?.journeys.append(journey)
+            updatedBusiness.journeys.append(journey)
         }
         
-        completion(updatedBusiness!)
+        completion(updatedBusiness, journey)
     }
 }

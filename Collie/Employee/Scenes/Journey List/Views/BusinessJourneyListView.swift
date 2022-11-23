@@ -32,7 +32,9 @@ struct BusinessJourneyListView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     CreateOrEditJourneyView(
                         userId: rootViewModel.currentUser.id,
+                        currentBusiness: rootViewModel.businessSelected,
                         journey: viewModel.selectedJourney,
+                        handleJourneySave: {_ in},
                         handleClose: {
                             withAnimation {
                                 showCreationPopUp = false

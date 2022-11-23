@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
+    @State var showEmailSendConfirmation = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 26) {
             IconButton(
@@ -34,9 +36,10 @@ struct ResetPasswordView: View {
                 backgroundColor: .collieAzulEscuro,
                 isButtonDisabled: !viewModel.currentUser.isValidEmail(),
                 handleSend: {
-                    viewModel.resetPassword()
-                    withAnimation(.spring()) {
-                        viewModel.authenticationMode = .login
+                    viewModel.resetPassword {
+                        withAnimation(.spring()) {
+                            showEmailSendConfirmation = true
+                        }
                     }
                 }
             )
@@ -49,6 +52,13 @@ struct ResetPasswordView: View {
         .background(Color.white)
         .cornerRadius(8)
         .modifier(CustomBorder())
+        .alert(isPresented: $showEmailSendConfirmation) {
+            Alert(
+                title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+                message: Text("Confira a caixa de spam :)"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 
