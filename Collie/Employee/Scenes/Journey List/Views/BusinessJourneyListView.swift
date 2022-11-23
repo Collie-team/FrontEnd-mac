@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BusinessJourneyListView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @StateObject var viewModel = BusinessJourneyListViewModel()
     
     @State var showCreationPopUp = false
@@ -69,6 +70,12 @@ struct BusinessJourneyListView: View {
                         }
                         
                         Spacer()
+                        
+                        TopUserProfileIcon {
+                            if let profileItem = businessSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                                businessSidebarViewModel.selectedItem = profileItem
+                            }
+                        }
                     }
                     .padding(.bottom, 32)
                     

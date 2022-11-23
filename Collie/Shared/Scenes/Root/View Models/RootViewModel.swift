@@ -150,7 +150,7 @@ final class RootViewModel: ObservableObject {
     }
     
     func exitCurrentWorkspace() {
-        currentBusinessUser = nil
         navigationState = .workspace
+        currentBusinessUser = nil
     }
 }

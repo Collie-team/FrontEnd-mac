@@ -36,15 +36,19 @@ struct BusinessSidebarView: View {
                 switch viewModel.selectedItem.option {
                 case .dashboard:
                     DashboardView()
+                        .environmentObject(viewModel)
                 case .journeys:
                     BusinessJourneyListView()
+                        .environmentObject(viewModel)
                 case .teamList:
                     TeamListView()
                         .environmentObject(viewModel)
                 case .settings:
                     SettingsView()
+                        .environmentObject(viewModel)
                 case .profile:
                     ProfileView()
+                        .environmentObject(viewModel)
                 default:
                     Text("Error")
                 }

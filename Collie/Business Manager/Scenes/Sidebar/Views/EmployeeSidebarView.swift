@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EmployeeSidebarView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @ObservedObject var viewModel = EmployeeSidebarViewModel()
+    @StateObject var viewModel = EmployeeSidebarViewModel()
     
     var handleSignOut: () -> ()
     
@@ -38,8 +38,10 @@ struct EmployeeSidebarView: View {
                 switch viewModel.selectedItem.option {
                 case .journeys:
                     EmployeeJourneyListView()
+                        .environmentObject(viewModel)
                 case .profile :
                     ProfileView()
+                        .environmentObject(viewModel)
                 default:
                     Text("Error")
                 }

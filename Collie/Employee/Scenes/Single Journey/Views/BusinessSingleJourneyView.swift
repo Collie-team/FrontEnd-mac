@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BusinessSingleJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @StateObject var viewModel: BusinessSingleJourneyViewModel
     
     @State var editJourney = false

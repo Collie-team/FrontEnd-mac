@@ -25,76 +25,22 @@ struct TeamListView: View {
         VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack(spacing: 0) {
-                    HStack(alignment: .bottom) {
+                    HStack(alignment: .bottom, spacing: 16) {
                         Text("Acompanhamento")
                             .collieFont(textStyle: .largeTitle)
                             .foregroundColor(Color.black)
-                        
-                        Spacer()
                         
                         InviteUserButton {
                             viewModel.newUserPopupEnabled = true
                         }
                         
-//                        VStack(alignment: .trailing) {
-//                            HStack {
-//                                Image(systemName: "bell")
-//                                    .foregroundColor(Color.collieRoxo)
-//                                    .collieFont(textStyle: .subtitle)
-//                                    .padding()
-//                                    .overlay(
-//                                        ZStack {
-//                                            Circle()
-//                                                .frame(width: 14, height: 14)
-//                                                .foregroundColor(.red)
-//                                            Text("4")
-//                                                .collieFont(textStyle: .regularText)
-//                                        }
-//                                        .offset(x: 7, y: -7)
-//                                    )
-//                                if rootViewModel.currentUser.imageURL != "", let url = URL(string: rootViewModel.currentUser.imageURL) {
-//                                    AnimatedImage(url: url)
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fit)
-//                                        .frame(width: 36, height: 36)
-//                                        .cornerRadius(18)
-//                                    .onTapGesture {
-//                                        viewModel.profileDetailsShowing.toggle()
-//                                    }
-//                                    .popover(isPresented: $viewModel.profileDetailsShowing,
-//                                             attachmentAnchor: .point(.bottomTrailing),   // here !
-//                                             arrowEdge: .bottom) {
-//                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-//                                            rootViewModel.navigationState = .authentication
-//                                        }, navigateToProfileView: {
-//                                            // TODO: Resetar rootView, e outras variaveis
-//                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
-//                                        })
-//                                    }
-//                                } else {
-//                                    ZStack {
-//                                        Circle()
-//                                            .foregroundColor(.white)
-//                                            .frame(width: 36, height: 36)
-//                                        Text(rootViewModel.currentUser.name.split(separator: " ")[0].description.uppercased().prefix(1) + rootViewModel.currentUser.name.split(separator: " ")[1].description.uppercased().prefix(1))
-//                                            .collieFont(textStyle: .regularText)
-//                                    }
-//                                    .onTapGesture {
-//                                        viewModel.profileDetailsShowing.toggle()
-//                                    }
-//                                    .popover(isPresented: $viewModel.profileDetailsShowing,
-//                                             attachmentAnchor: .point(.bottomTrailing),   // here !
-//                                             arrowEdge: .bottom) {
-//                                        ProfilePopUpView(name: rootViewModel.currentUser.name, jobDescription: rootViewModel.currentUser.jobDescription, email: rootViewModel.currentUser.email, imageURL: rootViewModel.currentUser.imageURL, handleLogout: {
-//                                            rootViewModel.navigationState = .authentication
-//                                        }, navigateToProfileView: {
-//                                            // TODO: Resetar rootView, e outras variaveis
-//                                            businessSidebarViewModel.selectedItem = .init(option: .profile)
-//                                        })
-//                                    }
-//                                }
-//                            }
-//                        }
+                        Spacer()
+                        
+                        TopUserProfileIcon {
+                            if let profileItem = businessSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                                businessSidebarViewModel.selectedItem = profileItem
+                            }
+                        }
                     }
                     .padding(.bottom, 32)
                     

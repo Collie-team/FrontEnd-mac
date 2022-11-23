@@ -4,15 +4,25 @@ import UniformTypeIdentifiers
 struct SettingsView: View {
     @StateObject var viewModel = SettingsViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
+    @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
+    
     @State var showDeleteAlert = false
     @State var copyClicked = false
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Configurações")
                     .collieFont(textStyle: .largeTitle)
                     .foregroundColor(Color.black)
+                
                 Spacer()
+                
+                TopUserProfileIcon {
+                    if let profileItem = businessSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                        businessSidebarViewModel.selectedItem = profileItem
+                    }
+                }
             }
             .padding(.bottom, 32)
             
