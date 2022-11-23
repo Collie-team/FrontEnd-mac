@@ -1,10 +1,3 @@
-//
-//  CustomSecureView.swift
-//  Collie
-//
-//  Created by Pablo Penas on 06/10/22.
-//
-
 import SwiftUI
 
 struct CustomSecureView: View {
@@ -28,14 +21,14 @@ struct CustomSecureView: View {
                         .textFieldStyle(.plain)
                         .foregroundColor(Color.collieCinzaEscuro)
                         .padding(.horizontal,15)
-                        .padding(.vertical, 8)
+                        .frame(height: 40)
                         .focused($isFocused)
                 } else {
                     TextField(title, text: $text)
                         .textFieldStyle(.plain)
                         .foregroundColor(Color.collieCinzaEscuro)
                         .padding(.horizontal,15)
-                        .padding(.vertical, 8)
+                        .frame(height: 40)
                         .focused($isFocused)
                 }
             }
@@ -46,16 +39,17 @@ struct CustomSecureView: View {
                 isSecured.toggle()
             }) {
                 Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                    .collieFont(textStyle: .subtitle)
                     .foregroundColor(Color.collieCinzaEscuro.opacity(0.5))
             }
             .buttonStyle(.plain)
-            .padding(.trailing,10)
+            .padding(.trailing, 10)
         }
         .background(Color.collieTextFieldBackground)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .strokeBorder((validationFunction ?? {return true})() ? (isFocused ? Color.collieRoxo : Color.collieTextFieldBorder) : Color.collieVermelho, lineWidth: 1) // Review later, field validation function for email and password confirmation
+                .strokeBorder((validationFunction ?? {return true})() ? (isFocused ? Color.collieRoxo : Color.collieCinzaBorda) : Color.collieVermelho, lineWidth: 2)
         )
         .preferredColorScheme(.light)
     }
