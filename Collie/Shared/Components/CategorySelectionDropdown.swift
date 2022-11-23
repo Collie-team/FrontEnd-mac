@@ -19,26 +19,21 @@ struct CategorySelectionDropdown: View {
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                 }
-                                .contentShape(Rectangle())
+                                .contentShape(NoShape())
                             } else {
                                 HStack {
                                     CategoryCell(taskCategory: chosenCategory!, onSelect: {})
                                     Spacer()
                                     Image(systemName: "chevron.down")
                                 }
-                                .contentShape(Rectangle())
+                                .contentShape(NoShape())
                             }
                         }
-                        .contentShape(Rectangle())
                         .collieFont(textStyle: .regularText)
                         .frame(height: 40)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal)
-                        .onTapGesture {
-                            withAnimation {
-                                showList.toggle()
-                            }
-                        }
+                        .contentShape(Rectangle())
                         
                         Divider()
                             .frame(height: 1)
@@ -59,6 +54,11 @@ struct CategorySelectionDropdown: View {
                         }
                     }
                     .cornerRadius(8)
+                    .onTapGesture {
+                        withAnimation {
+                            showList.toggle()
+                        }
+                    }
                 }
                 .frame(maxHeight: maxScrollHeight)
             }
@@ -89,7 +89,7 @@ struct CategoryCell: View {
                 .collieFont(textStyle: .regularText)
             Spacer()
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 5)
         .contentShape(Rectangle())
         .onTapGesture {
             withAnimation {

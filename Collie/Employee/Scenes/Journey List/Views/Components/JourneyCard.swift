@@ -28,9 +28,6 @@ struct JourneyCard: View {
                         }
                             .opacity(cardSelection ? 1 : 0)
                     )
-                    .onTapGesture {
-                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
-                    }
             } else {
                 Rectangle()
                     .foregroundColor(.collieRosaClaro)
@@ -51,9 +48,6 @@ struct JourneyCard: View {
                         }
                             .opacity(cardSelection ? 1 : 0)
                     )
-                    .onTapGesture {
-                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
-                    }
             }
                 
             VStack(alignment: .leading, spacing: 16) {
