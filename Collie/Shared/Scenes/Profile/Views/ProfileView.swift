@@ -3,7 +3,7 @@ import SDWebImageSwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
-    @StateObject var viewModel: ProfileViewModel = ProfileViewModel()
+    @StateObject var viewModel = ProfileViewModel()
     @State var showEmailSendConfirmation = false
     
     var body: some View {
@@ -18,54 +18,51 @@ struct ProfileView: View {
                 }
                 .padding(.bottom, 32)
                 
-                VStack(spacing: 16) {
-                    HStack(alignment: .top, spacing: 36) {
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack {
-                                Text("Apresentação")
-                                    .collieFont(textStyle: .title)
-                                    .foregroundColor(.black)
-                                Spacer()
-                            }
-                            Text("Esses dados são visiveis para todos os responsáveis dentro da plataforma.")
-                                .collieFont(textStyle: .regularText)
-                        }
-                        .frame(maxWidth: 350)
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            Text("Foto de Perfil")
-                                .collieFont(textStyle: .regularText, textSize: 14)
+            VStack(spacing: 16) {
+                HStack(alignment: .top, spacing: 36) {
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack {
+                            Text("Apresentação")
+                                .collieFont(textStyle: .title)
                                 .foregroundColor(.black)
-                            
-                            if let url = URL(string: rootViewModel.currentUser.imageURL) {
-                                AnimatedImage(url: url)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 240, height: 240)
-                                    .cornerRadius(8)
-                                    .modifier(CustomBorder())
-                                    .overlay(
-                                        ChangePhotoIcon()
-                                    )
-                                    .onTapGesture {
-                                        viewModel.openFileSelection(userId: rootViewModel.currentUser.id, handleImageUpload: { url in
-                                            rootViewModel.currentUser.imageURL = url
-                                            rootViewModel.updateUser(userData: rootViewModel.currentUser)
-                                            print(url)
-                                        })
-                                    }
-                            } else {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.collieVermelho)
-                                    .frame(width: 240, height: 240)
-                                    .modifier(CustomBorder())
-                                    .overlay(
-                                        ChangePhotoIcon()
-                                    )
-                            .onTapGesture {
-                                rootViewModel.openFileSelectionForProfileImage()
+                            Spacer()
+                        }
+                        Text("Esses dados são visiveis para todos os responsáveis dentro da plataforma.")
+                            .collieFont(textStyle: .regularText)
+                    }
+                    .frame(maxWidth: 350)
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        Text("Foto de Perfil")
+                            .collieFont(textStyle: .regularText, textSize: 14)
+                            .foregroundColor(.black)
+                        
+                        if let url = URL(string: rootViewModel.currentUser.imageURL) {
+                            AnimatedImage(url: url)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 240, height: 240)
+                                .cornerRadius(8)
+                                .modifier(CustomBorder())
+                                .overlay(
+                                    ChangePhotoIcon()
+                                )
+                                .onTapGesture {
+                                    rootViewModel.openFileSelectionForProfileImage()
+                                }
+                        } else {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.collieVermelho)
+                                .frame(width: 240, height: 240)
+                                .modifier(CustomBorder())
+                                .overlay(
+                                    ChangePhotoIcon()
+                                )
+                                .onTapGesture {
+                                    rootViewModel.openFileSelectionForProfileImage()
+                                }
                             }
                         }
                         

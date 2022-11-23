@@ -12,5 +12,4 @@ class ProfileViewModel: ObservableObject {
             completion()
         }
     }
-    
 }

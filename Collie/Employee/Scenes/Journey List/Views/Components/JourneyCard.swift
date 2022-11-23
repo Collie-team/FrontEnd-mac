@@ -11,7 +11,6 @@ struct JourneyCard: View {
                 AnimatedImage(url: url)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: 200)
                     .onHover { hover in
                         cardSelection = hover
                     }
@@ -35,7 +34,6 @@ struct JourneyCard: View {
             } else {
                 Rectangle()
                     .foregroundColor(.collieRosaClaro)
-                    .frame(height: 200)
                     .onHover { hover in
                         cardSelection = hover
                     }
