@@ -155,9 +155,13 @@ struct CreateOrEditTaskView: View {
     func getAllCategoriesScrollHeight() -> CGFloat {
         if viewModel.showCategoryList {
             if viewModel.categoryList.count >= 3 {
-                return 160
+                return 180
             } else {
-                return CGFloat((viewModel.categoryList.count + 1) * 40)
+                if viewModel.selectedCategory == nil {
+                    return CGFloat((viewModel.categoryList.count + 1) * 40)
+                } else {
+                    return CGFloat((viewModel.categoryList.count) * 40)
+                }
             }
         } else {
             return 40
