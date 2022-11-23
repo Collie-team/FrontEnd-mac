@@ -84,25 +84,6 @@ struct CreateOrEditTaskView: View {
                         .cornerRadius(8)
                 }
                 
-//                VStack {
-//                    TitleWithIconView(systemImageName: "person.fill", label: "Responsável")
-//
-//                    UserSelectionDropdown(
-//                        showList: $viewModel.showUserList,
-//                        label: "Escolha um responsável",
-//                        allUsers: viewModel.userModelList,
-//                        selectedUsers: viewModel.chosenUserModels,
-//                        allUsersScrollHeight: getAllUsersScrollHeight(),
-//                        selectedUsersScrollHeight: getChosenUsersScrollHeight(),
-//                        handleUserSelection: { user in
-//                            viewModel.chooseUser(user)
-//                        },
-//                        handleUserRemove: { user in
-//                            viewModel.removeUser(user)
-//                        }
-//                    )
-//                }
-                
                 VStack {
                     TitleWithIconView(systemImageName: "doc.text.fill", label: "Descrição da tarefa")
                     

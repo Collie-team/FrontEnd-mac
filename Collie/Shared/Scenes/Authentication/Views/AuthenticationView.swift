@@ -33,18 +33,30 @@ struct AuthenticationView: View {
                 
                 Spacer()
                 
-                if viewModel.authenticationMode == .signup {
-                    SignupView(completion: handleSingIn)
-                        .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
-                        .environmentObject(viewModel)
-                } else if viewModel.authenticationMode == .login {
-                    LoginView(completion: handleSingIn)
-                        .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
-                        .environmentObject(viewModel)
+                if viewModel.loadingState == .fetchingData {
+                    VStack {
+                        Spacer()
+                        LoadingIndicator()
+                        Spacer()
+                    }
+                    .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
+                    .background(Color.white)
+                    .cornerRadius(8)
+                    .modifier(CustomBorder())
                 } else {
-                    ResetPasswordView()
-                        .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
-                        .environmentObject(viewModel)
+                    if viewModel.authenticationMode == .signup {
+                        SignupView(completion: handleSingIn)
+                            .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
+                            .environmentObject(viewModel)
+                    } else if viewModel.authenticationMode == .login {
+                        LoginView(completion: handleSingIn)
+                            .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
+                            .environmentObject(viewModel)
+                    } else if viewModel.authenticationMode == .passwordReset {
+                        ResetPasswordView()
+                            .frame(maxWidth: min(NSScreen.main!.frame.width * 0.4, 530), maxHeight: NSScreen.main!.frame.height * 0.75)
+                            .environmentObject(viewModel)
+                    }
                 }
             }
             .padding(.horizontal, 48)
@@ -55,7 +67,6 @@ struct AuthenticationView: View {
             
             Spacer()
         }
-        .overlay(viewModel.loadingState == .fetchingData ? LoadingView() : nil)
         .padding(.horizontal, 48)
         .padding(.top, 36)
         .background(Color.collieBranco)
