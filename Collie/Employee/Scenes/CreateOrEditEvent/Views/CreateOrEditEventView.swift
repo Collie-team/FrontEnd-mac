@@ -95,7 +95,7 @@ struct CreateOrEditEventView: View {
                     
                     Spacer()
                     
-                    DatePicker("", selection: $viewModel.endDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                    DatePicker("", selection: $viewModel.endDate, in: viewModel.startDate..., displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(.compact)
                         .padding(.horizontal)
                         .frame(width: 500, height: 40)

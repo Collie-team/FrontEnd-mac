@@ -76,7 +76,7 @@ struct CreateOrEditTaskView: View {
                 HStack {
                     TitleWithIconView(systemImageName: "calendar", label: "Data de entrega")
                     Spacer()
-                    DatePicker("", selection: $viewModel.endDate, in: Date()..., displayedComponents: [.date])
+                    DatePicker("", selection: $viewModel.endDate, in: viewModel.startDate..., displayedComponents: [.date])
                         .datePickerStyle(.compact)
                         .padding(.horizontal)
                         .frame(width: 500, height: 40)
