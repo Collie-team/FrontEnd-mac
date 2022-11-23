@@ -25,19 +25,10 @@ struct EmployeeSidebarView: View {
                         }
                     }
                 }
+                
                 Spacer()
                 
-                HStack {
-                    Image(systemName: "scooter")
-                    Text("Sair do workspace")
-                    Spacer()
-                }
-                .foregroundColor(.white)
-                .padding(.trailing)
-                .frame(height: 50)
-                .collieFont(textStyle: .regularText)
-                .background(Color.collieAzulEscuro)
-                .onTapGesture {
+                SignOutSidebarItem {
                     rootViewModel.navigationState = .workspace
                 }
             }
