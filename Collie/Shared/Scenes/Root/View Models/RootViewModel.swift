@@ -153,7 +153,9 @@ final class RootViewModel: ObservableObject {
     
     func exitCurrentWorkspace() {
         navigationState = .workspace
-        currentBusinessUser = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.currentBusinessUser = nil
+        })
     }
     
     func openFileSelectionForProfileImage() {

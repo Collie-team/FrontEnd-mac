@@ -122,7 +122,7 @@ struct BusinessSingleJourneyView: View {
                                         .padding(2)
                                     }
                                     
-                                    if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil})).isEmpty {
+                                    if !(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && ($0.categoryId == "" || $0.categoryId == nil)})).isEmpty {
                                         HStack(spacing: 16) {
                                             Text("Sem categoria")
                                             Spacer()
@@ -134,7 +134,7 @@ struct BusinessSingleJourneyView: View {
                                         .background(Color.collieRoxoClaro)
                                         .cornerRadius(8)
                                         
-                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && $0.categoryId == nil }).sorted(by: {$0.endDate < $1.endDate})) { task in
+                                        ForEach(rootViewModel.businessSelected.tasks.filter({ $0.journeyId == viewModel.journey.id && ($0.categoryId == "" || $0.categoryId == nil) }).sorted(by: {$0.endDate < $1.endDate})) { task in
                                             BusinessTaskView(
                                                 task: task,
                                                 category: rootViewModel.getCategory(categoryId: task.categoryId ?? ""),
@@ -153,8 +153,10 @@ struct BusinessSingleJourneyView: View {
                                     
                                     Spacer()
                                 }
+                                .padding(.trailing, 16)
                             }
                         }
+                        .padding(.trailing, -16)
                     }
                     .padding(.horizontal, 32)
                     .padding(.top, 32)

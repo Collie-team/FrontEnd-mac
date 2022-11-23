@@ -88,6 +88,11 @@ struct CreateOrEditEventView: View {
                         .frame(width: 500, height: 40)
                         .background(Color.white)
                         .cornerRadius(8)
+                        .onChange(of: viewModel.startDate) { newValue in
+                            if newValue.timeIntervalSince1970 > viewModel.endDate.timeIntervalSince1970 {
+                                viewModel.endDate = newValue
+                            }
+                        }
                 }
                 
                 HStack {
@@ -166,9 +171,9 @@ struct CreateOrEditEventView: View {
                 return 180
             } else {
                 if viewModel.selectedCategory == nil {
-                    return CGFloat((viewModel.categoryList.count + 1) * 40)
+                    return CGFloat((viewModel.categoryList.count + 1) * 40 + 20)
                 } else {
-                    return CGFloat((viewModel.categoryList.count) * 40)
+                    return CGFloat((viewModel.categoryList.count) * 40 + 20)
                 }
             }
         } else {
