@@ -17,15 +17,16 @@ struct SettingsUserCell: View {
             GeometryReader { geometry in
                 HStack(alignment: .center, spacing: 0) {
                     Text("\(model.userModel.name)")
+                        .collieFont(textStyle: .regularText)
+                        .foregroundColor(.black)
 
                     Spacer()
 
                     VStack {
                         Text(verbatim: "\(model.userModel.email)")
                             .collieFont(textStyle: .regularText)
+                            .foregroundColor(.black)
                             .opacity(0.5)
-                            
-
                     }
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .email))
 

@@ -4,6 +4,15 @@ struct CreateOrEditJourneyView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @ObservedObject var viewModel: CreateNewJourneyViewModel
     @State var imageURL: String = ""
+    @State var timeoutSaveWhenUploadsImage = false {
+        didSet {
+            if timeoutSaveWhenUploadsImage {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    timeoutSaveWhenUploadsImage = false
+                }
+            }
+        }
+    }
     
     var handleJourneySave: (Journey) -> ()
     var handleClose: () -> ()
@@ -32,7 +41,12 @@ struct CreateOrEditJourneyView: View {
             VStack(spacing: 16) {
                 HStack {
                     TitleTextField(text: $viewModel.journeyName, showPlaceholderWhen: viewModel.journeyName.isEmpty, placeholderText: "Nome da jornada")
-            
+//                    IconButton(imageSystemName: "photo", action: {
+//                        // TODO: Openfile selection
+//                        rootViewModel.openFileSelectionForJourneyImage(journeyId: viewModel.journeyId) { didUpdateImage in
+//                            self.timeoutSaveWhenUploadsImage = didUpdateImage
+//                        }
+//                    })
                 }
                 .padding(.bottom, 40)
                           
@@ -84,6 +98,7 @@ struct CreateOrEditJourneyView: View {
                     handleClose()
                 }
                 .frame(maxWidth: 300)
+                .disabled(timeoutSaveWhenUploadsImage)
             }
             .padding(.vertical)
             .padding(.horizontal, 32)

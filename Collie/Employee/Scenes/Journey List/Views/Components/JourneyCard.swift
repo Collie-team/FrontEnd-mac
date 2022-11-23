@@ -1,12 +1,60 @@
 import SwiftUI
-
+import SDWebImageSwiftUI
 struct JourneyCard: View {
+    @EnvironmentObject var rootViewModel: RootViewModel
+    @State var cardSelection: Bool = false
     var journey: Journey
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Rectangle()
-                .foregroundColor(.collieRosaClaro)
+            if let url = URL(string: journey.imageURL), journey.imageURL != "" {
+                AnimatedImage(url: url)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .onHover { hover in
+                        cardSelection = hover
+                    }
+                    .overlay(
+                        ZStack(alignment: .topTrailing) {
+                            HStack(spacing: 8) {
+                                Text("Selecionar imagem")
+                                Image(systemName: "photo")
+                            }
+                            .padding()
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            Rectangle()
+                                .fill(.black.opacity(0.2))
+                        }
+                            .opacity(cardSelection ? 1 : 0)
+                    )
+                    .onTapGesture {
+                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
+                    }
+            } else {
+                Rectangle()
+                    .foregroundColor(.collieRosaClaro)
+                    .onHover { hover in
+                        cardSelection = hover
+                    }
+                    .overlay(
+                        ZStack(alignment: .topTrailing) {
+                            HStack(spacing: 8) {
+                                Text("Selecionar imagem")
+                                Image(systemName: "photo")
+                            }
+                            .padding()
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            Rectangle()
+                                .fill(.black.opacity(0.2))
+                        }
+                            .opacity(cardSelection ? 1 : 0)
+                    )
+                    .onTapGesture {
+                        rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id) {_ in}
+                    }
+            }
                 
             VStack(alignment: .leading, spacing: 16) {
                 HStack {

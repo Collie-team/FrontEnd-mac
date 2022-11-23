@@ -11,6 +11,7 @@ enum NavigationState {
 }
 
 final class RootViewModel: ObservableObject {
+    private let firebaseStorageService = FirebaseStorageService()
     private let userSubscriptionService = UserSubscriptionService()
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
@@ -125,10 +126,11 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles) {
+    func inviteUser(userToAdd: UserModel, role: BusinessUserRoles, _ completion: @escaping () -> ()) {
         let emailService = APISubscriptionService()
         emailService.sendInviteEmail(authenticationToken: "", business: businessSelected, email: userToAdd.email) {
             // Prompt success
+            completion()
         }
     }
     
@@ -152,5 +154,60 @@ final class RootViewModel: ObservableObject {
     func exitCurrentWorkspace() {
         navigationState = .workspace
         currentBusinessUser = nil
+    }
+    
+    func openFileSelectionForProfileImage() {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "Select File"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.png, .jpeg]
+        openPanel.begin { [self] (result) -> Void in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                let selectedPath = openPanel.url!.path
+                firebaseStorageService.uploadProfileImage(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, userId: currentUser.id)
+                firebaseStorageService.loadProfileImage(userId: currentUser.id) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.currentUser.imageURL = url
+                        self.updateUser(userData: self.currentUser)
+                    }
+                }
+            }
+        }
+    }
+    
+    func openFileSelectionForJourneyImage(journeyId: String, _ completion: @escaping (Bool) -> ()) {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "Select File"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.png, .jpeg]
+        openPanel.begin { [self] (result) -> Void in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                completion(true)
+                let selectedPath = openPanel.url!.path
+                firebaseStorageService.uploadJourneyImage(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, journeyId: journeyId)
+                firebaseStorageService.loadJourneyImage(journeyId: journeyId) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.businessSelected.journeys = self.businessSelected.journeys.map { (businessJourney: Journey) -> Journey in
+                            if businessJourney.id == journeyId {
+                                var responseJourney = businessJourney
+                                responseJourney.imageURL = url
+                                return responseJourney
+                            } else {
+                                return businessJourney
+                            }
+                        }
+                        self.updateBusiness(self.businessSelected, replaceBusiness: false)
+                    }
+                }
+            } else {
+                completion(false)
+            }
+        }
     }
 }

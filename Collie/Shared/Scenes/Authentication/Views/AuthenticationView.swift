@@ -55,6 +55,7 @@ struct AuthenticationView: View {
             
             Spacer()
         }
+        .overlay(viewModel.loadingState == .fetchingData ? LoadingView() : nil)
         .padding(.horizontal, 48)
         .padding(.top, 36)
         .background(Color.collieBranco)

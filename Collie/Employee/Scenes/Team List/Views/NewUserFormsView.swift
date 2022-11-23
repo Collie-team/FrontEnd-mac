@@ -13,6 +13,15 @@ struct NewUserFormsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var showList = false
     @State var selectedRole: BusinessUserRoles = .employee
+    @State var emailSentLabel: Bool = false {
+        didSet {
+            if emailSentLabel == true {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.emailSentLabel = false
+                }
+            }
+        }
+    }
     
     func getItemHeight() -> CGFloat {
         if showList {
@@ -67,12 +76,19 @@ struct NewUserFormsView: View {
                 .foregroundColor(.black)
                 .padding(.trailing, 64)
                 HStack(alignment: .top) {
-                    TextField("E-mail", text: $newUser.email)
-                        .textFieldStyle(.plain)
-                        .padding(8)
-                        .background(Color.white)
-                        .cornerRadius(8)
-                        .padding(.bottom, 100)
+                    VStack(alignment: .leading, spacing: 4) {
+                        TextField("E-mail", text: $newUser.email)
+                            .textFieldStyle(.plain)
+                            .padding(8)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                        Text("E-mail enviado!")
+                            .font(.system(size: 12))
+                            .padding(8)
+                            .foregroundColor(Color.collieRoxo)
+                            .opacity(emailSentLabel ? 1 : 0)
+                    }
+                    .padding(.bottom, 100)
                     VStack(spacing: 0) {
                         Button(action: {
                             withAnimation {
@@ -133,7 +149,9 @@ struct NewUserFormsView: View {
                     .cornerRadius(8)
                     .disabled(verifyEmail(email: newUser.email))
                     .onTapGesture {
-                        rootViewModel.inviteUser(userToAdd: newUser, role: selectedRole)
+                        rootViewModel.inviteUser(userToAdd: newUser, role: selectedRole) {
+                            emailSentLabel = true
+                        }
                     }
             }
             .padding(.horizontal, 36)

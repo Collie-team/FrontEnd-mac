@@ -3,12 +3,12 @@ import FirebaseCore
 import FirebaseAuth
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-//    func applicationWillFinishLaunching(_ notification: Notification) {
-//        FirebaseApp.configure()
-//    }
-    func applicationDidFinishLaunching(_ notification: Notification) {
+    func applicationWillFinishLaunching(_ notification: Notification) {
         FirebaseApp.configure()
     }
+//    func applicationDidFinishLaunching(_ notification: Notification) {
+//        FirebaseApp.configure()
+//    }
 }
 
 @main
@@ -17,8 +17,6 @@ struct CollieApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ProfileView()
-//                .environmentObject(RootViewModel())
             RootView()
 //            ProfileView()
 //            LoadingView()

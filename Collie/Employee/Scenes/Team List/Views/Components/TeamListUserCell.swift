@@ -28,12 +28,14 @@ struct TeamListUserCell: View {
                 HStack(alignment: .center, spacing: 0) {
                     Text("\(teamListUser.name)")
                         .collieFont(textStyle: .regularText)
+                        .foregroundColor(.black)
                     
                     Spacer()
                     
                     VStack {
                         Text(verbatim: teamListUser.email)
                             .collieFont(textStyle: .regularText)
+                            .foregroundColor(.black)
                             .opacity(0.5)
                     }
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
@@ -41,6 +43,7 @@ struct TeamListUserCell: View {
                     VStack {
                         Text(teamListUser.journey)
                             .collieFont(textStyle: .regularText)
+                            .foregroundColor(.black)
                     }
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .journey))
                     
@@ -52,6 +55,7 @@ struct TeamListUserCell: View {
                     VStack {
                         Text("\(teamListUser.doneTasks)/\(teamListUser.totalTasks)")
                             .collieFont(textStyle: .regularText)
+                            .foregroundColor(.black)
                     }
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .tasks))
                 }
