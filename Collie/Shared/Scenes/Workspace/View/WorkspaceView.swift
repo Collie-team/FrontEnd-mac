@@ -18,7 +18,7 @@ struct WorkspaceView: View {
                 
                 switch viewModel.workspaceViewState {
                 case .loading:
-                    LoadingView()
+                    LoadingIndicator()
                 case .loadingWorkspace:
                     loadingWorkspace
                 case .createForm:
@@ -288,8 +288,8 @@ struct WorkspaceView: View {
     }
 }
 
-struct WorkspaceView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkspaceView()
-    }
-}
+//struct WorkspaceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WorkspaceView()
+//    }
+//}

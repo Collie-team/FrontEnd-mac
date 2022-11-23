@@ -4,6 +4,9 @@ struct RootView: View {
     @StateObject var viewModel = RootViewModel()
     var body: some View {
         getCurrentView()
+            .onAppear {
+                viewModel.checkIfUserIsLoggedIn()
+            }
     }
     
     @ViewBuilder func getCurrentView() -> some View {

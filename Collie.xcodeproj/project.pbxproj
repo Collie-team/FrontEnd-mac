@@ -1313,7 +1313,6 @@
 				5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */,
 				5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */,
 				5B4E313D2915A7750031F74F /* SettingsView.swift in Sources */,
-				5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */,
 				5BB2FC8228F9F68A003EE3F9 /* EmployeeSidebarViewModel.swift in Sources */,
 				5B2B46BC28EF547700FC3BE9 /* CustomSecureView.swift in Sources */,
 				5BB8527828FF1FD8008A8609 /* LoadingIndicator.swift in Sources */,
