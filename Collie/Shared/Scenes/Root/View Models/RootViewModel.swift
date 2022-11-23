@@ -16,7 +16,6 @@ final class RootViewModel: ObservableObject {
     private let userSubscriptionService = UserSubscriptionService()
     private let businessSubscriptionService = BusinessSubscriptionService()
     private let businessUserSubscriptionService = BusinessUserSubscriptionService()
-    private let userSubscriptionService = UserSubscriptionService()
     
     @Published var navigationState: NavigationState = .authentication
     
@@ -46,10 +45,10 @@ final class RootViewModel: ObservableObject {
     }
     
     func checkIfUserIsLoggedIn() {
-        if Auth.auth().currentUser != nil {
-            if let authenticationToken = Auth.auth().currentUser?.refreshToken {
-                self.userSubscriptionService.fetchUser(authenticationToken: authenticationToken) { userModel in
-                    self.handleAuthentication(user: userModel, authToken: authenticationToken)
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
+            if let token = token {
+                self.userSubscriptionService.fetchUser(authenticationToken: token) { userModel in
+                    self.handleAuthentication(user: userModel, authToken: token)
                 }
             }
         }

@@ -6,13 +6,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillFinishLaunching(_ notification: Notification) {
         FirebaseApp.configure()
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> develop
-//    func applicationDidFinishLaunching(_ notification: Notification) {
-//        FirebaseApp.configure()
-//    }
 }
 
 @main

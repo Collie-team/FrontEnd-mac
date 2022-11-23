@@ -15,7 +15,7 @@ struct RootView: View {
             AuthenticationView(handleSingIn: viewModel.handleAuthentication)
                 .environmentObject(viewModel)
         case .workspace:
-            WorkspaceView(workspacesAvailable: viewModel.availableBusiness, newWorkspacesHandler: viewModel.createWorkspace, handleWorkspaceSelection: viewModel.handleWorkspaceSelection)
+            WorkspaceView()
                 .environmentObject(viewModel)
         case.employee:
             EmployeeSidebarView(handleSignOut: {})
