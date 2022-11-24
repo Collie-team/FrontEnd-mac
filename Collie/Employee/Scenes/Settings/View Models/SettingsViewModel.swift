@@ -39,6 +39,8 @@ final class SettingsViewModel: ObservableObject {
     
     @Published var businessCode: String = "Carregando..."
     
+    @Published var editingMode = false
+    
     init() {
         selectedOption = .users
         bind()
