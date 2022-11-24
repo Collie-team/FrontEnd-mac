@@ -86,4 +86,39 @@ final class FirebaseStorageService {
             completion(url.absoluteString)
         })
     }
+    
+    func uploadBusinessImage(image: NSImage, businessId: String) {
+        let storageRef = storage.reference().child("businessImages/\(businessId).jpg")
+        
+        // Convert the image into JPEG and compress the quality to reduce its size
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+        let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+        let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:])!
+        
+        // Change the content type to jpg. If you don't, it'll be saved as application/octet-stream type
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        // Upload the image
+        storageRef.putData(jpegData, metadata: metadata) { (metadata, error) in
+            if let error = error {
+                print("Error while uploading file: ", error)
+            }
+            
+            if let metadata = metadata {
+                print("Metadata: ", metadata)
+            }
+        }
+    }
+    
+    func loadBusinessImage(businessId: String, _ completion: @escaping (String) -> ()) {
+        let path = "businessImages/\(businessId).jpg"
+        let storageRef = storage.reference().child(path)
+        storageRef.downloadURL(completion: { url, error in
+            guard let url = url, error == nil else {
+                return
+            }
+            completion(url.absoluteString)
+        })
+    }
 }

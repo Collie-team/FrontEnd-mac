@@ -52,7 +52,7 @@ struct EditingFormView: View {
                         }
                     }
                     
-                    SimpleButton(label: "Salvar alteraçoes") {
+                    SimpleButton(label: "Salvar alterações") {
                         withAnimation {
                             rootViewModel.updateUser(userData: currentUser)
                             editingMode = false
@@ -69,6 +69,8 @@ struct EditingFormView: View {
 
 struct EditingFormView_Previews: PreviewProvider {
     static var previews: some View {
-        EditingFormView(rootViewModelBusinessUser: .constant(nil), currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
+        EditingFormView(rootViewModelBusinessUser: .constant(BusinessUser(userId: "", businessId: "", role: .admin, userTasks: [])), currentUser: UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: ""), editingMode: .constant(true))
+            .environmentObject(RootViewModel())
+            .frame(width: 800, height: 600)
     }
 }

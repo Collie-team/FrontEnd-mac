@@ -117,7 +117,6 @@
 		5BB85286290089E3008A8609 /* EmployeeSingleJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85285290089E3008A8609 /* EmployeeSingleJourneyView.swift */; };
 		5BB85288290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB85287290089F8008A8609 /* EmployeeSingleJourneyViewModel.swift */; };
 		5BBBA4FB2914428D00D9949E /* TeamListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */; };
-		5BBD8A2B2907122C00DACC6D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD8A2A2907122C00DACC6D /* LoadingView.swift */; };
 		5BC5B34B292D10D200573899 /* DefaultButtonWithLeftIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34A292D10D200573899 /* DefaultButtonWithLeftIcon.swift */; };
 		5BC5B34E292D14FA00573899 /* TeamListUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34D292D14FA00573899 /* TeamListUserCell.swift */; };
 		5BC5B350292D16CD00573899 /* InviteUserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B34F292D16CD00573899 /* InviteUserButton.swift */; };
@@ -129,13 +128,16 @@
 		5BC5B35D292DBF2E00573899 /* TopUserProfileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B35C292DBF2E00573899 /* TopUserProfileIcon.swift */; };
 		5BC5B35F292DCBD000573899 /* AuthenticationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B35E292DCBD000573899 /* AuthenticationUser.swift */; };
 		5BC5B361292E65B900573899 /* RoleSelectionDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B360292E65B900573899 /* RoleSelectionDropdown.swift */; };
+		5BC5B363292EAE1100573899 /* BusinessDisplayFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B362292EAE1100573899 /* BusinessDisplayFormView.swift */; };
+		5BC5B365292EAE2100573899 /* BusinessEditingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B364292EAE2100573899 /* BusinessEditingFormView.swift */; };
+		5BC5B367292F0A2300573899 /* WorkspaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B366292F0A2300573899 /* WorkspaceImage.swift */; };
 		5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */; };
 		5BD0CB13292C7BB4001E7563 /* CollieFontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */; };
 		5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB14292C8E9B001E7563 /* NakedButton.swift */; };
 		5BD68491291ADEE000090481 /* BusinessKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68490291ADEE000090481 /* BusinessKey.swift */; };
 		5BD68496291D703500090481 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD68495291D703500090481 /* ProfileView.swift */; };
 		5BD8982328FDDDE70015EEDB /* WorkspaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */; };
-		5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* BusinessCard.swift */; };
+		5BD8982528FDE9670015EEDB /* WorkspaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982428FDE9670015EEDB /* WorkspaceCard.swift */; };
 		5BD8982828FE33730015EEDB /* WorkspaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982728FE33730015EEDB /* WorkspaceButton.swift */; };
 		5BD8982A28FE33930015EEDB /* WorkspaceCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */; };
 		5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAB8C828E4BD13009BC353 /* FilePicker.swift */; };
@@ -272,13 +274,16 @@
 		5BC5B35C292DBF2E00573899 /* TopUserProfileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUserProfileIcon.swift; sourceTree = "<group>"; };
 		5BC5B35E292DCBD000573899 /* AuthenticationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUser.swift; sourceTree = "<group>"; };
 		5BC5B360292E65B900573899 /* RoleSelectionDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionDropdown.swift; sourceTree = "<group>"; };
+		5BC5B362292EAE1100573899 /* BusinessDisplayFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDisplayFormView.swift; sourceTree = "<group>"; };
+		5BC5B364292EAE2100573899 /* BusinessEditingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessEditingFormView.swift; sourceTree = "<group>"; };
+		5BC5B366292F0A2300573899 /* WorkspaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImage.swift; sourceTree = "<group>"; };
 		5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceOptionView.swift; sourceTree = "<group>"; };
 		5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieFontSystem.swift; sourceTree = "<group>"; };
 		5BD0CB14292C8E9B001E7563 /* NakedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NakedButton.swift; sourceTree = "<group>"; };
 		5BD68490291ADEE000090481 /* BusinessKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessKey.swift; sourceTree = "<group>"; };
 		5BD68495291D703500090481 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5BD8982228FDDDE70015EEDB /* WorkspaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceViewModel.swift; sourceTree = "<group>"; };
-		5BD8982428FDE9670015EEDB /* BusinessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
+		5BD8982428FDE9670015EEDB /* WorkspaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCard.swift; sourceTree = "<group>"; };
 		5BD8982728FE33730015EEDB /* WorkspaceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceButton.swift; sourceTree = "<group>"; };
 		5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCardModifier.swift; sourceTree = "<group>"; };
 		5BDAB8C828E4BD13009BC353 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
@@ -505,7 +510,6 @@
 				5BF6693628E23779001B0A1D /* ChosenUserCellView.swift */,
 				5BF6693428E23678001B0A1D /* UserCellView.swift */,
 				5B49604628ECC50B0024D064 /* SimpleTextField.swift */,
-				5BD8982428FDE9670015EEDB /* BusinessCard.swift */,
 				5BB8527728FF1FD8008A8609 /* LoadingIndicator.swift */,
 				5BB8527928FF21A5008A8609 /* LoadingBusinessCard.swift */,
 				5BACC65828CFC6D3006975D3 /* SidebarItemView.swift */,
@@ -599,6 +603,8 @@
 			children = (
 				5B4E31412916D9EB0031F74F /* Components */,
 				5B4E313C2915A7750031F74F /* SettingsView.swift */,
+				5BC5B362292EAE1100573899 /* BusinessDisplayFormView.swift */,
+				5BC5B364292EAE2100573899 /* BusinessEditingFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1085,9 +1091,11 @@
 		5BD8982628FE33620015EEDB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5BD8982428FDE9670015EEDB /* WorkspaceCard.swift */,
 				5BD8982728FE33730015EEDB /* WorkspaceButton.swift */,
 				5BD8982928FE33930015EEDB /* WorkspaceCardModifier.swift */,
 				5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */,
+				5BC5B366292F0A2300573899 /* WorkspaceImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1225,6 +1233,7 @@
 				5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */,
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,
 				5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */,
+				5BC5B363292EAE1100573899 /* BusinessDisplayFormView.swift in Sources */,
 				5BAC4A992926FB17007722A3 /* FirebaseStorageService.swift in Sources */,
 				5BF6693528E23678001B0A1D /* UserCellView.swift in Sources */,
 				5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */,
@@ -1254,6 +1263,7 @@
 				5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */,
 				5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */,
 				5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */,
+				5BC5B367292F0A2300573899 /* WorkspaceImage.swift in Sources */,
 				5B50425E29194C29001E39A2 /* HelpView.swift in Sources */,
 				5B49604328ECBF930024D064 /* CreateOrEditEventView.swift in Sources */,
 				5B2B46B428EE05F000FC3BE9 /* SignupView.swift in Sources */,
@@ -1275,6 +1285,7 @@
 				5B49600028E75F810024D064 /* DefaultButton.swift in Sources */,
 				5BDAB8C928E4BD13009BC353 /* FilePicker.swift in Sources */,
 				5B495FFE28E75EDD0024D064 /* IconButton.swift in Sources */,
+				5BC5B365292EAE2100573899 /* BusinessEditingFormView.swift in Sources */,
 				5BC5B354292D7DC400573899 /* SimpleButton.swift in Sources */,
 				5BACC65928CFC6D3006975D3 /* SidebarItemView.swift in Sources */,
 				5B954E852901CAB800FA579E /* EmployeeTaskView.swift in Sources */,
@@ -1293,7 +1304,7 @@
 				5BAC4A8F2922CA6B007722A3 /* DisplayFormView.swift in Sources */,
 				5B2F9E3928F4C36F00AC1B87 /* ResetPasswordView.swift in Sources */,
 				5BF73BDA28DB954E00B74060 /* CreateOrEditJourneyView.swift in Sources */,
-				5BD8982528FDE9670015EEDB /* BusinessCard.swift in Sources */,
+				5BD8982528FDE9670015EEDB /* WorkspaceCard.swift in Sources */,
 				5BACC65628CFC37E006975D3 /* CustomColors.swift in Sources */,
 				5BACC66528D24413006975D3 /* TeamListView.swift in Sources */,
 				5B495FF528E622F30024D064 /* CreateOrEditTaskViewModel.swift in Sources */,

@@ -37,13 +37,15 @@ struct WorkspaceView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.collieBranco.ignoresSafeArea())
             .onAppear {
-                viewModel.workspacesAvailable = rootViewModel.availableBusiness
-                viewModel.newWorkspaceHandler = rootViewModel.createWorkspace
-                viewModel.handleWorkspaceSelection = rootViewModel.handleWorkspaceSelection
-                if viewModel.workspacesAvailable.isEmpty {
-                    viewModel.workspaceViewState = .noWorkspacesFound
-                } else {
-                    viewModel.workspaceViewState = .workspaceList
+                rootViewModel.fetchAvailableBusinesses {
+                    viewModel.workspacesAvailable = rootViewModel.availableBusinesses
+                    viewModel.newWorkspaceHandler = rootViewModel.createWorkspace
+                    viewModel.handleWorkspaceSelection = rootViewModel.handleWorkspaceSelection
+                    if viewModel.workspacesAvailable.isEmpty {
+                        viewModel.workspaceViewState = .noWorkspacesFound
+                    } else {
+                        viewModel.workspaceViewState = .workspaceList
+                    }
                 }
             }
         }
@@ -95,7 +97,7 @@ struct WorkspaceView: View {
                         isButtonDisabled: viewModel.workspaceCode.isEmpty,
                         handleSend: {
                             viewModel.loginWorkspace(user: rootViewModel.currentUser) { business, userBusiness in
-                                rootViewModel.availableBusiness = business
+                                rootViewModel.availableBusinesses = business
                                 rootViewModel.availableBusinessUsers = userBusiness
                             }
                         }
@@ -268,7 +270,7 @@ struct WorkspaceView: View {
                         }
                         
                         ForEach(viewModel.workspacesAvailable) { business in
-                            BusinessCard(business: business)
+                            WorkspaceCard(business: business)
                                 .onTapGesture {
                                     viewModel.selectWorkspace(business)
                                 }

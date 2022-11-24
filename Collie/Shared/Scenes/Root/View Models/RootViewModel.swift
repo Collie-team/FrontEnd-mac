@@ -31,7 +31,7 @@ final class RootViewModel: ObservableObject {
     
     var authenticationToken: String?
     
-    var availableBusiness: [Business] = []
+    var availableBusinesses: [Business] = []
     var availableBusinessUsers: [BusinessUser] = [] {
         didSet{
             print("root view buser:", availableBusinessUsers.map{$0.userId})
@@ -54,15 +54,20 @@ final class RootViewModel: ObservableObject {
         }
     }
     
+    func fetchAvailableBusinesses(completion: @escaping () -> ()) {
+        businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { business, businessUser  in
+            print(business)
+            self.availableBusinesses = business
+            self.availableBusinessUsers = businessUser
+            self.navigationState = .workspace
+            completion()
+        }
+    }
+    
     func handleAuthentication(user: UserModel, authToken: String) -> () {
         self.authenticationToken = authToken
         self.currentUser = user
-        businessSubscriptionService.fetchBusiness(user: self.currentUser, authenticationToken: self.authenticationToken!) { business, businessUser  in
-            print(business)
-            self.availableBusiness = business
-            self.availableBusinessUsers = businessUser
-            self.navigationState = .workspace
-        }
+        self.fetchAvailableBusinesses{}
     }
     
     func createWorkspace(workspaceName: String, _ completion: @escaping (Business) -> ()) {
@@ -172,7 +177,7 @@ final class RootViewModel: ObservableObject {
     
     func openFileSelectionForProfileImage() {
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Select File"
+        openPanel.prompt = "Escolha uma imagem"
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
@@ -194,7 +199,7 @@ final class RootViewModel: ObservableObject {
     
     func openFileSelectionForJourneyImage(journeyId: String, _ completion: @escaping (Bool) -> ()) {
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Select File"
+        openPanel.prompt = "Escolha uma imagem"
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
@@ -221,6 +226,28 @@ final class RootViewModel: ObservableObject {
                 }
             } else {
                 completion(false)
+            }
+        }
+    }
+    
+    func openFileSelectionForBusinessImage() {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "Escolha uma imagem"
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.png, .jpeg]
+        openPanel.begin { [self] (result) -> Void in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                let selectedPath = openPanel.url!.path
+                firebaseStorageService.uploadBusinessImage(image: NSImage(contentsOf: URL(fileURLWithPath: selectedPath))!, businessId: businessSelected.id)
+                firebaseStorageService.loadBusinessImage(businessId: businessSelected.id) { url in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.businessSelected.imageURL = url
+                        self.updateBusiness(self.businessSelected, replaceBusiness: false)
+                    }
+                }
             }
         }
     }
