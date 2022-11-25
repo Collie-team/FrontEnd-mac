@@ -3,6 +3,7 @@ import SDWebImageSwiftUI
 struct JourneyCard: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @State var cardSelection: Bool = false
+    let journeyIndex: Int
     var journey: Journey
     
     var body: some View {
@@ -11,42 +12,63 @@ struct JourneyCard: View {
                 AnimatedImage(url: url)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(maxHeight: 255)
+                    .background(.black.opacity(0.05))
                     .onHover { hover in
                         cardSelection = hover
                     }
                     .overlay(
-                        ZStack(alignment: .topTrailing) {
-                            HStack(spacing: 8) {
-                                Text("Selecionar imagem")
-                                Image(systemName: "photo")
+                        HStack {
+                            Spacer()
+                            VStack {
+                                HStack(spacing: 8) {
+                                    Text("Selecionar imagem")
+                                    Image(systemName: "photo")
+                                }
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
+                                .collieFont(textStyle: .subtitle)
+                                .foregroundColor(.white)
+                                .background(Color.collieRoxo)
+                                .cornerRadius(12)
+                                .padding()
+                                Spacer()
                             }
-                            .padding()
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
-                            Rectangle()
-                                .fill(.black.opacity(0.2))
                         }
-                            .opacity(cardSelection ? 1 : 0)
+                        .opacity(cardSelection ? 1 : 0)
+                        .onTapGesture {
+                            rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id)
+                        }
                     )
             } else {
                 Rectangle()
+                    .foregroundColor(Colors.getColorForIndex(index: journeyIndex))
                     .foregroundColor(.collieRosaClaro)
                     .onHover { hover in
                         cardSelection = hover
                     }
                     .overlay(
-                        ZStack(alignment: .topTrailing) {
-                            HStack(spacing: 8) {
-                                Text("Selecionar imagem")
-                                Image(systemName: "photo")
+                        HStack {
+                            Spacer()
+                            VStack {
+                                HStack(spacing: 8) {
+                                    Text("Selecionar imagem")
+                                    Image(systemName: "photo")
+                                }
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
+                                .collieFont(textStyle: .subtitle)
+                                .foregroundColor(.white)
+                                .background(Color.collieRoxo)
+                                .cornerRadius(12)
+                                .padding()
+                                Spacer()
                             }
-                            .padding()
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
-                            Rectangle()
-                                .fill(.black.opacity(0.2))
                         }
-                            .opacity(cardSelection ? 1 : 0)
+                        .opacity(cardSelection ? 1 : 0)
+                        .onTapGesture {
+                            rootViewModel.openFileSelectionForJourneyImage(journeyId: journey.id)
+                        }
                     )
             }
                 
@@ -70,7 +92,7 @@ struct JourneyCard: View {
 
 struct JourneyCard_Previews: PreviewProvider {
     static var previews: some View {
-        JourneyCard(journey: Journey(
+        JourneyCard(journeyIndex: 1, journey: Journey(
             name: "Jornada iOS",
             description: "Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo Subtitulo",
             imageURL: "",

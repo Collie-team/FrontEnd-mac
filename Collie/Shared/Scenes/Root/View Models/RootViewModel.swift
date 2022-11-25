@@ -216,7 +216,7 @@ final class RootViewModel: ObservableObject {
         }
     }
     
-    func openFileSelectionForJourneyImage(journeyId: String, _ completion: @escaping (Bool) -> ()) {
+    func openFileSelectionForJourneyImage(journeyId: String, _ completion: @escaping (Bool) -> () = {_ in }) {
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Escolha uma imagem"
         openPanel.allowsMultipleSelection = false

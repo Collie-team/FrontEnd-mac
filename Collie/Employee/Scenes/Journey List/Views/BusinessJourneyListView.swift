@@ -96,7 +96,7 @@ struct BusinessJourneyListView: View {
                         }
                         
                         ForEach(rootViewModel.businessSelected.journeys.reversed()) { journey in
-                            JourneyCard(journey: journey)
+                            JourneyCard(journeyIndex: rootViewModel.businessSelected.journeys.reversed().firstIndex(where: {$0.id == journey.id})!, journey: journey)
                             .onTapGesture {
                                 viewModel.selectedJourney = journey
                             }

@@ -26,8 +26,14 @@ extension Color {
 }
 
 struct Colors {
-    func getRandomColor() -> Color {
+    static func getRandomColor() -> Color {
         let colors: [Color] = [.collieVerde, .collieVermelho, .collieAzulClaro, .collieAzulMedio, .collieLaranja, .collieRosaEscuro, .collieRoxo]
         return colors.randomElement()!
+    }
+    
+    static func getColorForIndex(index: Int) -> Color {
+        let colors: [Color] = [.collieVerde, .collieVermelho, .collieAzulClaro, .collieAzulMedio, .collieLaranja, .collieRosaEscuro]
+        let truncatedIndex = index > colors.count - 1 ? index % colors.count : index
+        return colors[truncatedIndex]
     }
 }

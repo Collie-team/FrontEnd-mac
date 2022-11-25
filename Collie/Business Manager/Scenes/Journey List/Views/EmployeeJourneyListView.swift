@@ -47,7 +47,7 @@ struct EmployeeJourneyListView: View {
                     LazyVGrid(columns: gridItems, spacing: 16) {
                         
                         ForEach(rootViewModel.businessSelected.journeys.reversed()) { journey in
-                            JourneyCard(journey: journey)
+                            JourneyCard(journeyIndex: rootViewModel.businessSelected.journeys.reversed().firstIndex(where: {$0.id == journey.id})!, journey: journey)
                                 .frame(height: 320)
                                 .onTapGesture {
                                     viewModel.selectedJourney = journey

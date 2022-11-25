@@ -4,7 +4,7 @@ struct InspectView: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @EnvironmentObject var businessSidebarViewModel: BusinessSidebarViewModel
     @StateObject var viewModel = InspectViewModel()
-//
+
     @State var showTaskForm = false
     @State var showEventForm = false
     @State var showDailyTasks = true
@@ -155,6 +155,31 @@ struct InspectView: View {
                     .padding(.horizontal, 32)
                     .padding(.top, 32)
                     .frame(maxWidth: .infinity)
+                    .background(Color.collieBrancoFundoSecoes)
+                    .cornerRadius(8)
+                    
+                    VStack {
+                        HStack {
+                            Text("Eventos")
+                                .collieFont(textStyle: .title)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                        }
+                        
+//                        EmployeeEventsCalendarView(
+//                            selectedDate: $viewModel.selectedDate,
+//                            events: rootViewModel.businessSelected.events.filter({ $0.journeyId == self.viewModel.journey.id }),
+//                            employeeSingleJourneyViewModel: self.viewModel
+//                        ) { event in
+//                                viewModel.selectEvent(event)
+//                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.top, 32)
+                    .frame(width: 500)
                     .background(Color.collieBrancoFundoSecoes)
                     .cornerRadius(8)
                 }
