@@ -45,7 +45,7 @@ final class TeamListViewModel: ObservableObject {
     func processTeamList() {
         for (user, businessUser) in zip(self.teamUsers, self.teamBusinessUsers) {
             let userJourneys = currentBusiness!.journeys.filter({$0.userIds.contains(user.id)})
-            let doneTasks = businessUser.userTasks.filter({$0.doneDate == nil})
+            let doneTasks = businessUser.userTasks.filter({$0.doneDate != nil})
             
             let teamListUser = TeamListUser(
                 name: user.name,

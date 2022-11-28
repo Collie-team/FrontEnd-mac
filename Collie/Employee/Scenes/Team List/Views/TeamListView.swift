@@ -127,8 +127,12 @@ struct TeamListView: View {
                                                 rootViewModel.configureEmployeeInspection(userId: teamListUser.userId, journeyId: teamListUser.userJourneys[0].id) {
                                                     viewModel.teamListViewState = .inspectView
                                                 }
-                                            } else {
+                                            } else if teamListUser.userJourneys.count > 0 {
                                                 rootViewModel.configureEmployeeInspection(userId: teamListUser.userId, journeyId: teamListUser.userJourneys[0].id) {
+                                                    viewModel.teamListViewState = .inspectView
+                                                }
+                                            } else {
+                                                rootViewModel.configureEmployeeInspection(userId: teamListUser.userId, journeyId: "") {
                                                     viewModel.teamListViewState = .inspectView
                                                 }
                                             }
