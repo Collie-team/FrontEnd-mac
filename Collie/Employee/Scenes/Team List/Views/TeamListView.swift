@@ -28,7 +28,16 @@ struct TeamListView: View {
         case .teamList:
             teamList
         case .inspectView:
-            InspectView(backAction: {viewModel.teamListViewState = .teamList})
+            InspectView(
+                viewModel: InspectViewModel(
+                    business: rootViewModel.businessSelected,
+                    journey: rootViewModel.inspectingJourney,
+                    businessUser: rootViewModel.inspectingBusinessUser!,
+                    user: rootViewModel.inspectingUser!),
+                backAction: {
+                    viewModel.teamListViewState = .teamList
+                    viewModel.teamListUsers = []
+                })
         }
     }
     
@@ -114,7 +123,15 @@ struct TeamListView: View {
                                 ForEach(viewModel.teamListUsers.filter({$0.role == .employee})) { teamListUser in
                                     TeamListUserCell(teamListUser: teamListUser)
                                         .onTapGesture {
-                                            viewModel.teamListViewState = .inspectView
+                                            if teamListUser.userJourneys.count > 1 {
+                                                rootViewModel.configureEmployeeInspection(userId: teamListUser.userId, journeyId: teamListUser.userJourneys[0].id) {
+                                                    viewModel.teamListViewState = .inspectView
+                                                }
+                                            } else {
+                                                rootViewModel.configureEmployeeInspection(userId: teamListUser.userId, journeyId: teamListUser.userJourneys[0].id) {
+                                                    viewModel.teamListViewState = .inspectView
+                                                }
+                                            }
                                         }
                                 }
                             }
@@ -159,6 +176,18 @@ struct TeamListView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
+        .overlay(
+            VStack {
+                Spacer()
+                HStack{
+                    Spacer()
+                    LoadingIndicator()
+                        .opacity(rootViewModel.loadingInspection ? 1 : 0)
+                    Spacer()
+                }
+                Spacer()
+            }
+        )
     }
 }
 

@@ -41,7 +41,7 @@ struct TeamListUserCell: View {
                     .frame(width: geometry.size.width * ListComponents.alignWith(component: .contact))
                     
                     VStack {
-                        Text(teamListUser.journey)
+                        Text(teamListUser.userJourneys.count > 1 ? teamListUser.userJourneys[0].name + " +\(teamListUser.userJourneys.count - 1)" : teamListUser.userJourneys.count > 0 ? teamListUser.userJourneys[0].name : "Sem jornada")
                             .collieFont(textStyle: .regularText)
                             .foregroundColor(.black)
                     }
@@ -72,11 +72,5 @@ struct TeamListUserCell: View {
         let firstLetter = fullName.components(separatedBy: " ")[0].uppercased().prefix(1)
         let secondLetter = fullName.components(separatedBy: " ").count > 1 ? fullName.components(separatedBy: " ")[1].uppercased().prefix(1) : ""
         return (String(firstLetter + secondLetter))
-    }
-}
-
-struct TeamListUserCell_Previews: PreviewProvider {
-    static var previews: some View {
-        TeamListUserCell(teamListUser: .init(name: "André", email: "andreluisarns@gmail.com", journey: "", totalTasks: 40, doneTasks: 10, imageURL: "", role: .employee))
     }
 }

@@ -37,6 +37,7 @@ final class AuthenticationService {
                     completion(.errorNotRegistered, nil, nil)
                 default:
                     print("Error: \(error.localizedDescription)")
+                    completion(.errorNotRegistered, nil, nil)
                 }
             } else {
                 authResult?.user.getIDTokenForcingRefresh(true) { idToken, error in
@@ -73,6 +74,7 @@ final class AuthenticationService {
                     completion(.invalidPassword, nil, nil)
                 default:
                     print("Error: \(error.localizedDescription)")
+                    completion(.invalidPassword, nil, nil)
                 }
             } else {
                 authResult?.user.getIDTokenForcingRefresh(true) { idToken, error in

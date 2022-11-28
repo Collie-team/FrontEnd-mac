@@ -8,7 +8,7 @@ struct EmployeeTaskView: View {
     var checked: Bool
     var isLate: Bool
     var handleTaskOpen: () -> ()
-    var handleTaskCheckToggle: () -> ()
+    var handleTaskCheckToggle: (() -> ())?
     
     let lateBackgroundColor = Color(red: 255/255, green: 237/255, blue: 237/255)
     
@@ -42,7 +42,9 @@ struct EmployeeTaskView: View {
                 }
             }
             HStack {
-                CheckBoxView(checked: checked, handleCheckToggle: handleTaskCheckToggle)
+                if handleTaskCheckToggle != nil {
+                    CheckBoxView(checked: checked, handleCheckToggle: handleTaskCheckToggle!)
+                }
                 
                 Text(task.name)
                     .foregroundColor(textColor)

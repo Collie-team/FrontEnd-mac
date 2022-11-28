@@ -84,6 +84,7 @@ struct LoginView: View {
                     }
                 }
             )
+            .disabled(viewModel.loadingState != .waiting)
         }
         .foregroundColor(.black)
         .padding(.horizontal, 60)

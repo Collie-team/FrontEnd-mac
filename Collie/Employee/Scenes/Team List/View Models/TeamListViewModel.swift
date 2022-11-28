@@ -6,7 +6,8 @@ struct TeamListUser: Identifiable {
     
     var name: String
     var email: String
-    var journey: String
+    var userJourneys: [Journey]
+    var userId: String
     var progress: Float {
         return Float(self.doneTasks) / Float(self.totalTasks)
     }
@@ -49,7 +50,8 @@ final class TeamListViewModel: ObservableObject {
             let teamListUser = TeamListUser(
                 name: user.name,
                 email: user.email,
-                journey: userJourneys.count > 1 ? "\(userJourneys.first!.name) + \(userJourneys.count - 1)" : userJourneys.count > 0 ? userJourneys.first!.name : "Sem jornada",
+                userJourneys: userJourneys,
+                userId: user.id,
                 totalTasks: businessUser.userTasks.count,
                 doneTasks: doneTasks.count, imageURL: user.imageURL, role: businessUser.role)
             withAnimation() {

@@ -54,7 +54,7 @@ struct ProfileView: View {
                                 }
                         } else {
                             RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.collieVermelho)
+                                .fill(Colors.getRandomSecondaryColor())
                                 .frame(width: 240, height: 240)
                                 .modifier(CustomBorder())
                                 .overlay(
@@ -104,6 +104,13 @@ struct ProfileView: View {
                                 showEmailSendConfirmation = true
                             }
                         }
+                        .alert(isPresented: $showEmailSendConfirmation) {
+                            Alert(
+                                title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+                                message: Text("Confira a caixa de spam :)"),
+                                dismissButton: .default(Text("OK"))
+                            )
+                        }
                     }
                     .frame(maxWidth: .infinity)
                     .padding(32)
@@ -127,6 +134,17 @@ struct ProfileView: View {
                         
                         DestructiveButton(label: "Excluir conta") {
                             viewModel.showUserDeleteAlert = true
+                            print(viewModel.showUserDeleteAlert)
+                        }
+                        .alert(isPresented: $viewModel.showUserDeleteAlert) {
+                            Alert(
+                                title: Text("Você realmente deseja apagar todos os seus dados?"),
+                                message: Text("Essa ação é definitiva!"),
+                                primaryButton: .cancel(),
+                                secondaryButton: .destructive(Text("Deletar")) {
+                                    rootViewModel.deleteUserData()
+                                }
+                            )
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -143,23 +161,23 @@ struct ProfileView: View {
             .navigationTitle("Perfil")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.collieBrancoFundo.ignoresSafeArea())
-            .alert(isPresented: $viewModel.showUserDeleteAlert) {
-                Alert(
-                    title: Text("Você realmente deseja apagar todos os seus dados?"),
-                    message: Text("Essa ação é definitiva!"),
-                    primaryButton: .cancel(),
-                    secondaryButton: .destructive(Text("Deletar")) {
-                        rootViewModel.deleteUserData()
-                    }
-                )
-            }
-            .alert(isPresented: $showEmailSendConfirmation) {
-                Alert(
-                    title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
-                    message: Text("Confira a caixa de spam :)"),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
+//            .alert(isPresented: $viewModel.showUserDeleteAlert) {
+//                Alert(
+//                    title: Text("Você realmente deseja apagar todos os seus dados?"),
+//                    message: Text("Essa ação é definitiva!"),
+//                    primaryButton: .cancel(),
+//                    secondaryButton: .destructive(Text("Deletar")) {
+//                        rootViewModel.deleteUserData()
+//                    }
+//                )
+//            }
+//            .alert(isPresented: $showEmailSendConfirmation) {
+//                Alert(
+//                    title: Text("O e-mail de redefinição de senha foi enviado com sucesso!"),
+//                    message: Text("Confira a caixa de spam :)"),
+//                    dismissButton: .default(Text("OK"))
+//                )
+//            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())

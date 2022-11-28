@@ -123,6 +123,7 @@ struct SignupView: View {
                     }
                 }
             )
+            .disabled(viewModel.loadingState != .waiting)
         }
         .foregroundColor(.black)
         .padding(.horizontal, 60)

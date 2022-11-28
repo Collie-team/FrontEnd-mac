@@ -133,6 +133,8 @@
 		5BC5B363292EAE1100573899 /* BusinessDisplayFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B362292EAE1100573899 /* BusinessDisplayFormView.swift */; };
 		5BC5B365292EAE2100573899 /* BusinessEditingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B364292EAE2100573899 /* BusinessEditingFormView.swift */; };
 		5BC5B367292F0A2300573899 /* WorkspaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC5B366292F0A2300573899 /* WorkspaceImage.swift */; };
+		5BCCA4D429353E2A0096B58D /* User_BusinessUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCCA4D329353E2A0096B58D /* User_BusinessUserDTO.swift */; };
+		5BCCA4D62935570E0096B58D /* InspectEmployeeTaskFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCCA4D52935570E0096B58D /* InspectEmployeeTaskFullView.swift */; };
 		5BD0CB112927FAF8001E7563 /* WorkspaceOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */; };
 		5BD0CB13292C7BB4001E7563 /* CollieFontSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */; };
 		5BD0CB15292C8E9B001E7563 /* NakedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CB14292C8E9B001E7563 /* NakedButton.swift */; };
@@ -281,6 +283,8 @@
 		5BC5B362292EAE1100573899 /* BusinessDisplayFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDisplayFormView.swift; sourceTree = "<group>"; };
 		5BC5B364292EAE2100573899 /* BusinessEditingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessEditingFormView.swift; sourceTree = "<group>"; };
 		5BC5B366292F0A2300573899 /* WorkspaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImage.swift; sourceTree = "<group>"; };
+		5BCCA4D329353E2A0096B58D /* User_BusinessUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_BusinessUserDTO.swift; sourceTree = "<group>"; };
+		5BCCA4D52935570E0096B58D /* InspectEmployeeTaskFullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectEmployeeTaskFullView.swift; sourceTree = "<group>"; };
 		5BD0CB102927FAF8001E7563 /* WorkspaceOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceOptionView.swift; sourceTree = "<group>"; };
 		5BD0CB12292C7BB4001E7563 /* CollieFontSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollieFontSystem.swift; sourceTree = "<group>"; };
 		5BD0CB14292C8E9B001E7563 /* NakedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NakedButton.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				5B14E81A292ED9C2007F5C34 /* InspectView.swift */,
+				5BCCA4D52935570E0096B58D /* InspectEmployeeTaskFullView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				5B1BAD4C2901C34500EFF0E4 /* User_BusinessDTO.swift */,
 				5B1BAD502901CEC800EFF0E4 /* BusinessDTO.swift */,
 				5BBBA4FA2914428D00D9949E /* TeamListDTO.swift */,
+				5BCCA4D329353E2A0096B58D /* User_BusinessUserDTO.swift */,
 			);
 			path = ModelDTO;
 			sourceTree = "<group>";
@@ -1265,6 +1271,7 @@
 				5BF6693728E23779001B0A1D /* ChosenUserCellView.swift in Sources */,
 				5BAC4A8D2922CA52007722A3 /* EditingFormView.swift in Sources */,
 				5BC5B363292EAE1100573899 /* BusinessDisplayFormView.swift in Sources */,
+				5BCCA4D62935570E0096B58D /* InspectEmployeeTaskFullView.swift in Sources */,
 				5BAC4A992926FB17007722A3 /* FirebaseStorageService.swift in Sources */,
 				5BF6693528E23678001B0A1D /* UserCellView.swift in Sources */,
 				5B1BAD4028FF37C700EFF0E4 /* RootView.swift in Sources */,
@@ -1292,6 +1299,7 @@
 				5B954E832901C6D700FA579E /* CheckBoxView.swift in Sources */,
 				5BC5B35F292DCBD000573899 /* AuthenticationUser.swift in Sources */,
 				5B1BAD4328FF37E700EFF0E4 /* RootViewModel.swift in Sources */,
+				5BCCA4D429353E2A0096B58D /* User_BusinessUserDTO.swift in Sources */,
 				5B0DC413291D5FBD00CFD82A /* CreateOrEditCategoryView.swift in Sources */,
 				5B49605D28EF5A0E0024D064 /* MonthStruct.swift in Sources */,
 				5BC5B367292F0A2300573899 /* WorkspaceImage.swift in Sources */,
@@ -1510,7 +1518,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Pablo Enrique Harbar Penas (F5TH3S43VV)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
 				DEVELOPMENT_TEAM = P9DY7C7A5F;
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9DY7C7A5F;
@@ -1542,7 +1550,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Pablo Enrique Harbar Penas (F5TH3S43VV)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Collie/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = P9DY7C7A5F;

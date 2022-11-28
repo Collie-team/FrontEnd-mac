@@ -74,6 +74,9 @@ struct AuthenticationView: View {
         .padding(.horizontal, 48)
         .padding(.top, 36)
         .background(Color.collieBranco)
+        .onAppear {
+            viewModel.loadingState = .waiting
+        }
     }
 }
 

@@ -67,7 +67,7 @@ struct SettingsView: View {
                                 } else {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 8)
-                                            .fill(Color.collieVermelho)
+                                            .fill(Colors.getRandomSecondaryColor())
                                             .frame(width: 240, height: 240)
                                             .modifier(CustomBorder())
                                             .overlay(

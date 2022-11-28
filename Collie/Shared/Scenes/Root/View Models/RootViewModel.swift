@@ -28,6 +28,11 @@ final class RootViewModel: ObservableObject {
     
     @Published var currentUser: UserModel = UserModel(id: "", name: "", email: "", jobDescription: "", personalDescription: "", imageURL: "")
     
+    @Published var inspectingJourney: Journey?
+    @Published var inspectingBusinessUser: BusinessUser?
+    @Published var inspectingUser: UserModel?
+    @Published var loadingInspection: Bool = false
+    
     var currentBusinessUser: BusinessUser?
     
     var authenticationToken: String?
@@ -268,6 +273,19 @@ final class RootViewModel: ObservableObject {
                     }
                 }
             }
+        }
+    }
+    
+    func configureEmployeeInspection(userId: String, journeyId: String, _ completion: @escaping () -> ()) {
+        loadingInspection = true
+        if journeyId != "" {
+            self.inspectingJourney = businessSelected.journeys.filter({$0.id == journeyId}).first
+        }
+        businessUserSubscriptionService.fetchBusinessUser(userId: userId, businessId: businessSelected.id, authenticationToken: "") { busUser, user in
+            self.inspectingBusinessUser = busUser
+            self.inspectingUser = user
+            completion()
+            self.loadingInspection = false
         }
     }
 }

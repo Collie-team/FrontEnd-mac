@@ -26,36 +26,49 @@ struct EmployeeJourneyListView: View {
     
     var journeyList: some View {
         VStack(spacing: 0) {
-            
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(spacing: 0) {
+            HStack {
+                Text("Suas jornadas")
+                    .collieFont(textStyle: .largeTitle)
+                    .foregroundColor(Color.black)
+                
+                Spacer()
+                
+                TopUserProfileIcon {
+                    if let profileItem = employeeSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
+                        employeeSidebarViewModel.selectedItem = profileItem
+                    }
+                }
+            }
+            .padding(.bottom, 32)
+            if rootViewModel.businessSelected.journeys.filter({$0.userIds.contains(rootViewModel.currentUser.id)}).count == 0 {
+                VStack {
+                    Spacer()
                     HStack {
-                        Text("Suas jornadas")
-                            .collieFont(textStyle: .largeTitle)
-                            .foregroundColor(Color.black)
+                        Spacer()
+                        Text("Você ainda não possui uma jornada. Aguarde até o responsável do seu time terminar ela para você.")
+                            .collieFont(textStyle: .subtitle, textSize: 20)
                         
                         Spacer()
-                        
-                        TopUserProfileIcon {
-                            if let profileItem = employeeSidebarViewModel.sidebarItens.first(where: { $0.option == .profile}) {
-                                employeeSidebarViewModel.selectedItem = profileItem
+                    }
+                    Spacer()
+                }
+                .background(Color.collieBrancoFundoSecoes)
+                .cornerRadius(8)
+            } else {
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(spacing: 0) {
+                        LazyVGrid(columns: gridItems, spacing: 16) {
+                            
+                            ForEach(rootViewModel.businessSelected.journeys.filter({$0.userIds.contains(rootViewModel.currentUser.id)}).reversed()) { journey in
+                                JourneyCard(journeyIndex: rootViewModel.businessSelected.journeys.reversed().firstIndex(where: {$0.id == journey.id})!, journey: journey)
+                                    .frame(height: 320)
+                                    .onTapGesture {
+                                        viewModel.selectedJourney = journey
+                                    }
                             }
                         }
+                        Spacer()
                     }
-                    .padding(.bottom, 32)
-                    
-                    LazyVGrid(columns: gridItems, spacing: 16) {
-                        
-                        ForEach(rootViewModel.businessSelected.journeys.reversed()) { journey in
-                            JourneyCard(journeyIndex: rootViewModel.businessSelected.journeys.reversed().firstIndex(where: {$0.id == journey.id})!, journey: journey)
-                                .frame(height: 320)
-                                .onTapGesture {
-                                    viewModel.selectedJourney = journey
-                                }
-                        }
-                    }
-                    
-                    Spacer()
                 }
             }
         }
