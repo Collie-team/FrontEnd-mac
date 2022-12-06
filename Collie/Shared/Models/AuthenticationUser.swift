@@ -1,16 +1,16 @@
 import Foundation
 
 struct AuthenticationUser: Equatable {
-//    var firstName: String = ""
-//    var lastName: String = ""
-//    var email: String = ""
-//    var password: String = ""
-//    var passwordConfirmation: String = ""
-    var firstName: String = "André"
-    var lastName: String = "Arns"
-    var email: String = "andre@collie.work"
-    var password: String = "Aa1234567!"
-    var passwordConfirmation: String = "Aa1234567!"
+    var firstName: String = ""
+    var lastName: String = ""
+    var email: String = ""
+    var password: String = ""
+    var passwordConfirmation: String = ""
+//    var firstName: String = "André"
+//    var lastName: String = "Arns"
+//    var email: String = "andre@collie.work"
+//    var password: String = "Aa1234567!"
+//    var passwordConfirmation: String = "Aa1234567!"
     var agreementToggle: Bool = true
     var mailingToggle: Bool = false
     

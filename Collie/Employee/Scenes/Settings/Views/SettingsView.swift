@@ -186,6 +186,7 @@ struct SettingsView: View {
                                                         viewModel.updateAdminCount(businessUser: updatedBusinessUser)
                                                     }
                                                 })
+                                                
                                             }
                                         }
                                     }
@@ -274,6 +275,16 @@ struct SettingsView: View {
                 .padding(.top, 32)
                 .padding(.bottom)
             }
+            .alert(isPresented: $showDeleteAlert) {
+                Alert(
+                    title: Text("Você realmente deseja remover \(viewModel.selectedUserModel?.name ?? "")?"),
+                    message: Text("Essa ação é definitiva!"),
+                    primaryButton: .cancel(),
+                    secondaryButton: .destructive(Text("Deletar")) {
+                        viewModel.removeBusinessUser()
+                    }
+                )
+            }
             
             if viewModel.newUserPopupEnabled {
                 ZStack {
@@ -290,28 +301,35 @@ struct SettingsView: View {
                     )
                     .environmentObject(viewModel)
                 }
+                .alert(isPresented: $showEmailSendConfirmation) {
+                    Alert(
+                        title: Text("O convite foi enviado por e-mail com sucesso!"),
+                        message: Text("Agora é só aguardar o novo funcionário entrar no workspace."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
             }
         }
         .navigationTitle("Configurações")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.collieBrancoFundo.ignoresSafeArea())
-        .alert(isPresented: $showDeleteAlert) {
-            Alert(
-                title: Text("Você realmente deseja remover \(viewModel.selectedUserModel?.name ?? "")?"),
-                message: Text("Essa ação é definitiva!"),
-                primaryButton: .cancel(),
-                secondaryButton: .destructive(Text("Deletar")) {
-                    viewModel.removeBusinessUser()
-                }
-            )
-        }
-        .alert(isPresented: $showEmailSendConfirmation) {
-            Alert(
-                title: Text("O convite foi enviado por e-mail com sucesso!"),
-                message: Text("Agora é só aguardar o novo funcionário entrar no workspace."),
-                dismissButton: .default(Text("OK"))
-            )
-        }
+//        .alert(isPresented: $showDeleteAlert) {
+//            Alert(
+//                title: Text("Você realmente deseja remover \(viewModel.selectedUserModel?.name ?? "")?"),
+//                message: Text("Essa ação é definitiva!"),
+//                primaryButton: .cancel(),
+//                secondaryButton: .destructive(Text("Deletar")) {
+//                    viewModel.removeBusinessUser()
+//                }
+//            )
+//        }
+//        .alert(isPresented: $showEmailSendConfirmation) {
+//            Alert(
+//                title: Text("O convite foi enviado por e-mail com sucesso!"),
+//                message: Text("Agora é só aguardar o novo funcionário entrar no workspace."),
+//                dismissButton: .default(Text("OK"))
+//            )
+//        }
         .onAppear {
             viewModel.fetchBusinessCode(businessId: rootViewModel.businessSelected.id)
             viewModel.fetchUsers(business: rootViewModel.businessSelected)

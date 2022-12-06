@@ -86,10 +86,26 @@ final class CreateNewJourneyViewModel: ObservableObject {
             userIds: chosenUserModels.map({$0.id})
         )
         
+        let journeyTasks = updatedBusiness.tasks.filter({$0.journeyId == journeyId})
+        var oldUsersIdsInJourney: [String] = []
+        let newUsersIdsInJourney: [String] = journey.userIds
+        
         if let journeyIndex = updatedBusiness.journeys.firstIndex(where: {$0.id == journeyId}) {
+            oldUsersIdsInJourney = updatedBusiness.journeys[journeyIndex].userIds
             updatedBusiness.journeys[journeyIndex] = journey
         } else {
             updatedBusiness.journeys.append(journey)
+        }
+        
+        // Delete user task for old users
+        for userId in oldUsersIdsInJourney.filter({!newUsersIdsInJourney.contains($0)}) {
+            // Delete user tasks for userId
+            
+        }
+        // Create user tasks for new users
+        for userId in newUsersIdsInJourney.filter({!oldUsersIdsInJourney.contains($0)}) {
+            // Populate user tasks with done date = nil
+            
         }
         
         completion(updatedBusiness, journey)
